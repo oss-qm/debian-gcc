@@ -1,3 +1,12 @@
+gcc-defaults (1.16) unstable; urgency=medium
+
+  * Add upstream FAQ to gcc package.
+  * Add README.Bugs document.
+  * On sparc, add configuration file /etc/disable_64_gcc to generate 32bit
+    code on sparc64 architecture (closes: #251149).
+
+ -- Matthias Klose <doko@debian.org>  Mon, 31 May 2004 22:03:32 -0300
+
 gcc-defaults (1.15) unstable; urgency=low
 
   * Add gpc package for ia64, add binobj and gpidump links to gpc package.
