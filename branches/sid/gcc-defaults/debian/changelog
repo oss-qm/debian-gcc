@@ -1,0 +1,272 @@
+gcc-defaults (1.11) unstable; urgency=medium
+
+  * Fix installation of g++ wrapper on sparc (closes: #225510).
+
+ -- Matthias Klose <doko@debian.org>  Sat,  3 Jan 2004 11:10:49 +0100
+
+gcc-defaults (1.10) unstable; urgency=low
+
+  * Depend on the 3.3.2 final release.
+  * Change priority of -doc packages to optional.
+  * Add dependencies for g++, g77, gobjc, gcj on gcc of the same
+    version (closes: #214694).
+  * Add sparc-g++.c to do the same thing as the gcc wrapper.
+  * Make the sparc gcc/g++ wrapper accept an override to disable 64-bit mode.
+    This can be done by touching /etc/disable_64_gcc (closes: #221282).
+
+ -- Matthias Klose <doko@debian.org>  Wed, 19 Nov 2003 22:09:30 +0100
+
+gcc-defaults (1.9) unstable; urgency=low
+
+  * control.m4: conditionalize on available languages (closes: #205226).
+  * Remove version information in package descriptions to ease the task
+    of the translators (closes: #205207).
+
+ -- Matthias Klose <doko@debian.org>  Sat, 16 Aug 2003 10:12:55 +0200
+
+gcc-defaults (1.8) unstable; urgency=low
+
+  * Add sparc-gcc.c wrapper for handling -m32/-m64 defaults. Replaces the
+    normal gcc symlink (Ben Collins).
+  * Make 3.3 the default for sparc again.
+  * Sync epoch for all architectures.
+  * Provide {cpp,gcc,g77,gpc}-doc dependency packages.
+    Closes: #178284, #188217, #193409, #197514.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 25 Jul 2003 10:40:02 +0200
+
+gcc-defaults (1.7) unstable; urgency=low
+
+  * Add <GNU_TYPE>-{cpp,gcc,g++,gcj,g77} symlinks.
+  * Bump sparc back down to 3.2. Increase our epoch to compensate.
+
+ -- Ben Collins <bcollins@debian.org>  Wed,  4 Jun 2003 11:39:53 -0400
+
+gcc-defaults (1.6) unstable; urgency=low
+
+  * Make gcc-3.3 the default C compiler (g++-3.3 default for C++, g77-3.3
+    default for Fortran, gobjc-3.3 default for ObjectiveC, g[ci]j-3.3 default
+    for Java).
+    The Debian gcc-3.3-0pre9 packages are build from the second prerelease,
+    which is identical to the 3.3 final release on GNU/Linux.
+  * Add c99 script (closes: #190823).
+
+ -- Matthias Klose <doko@debian.org>  Thu, 15 May 2003 20:46:56 +0200
+
+gcc-defaults (1.5) unstable; urgency=medium
+
+  * Update gpc date in package version.
+  * Make gpc-2.1-3.3 the default on hppa and ia64 (gpc-2.1-3.2 isn't built
+    anymore).
+
+ -- Matthias Klose <doko@debian.org>  Thu, 24 Apr 2003 07:36:45 +0200
+
+gcc-defaults (1.4) unstable; urgency=low
+
+  * Depend on the 3.2.3 prerelease.
+  * Correct gpc date in package version.
+  * Remove f77 alternative left over from an old egcs(?) version.
+  * gpc: Add links for gpidump and binobj.
+  * Remove old c++filt diversions left over by egcs, fixed script.
+    Closes: #138038.
+  * Add the fsf-funding(7), gfdl(7), gpl(7) man pages to the cpp package.
+    Closes: #181495.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 15 Mar 2003 20:15:55 +0100
+
+gcc-defaults (1.3) unstable; urgency=low
+
+  * Make gcc-3.2 the default C compiler (g++-3.2 default for C++, g77-3.2
+    default for Fortran, gobjc-3.2 default for ObjectiveC, g[ci]j-3.2 default
+    for Java).
+  * Increase epoch due to wrong gpc and chill default version (closes: #163294).
+  * Add netbsd-i386 support (closes: #162201).
+  * Add gpc-run symlinks.
+  * Make gpc-2.1-3.2 the default on hppa and ia64 (the gpc based on gcc-3.2
+    is still an alpha version).
+  * Remove old c++filt diversions left over by egcs ... (closes: #138038).
+
+ -- Matthias Klose <doko@debian.org>  Sun, 29 Dec 2002 00:39:03 +0100
+
+gcc-defaults (1.2) unstable; urgency=low
+
+  * Make gcc-3.2 the default for the Hurd (closes: #156968).
+  * Added SH support in previous upload (closes: #155002).
+
+ -- Matthias Klose <doko@debian.org>  Fri,  6 Sep 2002 23:03:11 +0200
+
+gcc-defaults (1.1) unstable; urgency=low
+
+  * Add SH support.
+
+ -- Matthias Klose <doko@debian.org>  Fri,  2 Aug 2002 07:43:26 +0200
+
+gcc-defaults (1.0) unstable; urgency=low
+
+  * Make gcc-3.1 the default for the Hurd.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 14 May 2002 21:41:35 +0200
+
+gcc-defaults (0.22) unstable; urgency=low
+
+  * Unreleased.
+  * Use ObjC 3.0 for ARM.
+
+ -- Phil Blundell <pb@debian.org>  Sun, 31 Mar 2002 18:17:33 +0100
+
+gcc-defaults (0.21) unstable; urgency=low
+
+  * Include java on ARM.
+  * Set ARM g77 version number to 3.0.4.
+
+ -- Phil Blundell <pb@debian.org>  Sat, 23 Mar 2002 04:15:58 -0500
+
+gcc-defaults (0.20) unstable; urgency=medium
+
+  * Rebuild with new debhelper (closes: #137295, #137296).
+
+ -- Matthias Klose <doko@debian.org>  Fri,  8 Mar 2002 09:05:28 +0100
+
+gcc-defaults (0.19) unstable; urgency=medium
+
+  * Set g77 version for ARM to 3.0.
+  * Disable java for mips(el); it clearly isn't getting built.
+  * Add self to Uploaders
+
+ -- Philip Blundell <pb@debian.org>  Sun,  3 Mar 2002 22:36:36 +0000
+
+gcc-defaults (0.18) unstable; urgency=medium
+
+  * Fix version of gobjc package on ia64 (closes: #131428).
+
+ -- Matthias Klose <doko@debian.org>  Tue, 29 Jan 2002 18:55:11 +0100
+
+gcc-defaults (0.17) unstable; urgency=medium
+
+  * Replace empty doc directories by symlinks to the cpp doc directory.
+    Closes: #117285.
+  * Add suggestions for -doc packages (somewhat closes: #115127).
+  * Build `gpc' package for mips and mipsel.
+  * gcj package: Provide default for `jv-convert'.
+  * Copy package descriptions from the gcc-X.Y packages and add "This is a
+    dependency package ...". Overkill closes: #124063.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 20 Jan 2002 22:05:41 +0100
+
+gcc-defaults (0.16) unstable; urgency=medium
+
+  * Make 3.0 the default for gobjc on ia64. Closes: #122735.
+  * New package gij to provide a default for the java interpreter.
+    Closes: #119386.
+  * Make 3.0 the default for gcj and gij on ia64.
+  * Package gij provides java-virtual-machine and java1-runtime.
+    Closes: #119384.
+  * Reflect move to gcc-3.0.3.
+
+ -- Matthias Klose <doko@debian.org>  Sat,  8 Dec 2001 11:33:05 +0100
+
+gcc-defaults (0.15) unstable; urgency=low
+
+  * Add gpc-doc (<< 1:2.95.3) conflict for gpc package. Same for cpp
+    and gcc (Closes: #115299).
+
+ -- Matthias Klose <doko@debian.org>  Sun, 14 Oct 2001 11:14:05 +0200
+
+gcc-defaults (0.14) unstable; urgency=low
+
+  * Make gcj package for m68k.
+
+ -- Matthias Klose <doko@debian.org>  Sun,  7 Oct 2001 12:10:43 +0200
+
+gcc-defaults (0.13) unstable; urgency=low
+
+  * Make gcj package for powerpc.
+
+ -- Matthias Klose <doko@debian.org>  Sat,  4 Aug 2001 12:11:34 +0200
+
+gcc-defaults (0.12) unstable; urgency=low
+
+  * Replace suggestions of removed task-packages with minimal individual
+    packages (closes: #105695).
+  * symlinks for java manpages.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 23 Jul 2001 21:06:15 +0200
+
+gcc-defaults (0.11) unstable; urgency=low
+
+  * Rebuild with current version of dpkg-dev (closes #102528).
+
+ -- Matthias Klose <doko@gate.local>  Thu, 28 Jun 2001 22:01:41 +0200
+
+gcc-defaults (0.10) unstable; urgency=low
+
+  * Set default for mips to 2.95. gcc-defaults for mips(el) has never been
+    uploaded to the archive with 3.x as the version, so we won't need to
+    epoch this fallback (Ryan Murray <rmurray@cyberhqz.com>).
+
+ -- Matthias Klose <doko@debian.org>  Tue, 26 Jun 2001 07:28:06 +0200
+
+gcc-defaults (0.9) unstable; urgency=low
+
+  * Increase epoch, use gcc-2.96 as default for ia64 (#101876, #101878).
+  * Update version number to 2.95.4 (on m68k).
+
+ -- Matthias Klose <doko@debian.org>  Sat, 23 Jun 2001 12:48:30 +0200
+
+gcc-defaults (0.8.1) unstable; urgency=low
+
+  * IA-64 currently uses 2.96 as the default and will soon have 3.0 as an
+    option.  Reflect the correct default here, we had assumed 3.0 previously.
+
+ -- Bdale Garbee <bdale@gag.com>  Fri, 22 Jun 2001 00:16:08 -0600
+
+gcc-defaults (0.8) unstable; urgency=low
+
+  * Update version number to 2.95.4 (except m68k).
+  * debian/control.m4: correct CHILL description (closes: #93929).
+  * Default to 3.0 for ia64-linux, mips-linux and mipsel-linux
+  * gcj defaults to 3.0 for all architectures.
+  * Fix suggestions of task packages (closes: #96272, #96273).
+
+ -- Matthias Klose <doko@debian.org>  Sun, 27 May 2001 02:25:45 +0200
+
+gcc-defaults (0.7) unstable; urgency=low
+
+  * Rebuild control file.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 29 Mar 2001 06:37:10 +0200
+
+gcc-defaults (0.6) unstable; urgency=low
+
+  * Support for hppa-linux (fixes #91940).
+
+ -- Matthias Klose <doko@debian.org>  Wed, 28 Mar 2001 06:43:40 +0200
+
+gcc-defaults (0.5) testing unstable; urgency=high
+
+  * Upload to testing; gcc-2.95 needs this package.
+
+ -- Matthias Klose <doko@debian.org>  Wed,  7 Feb 2001 18:25:35 +0100
+
+gcc-defaults (0.4) unstable; urgency=low
+
+  * Link /usr/share/doc/gcc to cpp doc directory (#80990).
+
+ -- Matthias Klose <doko@debian.org>  Mon,  1 Jan 2001 18:27:27 +0100
+
+gcc-defaults (0.3) unstable; urgency=low
+
+  * Reenable gcj for sparc.
+  * TODO: Update description of Debian compiler setup.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 31 Dec 2000 10:59:01 +0000
+
+gcc-defaults (0.2) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 29 Dec 2000 19:12:08 +0100
+
+Local variables:
+mode: debian-changelog
+End:

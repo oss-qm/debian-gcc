@@ -1,0 +1,9 @@
+#! /bin/sh -e
+
+if [ $1 != "upgrade" ]; then
+    update-alternatives --remove cc /usr/bin/gcc
+fi
+
+#DEBHELPER#
+
+exit 0
