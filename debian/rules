@@ -1,0 +1,438 @@
+#! /usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This is the debhelper compatability version to use.
+export DH_COMPAT=4
+
+# version number of the defaults package
+VDEF	:= $(strip $(shell dpkg-parsechangelog | awk -F: '/^Version:/ {print $$NF}'))
+
+REL_NO	:= $(shell dpkg-parsechangelog | awk -F. '/^Version:/ {print $$NF}')
+# gcc-defaults 0.8 is the first version for 2.95.4.
+REL_NO_295	:= $(shell expr $(REL_NO) + 15)
+# gcc-defaults 0.6 is the first version with 2.96 support.
+REL_NO_296	:= $(shell expr $(REL_NO) + 17)
+# gcc-defaults 0.17 is the first version with 3.0.4 support.
+REL_NO_30	:= $(shell expr $(REL_NO) + 6)
+# gcc-defaults 1.0 is the first version with 3.1 support.
+REL_NO_31	:= $(shell expr $(REL_NO) + 1)
+# gcc-defaults 1.2 is the first version with 3.2 support.
+REL_NO_32	:= $(shell expr $(REL_NO) - 1)
+# gcc-defaults 1.3 is the first version with 3.2.2 support.
+REL_NO_322	:= $(shell expr $(REL_NO) - 3)
+# gcc-defaults 1.4 is the first version with 3.2.3 support.
+REL_NO_323	:= $(shell expr $(REL_NO) - 4)
+# gcc-defaults 1.5 is the first version with 3.3 support.
+REL_NO_33	:= $(shell expr $(REL_NO) - 5)
+# gcc-defaults 1.7 is the first version with 3.3.1 support.
+REL_NO_331	:= $(shell expr $(REL_NO) - 7)
+# gcc-defaults 1.10 is the first version with 3.3.2 support.
+REL_NO_332	:= $(shell expr $(REL_NO) - 9)
+
+#
+GPC_DATE	:= 20030507
+GPC_VERSION	:= 2.1
+
+# minimum required gcc-X.Y versions
+REQV_295	:= (>= 1:2.95.4-16)
+REQV_296	:= 
+REQV_30		:= (>= 1:3.0.4-12)
+REQV_32		:= (>= 1:3.2.3-1)
+REQV_33		:= (>= 1:3.3.2-1)
+REQV_GPC_33	:= (>= 1:3.3.2.$(GPC_DATE)-2)
+
+# architecture dependent variables
+DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_GNU_SYSTEM	:= $(shell dpkg-architecture -qDEB_HOST_GNU_SYSTEM)
+DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
+# CV_XXX is the complete version number, including the release, without epoch
+CV_CHILL:= 2.95.4-$(REL_NO_295)
+CV_GPC	:= 2.95.4-$(REL_NO_295)
+
+CV_CPP	:= 3.3.2-$(REL_NO_332)
+CV_GCC	:= 3.3.2-$(REL_NO_332)
+CV_GPP	:= 3.3.2-$(REL_NO_332)
+CV_GOBJC:= 3.3.2-$(REL_NO_332)
+CV_G77	:= 3.3.2-$(REL_NO_332)
+CV_GCJ	:= 3.3.2-$(REL_NO_332)
+CV_GIJ	:= 3.3.2-$(REL_NO_332)
+
+REQV_CHILL	= $(REQV_295)
+REQV_GPC	= $(REQV_295)
+
+REQV_CPP	= $(REQV_33)
+REQV_GCC	= $(REQV_33)
+REQV_GPP	= $(REQV_33)
+REQV_GOBJC	= $(REQV_33)
+REQV_G77	= $(REQV_33)
+REQV_GCJ	= $(REQV_33)
+REQV_GIJ	= $(REQV_33)
+
+EPOCH=4
+OS_NAME	:= Linux
+packages := chill c++ fortran java objc pascal
+
+ifeq ($(DEB_HOST_GNU_TYPE),alpha-linux)
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),arm-linux)
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),ia64-linux)
+    CV_GPC	:= 3.3.2.$(GPC_DATE)-$(REL_NO_33)
+    REQV_GPC	= $(REQV_GPC_33)
+    packages	:= c++ fortran java objc #pascal
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),i386-linux)
+endif
+
+tmp:=$(filter $(DEB_HOST_GNU_TYPE),sh3-linux sh4-linux sh3eb-linux sh4eb-linux)
+ifeq ($(DEB_HOST_GNU_TYPE),$(tmp))
+    packages    := c++ objc
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),hppa-linux)
+    CV_GPC	:= 3.3.2.$(GPC_DATE)-$(REL_NO_33)
+    REQV_GPC	= $(REQV_GPC_33)
+    packages	:= c++ fortran objc pascal
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),mips-linux)
+    packages := chill c++ fortran objc pascal
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),mipsel-linux)
+    packages := chill c++ fortran objc pascal
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),i386-gnu)
+    OS_NAME	:= Hurd
+endif
+
+ifeq ($(DEB_HOST_ARCH),netbsd-i386)
+    OS_NAME	:= NetBSD
+endif
+
+# derived version number (without release)
+V_CPP	:= $(shell echo $(CV_CPP)   | sed 's/-[^-]*$$//')
+V_GCC	:= $(shell echo $(CV_GCC)   | sed 's/-[^-]*$$//')
+V_GPP	:= $(shell echo $(CV_GPP)   | sed 's/-[^-]*$$//')
+V_GOBJC	:= $(shell echo $(CV_GOBJC) | sed 's/-[^-]*$$//')
+V_G77	:= $(shell echo $(CV_G77)   | sed 's/-[^-]*$$//')
+V_CHILL	:= $(shell echo $(CV_CHILL) | sed 's/-[^-]*$$//')
+V_GCJ	:= $(shell echo $(CV_GCJ)   | sed 's/-[^-]*$$//')
+V_GIJ	:= $(shell echo $(CV_GIJ)   | sed 's/-[^-]*$$//')
+V_GPC	:= $(shell echo $(CV_GPC)   | sed 's/-[^-]*$$//')
+
+# number for the package name
+PV_CPP	:= $(shell echo $(V_CPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_GCC	:= $(shell echo $(V_GCC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_GPP	:= $(shell echo $(V_GPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_GOBJC:= $(shell echo $(V_GOBJC) | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_G77	:= $(shell echo $(V_G77)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_CHILL:= $(shell echo $(V_CHILL) | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_GPC	:= $(shell echo $(V_GPC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+ifeq ($(REQV_GPC),$(REQV_GPC_33))
+    V_GPCDEP := $(V_GCC)
+    PV_GPCDEP := $(PV_GCC)
+    PV_GPC := $(GPC_VERSION)-$(PV_GPC)
+    REQV_GPCDEP := $(REQV_33)
+else
+    V_GPCDEP := $(V_GPC)
+    PV_GPCDEP := $(PV_GPC)
+    REQV_GPCDEP := $(REQV_295)
+endif
+
+control:
+	m4 -DPACKAGES="$(packages)" \
+	   -DOS_NAME=$(OS_NAME) \
+	   -DDEB_ARCH=$(DEB_HOST_ARCH) \
+	   -DEPOCH=$(EPOCH) \
+	   -DVDEF=$(VDEF) \
+	   -DCV_CPP=$(CV_CPP) \
+	   -DCV_GPC=$(CV_GPC) \
+	   -DV_CPP=$(V_CPP)     -DPV_CPP=$(PV_CPP) \
+	   -DV_GCC=$(V_GCC)     -DPV_GCC=$(PV_GCC) \
+	   -DV_GPP=$(V_GPP)     -DPV_GPP=$(PV_GPP) \
+	   -DV_GOBJC=$(V_GOBJC) -DPV_GOBJC=$(PV_GOBJC) \
+	   -DV_CHILL=$(V_CHILL) -DPV_CHILL=$(PV_CHILL) \
+	   -DV_G77=$(V_G77)     -DPV_G77=$(PV_G77) \
+	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
+	   -DV_GIJ=$(V_GIJ)     -DPV_GIJ=$(PV_GIJ) \
+	   -DV_GPC=$(V_GPC)     -DPV_GPC=$(PV_GPC) \
+	   -DV_GPCDEP=$(V_GPCDEP)     -DPV_GPCDEP=$(PV_GPCDEP) \
+	   -DREQV_CPP='$(REQV_CPP)' \
+	   -DREQV_GCC='$(REQV_GCC)' \
+	   -DREQV_GPP='$(REQV_GPP)' \
+	   -DREQV_GOBJC='$(REQV_GOBJC)' \
+	   -DREQV_CHILL='$(REQV_CHILL)' \
+	   -DREQV_G77='$(REQV_G77)' \
+	   -DREQV_GCJ='$(REQV_GCJ)' \
+	   -DREQV_GIJ='$(REQV_GIJ)' \
+	   -DREQV_GPC='$(REQV_GPC)' \
+	   -DREQV_GPCDEP='$(REQV_GPCDEP)' \
+		debian/control.m4 > debian/control.tmp2
+	uniq debian/control.tmp2 > debian/control.tmp
+	rm -f debian/control.tmp2
+	[ -e debian/control ] \
+	  && cmp -s debian/control debian/control.tmp \
+	  && rm -f debian/control.tmp && exit 0; \
+	  mv debian/control.tmp debian/control
+
+README:
+	m4 -DPACKAGES="$(packages)" \
+	   -DOS_NAME=$(OS_NAME) \
+	   -DDEB_ARCH=$(DEB_HOST_ARCH) \
+	   -DV_CPP=$(V_CPP)     -DPV_CPP=$(PV_CPP) \
+	   -DV_GCC=$(V_GCC)     -DPV_GCC=$(PV_GCC) \
+	   -DV_GPP=$(V_GPP)     -DPV_GPP=$(PV_GPP) \
+	   -DV_GOBJC=$(V_GOBJC) -DPV_GOBJC=$(PV_GOBJC) \
+	   -DV_CHILL=$(V_CHILL) -DPV_CHILL=$(PV_CHILL) \
+	   -DV_G77=$(V_G77)     -DPV_G77=$(PV_G77) \
+	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
+	   -DV_GIJ=$(V_GCJ)     -DPV_GIJ=$(PV_GCJ) \
+	   -DV_GPC=$(V_GPC)     -DPV_GPC=$(PV_GPC) \
+		debian/README.Debian.m4 > debian/README.Debian.tmp2
+	uniq debian/README.Debian.tmp2 > debian/README.Debian.tmp
+	rm -f debian/README.Debian.tmp2
+	[ -e debian/README.Debian ] \
+	  && cmp -s debian/README.Debian debian/README.Debian.tmp \
+	  && rm -f debian/README.Debian.tmp && exit 0; \
+	  mv debian/README.Debian.tmp debian/README.Debian
+
+build: control README build-stamp
+build-stamp:
+	dh_testdir
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	rm -f debian/control.tmp*
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+	: # cpp
+	dh_installdirs -pcpp \
+		lib usr/bin \
+		usr/share/man/man1 usr/share/man/man7 usr/share/doc/cpp
+	for i in fsf-funding.7 gfdl.7 gpl.7; do \
+	  cp -p $$i debian/cpp/usr/share/man/man7/$${i}gcc; \
+	done
+	dh_link -pcpp \
+	  /usr/bin/cpp-$(PV_CPP) /lib/cpp \
+	  /usr/bin/cpp-$(PV_CPP) /usr/bin/cpp \
+	  /usr/share/man/man1/cpp-$(PV_CPP).1.gz /usr/share/man/man1/cpp.1.gz \
+	  /usr/bin/cpp-$(PV_CPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-cpp \
+	  /usr/share/man/man1/cpp-$(PV_CPP).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-cpp.1.gz
+
+	: # cpp-doc
+	dh_installdirs -pcpp-doc \
+		usr/share/doc usr/share/info
+	dh_link -pcpp-doc \
+	  /usr/share/doc/cpp-$(PV_CPP)-doc /usr/share/doc/cpp-doc \
+	  /usr/share/info/cpp-$(PV_CPP).info.gz /usr/share/info/cpp.info.gz \
+	  /usr/share/info/cppinternals-$(PV_CPP).info.gz /usr/share/info/cppinternals.info.gz
+
+	: # gcc
+	dh_installdirs -pgcc usr/bin usr/share/man/man1 usr/share/doc
+	dh_link -pgcc \
+	  /usr/share/doc/cpp /usr/share/doc/gcc \
+	  /usr/bin/gcc-$(PV_GCC) /usr/bin/gcc \
+	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/gcc.1.gz \
+	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
+	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc.1.gz \
+	  /usr/bin/gccbug-$(PV_GCC) /usr/bin/gccbug \
+	  /usr/share/man/man1/gccbug-$(PV_GCC).1.gz /usr/share/man/man1/gccbug.1.gz \
+	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
+	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/gcov.1.gz
+ifeq ($(DEB_HOST_GNU_TYPE),sparc-linux)
+	rm -f debian/gcc/usr/bin/gcc
+	$(CC) -DGCC_NAME=gcc-$(PV_GCC) -O2 -Wall sparc-gcc.c -o debian/gcc/usr/bin/gcc
+endif
+	install -m 755 -p c89 debian/gcc/usr/bin/.
+	install -m 644 -p c89.1 debian/gcc/usr/share/man/man1/.
+	install -m 755 -p c99 debian/gcc/usr/bin/.
+	install -m 644 -p c99.1 debian/gcc/usr/share/man/man1/.
+
+	: # gcc-doc
+	dh_installdirs -pgcc-doc \
+		usr/share/doc usr/share/info
+	dh_link -pgcc-doc \
+	  /usr/share/doc/gcc-$(PV_GCC)-doc /usr/share/doc/gcc-doc \
+	  /usr/share/info/gcc-$(PV_GCC).info.gz /usr/share/info/gcc.info.gz \
+	  /usr/share/info/gccint-$(PV_GCC).info.gz /usr/share/info/gccint.info.gz
+
+ifeq (objc, $(findstring objc, $(packages)))
+	: # gobjc
+	dh_installdirs -pgobjc usr/share/doc
+	dh_link -pgobjc \
+	  /usr/share/doc/cpp /usr/share/doc/gobjc
+endif
+
+ifeq (c++, $(findstring c++, $(packages)))
+	: # g++
+	dh_installdirs -pg++ usr/bin /usr/share/man/man1 usr/share/doc
+	dh_link -pg++ \
+	  /usr/share/doc/cpp /usr/share/doc/g++ \
+	  /usr/bin/g++-$(PV_GPP) /usr/bin/g++ \
+	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/g++.1.gz \
+	  /usr/bin/g++-$(PV_GPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-g++ \
+	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-g++.1.gz
+ifeq ($(DEB_HOST_GNU_TYPE),sparc-linux)
+	rm -f debian/g++/usr/bin/g++
+	$(CC) -DGPP_NAME=g++-$(PV_GPP) -O2 -Wall sparc-g++.c -o debian/g++/usr/bin/g++
+endif
+endif
+
+ifeq (fortran, $(findstring fortran, $(packages)))
+	: # g77
+	dh_installdirs -pg77 usr/bin /usr/share/man/man1 usr/share/doc
+	dh_link -pg77 \
+	  /usr/share/doc/cpp /usr/share/doc/g77 \
+	  /usr/bin/g77-$(PV_G77) /usr/bin/g77 \
+	  /usr/share/man/man1/g77-$(PV_G77).1.gz /usr/share/man/man1/g77.1.gz \
+	  /usr/bin/g77-$(PV_G77) /usr/bin/$(DEB_HOST_GNU_TYPE)-g77 \
+	  /usr/share/man/man1/g77-$(PV_G77).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-g77.1.gz
+
+	: # g77-doc
+	dh_installdirs -pg77-doc \
+		usr/share/doc usr/share/info
+	dh_link -pg77-doc \
+	  /usr/share/doc/g77-$(PV_G77)-doc /usr/share/doc/g77-doc \
+	  /usr/share/info/g77-$(PV_G77).info.gz /usr/share/info/g77.info.gz
+
+endif
+
+ifeq (chill, $(findstring chill, $(packages)))
+	: # chill
+	dh_installdirs -pchill usr/bin /usr/share/man/man1 usr/share/doc
+	dh_link -pchill \
+	  /usr/share/doc/cpp /usr/share/doc/chill \
+	  /usr/bin/chill-$(PV_CHILL) /usr/bin/chill
+	dh_undocumented -pchill chill.1
+endif
+
+ifeq (java, $(findstring java, $(packages)))
+	: # gcj
+	dh_installdirs -pgcj usr/bin /usr/share/man/man1 usr/share/doc
+	dh_link -pgcj \
+	  /usr/share/doc/cpp /usr/share/doc/gcj \
+	  /usr/bin/gcj-$(PV_GCJ) /usr/bin/gcj \
+	  /usr/bin/gcj-$(PV_GCJ) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcj \
+	  /usr/bin/gcjh-$(PV_GCJ) /usr/bin/gcjh \
+	  /usr/bin/jv-convert-$(PV_GCJ) /usr/bin/jv-convert \
+	  /usr/bin/jv-scan-$(PV_GCJ) /usr/bin/jv-scan \
+	  /usr/bin/jcf-dump-$(PV_GCJ) /usr/bin/jcf-dump \
+	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/gcj.1.gz \
+	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcj.1.gz \
+	  /usr/share/man/man1/gcjh-$(PV_GCJ).1.gz /usr/share/man/man1/gcjh.1.gz \
+	  /usr/share/man/man1/jv-convert-$(PV_GCJ).1.gz /usr/share/man/man1/jv-convert.1.gz \
+	  /usr/share/man/man1/jv-scan-$(PV_GCJ).1.gz /usr/share/man/man1/jv-scan.1.gz \
+	  /usr/share/man/man1/jcf-dump-$(PV_GCJ).1.gz /usr/share/man/man1/jcf-dump.1.gz \
+	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
+	  /usr/share/man/man1/gcj-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcj-wrapper.1.gz \
+	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
+
+	: # gij
+	dh_installdirs -pgij usr/bin /usr/share/man/man1 usr/share/doc
+	dh_link -pgij \
+	  /usr/share/doc/cpp /usr/share/doc/gij \
+	  /usr/bin/gij-$(PV_GIJ) /usr/bin/gij \
+	  /usr/share/man/man1/gij-$(PV_GIJ).1.gz /usr/share/man/man1/gij.1.gz \
+	  /usr/bin/gij-wrapper-$(PV_GIJ) /usr/bin/gij-wrapper \
+	  /usr/share/man/man1/gij-wrapper-$(PV_GIJ).1.gz /usr/share/man/man1/gij-wrapper.1.gz
+endif
+
+ifeq (pascal, $(findstring pascal, $(packages)))
+	: # gpc
+	dh_installdirs -pgpc usr/bin /usr/share/man/man1 usr/share/doc
+	dh_link -pgpc \
+	  /usr/share/doc/cpp /usr/share/doc/gpc \
+	  /usr/bin/gpc-$(PV_GPC) /usr/bin/gpc \
+	  /usr/share/man/man1/gpc-$(PV_GPC).1.gz /usr/share/man/man1/gpc.1.gz \
+	  /usr/bin/gpc-run-$(PV_GPC) /usr/bin/gpc-run \
+	  /usr/share/man/man1/gpc-run-$(PV_GPC).1.gz /usr/share/man/man1/gpc-run.1.gz
+
+	: # gpc-doc
+	dh_installdirs -pgpc-doc \
+		usr/share/doc usr/share/info
+	dh_link -pgpc-doc \
+	  /usr/share/doc/gpc-$(PV_GPC)-doc /usr/share/doc/gpc-doc
+
+# not exactly correct. but in 2.95, we have an older pascal version ...
+  ifneq (2.95, $(findstring 2.95, $(CV_GPC)))
+	dh_link -pgpc \
+	  /usr/bin/binobj-$(PV_GPC) /usr/bin/binobj \
+	  /usr/share/man/man1/binobj-$(PV_GPC).1.gz /usr/share/man/man1/binobj.1.gz \
+	  /usr/bin/gpidump-$(PV_GPC) /usr/bin/gpidump \
+	  /usr/share/man/man1/gpidump-$(PV_GPC).1.gz /usr/share/man/man1/gpidump.1.gz
+	: # gpc-doc
+	dh_link -pgpc-doc \
+	  /usr/share/info/gpc-$(PV_GPC).info.gz /usr/share/info/gpc.info.gz \
+	  /usr/share/info/gpcs-$(PV_GPC).info.gz /usr/share/info/gpcs.info.gz \
+	  /usr/share/info/gpcs-de-$(PV_GPC).info.gz /usr/share/info/gpcs-de.info.gz \
+	  /usr/share/info/gpcs-hu-$(PV_GPC).info.gz /usr/share/info/gpcs-hu.info.gz
+  endif
+endif
+
+binary-indep: build install
+	: # Nothing needs to be done
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+#	dh_installdebconf
+	dh_installdocs -pcpp
+	for p in `dh_listpackages -Ncpp -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc`; do \
+	  echo ln -sf cpp debian/$$p/usr/share/doc/$$p; \
+	  ln -sf cpp debian/$$p/usr/share/doc/$$p; \
+	done
+	dh_installchangelogs -pcpp
+	mv debian/cpp/usr/share/doc/cpp/changelog \
+		debian/cpp/usr/share/doc/cpp/changelog.Debian
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol -pcpp     -u-v$(EPOCH):$(CV_CPP)
+	dh_gencontrol -pcpp-doc -u-v$(EPOCH):$(CV_CPP)
+	dh_gencontrol -pgcc     -u-v$(EPOCH):$(CV_GCC)
+	dh_gencontrol -pgcc-doc -u-v$(EPOCH):$(CV_GCC)
+ifeq (c++, $(findstring c++, $(packages)))
+	dh_gencontrol -pg++     -u-v$(EPOCH):$(CV_GPP)
+endif
+ifeq (objc, $(findstring objc, $(packages)))
+	dh_gencontrol -pgobjc   -u-v$(EPOCH):$(CV_GOBJC)
+endif
+ifeq (fortran, $(findstring fortran, $(packages)))
+	dh_gencontrol -pg77     -u-v$(EPOCH):$(CV_G77)
+	dh_gencontrol -pg77-doc -u-v$(EPOCH):$(CV_G77)
+endif
+ifeq (pascal, $(findstring pascal, $(packages)))
+	dh_gencontrol -pgpc     -u-v$(EPOCH):$(CV_GPC)
+	dh_gencontrol -pgpc-doc -u-v$(EPOCH):$(CV_GPC)
+endif
+ifeq (java, $(findstring java, $(packages)))
+	dh_gencontrol -pgcj   -u-v$(EPOCH):$(CV_GCJ)
+	dh_gencontrol -pgij   -u-v$(EPOCH):$(CV_GIJ)
+endif
+ifeq (chill, $(findstring chill, $(packages)))
+	dh_gencontrol -pchill -u-v$(EPOCH):$(CV_CHILL)
+endif
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
