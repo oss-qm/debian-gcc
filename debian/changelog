@@ -1,3 +1,9 @@
+gcc-defaults (1.17) unstable; urgency=low
+
+  * Make OSNAME detection CPU-independant, and add k*BSD.
+
+ -- Robert Millan <rmh@debian.org>  Thu,  5 Aug 2004 15:38:14 -0600
+
 gcc-defaults (1.16) unstable; urgency=medium
 
   * Add upstream FAQ to gcc package.
