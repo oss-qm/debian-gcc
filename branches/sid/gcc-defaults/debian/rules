@@ -30,6 +30,8 @@ REL_NO_33	:= $(shell expr $(REL_NO) - 5)
 REL_NO_331	:= $(shell expr $(REL_NO) - 7)
 # gcc-defaults 1.10 is the first version with 3.3.2 support.
 REL_NO_332	:= $(shell expr $(REL_NO) - 9)
+# gcc-defaults 1.13 is the first version with 3.3.3 support.
+REL_NO_333	:= $(shell expr $(REL_NO) - 12)
 
 #
 GPC_DATE	:= 20030507
@@ -40,8 +42,8 @@ REQV_295	:= (>= 1:2.95.4-16)
 REQV_296	:= 
 REQV_30		:= (>= 1:3.0.4-12)
 REQV_32		:= (>= 1:3.2.3-1)
-REQV_33		:= (>= 1:3.3.2-1)
-REQV_GPC_33	:= (>= 1:3.3.2.$(GPC_DATE)-2)
+REQV_33		:= (>= 1:3.3.3-1)
+REQV_GPC_33	:= (>= 1:3.3.3.$(GPC_DATE)-2)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -52,13 +54,13 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 2.95.4-$(REL_NO_295)
 
-CV_CPP	:= 3.3.2-$(REL_NO_332)
-CV_GCC	:= 3.3.2-$(REL_NO_332)
-CV_GPP	:= 3.3.2-$(REL_NO_332)
-CV_GOBJC:= 3.3.2-$(REL_NO_332)
-CV_G77	:= 3.3.2-$(REL_NO_332)
-CV_GCJ	:= 3.3.2-$(REL_NO_332)
-CV_GIJ	:= 3.3.2-$(REL_NO_332)
+CV_CPP	:= 3.3.3-$(REL_NO_333)
+CV_GCC	:= 3.3.3-$(REL_NO_333)
+CV_GPP	:= 3.3.3-$(REL_NO_333)
+CV_GOBJC:= 3.3.3-$(REL_NO_333)
+CV_G77	:= 3.3.3-$(REL_NO_333)
+CV_GCJ	:= 3.3.3-$(REL_NO_333)
+CV_GIJ	:= 3.3.3-$(REL_NO_333)
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_295)
@@ -82,9 +84,9 @@ ifeq ($(DEB_HOST_GNU_TYPE),arm-linux)
 endif
 
 ifeq ($(DEB_HOST_GNU_TYPE),ia64-linux)
-    CV_GPC	:= 3.3.2.$(GPC_DATE)-$(REL_NO_33)
+    CV_GPC	:= 3.3.3.$(GPC_DATE)-$(REL_NO_33)
     REQV_GPC	= $(REQV_GPC_33)
-    packages	:= c++ fortran java objc #pascal
+    packages	:= c++ fortran java objc pascal
 endif
 
 ifeq ($(DEB_HOST_GNU_TYPE),i386-linux)
@@ -96,9 +98,9 @@ ifeq ($(DEB_HOST_GNU_TYPE),$(tmp))
 endif
 
 ifeq ($(DEB_HOST_GNU_TYPE),hppa-linux)
-    CV_GPC	:= 3.3.2.$(GPC_DATE)-$(REL_NO_33)
+    CV_GPC	:= 3.3.3.$(GPC_DATE)-$(REL_NO_33)
     REQV_GPC	= $(REQV_GPC_33)
-    packages	:= c++ fortran objc pascal
+    packages	:= c++ fortran java objc pascal
 endif
 
 ifeq ($(DEB_HOST_GNU_TYPE),mips-linux)
@@ -364,28 +366,21 @@ ifeq (pascal, $(findstring pascal, $(packages)))
 	  /usr/bin/gpc-$(PV_GPC) /usr/bin/gpc \
 	  /usr/share/man/man1/gpc-$(PV_GPC).1.gz /usr/share/man/man1/gpc.1.gz \
 	  /usr/bin/gpc-run-$(PV_GPC) /usr/bin/gpc-run \
-	  /usr/share/man/man1/gpc-run-$(PV_GPC).1.gz /usr/share/man/man1/gpc-run.1.gz
+	  /usr/share/man/man1/gpc-run-$(PV_GPC).1.gz /usr/share/man/man1/gpc-run.1.gz \
+	  /usr/bin/binobj-$(PV_GPC) /usr/bin/binobj \
+	  /usr/share/man/man1/binobj-$(PV_GPC).1.gz /usr/share/man/man1/binobj.1.gz \
+	  /usr/bin/gpidump-$(PV_GPC) /usr/bin/gpidump \
+	  /usr/share/man/man1/gpidump-$(PV_GPC).1.gz /usr/share/man/man1/gpidump.1.gz
 
 	: # gpc-doc
 	dh_installdirs -pgpc-doc \
 		usr/share/doc usr/share/info
 	dh_link -pgpc-doc \
-	  /usr/share/doc/gpc-$(PV_GPC)-doc /usr/share/doc/gpc-doc
-
-# not exactly correct. but in 2.95, we have an older pascal version ...
-  ifneq (2.95, $(findstring 2.95, $(CV_GPC)))
-	dh_link -pgpc \
-	  /usr/bin/binobj-$(PV_GPC) /usr/bin/binobj \
-	  /usr/share/man/man1/binobj-$(PV_GPC).1.gz /usr/share/man/man1/binobj.1.gz \
-	  /usr/bin/gpidump-$(PV_GPC) /usr/bin/gpidump \
-	  /usr/share/man/man1/gpidump-$(PV_GPC).1.gz /usr/share/man/man1/gpidump.1.gz
-	: # gpc-doc
-	dh_link -pgpc-doc \
+	  /usr/share/doc/gpc-$(PV_GPC)-doc /usr/share/doc/gpc-doc \
 	  /usr/share/info/gpc-$(PV_GPC).info.gz /usr/share/info/gpc.info.gz \
 	  /usr/share/info/gpcs-$(PV_GPC).info.gz /usr/share/info/gpcs.info.gz \
 	  /usr/share/info/gpcs-de-$(PV_GPC).info.gz /usr/share/info/gpcs-de.info.gz \
 	  /usr/share/info/gpcs-hu-$(PV_GPC).info.gz /usr/share/info/gpcs-hu.info.gz
-  endif
 endif
 
 binary-indep: build install

@@ -7,13 +7,13 @@ GNU compiler collection (gcc).
 The default compiler versions for Debian GNU/Linux on i386 are
 (minor version numbers omitted):
 
-	cpp	- cpp-3.3.2	(package cpp-3.3)
-	gcc	- gcc-3.3.2	(package gcc-3.3)
-	g++	- g++-3.3.2	(package g++-3.3)
-	g77	- g77-3.3.2	(package g77-3.3)
-	gcj	- gcj-3.3.2	(package gcj-3.3)
-	gij	- gij-3.3.2	(package gij-3.3)
-	gobjc	- gcc-3.3.2	(package gobjc-3.3)
+	cpp	- cpp-3.3.3	(package cpp-3.3)
+	gcc	- gcc-3.3.3	(package gcc-3.3)
+	g++	- g++-3.3.3	(package g++-3.3)
+	g77	- g77-3.3.3	(package g77-3.3)
+	gcj	- gcj-3.3.3	(package gcj-3.3)
+	gij	- gij-3.3.3	(package gij-3.3)
+	gobjc	- gcc-3.3.3	(package gobjc-3.3)
 	gpc	- gpc-2.95.4	(package gpc-2.95)
 	chill	- chill-2.95.4	(package chill-2.95)
 

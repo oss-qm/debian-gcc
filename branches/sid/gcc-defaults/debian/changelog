@@ -1,3 +1,30 @@
+gcc-defaults (1.15) unstable; urgency=low
+
+  * Add gpc package for ia64, add binobj and gpidump links to gpc package.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 27 Mar 2004 12:32:11 +0100
+
+gcc-defaults (1.14) unstable; urgency=low
+
+  * gcj: ReAdd dependency on gcj-3.3 (closes: #234986).
+  * Downgrade the dependency of gcj to gij to a recommendation.
+  * gij: Add suggestion for gcj.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 26 Feb 2004 23:32:13 +0100
+
+gcc-defaults (1.13) unstable; urgency=low
+
+  * Depend on the 3.3.3 final release.
+  * gcj: Add dependency on gij.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 25 Feb 2004 23:25:30 +0100
+
+gcc-defaults (1.12) unstable; urgency=low
+
+  * Build gij and gcj packages for hppa-linux.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 19 Feb 2004 02:23:31 +0100
+
 gcc-defaults (1.11) unstable; urgency=medium
 
   * Fix installation of g++ wrapper on sparc (closes: #225510).

@@ -92,7 +92,8 @@ ifenabled(`java',`
 Package: gcj
 Priority: optional
 Architecture: any
-Depends: cpp (>= EPOCH:CV_CPP), gcc (>= EPOCH:CV_CPP), gcj-PV_GCJ REQV_GCJ, g++-PV_GCJ REQV_GCJ
+Depends: cpp (>= EPOCH:CV_CPP), gcc (>= EPOCH:CV_CPP), g++ (>= EPOCH:CV_CPP), gcj-PV_GCJ REQV_GCJ
+Recommends: gij (>= EPOCH:CV_CPP)
 Provides: java-compiler
 Description: The GNU Java compiler
  GCJ is a front end to the GCC compiler which can natively compile both
@@ -105,6 +106,7 @@ Package: gij
 Priority: optional
 Architecture: any
 Depends: cpp (>= EPOCH:CV_CPP), gij-PV_GIJ REQV_GIJ
+Suggests: gcj (>= EPOCH:CV_CPP)
 Conflicts: libgcj2 (<= 3.0.2-4)
 Description: The GNU Java bytecode interpreter
  GIJ is not limited to interpreting bytecode. It includes a class loader which
