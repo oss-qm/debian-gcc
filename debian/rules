@@ -31,6 +31,8 @@ REL_NO_332	:= $(shell expr $(REL_NO) - 9)
 REL_NO_333	:= $(shell expr $(REL_NO) - 12)
 # gcc-defaults 1.16 is the first version with 3.3.4 support.
 REL_NO_334	:= $(shell expr $(REL_NO) - 15)
+# gcc-defaults 1.19 is the first version with 3.3.5 support.
+REL_NO_335	:= $(shell expr $(REL_NO) - 18)
 
 #
 GPC_DATE	:= 20040516
@@ -41,8 +43,8 @@ REQV_295	:= (>= 1:2.95.4-16)
 REQV_296	:= 
 REQV_30		:= (>= 1:3.0.4-12)
 REQV_32		:= (>= 1:3.2.3-1)
-REQV_33		:= (>= 1:3.3.4-1)
-REQV_GPC_33	:= (>= 1:3.3.4.$(GPC_DATE)-1)
+REQV_33		:= (>= 1:3.3.5-1)
+REQV_GPC_33	:= (>= 1:3.3.5.$(GPC_DATE)-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -52,15 +54,15 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 #CV_GPC	:= 2.95.4-$(REL_NO_295)
-CV_GPC	:= 3.3.4-$(REL_NO_334)
+CV_GPC	:= 3.3.5-$(REL_NO_335)
 
-CV_CPP	:= 3.3.4-$(REL_NO_334)
-CV_GCC	:= 3.3.4-$(REL_NO_334)
-CV_GPP	:= 3.3.4-$(REL_NO_334)
-CV_GOBJC:= 3.3.4-$(REL_NO_334)
-CV_G77	:= 3.3.4-$(REL_NO_334)
-CV_GCJ	:= 3.3.4-$(REL_NO_334)
-CV_GIJ	:= 3.3.4-$(REL_NO_334)
+CV_CPP	:= 3.3.5-$(REL_NO_335)
+CV_GCC	:= 3.3.5-$(REL_NO_335)
+CV_GPP	:= 3.3.5-$(REL_NO_335)
+CV_GOBJC:= 3.3.5-$(REL_NO_335)
+CV_G77	:= 3.3.5-$(REL_NO_335)
+CV_GCJ	:= 3.3.5-$(REL_NO_335)
+CV_GIJ	:= 3.3.5-$(REL_NO_335)
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_33)
@@ -72,32 +74,20 @@ REQV_GOBJC	= $(REQV_33)
 REQV_G77	= $(REQV_33)
 REQV_GCJ	= $(REQV_33)
 REQV_GIJ	= $(REQV_33)
+REQV_LIBGCJ	= $(REQV_33)
 REQV_GPC	= $(REQV_GPC_33)
 
-EPOCH=4
+LIBGCJ		= libgcj4
 
+EPOCH=4
+OS_NAME	:= Linux
 packages := chill c++ fortran java objc pascal
 
-# System specific, but CPU independant
-ifeq ($(DEB_HOST_GNU_SYSTEM),linux)
-    OS_NAME	:= Linux
-endif
-ifeq ($(DEB_HOST_GNU_SYSTEM),gnu)
-    OS_NAME	:= Hurd
-endif
-ifeq ($(DEB_HOST_GNU_SYSTEM),kfreebsd-gnu)
-    OS_NAME	:= kFreeBSD
-endif
-ifeq ($(DEB_HOST_GNU_SYSTEM),knetbsd-gnu)
-    OS_NAME	:= kNetBSD
-endif
-ifeq ($(DEB_HOST_GNU_SYSTEN),netbsdelf-gnu)
-    OS_NAME	:= NetBSD
-endif
-
-# System and CPU specific
-
 ifeq ($(DEB_HOST_GNU_TYPE),alpha-linux)
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),amd64-linux)
+    packages	:= c++ fortran java objc pascal
 endif
 
 ifeq ($(DEB_HOST_GNU_TYPE),arm-linux)
@@ -125,6 +115,14 @@ endif
 
 ifeq ($(DEB_HOST_GNU_TYPE),mipsel-linux)
     packages := chill c++ fortran objc pascal
+endif
+
+ifeq ($(DEB_HOST_GNU_TYPE),i386-gnu)
+    OS_NAME	:= Hurd
+endif
+
+ifeq ($(DEB_HOST_ARCH),netbsd-i386)
+    OS_NAME	:= NetBSD
 endif
 
 # derived version number (without release)
@@ -185,6 +183,8 @@ control:
 	   -DREQV_G77='$(REQV_G77)' \
 	   -DREQV_GCJ='$(REQV_GCJ)' \
 	   -DREQV_GIJ='$(REQV_GIJ)' \
+	   -DREQV_LIBGCJ='$(REQV_LIBGCJ)' \
+	   -DLIBGCJ='$(LIBGCJ)' \
 	   -DREQV_GPC='$(REQV_GPC)' \
 	   -DREQV_GPCDEP='$(REQV_GPCDEP)' \
 		debian/control.m4 > debian/control.tmp2
@@ -360,6 +360,9 @@ ifeq (java, $(findstring java, $(packages)))
 	  /usr/share/man/man1/gcj-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcj-wrapper.1.gz \
 	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
 
+	: # libgcj-dev
+	dh_installdirs -plibgcj-dev usr/bin /usr/share/man/man1 usr/share/doc
+
 	: # gij
 	dh_installdirs -pgij usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pgij \
@@ -405,6 +408,7 @@ binary-arch: build install
 	dh_installdocs -pcpp
 	for p in `dh_listpackages -Ncpp -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc`; do \
 	  echo ln -sf cpp debian/$$p/usr/share/doc/$$p; \
+	  rm -f debian/$$p/usr/share/doc/$$p; \
 	  ln -sf cpp debian/$$p/usr/share/doc/$$p; \
 	done
 	dh_installchangelogs -pcpp
@@ -433,6 +437,7 @@ ifeq (pascal, $(findstring pascal, $(packages)))
 endif
 ifeq (java, $(findstring java, $(packages)))
 	dh_gencontrol -pgcj   -u-v$(EPOCH):$(CV_GCJ)
+	dh_gencontrol -plibgcj-dev   -u-v$(EPOCH):$(CV_GCJ)
 	dh_gencontrol -pgij   -u-v$(EPOCH):$(CV_GIJ)
 endif
 ifeq (chill, $(findstring chill, $(packages)))

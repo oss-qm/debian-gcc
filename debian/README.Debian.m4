@@ -23,7 +23,8 @@ summarised at the end of /usr/share/doc/gcc-<version>/README.Debian.
 Introduction
 ------------
 
-Debian 3.1 has three/four (if 3.4 gets in) main sets of compiler
+Debian 3.1 has three (for notes on 3.4, please have a look at
+/usr/share/doc/gcc-3.4/README.Debian) main sets of compiler
 (related) packages:
 
 - One based on GCC-3.3.x. These include the compilers g++, gobjc, g77,
@@ -59,8 +60,8 @@ support software relying on older compiler versions.
   stable) kernels, as it was the primary compiler used in the development of 
   that kernel series.
 
-- Just released GCC-3.4.x [TODO]
-  XXX on hppa and m68k don't mix code compiled with GCC-3.3.x and GCC-3.4.x.
+- Just released GCC-3.4.x
+  See /usr/share/doc/gcc-3.4/README.Debian for things not to do.
 
 For software compatibility testing, you may find older versions,
 backports and snapshots of newer version for GCC in the unstable or
@@ -203,6 +204,7 @@ Ryan Murray <rmurray@cyberhqz.com>		(mips*-linux)
 Dan Jacobowitz <dan@debian.org>			(powerpc-linux)
 Gerhard Tonn <GerhardTonn@swol.de>		(s390-linux)
 Roman Zippel <zippel@linux-m68k.org>		(m68k-linux)
+Ludovic Brenta <ludovic.brenta@insalien.org>	(gnat)
 
 ===============================================================================
 
