@@ -102,6 +102,17 @@ Description: The GNU Java compiler
  .
  This is a dependency package providing the default GNU Java compiler.SSW
 
+Package: libgcj-dev
+Priority: optional
+Architecture: any
+Depends: LIBGCJ-dev REQV_LIBGCJ, gcj (>= EPOCH:CV_CPP)
+Description: Java development headers and static library for use with gcj 
+ These are the development headers and static libraries that go along with 
+ the gcj front end to gcc. libgcj includes parts of the Java Class Libraries, 
+ plus glue to connect the libraries to the compiler and the underlying OS.
+ .
+ This is a dependency package providing the default Java development headers.SSW
+
 Package: gij
 Priority: optional
 Architecture: any

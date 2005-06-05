@@ -1,8 +1,35 @@
+gcc-defaults (1.21) unstable; urgency=medium
+
+  * Fix libgcj-dev dependency epoch (Daniel Schepler). Closes: #301584.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 27 Mar 2005 01:41:53 +0100
+
+gcc-defaults (1.20) unstable; urgency=low
+
+  * Add libgcj-dev package (Andreas Jochens). Closes: #278105.
+    Packages using gcj -C (byte compiling) should (build-)depend on gcj,
+    packages compiling to native code, should (build-)depend on libgcj-dev.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 25 Mar 2005 20:04:09 +0100
+
+gcc-defaults (1.19) unstable; urgency=low
+
+  * Depend on the 3.3.5 final release.
+  * Fix wrong symlink (closes: #275477).
+
+ -- Matthias Klose <doko@debian.org>  Sat, 13 Nov 2004 22:31:25 +0100
+
+gcc-defaults (1.18) unstable; urgency=medium
+
+  * Remove dangling symlink in cpp and gcc doc directories (closes: #265555).
+
+ -- Matthias Klose <doko@debian.org>  Fri, 13 Aug 2004 22:01:50 +0200
+
 gcc-defaults (1.17) unstable; urgency=low
 
-  * Make OSNAME detection CPU-independant, and add k*BSD.
+  * Don't build chill on amd64.
 
- -- Robert Millan <rmh@debian.org>  Thu,  5 Aug 2004 15:38:14 -0600
+ -- Matthias Klose <doko@debian.org>  Thu, 15 Jul 2004 00:15:14 +0200
 
 gcc-defaults (1.16) unstable; urgency=medium
 
