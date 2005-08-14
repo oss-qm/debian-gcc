@@ -6,13 +6,15 @@ dnl --------------------------------------------------------------------------
 		The Debian GNU Compiler Collection Setup
 		========================================
 
+TODO: update the README, not yet complete for 4.0
+
 Abstract
 --------
 
-Debian 3.1 (sarge) is (mostly) built using the GCC 3.3.x compiler
-collection.  As some packages have not yet been ported to GCC 3.3, the
-gcc-2.95 compiler is still available on all major platforms (gcc-2.96
-on ia64, gcc-3.0 on hppa).  Also, the gcc 2.7.2.3 C compiler is still
+Debian 3.2 (etch) is (mostly) built using the GCC 4.0.x compiler
+collection.  As some packages have not yet been ported to GCC 4.0, the
+gcc-3.4, gcc-3.3 and gcc-2.95 compilers are still available on all major
+platforms (gcc-2.96 on ia64).  Also, the gcc 2.7.2.3 C compiler is still
 available for compatibility reasons (e.g. for building Linux 2.0.xx
 kernels).
 
@@ -23,15 +25,23 @@ summarised at the end of /usr/share/doc/gcc-<version>/README.Debian.
 Introduction
 ------------
 
-Debian 3.1 has three (for notes on 3.4, please have a look at
+Debian 3.2 has three (for notes on 3.4, please have a look at
 /usr/share/doc/gcc-3.4/README.Debian) main sets of compiler
 (related) packages:
 
-- One based on GCC-3.3.x. These include the compilers g++, gobjc, g77,
-  gcj, gnat, gpc, treelang and libraries libstdc++5(-dev), libobjc1,
-  libgcj4(-dev) and libgcc1.
+- One based on GCC-4.0.x. These include the compilers g++, gobjc, gfortran,
+  gcj, gnat, treelang and libraries libstdc++6(-dev), libobjc1,
+  libgcj6(-dev) and libgcc1 (libgcc2 on hppa and m68k).
   On all architectures, this is the preferred C compiler which
   is called `gcc'.
+
+- One based on GCC-3.4.x. These include the compilers g++, gobjc, g77,
+  gcj, gnat, treelang and libraries libstdc++6(-dev), libobjc1,
+  libgcj5(-dev) and libgcc1 (libgcc2 on hppa and m68k).
+
+- One based on GCC-3.3.x. These include the compilers g++, gobjc, g77,
+  gcj, gnat, treelang and libraries libstdc++5(-dev), libobjc1,
+  libgcj4(-dev) and libgcc1.
 
 - One based on gcc-2.95. These include the compilers g++, gobjc,
   g77, chill and gpc and libraries libstdc++2.10(-dev), libg++2.8.1.3(-dev).
@@ -122,6 +132,18 @@ work.  When configuring sources, use
     setenv CC gcc-2.95; ./configure <options>		# csh
 
 When calling make, use `make CC=gcc-2.95'.
+
+
+gcc/g++/... are not handled using alternatives
+----------------------------------------------
+
+The symlinks in /usr/bin (gcc, g++, ...) are not handled using the Debian
+alternative mechanism. There are differences in the architecture specific
+ABI on some architectures and the C++ ABI differs as well. Having the
+symlinks managed by alternatives doesn't allow reliable builds with the
+same major/minor version of the compiler. To use another compiler version,
+set the appropriate environment variables as described above in the section
+"Practical implications".
 
 
 C++ and C++ libraries
