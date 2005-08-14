@@ -1,3 +1,62 @@
+gcc-defaults (1.28) unstable; urgency=low
+
+  * Change build system to allow upload of versions of the form
+    [0-9]+.[0-9]+<anything>.
+
+ -- Matthias Klose <doko@debian.org>  Sat,  6 Aug 2005 01:09:15 +0200
+
+gcc-defaults (1.27) unstable; urgency=high
+
+  * Fix build for platforms with some compilers missing.
+
+ -- Matthias Klose <doko@debian.org>  Wed,  3 Aug 2005 19:09:10 +0200
+
+gcc-defaults (1.26) unstable; urgency=high
+
+  * Depend on the 4.0.1 final release.
+  * debian/control.m4: Remove.
+  * debian/control: Add substitution variables.
+  * debian/rules: Generate debian/*.substvars.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 21 Jul 2005 15:30:16 +0200
+
+gcc-defaults (1.24) unstable; urgency=low
+
+  * Build-depend on dpkg-dev (>= 1.13.9).
+
+ -- Matthias Klose <doko@debian.org>  Fri,  8 Jul 2005 11:44:26 +0000
+
+gcc-defaults (1.23) unstable; urgency=high
+
+  * Make gcc-4.0 the default C compiler, g++-4.0 the default C++ compiler,
+    gobjc-4.0 the default ObjC compiler, treelang-4.0 the default Treelang
+    compiler, gcj-4.0 the default compiler for the Java language, and gij-4.0
+    the default for the bytecode interpreter.
+  * Add gfortran package, depending on gfortran-4.0, not available for m68k.
+  * Make g77-3.4 the default for g77, gpc-3.4 the default for gpc.
+  * Add gjnih default (gcj package).
+  * gfortran: Add alternative for f95.
+  * Depend on the 3.4.4-4 and 4.0.0-11 versions (4.0.0-12 on sparc and hppa).
+  * gij: Provide java-virtual-machine, java-runtime and java1-runtime.
+  * README.Debian: Add a note, why the gcc/g++/... symlinks are not handled
+    using update-alternatives (closes: #312634).
+  * Suggest automake1.9 instead of automake (closes: #311293).
+  * Add support for GNU/kFreeBSD (closes: #316759).
+
+ -- Matthias Klose <doko@debian.org>  Mon,  4 Jul 2005 23:46:28 +0200
+
+gcc-defaults (1.22) unstable; urgency=low
+
+  * debian/control: Build depend on dpkg-dev (>= 1.13.9), needed to determine
+    the GNU architecture type.
+  * The symlinks for the tools change to the the new output of
+    dpkg-architecture -qDEB_HOST_GNU_TYPE (i.e. i386-linux-gcc becomes
+    i486-linux-gnu-gcc).
+  * Make 3.3.6-7 the required version (the first version built with the
+    dpkg-architecture changes).
+
+ -- Matthias Klose <doko@debian.org>  Sun, 26 Jun 2005 23:00:36 +0200
+
 gcc-defaults (1.21) unstable; urgency=medium
 
   * Fix libgcj-dev dependency epoch (Daniel Schepler). Closes: #301584.
