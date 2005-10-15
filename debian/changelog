@@ -1,3 +1,10 @@
+gcc-defaults (1.29) unstable; urgency=low
+
+  * Depend on the 4.0.2 final release.
+  * Build gfortran for m68k.
+
+ -- Matthias Klose <doko@debian.org>  Mon,  3 Oct 2005 22:28:43 +0000
+
 gcc-defaults (1.28) unstable; urgency=low
 
   * Change build system to allow upload of versions of the form
