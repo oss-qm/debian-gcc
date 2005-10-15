@@ -1,3 +1,9 @@
+gcc-defaults (1.30) unstable; urgency=low
+
+  * Fix gfortran prerm script (closes: #334081).
+
+ -- Matthias Klose <doko@debian.org>  Sat, 15 Oct 2005 13:21:43 +0000
+
 gcc-defaults (1.29) unstable; urgency=low
 
   * Depend on the 4.0.2 final release.
