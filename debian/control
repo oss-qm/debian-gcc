@@ -76,7 +76,7 @@ Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gfortran-${pv:gfort} 
 Suggests: gfortran-doc
 Provides: fortran-compiler
 Description: The GNU Fortran 95 compiler
- This is the GNU g95 Fortran compiler, which compiles Fortran 95 on platforms
+ This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler. It uses the gcc backend to generate optimized
  code.
  .
