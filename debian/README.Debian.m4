@@ -6,12 +6,12 @@ dnl --------------------------------------------------------------------------
 		The Debian GNU Compiler Collection Setup
 		========================================
 
-TODO: update the README, not yet complete for 4.0
+TODO: update the README, not yet complete for 4.0 / etch
 
 Abstract
 --------
 
-Debian 3.2 (etch) is (mostly) built using the GCC 4.0.x compiler
+Debian X.Y (etch) is (mostly) built using the GCC 4.0.x compiler
 collection.  As some packages have not yet been ported to GCC 4.0, the
 gcc-3.4, gcc-3.3 and gcc-2.95 compilers are still available on all major
 platforms (gcc-2.96 on ia64).  Also, the gcc 2.7.2.3 C compiler is still
