@@ -298,6 +298,7 @@ endif
 	install -m 644 -p c89.1 debian/gcc/usr/share/man/man1/.
 	install -m 755 -p c99 debian/gcc/usr/bin/.
 	install -m 644 -p c99.1 debian/gcc/usr/share/man/man1/.
+	sed 's/@VER@/$(PV_GCC)/g' c99.1 > debian/gcc/usr/share/man/man1/c99.1
 
 	: # gcc-doc
 	dh_installdirs -pgcc-doc \
