@@ -138,16 +138,6 @@ endif
 ifeq ($(DEB_HOST_ARCH),m68k)
 endif
 
-ifeq ($(DEB_HOST_ARCH),mips)
-    packages := chill c++ f77 fortran objc pascal
-    no_packages	:= gcj gij libgcj-dev
-endif
-
-ifeq ($(DEB_HOST_ARCH),mipsel)
-    packages := chill c++ f77 fortran objc pascal
-    no_packages	:= gcj gij libgcj-dev
-endif
-
 ifeq ($(DEB_HOST_ARCH),i386-gnu)
     OS_NAME	:= Hurd
 endif
