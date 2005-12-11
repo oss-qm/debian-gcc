@@ -3,6 +3,7 @@ gcc-defaults (1.30) unstable; urgency=low
   * Fix gfortran prerm script (closes: #334081).
   * Clarify gfortran package description (closes: #333348).
   * Remove version number of release, picky RM ... (closes: #321092).
+  * Build java packages for mips again.
 
  -- Matthias Klose <doko@debian.org>  Sat, 15 Oct 2005 13:21:43 +0000
 
