@@ -4,6 +4,7 @@ gcc-defaults (1.30) unstable; urgency=low
   * Clarify gfortran package description (closes: #333348).
   * Remove version number of release, picky RM ... (closes: #321092).
   * Build java packages for mips again.
+  * Update c99(1) man page (closes: #324687).
 
  -- Matthias Klose <doko@debian.org>  Sat, 15 Oct 2005 13:21:43 +0000
 
