@@ -203,6 +203,8 @@ substvars:
 	  echo 'version:cpp=$(EPOCH):$(CV_CPP)'; \
 	  echo 'version:gcc=$(EPOCH):$(CV_GCC)'; \
 	  echo 'version:gpp=$(EPOCH):$(CV_GPP)'; \
+	  echo 'version:gij=$(EPOCH):$(CV_GIJ)'; \
+	  echo 'version:gcj=$(EPOCH):$(CV_GCJ)'; \
 	  echo 'version:gpc=$(EPOCH):$(CV_GPC)'; \
 	  echo 'version:g77=$(EPOCH):$(CV_G77)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
