@@ -8,6 +8,7 @@ gcc-defaults (1.30) unstable; urgency=medium
   * Depend on the 3.4.5 final release, depend on the g++ versions
     after changing the libstdc++ allocator.
   * Handle /lib/cpp as an alternative.
+  * gcj: Depend on libgcj-dev and gij.
 
  -- Matthias Klose <doko@debian.org>  Sun, 11 Dec 2005 10:58:11 +0100
 

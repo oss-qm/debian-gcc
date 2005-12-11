@@ -85,8 +85,7 @@ Description: The GNU Fortran 95 compiler
 Package: gcj
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), g++ (>= ${version:cpp}), gcj-${pv:gcj} ${reqv:gcj}
-Recommends: gij (>= ${version:cpp})
+Depends: cpp (>= ${version:cpp}), g++ (>= ${version:cpp}), libgcj-dev (>= ${version:gcj}), gij (>= ${version:cpp}), gcj-${pv:gcj} ${reqv:gcj}
 Provides: java-compiler
 Description: The GNU Java compiler
  GCJ is a front end to the GCC compiler which can natively compile both
