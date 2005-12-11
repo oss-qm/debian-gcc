@@ -261,7 +261,6 @@ install: build substvars
 	  cp -p $$i debian/cpp/usr/share/man/man7/$${i}gcc; \
 	done
 	dh_link -pcpp \
-	  /usr/bin/cpp-$(PV_CPP) /lib/cpp \
 	  /usr/bin/cpp-$(PV_CPP) /usr/bin/cpp \
 	  /usr/share/man/man1/cpp-$(PV_CPP).1.gz /usr/share/man/man1/cpp.1.gz \
 	  /usr/bin/cpp-$(PV_CPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-cpp \
