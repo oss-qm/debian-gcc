@@ -1,12 +1,14 @@
-gcc-defaults (1.30) unstable; urgency=low
+gcc-defaults (1.30) unstable; urgency=medium
 
   * Fix gfortran prerm script (closes: #334081).
   * Clarify gfortran package description (closes: #333348).
   * Remove version number of release, picky RM ... (closes: #321092).
   * Build java packages for mips again.
   * Update c99(1) man page (closes: #324687).
+  * Depend on the 3.4.5 final release, depend on the g++ versions
+    after changing the libstdc++ allocator.
 
- -- Matthias Klose <doko@debian.org>  Sat, 15 Oct 2005 13:21:43 +0000
+ -- Matthias Klose <doko@debian.org>  Sun, 11 Dec 2005 10:58:11 +0100
 
 gcc-defaults (1.29) unstable; urgency=low
 
