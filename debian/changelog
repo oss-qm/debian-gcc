@@ -1,3 +1,9 @@
+gcc-defaults (1.31) unstable; urgency=low
+
+  * Use epoch for all packages.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 24 Dec 2005 02:46:58 +0100
+
 gcc-defaults (1.30) unstable; urgency=medium
 
   * Fix gfortran prerm script (closes: #334081).

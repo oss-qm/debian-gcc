@@ -475,8 +475,8 @@ ifeq (f77, $(findstring f77, $(packages)))
 	dh_gencontrol -pg77-doc -u-v$(EPOCH):$(CV_G77)
 endif
 ifeq (fortran, $(findstring fortran, $(packages)))
-	dh_gencontrol -pgfortran     -u-v$(CV_GFORT)
-	dh_gencontrol -pgfortran-doc -u-v$(CV_GFORT)
+	dh_gencontrol -pgfortran     -u-v$(EPOCH):$(CV_GFORT)
+	dh_gencontrol -pgfortran-doc -u-v$(EPOCH):$(CV_GFORT)
 endif
 ifeq (pascal, $(findstring pascal, $(packages)))
 	dh_gencontrol -pgpc     -u-v$(EPOCH):$(CV_GPC)
