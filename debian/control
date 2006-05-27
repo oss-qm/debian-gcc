@@ -4,7 +4,7 @@ Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>, Ryan Murray <rmurray@debian.org>
 Standards-Version: 3.6.2
-Build-Depends: m4, debhelper (>= 4.2), dpkg-dev (>= 1.13.9)
+Build-Depends: m4, debhelper (>= 4.2), dpkg-dev (>= 1.13.9), gcc-3.4-base (>= 3.4.6), gcc-4.0-base (>= 4.0.3), gcj-4.1-base (>= 4.1.1), gcc-4.1-base (>= 4.1.0)
 
 Package: cpp
 Architecture: any
@@ -41,6 +41,19 @@ Description: The GNU Objective-C compiler
  code.
  .
  This is a dependency package providing the default GNU Objective-C compiler.
+
+Package: gobjc++
+Priority: optional
+Architecture: any
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gobjc++-${pv:gobjcxx} ${reqv:gobjcxx}
+Recommends: g++ (>= ${version:cpp}), gobjc (>= ${version:cpp})
+Provides: objc++-compiler
+Description: The GNU Objective-C++ compiler
+ This is the GNU Objective-C++ compiler, which compiles
+ Objective-C++ on platforms supported by the gcc compiler. It uses the
+ gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Objective-C++ compiler.
 
 Package: chill
 Priority: extra
@@ -85,7 +98,7 @@ Description: The GNU Fortran 95 compiler
 Package: gcj
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), g++ (>= ${version:cpp}), libgcj-dev (>= ${version:gcj}), gij (>= ${version:cpp}), gcj-${pv:gcj} ${reqv:gcj}
+Depends: cpp (>= ${version:cpp}), libgcj-dev (>= ${version:gcj}), gij (>= ${version:gcj}), gcj-${pv:gcj} ${reqv:gcj}
 Provides: java-compiler
 Description: The GNU Java compiler
  GCJ is a front end to the GCC compiler which can natively compile both
@@ -111,7 +124,7 @@ Priority: optional
 Architecture: any
 Depends: cpp (>= ${version:cpp}), gij-${pv:gij} ${reqv:gij}
 Suggests: gcj (>= ${version:cpp})
-Conflicts: libgcj2 (<= 3.0.2-4)
+Conflicts: libgcj2 (<= 3.0.2-4), java-gcj-compat (<< 1.0.56)
 Provides: java-runtime, java1-runtime, java-virtual-machine
 Description: The GNU Java bytecode interpreter
  GIJ is not limited to interpreting bytecode. It includes a class loader which
@@ -133,7 +146,7 @@ Description: The GNU Pascal compiler
  This is the GNU Pascal compiler, which compiles Pascal on platforms supported
  by the gcc compiler. It uses the gcc backend to generate optimized code.
  .
- The current version 2.2 (release candiate 2) implements Standard Pascal
+ The current version 2.2 (release candidate 2) implements Standard Pascal
  (ISO 7185, level 1), a large subset of Extended Pascal (ISO 10206), and
  Borland Pascal. Many Borland Pascal units supported.
  .

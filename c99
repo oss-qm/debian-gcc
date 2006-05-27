@@ -21,4 +21,4 @@ for i; do
     esac
 done
 
-exec cc $extra_flag ${1+"$@"}
+exec gcc $extra_flag ${1+"$@"}
