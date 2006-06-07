@@ -1,8 +1,13 @@
-gcc-defaults (1.36) unstable; urgency=low
+gcc-defaults (1.36) unstable; urgency=medium
 
-  * Build-depend on gcj-4.1-base, instead of gcc-4.1-base. Closes: #367952.
+  * Make gcc-4.1 the default C compiler, g++-4.1 the default C++ compiler,
+    gobjc-4.1 the default ObjC compiler, treelang-4.1 the default Treelang
+    compiler, gfortran-4.1 the default Fortran compiler.
+    Closes: #366820.
+  * Don't build the chill package anymore.
+  * Build-depend on gcj-4.1-base, instead of gcc-4.0-base. Closes: #367952.
 
- -- Matthias Klose <doko@debian.org>  Sat, 27 May 2006 04:40:07 +0200
+ -- Matthias Klose <doko@debian.org>  Tue,  6 Jun 2006 03:10:08 +0200
 
 gcc-defaults (1.35) unstable; urgency=low
 
