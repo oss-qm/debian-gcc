@@ -59,6 +59,8 @@ REL_NO_403	:= $(shell expr $(VMINOR) - 31)$(REL_EXT)
 
 # gcc-defaults 1.33 is the first version with 4.1.0 support.
 REL_NO_410	:= $(shell expr $(VMINOR) - 33)$(REL_EXT)
+# gcc-defaults 1.36 is the first version with 4.1.0 support.
+REL_NO_411	:= $(shell expr $(VMINOR) - 35)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 
@@ -71,7 +73,7 @@ REQV_33		:= (>= 1:3.3.6-1)
 REQV_GPC_33	:= (>= 1:3.3.6.$(GPC_DATE)-1)
 REQV_34		:= (>= 3.4.6-1)
 REQV_40		:= (>= 4.0.3-1)
-REQV_41		:= (>= 4.1.0-2)
+REQV_41		:= (>= 4.1.1-2)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -81,26 +83,26 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.0.3-$(REL_NO_403)
-CV_GCC		:= 4.0.3-$(REL_NO_403)
-CV_GPP		:= 4.0.3-$(REL_NO_403)
-CV_GOBJC	:= 4.0.3-$(REL_NO_403)
-CV_GOBJCXX	:= 4.1.0-$(REL_NO_410)
+CV_CPP		:= 4.1.1-$(REL_NO_411)
+CV_GCC		:= 4.1.1-$(REL_NO_411)
+CV_GPP		:= 4.1.1-$(REL_NO_411)
+CV_GOBJC	:= 4.1.1-$(REL_NO_411)
+CV_GOBJCXX	:= 4.1.1-$(REL_NO_411)
 CV_G77		:= 3.4.6-$(REL_NO_346)
-CV_GFORT	:= 4.0.3-$(REL_NO_403)
-CV_GCJ		:= 4.1.0-$(REL_NO_410)
-CV_GIJ		:= 4.1.0-$(REL_NO_410)
+CV_GFORT	:= 4.1.1-$(REL_NO_411)
+CV_GCJ		:= 4.1.1-$(REL_NO_411)
+CV_GIJ		:= 4.1.1-$(REL_NO_411)
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
 
-REQV_CPP	= $(REQV_40)
-REQV_GCC	= $(REQV_40)
-REQV_GPP	= $(REQV_40)
-REQV_GOBJC	= $(REQV_40)
+REQV_CPP	= $(REQV_41)
+REQV_GCC	= $(REQV_41)
+REQV_GPP	= $(REQV_41)
+REQV_GOBJC	= $(REQV_41)
 REQV_GOBJCXX	= $(REQV_41)
 REQV_G77	= $(REQV_34)
-REQV_GFORT	= $(REQV_40)
+REQV_GFORT	= $(REQV_41)
 REQV_GCJ	= $(REQV_41)
 REQV_GIJ	= $(REQV_41)
 REQV_LIBGCJ	= $(REQV_41)
@@ -110,13 +112,13 @@ LIBGCJ		= libgcj7
 
 EPOCH=4
 OS_NAME	:= Linux
-packages := chill c++ f77 fortran java objc obj-cxx pascal
+packages := c++ f77 fortran java objc obj-cxx pascal
+no_packages	:= chill
 
 ifeq ($(DEB_HOST_ARCH),alpha)
 endif
 
 ifeq ($(DEB_HOST_ARCH),amd64)
-    no_packages	:= chill
     packages	:= $(filter-out $(no_packages), $(packages))
 endif
 
@@ -124,7 +126,6 @@ ifeq ($(DEB_HOST_ARCH),arm)
 endif
 
 ifeq ($(DEB_HOST_ARCH),ia64)
-    no_packages	:= chill
     packages	:= $(filter-out $(no_packages), $(packages))
 endif
 
@@ -138,7 +139,6 @@ ifeq ($(DEB_HOST_ARCH),$(tmp))
 endif
 
 ifeq ($(DEB_HOST_ARCH),hppa)
-    no_packages	:= chill
     packages	:= $(filter-out $(no_packages), $(packages))
 endif
 
