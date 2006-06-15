@@ -1,3 +1,11 @@
+gcc-defaults (1.37) unstable; urgency=medium
+
+  [Ludovic Brenta]
+  * Provide a gnat package that depends on the default Ada compiler.
+  * Update README.Debian for gnat, gfortran.  Simplify it.
+
+ -- Ludovic Brenta <ludovic@ludovic-brenta.org>  Sun, 11 Jun 2006 01:08:10 +0200
+	
 gcc-defaults (1.36) unstable; urgency=medium
 
   * Make gcc-4.1 the default C compiler, g++-4.1 the default C++ compiler,
