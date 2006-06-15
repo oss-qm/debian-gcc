@@ -112,7 +112,7 @@ LIBGCJ		= libgcj7
 
 EPOCH=4
 OS_NAME	:= Linux
-packages := c++ f77 fortran java objc obj-cxx pascal
+packages := ada c++ f77 fortran java objc obj-cxx pascal
 no_packages	:= chill
 
 ifeq ($(DEB_HOST_ARCH),alpha)
@@ -135,7 +135,7 @@ endif
 tmp:=$(filter $(DEB_HOST_ARCH),sh3-linux sh4-linux sh3eb-linux sh4eb-linux)
 ifeq ($(DEB_HOST_ARCH),$(tmp))
     packages    := c++ obj-cxx objc++
-    no_packages	:= chill g77 g77-doc gfortran gfortran-doc gcj gij libgcj-dev gpc gpc-doc 
+    no_packages	:= ada chill g77 g77-doc gfortran gfortran-doc gcj gij libgcj-dev gpc gpc-doc 
 endif
 
 ifeq ($(DEB_HOST_ARCH),hppa)
@@ -151,6 +151,8 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),netbsd-i386)
     OS_NAME	:= NetBSD
+    no_packages += ada
+    packages := $(filter-out $(no_packages), $(packages))
 endif
 
 ifeq ($(DEB_HOST_ARCH),kfreebsd-i386)
@@ -322,6 +324,14 @@ endif
 	  /usr/share/info/gcc-$(PV_GCC).info.gz /usr/share/info/gcc.info.gz \
 	  /usr/share/info/gccint-$(PV_GCC).info.gz /usr/share/info/gccint.info.gz
 
+	: # gnat
+ifeq (ada, $(findstring ada,$(packages)))
+	dh_installdirs -pgnat usr/share/doc
+	dh_link -pgnat \
+	  /usr/share/doc/gnat /usr/share/doc/cpp \
+	  /usr/bin/gnatgcc gcc-$(PV_GCC)
+endif
+
 ifeq (objc, $(findstring objc, $(packages)))
 	: # gobjc
 	dh_installdirs -pgobjc usr/share/doc
@@ -483,6 +493,9 @@ binary-arch: build install
 	dh_gencontrol -pcpp-doc -u-v$(EPOCH):$(CV_CPP)
 	dh_gencontrol -pgcc     -u-v$(EPOCH):$(CV_GCC)
 	dh_gencontrol -pgcc-doc -u-v$(EPOCH):$(CV_GCC)
+ifeq (ada, $(findstring ada, $(packages)))
+	dh_gencontrol -pgnat    -u-v$(CV_GCC)
+endif
 ifeq (c++, $(findstring c++, $(packages)))
 	dh_gencontrol -pg++     -u-v$(EPOCH):$(CV_GPP)
 endif

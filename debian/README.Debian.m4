@@ -6,83 +6,46 @@ dnl --------------------------------------------------------------------------
 		The Debian GNU Compiler Collection Setup
 		========================================
 
-TODO: update the README, not yet complete for 4.0 / etch
-
 Abstract
 --------
 
-Debian X.Y (etch) is (mostly) built using the GCC 4.0.x compiler
-collection.  As some packages have not yet been ported to GCC 4.0, the
-gcc-3.4, gcc-3.3 and gcc-2.95 compilers are still available on all major
-platforms (gcc-2.96 on ia64).  Also, the gcc 2.7.2.3 C compiler is still
-available for compatibility reasons (e.g. for building Linux 2.0.xx
-kernels).
+Debian uses a default version of GCC for most packages; however, some
+packages require another version.  So, Debian allows several versions
+of GCC to coexist on the same system, and selects the default version
+by means of the gcc-defaults package, which creates symbolic links as
+appropriate.
 
-Debian has made some modifications to its packed GCC versions, which are
-summarised at the end of /usr/share/doc/gcc-<version>/README.Debian.
+Versions of GCC present in Debian Etch
+--------------------------------------
 
+- GCC 4.1 is the default compiler for Ada, C, C++, Fortran 95, Java,
+  Objective-C, Objective-C++ and Treelang.  This package also provides
+  libgcc1, libgcc2 and libgcc4 which contain the GCC intrinsics, and
+  libstdc++6.
 
-Introduction
-------------
+- GCC 4.0 is provided, but is not the default for any language.  It
+  might be removed in the future.  It provides all languages except
+  Java and Pascal.  This is the first version of GCC that supports
+  Fortran 95 (gfortran) instead of Fortran 77 (g77).
 
-Debian 3.2 has three (for notes on 3.4, please have a look at
-/usr/share/doc/gcc-3.4/README.Debian) main sets of compiler
-(related) packages:
+- GCC 3.4 is the default for Fortran 77 and Pascal.
 
-- One based on GCC-4.0.x. These include the compilers g++, gobjc, gfortran,
-  gcj, gnat, treelang and libraries libstdc++6(-dev), libobjc1,
-  libgcj6(-dev) and libgcc1 (libgcc2 on hppa and m68k).
-  On all architectures, this is the preferred C compiler which
-  is called `gcc'.
+- GCC 3.3 is provided, but is not the default for any language.  It
+  might be removed in the future.  It also provides libstdc++5.  This
+  version of GCC was the default in Debian 3.1 "Sarge".
 
-- One based on GCC-3.4.x. These include the compilers g++, gobjc, g77,
-  gcj, gnat, treelang and libraries libstdc++6(-dev), libobjc1,
-  libgcj5(-dev) and libgcc1 (libgcc2 on hppa and m68k).
+- GCC 2.95 is provided on all architectures except ia64, which has GCC
+  2.96 instead.  This version of GCC is necessary to build Linux 2.2;
+  it was the default in Debian 3.0 "Woody".
 
-- One based on GCC-3.3.x. These include the compilers g++, gobjc, g77,
-  gcj, gnat, treelang and libraries libstdc++5(-dev), libobjc1,
-  libgcj4(-dev) and libgcc1.
-
-- One based on gcc-2.95. These include the compilers g++, gobjc,
-  g77, chill and gpc and libraries libstdc++2.10(-dev), libg++2.8.1.3(-dev).
-  gcc-2.95 is available on all architectures except ia64 and hppa. On ia64,
-  there is gcc-2.96; on hppa gcc-3.0 is available as an alternative compiler.
-
-- One based on the FSF's GNU CC Compiler version 2.7.2.3
-  (http://www.fsf.org/software/gcc/gcc.html).  This only encompasses the
-  package `gcc272' for the architectures i386 and m68k.
-
-
-Why Debian has more than one version of the compiler collection
----------------------------------------------------------------
-
-We strive to get to a point to have the whole distribution be built by
-one compiler version across all supported architectures, but still
-support software relying on older compiler versions.
-
-- GCC-3.3.x is currently the default compiler for all architectures.
-
-- gcc-2.95 still is the recommended compiler for building Linux 2.4.xx
-  (stable) kernels. Additionally, it is the only version distributed by 
-  Debian which supports the CHILL language.
-
-- FSF gcc 2.7.2.x is the recommended compiler for building Linux 2.0.xx (old
-  stable) kernels, as it was the primary compiler used in the development of 
-  that kernel series.
-
-- Just released GCC-3.4.x
-  See /usr/share/doc/gcc-3.4/README.Debian for things not to do.
-
-For software compatibility testing, you may find older versions,
-backports and snapshots of newer version for GCC in the unstable or
-experimental distributions or at http://people.debian.org/~doko/
-
+- GCC 2.7.2.3 is provided on i386 and m68k, where it is necessary to
+  build Linux 2.0.
 
 How are the default compilers selected?
 ---------------------------------------
 
 Starting in Debian 3.0, there is now a gcc-defaults package set. This
-creates the actual packages for gcc, gpc, g++, gobjc, chill, g77, gcj,
+creates the actual packages for gcc, gnat, g++, gobjc, chill, g77, gcj,
 gij, treelang and gpc.  These packages will depend on the corresponding
 default compiler for that architecture. For Debian 3.1 for example,
 "gcc" depends on "gcc-3.3", which means that the "gcc-3.3" package will
@@ -98,26 +61,26 @@ similar.
 The default compiler versions for Debian GNU/OS_NAME on DEB_ARCH are
 (minor version numbers omitted):
 
-	cpp	- cpp-V_CPP	(package cpp-PV_CPP)
-	gcc	- gcc-V_GCC	(package gcc-PV_GCC)
-ifenabled(`c++',`	g++	- g++-V_GPP	(package g++-PV_GPP)')
-ifenabled(`fortran',`	g77	- g77-V_G77	(package g77-PV_G77)')
-ifenabled(`java',`	gcj	- gcj-V_GCJ	(package gcj-PV_GCJ)')
-ifenabled(`java',`	gij	- gij-V_GIJ	(package gij-PV_GIJ)')
-ifenabled(`objc',`	gobjc	- gcc-V_GOBJC	(package gobjc-PV_GOBJC)')
-ifenabled(`pascal',`	gpc	- gpc-V_GPC	(package gpc-PV_GPC)')
-ifenabled(`chill',`	chill	- chill-V_CHILL	(package chill-PV_CHILL)')
+	cpp		: cpp-PV_CPP
+	gcc		: gcc-PV_GCC
+ifenabled(`ada',`	gnat		: gnat-PV_GCC')
+ifenabled(`c++',`	g++		: g++-PV_GPP')
+ifenabled(`f77',`	g77		: g77-PV_G77')
+ifenabled(`fortran',`	gfortran	: gfortran-PV_GFORT')
+ifenabled(`java',`	gcj		: gcj-PV_GCJ')
+ifenabled(`java',`	gij		: gij-PV_GIJ')
+ifenabled(`objc',`	gobjc		: gobjc-PV_GOBJC')
+ifenabled(`pascal',`	gpc		: gpc-PV_GPC')
+ifenabled(`chill',`	chill		: chill-PV_CHILL')
 
 Documentation for the default compilers can be found in
 
 	/usr/share/doc/<compiler>-<package version>.
 
-[This paragraph not relevant for Debian 3.1] With this method, each
-architecture can choose its own preferred compiler, and that
-preference can change without requiring a complete rebuild of both
-compiler packages for all architectures. (to change the names), and
-simply requires updating the small gcc-defaults package set, to point
-the symlinks correctly.
+Thanks to gcc-defaults, each architecture can choose its own preferred
+compiler for each language, and that preference can change without
+requiring a complete rebuild of both compiler packages for all
+architectures.
 
 
 Practical implications
@@ -146,56 +109,41 @@ set the appropriate environment variables as described above in the section
 "Practical implications".
 
 
-C++ and C++ libraries
----------------------
+C++ libraries
+-------------
 
-Some notes on porting applications from libstdc++-2.90 (or earlier
-versions) found in gcc-2.95 or earlier version to libstdc++-v3 (found
-in gcc-3.0 and up) can be found in the libstdc++5-3.3-doc package.
+GCC versions prior to 3.0 included libstdc++2 (e.g. libstdc++-2.10 in
+gcc 2.95).  GCC versions since 3.0 contain a totally rewritten, and
+more standards-compliant, C++ library, called libstdc++-v3.  Migration
+notes are available in the package libstdc++5-3.4-doc.
+
 After the installation of the package, look at:
 
-/usr/share/doc/gcc-3.3-base/libstdc++/html/17_intro/porting-howto.html
+/usr/share/doc/gcc-3.4-base/libstdc++/html/17_intro/porting-howto.html
 
 Code compiled with gcc-2.95.x has to use the libstdc++2.10 libraries.
-
-Now, with the g++-3.3 compiler, we also have the libstdc++-v3
-libraries, which bring (in theory) a stable ABI to GCC's C++
-interface. Also, 2.95 and prior always had a libgcc.a library that was
-linked to by all applications that gcc built. This has now been made
-available as a shared library, libgcc_s.so, which is in the libgcc1
-package.
-
-XXX: Don't mix code compiled using different g++-X.Y
-version. [COMPLETE THIS SECTION]
 
 To use the libstdc++ library (found in the libstd++<N>-dbg package) for 
 debugging, add /usr/lib/debug to your LD_LIBRARY_PATH. For gdb to display
 the source you need to get the correspondig gcc-X.Y source package, unpack
 the source and point gdb to the location of the source (`dir' directive).
 
-Java
-----
+C++ Application Binary Interface
+--------------------------------
 
-gcj has the ability to compile to byte code and to native code (for the
-latter the installation of the libgcj4-dev package is needed).  To compile
-a simple Hello World program:
+Sometimes, the C++ ABI of GCC changes.  It is impossible to link
+object files that obey different ABIs into an executable.  When the
+ABI changes, Debian provides a new version of libstdc++ with a new
+soname.
 
-	gcj --main=HelloWorld -o HelloWorld HelloWorld.java
+Version 4 of the ABI was used by GCC 3.0 and 3.1; it is no longer
+supported.
 
-awt and swing are currently not yet supported by GCC-3.3.x. The
-GCC-3.4.x as found in Debian's experimental release contains a
-snapshot of the java-gui-branch. Try:
+Version 5 of the ABI is common to GCC 3.2 and 3.3; GCC 3.3
+provides libstdc++5.
 
-	gcj-3.4 --main=TestAWT -o TestAWT \
-		/usr/share/doc/libgcj5-dev/examples/TestAWT.java
-
-
-Pascal
-------
-
-In the GCC-3.3 and in the gcc-2.95 packages, a Beta version of GNU
-Pascal 2.2 is included.  The default gpc version in the one based on
-GCC-3.3.x.
+Version 6 of the ABI is common to GCC 3.4 and later; GCC 4.1 provides
+libstdc++6.
 
 Bugs
 ----
