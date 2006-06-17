@@ -112,52 +112,66 @@ LIBGCJ		= libgcj7
 
 EPOCH=4
 OS_NAME	:= Linux
-packages := ada c++ f77 fortran java objc obj-cxx pascal
+all_packages	:= ada c++ f77 fortran java objc obj-cxx pascal
 no_packages	:= chill
 
 ifeq ($(DEB_HOST_ARCH),alpha)
 endif
 
 ifeq ($(DEB_HOST_ARCH),amd64)
-    packages	:= $(filter-out $(no_packages), $(packages))
 endif
 
 ifeq ($(DEB_HOST_ARCH),arm)
 endif
 
-ifeq ($(DEB_HOST_ARCH),ia64)
-    packages	:= $(filter-out $(no_packages), $(packages))
+ifeq ($(DEB_HOST_ARCH),hppa)
 endif
 
 ifeq ($(DEB_HOST_ARCH),i386)
 endif
 
-tmp:=$(filter $(DEB_HOST_ARCH),sh3-linux sh4-linux sh3eb-linux sh4eb-linux)
-ifeq ($(DEB_HOST_ARCH),$(tmp))
-    packages    := c++ obj-cxx objc++
-    no_packages	:= ada chill g77 g77-doc gfortran gfortran-doc gcj gij libgcj-dev gpc gpc-doc 
-endif
-
-ifeq ($(DEB_HOST_ARCH),hppa)
-    packages	:= $(filter-out $(no_packages), $(packages))
-endif
-
-ifeq ($(DEB_HOST_ARCH),m68k)
-endif
-
 ifeq ($(DEB_HOST_ARCH),i386-gnu)
     OS_NAME	:= Hurd
+    no_packages += ada
 endif
 
-ifeq ($(DEB_HOST_ARCH),netbsd-i386)
-    OS_NAME	:= NetBSD
-    no_packages += ada
-    packages := $(filter-out $(no_packages), $(packages))
+ifeq ($(DEB_HOST_ARCH),ia64)
 endif
 
 ifeq ($(DEB_HOST_ARCH),kfreebsd-i386)
     OS_NAME	:= kFreeBSD
 endif
+
+ifeq ($(DEB_HOST_ARCH),m68k)
+    no_packages += ada
+endif
+
+ifeq ($(DEB_HOST_ARCH),mips)
+endif
+
+ifeq ($(DEB_HOST_ARCH),mipsel)
+endif
+
+ifeq ($(DEB_HOST_ARCH),netbsd-i386)
+    OS_NAME	:= NetBSD
+    no_packages += ada
+endif
+
+ifeq ($(DEB_HOST_ARCH),powerpc)
+endif
+
+ifeq ($(DEB_HOST_ARCH),s390)
+endif
+
+tmp:=$(filter $(DEB_HOST_ARCH),sh3-linux sh4-linux sh3eb-linux sh4eb-linux)
+ifeq ($(DEB_HOST_ARCH),$(tmp))
+    no_packages += ada f77 fortran java pascal
+endif
+
+ifeq ($(DEB_HOST_ARCH),sparc)
+endif
+
+packages := $(filter-out $(no_packages), $(all_packages))
 
 # derived version number (without release)
 V_CPP	:= $(shell echo $(CV_CPP)   | sed 's/-[^-]*$$//')
@@ -328,8 +342,8 @@ endif
 ifeq (ada, $(findstring ada,$(packages)))
 	dh_installdirs -pgnat usr/share/doc
 	dh_link -pgnat \
-	  /usr/share/doc/gnat /usr/share/doc/cpp \
-	  /usr/bin/gnatgcc gcc-$(PV_GCC)
+	   /usr/bin/gcc-$(PV_GCC) /usr/bin/gnatgcc \
+	   /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/gnatgcc.1.gz
 endif
 
 ifeq (objc, $(findstring objc, $(packages)))
