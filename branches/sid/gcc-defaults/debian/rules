@@ -344,6 +344,14 @@ ifeq (ada, $(findstring ada,$(packages)))
 	dh_link -pgnat \
 	   /usr/bin/gcc-$(PV_GCC) /usr/bin/gnatgcc \
 	   /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/gnatgcc.1.gz
+
+	: # gnat-doc
+	dh_installdirs -pgnat-doc \
+		usr/share/doc usr/share/info
+	dh_link -pgnat-doc \
+	  /usr/share/info/gnat_ugn_unw-$(PV_GCC).info.gz /usr/share/info/gnat_ugn_unw.info.gz \
+	  /usr/share/info/gnat_rm-$(PV_GCC).info.gz /usr/share/info/gnat_rm.info.gz \
+	  /usr/share/info/gnat_style-$(PV_GCC).info.gz /usr/share/info/gnat_style.info.gz
 endif
 
 ifeq (objc, $(findstring objc, $(packages)))
@@ -442,7 +450,8 @@ ifeq (java, $(findstring java, $(packages)))
 	  /usr/share/man/man1/jcf-dump-$(PV_GCJ).1.gz /usr/share/man/man1/jcf-dump.1.gz \
 	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
 	  /usr/share/man/man1/gcj-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcj-wrapper.1.gz \
-	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
+	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz \
+	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar
 
 	: # libgcj-dev
 	dh_installdirs -plibgcj-dev usr/bin /usr/share/man/man1 usr/share/doc
@@ -492,7 +501,7 @@ binary-arch: build install
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp
-	for p in `dh_listpackages $(nopkgs) -Ncpp -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc`; do \
+	for p in `dh_listpackages $(nopkgs) -Ncpp -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc`; do \
 	  echo ln -sf cpp debian/$$p/usr/share/doc/$$p; \
 	  rm -f debian/$$p/usr/share/doc/$$p; \
 	  ln -sf cpp debian/$$p/usr/share/doc/$$p; \
@@ -508,7 +517,8 @@ binary-arch: build install
 	dh_gencontrol -pgcc     -u-v$(EPOCH):$(CV_GCC)
 	dh_gencontrol -pgcc-doc -u-v$(EPOCH):$(CV_GCC)
 ifeq (ada, $(findstring ada, $(packages)))
-	dh_gencontrol -pgnat    -u-v$(CV_GCC)
+	dh_gencontrol -pgnat     -u-v$(CV_GCC)
+	dh_gencontrol -pgnat-doc -u-v$(CV_GCC)
 endif
 ifeq (c++, $(findstring c++, $(packages)))
 	dh_gencontrol -pg++     -u-v$(EPOCH):$(CV_GPP)
