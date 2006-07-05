@@ -55,20 +55,6 @@ Description: The GNU Objective-C++ compiler
  .
  This is a dependency package providing the default GNU Objective-C++ compiler.
 
-Package: chill
-Priority: extra
-Architecture: any
-Depends: cpp (>= ${version:cpp}), chill-${pv:chill} ${reqv:chill}, gcc-${pv:chill} ${reqv:chill}
-Description: The GNU CHILL compiler
- This is the ITU CHILL compiler. CHILL is the "CCITT High-Level Language",
- where CCITT is the old name for what is now ITU, the International
- Telecommunications Union. It is a language in the Modula-2 family, and targets
- many of the same applications as Ada (especially large embedded systems).
- CHILL was never used much in the United States, but is still being used in
- Europe, Brazil, Korea, and other places.
- .
- This is a dependency package providing the default GNU CHILL compiler.
-
 Package: g77
 Priority: optional
 Architecture: any
@@ -213,3 +199,12 @@ Description: The GNU Ada compiler
  This is a dependency package providing the default GNU Ada compiler.
  Per policy, all packages that contain Ada sources must use this package
  in their Build-Depends line.
+
+Package: gnat-doc
+Architecture: any
+Priority: optional
+Depends: gnat-${pv:gcc}-doc ${reqv:gcc}
+Suggests: gnat (>= ${version:gcc})
+Description: Documentation for the GNU Ada compiler
+ Documentation for the GNU Ada compiler in info and html format
+ (dependency package).
