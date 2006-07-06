@@ -119,6 +119,7 @@ ifeq ($(DEB_HOST_ARCH),amd64)
 endif
 
 ifeq ($(DEB_HOST_ARCH),arm)
+    no_packages += ada
 endif
 
 ifeq ($(DEB_HOST_ARCH),hppa)
