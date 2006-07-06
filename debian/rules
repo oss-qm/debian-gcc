@@ -105,10 +105,7 @@ REQV_G77	= $(REQV_34)
 REQV_GFORT	= $(REQV_41)
 REQV_GCJ	= $(REQV_41)
 REQV_GIJ	= $(REQV_41)
-REQV_LIBGCJ	= $(REQV_41)
 REQV_GPC	= $(REQV_34)
-
-LIBGCJ		= libgcj7
 
 EPOCH=4
 OS_NAME	:= Linux
@@ -234,7 +231,6 @@ substvars:
 	  echo 'version:gpc=$(EPOCH):$(CV_GPC)'; \
 	  echo 'version:g77=$(EPOCH):$(CV_G77)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
-	  echo 'libgcj=$(LIBGCJ)'; \
 	  echo 'pv:cpp=$(PV_CPP)'; \
 	  echo 'pv:gcc=$(PV_GCC)'; \
 	  echo 'pv:gpp=$(PV_GPP)'; \
@@ -244,7 +240,6 @@ substvars:
 	  echo 'pv:g77=$(PV_G77)'; \
 	  echo 'pv:gfort=$(PV_GFORT)'; \
 	  echo 'pv:gcj=$(PV_GCJ)'; \
-	  echo 'pv:libgcj=$(PV_LIBGCJ)'; \
 	  echo 'pv:gij=$(PV_GIJ)'; \
 	  echo 'pv:gpc=$(PV_GPC)'; \
 	  echo 'reqv:cpp=$(REQV_CPP)'; \
@@ -256,7 +251,6 @@ substvars:
 	  echo 'reqv:g77=$(REQV_G77)'; \
 	  echo 'reqv:gfort=$(REQV_GFORT)'; \
 	  echo 'reqv:gcj=$(REQV_GCJ)'; \
-	  echo 'reqv:libgcj=$(REQV_LIBGCJ)'; \
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
 	  echo 'reqv:gpc=$(REQV_GPC)'; \
 	) > debian/substvars.local
@@ -453,9 +447,6 @@ ifeq (java, $(findstring java, $(packages)))
 	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz \
 	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar
 
-	: # libgcj-dev
-	dh_installdirs -plibgcj-dev usr/bin /usr/share/man/man1 usr/share/doc
-
 	: # gij
 	dh_installdirs -pgij usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pgij \
@@ -543,7 +534,6 @@ ifeq (pascal, $(findstring pascal, $(packages)))
 endif
 ifeq (java, $(findstring java, $(packages)))
 	dh_gencontrol -pgcj   -u-v$(EPOCH):$(CV_GCJ)
-	dh_gencontrol -plibgcj-dev   -u-v$(EPOCH):$(CV_GCJ)
 	dh_gencontrol -pgij   -u-v$(EPOCH):$(CV_GIJ)
 endif
 ifeq (chill, $(findstring chill, $(packages)))

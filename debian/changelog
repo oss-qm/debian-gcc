@@ -1,6 +1,7 @@
 gcc-defaults (1.38) UNRELEASED; urgency=low
 
   * Set section of -doc packages to doc.
+  * Drop the libgcj-dev package; let gcj provide libgcj-dev.
 
  -- Matthias Klose <doko@debian.org>  Thu,  6 Jul 2006 03:18:27 +0200
 
