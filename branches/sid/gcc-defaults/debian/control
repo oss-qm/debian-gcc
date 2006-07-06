@@ -151,6 +151,7 @@ Description: The GNU C compiler
  This is a dependency package providing the default GNU C compiler.
 
 Package: cpp-doc
+Section: doc
 Architecture: any
 Priority: optional
 Depends: cpp-${pv:cpp}-doc ${reqv:cpp}
@@ -167,6 +168,7 @@ Description: Documentation for the GNU Fortran compiler (g77)
  Documentation for the GNU Fortran compiler in info format (dependency package).
 
 Package: gfortran-doc
+Section: doc
 Architecture: any
 Priority: optional
 Depends: gfortran-${pv:gfort}-doc ${reqv:gfort}
@@ -175,6 +177,7 @@ Description: Documentation for the GNU Fortran compiler (gfortran)
  Documentation for the GNU Fortran compiler in info format (dependency package).
 
 Package: gpc-doc
+Section: doc
 Architecture: any
 Priority: optional
 Depends: gpc-${pv:gpc}-doc ${reqv:gpc}
@@ -183,6 +186,7 @@ Description: Documentation for the GNU Pascal compiler (gpc)
  Documentation for the GNU Pascal compiler in info format (dependency package).
 
 Package: gcc-doc
+Section: doc
 Architecture: any
 Priority: optional
 Depends: gcc-${pv:gcc}-doc ${reqv:gcc}
@@ -201,6 +205,7 @@ Description: The GNU Ada compiler
  in their Build-Depends line.
 
 Package: gnat-doc
+Section: doc
 Architecture: any
 Priority: optional
 Depends: gnat-${pv:gcc}-doc ${reqv:gcc}
