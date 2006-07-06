@@ -1,7 +1,9 @@
-gcc-defaults (1.38) UNRELEASED; urgency=low
+gcc-defaults (1.38) unstable; urgency=low
 
+  * Fix the build failure on arm (don't try to build gnat).
   * Set section of -doc packages to doc.
   * Drop the libgcj-dev package; let gcj provide libgcj-dev.
+  * gcj: Add a symlink /usr/share/java/libgcj.jar.
 
  -- Matthias Klose <doko@debian.org>  Thu,  6 Jul 2006 03:18:27 +0200
 
