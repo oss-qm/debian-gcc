@@ -84,26 +84,14 @@ Description: The GNU Fortran 95 compiler
 Package: gcj
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), libgcj-dev (>= ${version:gcj}), gij (>= ${version:gcj}), gcj-${pv:gcj} ${reqv:gcj}
-Provides: java-compiler
+Depends: cpp (>= ${version:cpp}), gij (>= ${version:gcj}), gcj-${pv:gcj} ${reqv:gcj}
+Provides: java-compiler, libgcj-dev
 Description: The GNU Java compiler
  GCJ is a front end to the GCC compiler which can natively compile both
  Java(tm) source and bytecode files. The compiler can also generate class
  files.
  .
  This is a dependency package providing the default GNU Java compiler.
-
-Package: libgcj-dev
-Section: libdevel
-Priority: optional
-Architecture: any
-Depends: cpp (>= ${version:cpp}), ${libgcj}-dev ${reqv:libgcj}, gcj ${reqv:libgcj}
-Description: Java development headers and static library for use with gcj 
- These are the development headers and static libraries that go along with 
- the gcj front end to gcc. libgcj includes parts of the Java Class Libraries, 
- plus glue to connect the libraries to the compiler and the underlying OS.
- .
- This is a dependency package providing the default Java development headers.
 
 Package: gij
 Priority: optional
