@@ -109,7 +109,7 @@ REQV_GPC	= $(REQV_34)
 
 EPOCH=4
 OS_NAME	:= Linux
-all_packages	:= ada c++ f77 fortran java objc obj-cxx pascal
+all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc
 no_packages	:= chill
 
 ifeq ($(DEB_HOST_ARCH),alpha)
@@ -119,7 +119,7 @@ ifeq ($(DEB_HOST_ARCH),amd64)
 endif
 
 ifeq ($(DEB_HOST_ARCH),arm)
-    no_packages += ada
+    no_packages += gnat
 endif
 
 ifeq ($(DEB_HOST_ARCH),hppa)
@@ -130,7 +130,7 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),i386-gnu)
     OS_NAME	:= Hurd
-    no_packages += ada
+    no_packages += gnat
 endif
 
 ifeq ($(DEB_HOST_ARCH),ia64)
@@ -141,7 +141,7 @@ ifeq ($(DEB_HOST_ARCH),kfreebsd-i386)
 endif
 
 ifeq ($(DEB_HOST_ARCH),m68k)
-    no_packages += ada
+    no_packages += gnat
 endif
 
 ifeq ($(DEB_HOST_ARCH),mips)
@@ -152,7 +152,7 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),netbsd-i386)
     OS_NAME	:= NetBSD
-    no_packages += ada
+    no_packages += gnat
 endif
 
 ifeq ($(DEB_HOST_ARCH),powerpc)
@@ -163,7 +163,7 @@ endif
 
 tmp:=$(filter $(DEB_HOST_ARCH),sh3-linux sh4-linux sh3eb-linux sh4eb-linux)
 ifeq ($(DEB_HOST_ARCH),$(tmp))
-    no_packages += ada f77 fortran java pascal
+    no_packages += gnat g77 gfortran gcj gpc
 endif
 
 ifeq ($(DEB_HOST_ARCH),sparc)
@@ -334,7 +334,7 @@ endif
 	  /usr/share/info/gccint-$(PV_GCC).info.gz /usr/share/info/gccint.info.gz
 
 	: # gnat
-ifeq (ada, $(findstring ada,$(packages)))
+ifneq (,$(findstring gnat,$(packages)))
 	dh_installdirs -pgnat usr/share/doc
 	dh_link -pgnat \
 	   /usr/bin/gcc-$(PV_GCC) /usr/bin/gnatgcc \
@@ -349,21 +349,21 @@ ifeq (ada, $(findstring ada,$(packages)))
 	  /usr/share/info/gnat_style-$(PV_GCC).info.gz /usr/share/info/gnat_style.info.gz
 endif
 
-ifeq (objc, $(findstring objc, $(packages)))
+ifneq (,$(filter gobjc, $(packages)))
 	: # gobjc
 	dh_installdirs -pgobjc usr/share/doc
 	dh_link -pgobjc \
 	  /usr/share/doc/cpp /usr/share/doc/gobjc
 endif
 
-ifeq (obj-cxx, $(findstring obj-cxx, $(packages)))
+ifneq (,$(filter gobjc++, $(packages)))
 	: # gobjc++
 	dh_installdirs -pgobjc++ usr/share/doc
 	dh_link -pgobjc++ \
 	  /usr/share/doc/cpp /usr/share/doc/gobjc++
 endif
 
-ifeq (c++, $(findstring c++, $(packages)))
+ifneq (,$(filter g++, $(packages)))
 	: # g++
 	dh_installdirs -pg++ usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pg++ \
@@ -372,13 +372,13 @@ ifeq (c++, $(findstring c++, $(packages)))
 	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/g++.1.gz \
 	  /usr/bin/g++-$(PV_GPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-g++ \
 	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-g++.1.gz
-ifeq ($(DEB_HOST_ARCH),sparc)
+  ifeq ($(DEB_HOST_ARCH),sparc)
 	rm -f debian/g++/usr/bin/g++
 	$(CC) -DGPP_NAME=g++-$(PV_GPP) -O2 -Wall sparc-g++.c -o debian/g++/usr/bin/g++
-endif
+  endif
 endif
 
-ifeq (f77, $(findstring f77, $(packages)))
+ifneq (,$(filter g77, $(packages)))
 	: # g77
 	dh_installdirs -pg77 usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pg77 \
@@ -396,7 +396,7 @@ ifeq (f77, $(findstring f77, $(packages)))
 	  /usr/share/info/g77-$(PV_G77).info.gz /usr/share/info/g77.info.gz
 endif
 
-ifeq (fortran, $(findstring fortran, $(packages)))
+ifneq (,$(filter gfortran, $(packages)))
 	: # gfortran
 	dh_installdirs -pgfortran usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pgfortran \
@@ -424,7 +424,7 @@ ifeq (chill, $(findstring chill, $(packages)))
 	dh_undocumented -pchill chill.1
 endif
 
-ifeq (java, $(findstring java, $(packages)))
+ifneq (,$(filter gcj, $(packages)))
 	: # gcj
 	dh_installdirs -pgcj usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pgcj \
@@ -458,7 +458,7 @@ ifeq (java, $(findstring java, $(packages)))
 	  /usr/share/man/man1/gij-wrapper-$(PV_GIJ).1.gz /usr/share/man/man1/gij-wrapper.1.gz
 endif
 
-ifeq (pascal, $(findstring pascal, $(packages)))
+ifneq (,$(filter gpc, $(packages)))
 	: # gpc
 	dh_installdirs -pgpc usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pgpc \
@@ -508,36 +508,36 @@ binary-arch: build install
 	dh_gencontrol -pcpp-doc -u-v$(EPOCH):$(CV_CPP)
 	dh_gencontrol -pgcc     -u-v$(EPOCH):$(CV_GCC)
 	dh_gencontrol -pgcc-doc -u-v$(EPOCH):$(CV_GCC)
-ifeq (ada, $(findstring ada, $(packages)))
+ifneq (,$(filter gnat, $(packages)))
 	dh_gencontrol -pgnat     -u-v$(CV_GCC)
 	dh_gencontrol -pgnat-doc -u-v$(CV_GCC)
 endif
-ifeq (c++, $(findstring c++, $(packages)))
+ifneq (,$(filter g++, $(packages)))
 	dh_gencontrol -pg++     -u-v$(EPOCH):$(CV_GPP)
 endif
-ifeq (objc, $(findstring objc, $(packages)))
+ifneq (,$(filter gobjc, $(packages)))
 	dh_gencontrol -pgobjc   -u-v$(EPOCH):$(CV_GOBJC)
 endif
-ifeq (obj-cxx, $(findstring obj-cxx, $(packages)))
+ifneq (,$(filter gobjc++, $(packages)))
 	dh_gencontrol -pgobjc++   -u-v$(EPOCH):$(CV_GOBJCXX)
 endif
-ifeq (f77, $(findstring f77, $(packages)))
+ifneq (,$(filter g77, $(packages)))
 	dh_gencontrol -pg77     -u-v$(EPOCH):$(CV_G77)
 	dh_gencontrol -pg77-doc -u-v$(EPOCH):$(CV_G77)
 endif
-ifeq (fortran, $(findstring fortran, $(packages)))
+ifneq (,$(filter gfortran, $(packages)))
 	dh_gencontrol -pgfortran     -u-v$(EPOCH):$(CV_GFORT)
 	dh_gencontrol -pgfortran-doc -u-v$(EPOCH):$(CV_GFORT)
 endif
-ifeq (pascal, $(findstring pascal, $(packages)))
+ifneq (,$(filter gpc, $(packages)))
 	dh_gencontrol -pgpc     -u-v$(EPOCH):$(CV_GPC)
 	dh_gencontrol -pgpc-doc -u-v$(EPOCH):$(CV_GPC)
 endif
-ifeq (java, $(findstring java, $(packages)))
+ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -pgcj   -u-v$(EPOCH):$(CV_GCJ)
 	dh_gencontrol -pgij   -u-v$(EPOCH):$(CV_GIJ)
 endif
-ifeq (chill, $(findstring chill, $(packages)))
+ifneq (,$(filter chill, $(packages)))
 	dh_gencontrol -pchill -u-v$(EPOCH):$(CV_CHILL)
 endif
 	dh_md5sums $(nopkgs)

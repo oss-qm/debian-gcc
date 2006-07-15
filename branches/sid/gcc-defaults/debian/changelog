@@ -1,3 +1,10 @@
+gcc-defaults (1.39) unstable; urgency=medium
+
+  * Fix another build failure on arm.
+  * Update the README.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 15 Jul 2006 12:09:14 +0000
+
 gcc-defaults (1.38) unstable; urgency=low
 
   * Fix the build failure on arm (don't try to build gnat).

@@ -63,14 +63,15 @@ The default compiler versions for Debian GNU/OS_NAME on DEB_ARCH are
 
 	cpp		: cpp-PV_CPP
 	gcc		: gcc-PV_GCC
-ifenabled(`ada',`	gnat		: gnat-PV_GCC')
-ifenabled(`c++',`	g++		: g++-PV_GPP')
-ifenabled(`f77',`	g77		: g77-PV_G77')
-ifenabled(`fortran',`	gfortran	: gfortran-PV_GFORT')
-ifenabled(`java',`	gcj		: gcj-PV_GCJ')
-ifenabled(`java',`	gij		: gij-PV_GIJ')
-ifenabled(`objc',`	gobjc		: gobjc-PV_GOBJC')
-ifenabled(`pascal',`	gpc		: gpc-PV_GPC')
+ifenabled(`g++',`	g++		: g++-PV_GPP')
+ifenabled(`g77',`	g77		: g77-PV_G77')
+ifenabled(`gortran',`	gfortran	: gfortran-PV_GFORT')
+ifenabled(`gcj',`	gcj		: gcj-PV_GCJ')
+ifenabled(`gcj',`	gij		: gij-PV_GIJ')
+ifenabled(`gobjc',`	gobjc		: gobjc-PV_GOBJC')
+ifenabled(`gobjc++',`	gobjc++		: gobjc++-PV_GOBJCXX')
+ifenabled(`gnat',`	gnat		: gnat-PV_GCC')
+ifenabled(`gpc',`	gpc		: gpc-PV_GPC')
 ifenabled(`chill',`	chill		: chill-PV_CHILL')
 
 Documentation for the default compilers can be found in
@@ -91,10 +92,10 @@ of object files built with different compilers; If you use the 2.95.x
 C compiler, you should use the `gcc-2.95' compiler driver for all your
 work.  When configuring sources, use
 
-    CC=gcc-2.95 ./configure <configure options> 	# bash
-    setenv CC gcc-2.95; ./configure <options>		# csh
+    CC=gcc-3.4 ./configure <configure options> 	# bash
+    setenv CC gcc-3.4; ./configure <options>		# csh
 
-When calling make, use `make CC=gcc-2.95'.
+When calling make, use `make CC=gcc-3.4'.
 
 
 gcc/g++/... are not handled using alternatives
@@ -115,11 +116,11 @@ C++ libraries
 GCC versions prior to 3.0 included libstdc++2 (e.g. libstdc++-2.10 in
 gcc 2.95).  GCC versions since 3.0 contain a totally rewritten, and
 more standards-compliant, C++ library, called libstdc++-v3.  Migration
-notes are available in the package libstdc++5-3.4-doc.
+notes are available in the package libstdc++6-4.1-doc.
 
 After the installation of the package, look at:
 
-/usr/share/doc/gcc-3.4-base/libstdc++/html/17_intro/porting-howto.html
+/usr/share/doc/gcc-4.1-base/libstdc++/html/17_intro/porting-howto.html
 
 Code compiled with gcc-2.95.x has to use the libstdc++2.10 libraries.
 
@@ -169,8 +170,9 @@ Philip Blundell <pb@debian.org>			(arm-linux)
 Jeff Bailey <jbailey@nisa.net>			(hurd-i386) 
 Joel Baker <fenton@debian.org>			(netbsd-i386) 
 Ben Collins <bcollins@debian.org>		(sparc-linux)
+Falk Hueffner <falk@debian.org>			(alpha-linux)
 Randolph Chung <tausq@debian.org>		(ia64-linux, hppa-linux)
-Ryan Murray <rmurray@cyberhqz.com>		(mips*-linux)
+Thiemo Seufer <ths@networkno.de>		(mips*-linux)
 Dan Jacobowitz <dan@debian.org>			(powerpc-linux)
 Gerhard Tonn <GerhardTonn@swol.de>		(s390-linux)
 Roman Zippel <zippel@linux-m68k.org>		(m68k-linux)
