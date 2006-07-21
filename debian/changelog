@@ -1,3 +1,10 @@
+gcc-defaults (1.41) UNRELEASED; urgency= low
+
+  [Ludovic Brenta]
+  * Do not build gnat on m32r.  Closes: #379079.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Fri, 21 Jul 2006 14:45:54 +0200
+
 gcc-defaults (1.39) unstable; urgency=medium
 
   * Fix another build failure on arm.

@@ -140,6 +140,10 @@ ifeq ($(DEB_HOST_ARCH),kfreebsd-i386)
     OS_NAME	:= kFreeBSD
 endif
 
+ifeq ($(DEB_HOST_ARCH),m32r)
+    no_packages += gnat
+endif
+
 ifeq ($(DEB_HOST_ARCH),m68k)
     no_packages += gnat
 endif
