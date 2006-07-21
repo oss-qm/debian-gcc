@@ -173,6 +173,10 @@ endif
 ifeq ($(DEB_HOST_ARCH),sparc)
 endif
 
+ifneq (,$(findstring gnat, $(no_packages)))
+    no_packages += gnat-doc
+endif
+
 packages := $(filter-out $(no_packages), $(all_packages))
 
 # derived version number (without release)
