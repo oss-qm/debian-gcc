@@ -3,6 +3,12 @@ gcc-defaults (1.41) UNRELEASED; urgency= low
   [Ludovic Brenta]
   * Do not build gnat on m32r.  Closes: #379079.
 
+  [Michael Banck]
+  * debian/control (Build-Depends): Conditionalize gcj-4.1 to !hurd-i386.
+  * debian/rules:
+    + Use hurd-i386, not gnu-i386 when matching DEB_HOST_ARCH.
+    + Add gcj and gij to no_packages for hurd-i386.
+
  -- Ludovic Brenta <lbrenta@debian.org>  Fri, 21 Jul 2006 14:45:54 +0200
 
 gcc-defaults (1.40) unstable; urgency=low
