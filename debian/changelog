@@ -8,6 +8,7 @@ gcc-defaults (1.41) UNRELEASED; urgency= low
   * debian/rules:
     + Use hurd-i386, not gnu-i386 when matching DEB_HOST_ARCH.
     + Add gcj and gij to no_packages for hurd-i386.
+  * Closes: #381018.
 
  -- Ludovic Brenta <lbrenta@debian.org>  Fri, 21 Jul 2006 14:45:54 +0200
 
