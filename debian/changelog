@@ -15,8 +15,8 @@ gcc-defaults (1.41) unstable; urgency= low
   * Do not install symlinks for manpages licensed under the GFDL.
     Closes: #200003.
   * README: Mention gfortran.
-  * Add paragraph about missing GFDL's docs and manual pages.
-	
+  * Add paragraph about missing GFDL'd docs and manual pages.
+
  -- Matthias Klose <doko@debian.org>  Sun, 13 Aug 2006 23:42:01 +0200
 
 gcc-defaults (1.40) unstable; urgency=low
