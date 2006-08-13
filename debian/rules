@@ -113,7 +113,7 @@ distribution := $(shell lsb_release -is)
 all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc
 no_packages	:= chill
 
-with_gfdl_docs := no
+with_gfdl_docs :=
 ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
@@ -231,6 +231,7 @@ README:
 	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
 	   -DV_GIJ=$(V_GCJ)     -DPV_GIJ=$(PV_GCJ) \
 	   -DV_GPC=$(V_GPC)     -DPV_GPC=$(PV_GPC) \
+	   $(if $(with_gfdl_docs), -DGFDL) \
 		debian/README.Debian.m4 > debian/README.Debian.tmp2
 	uniq debian/README.Debian.tmp2 > debian/README.Debian.tmp
 	rm -f debian/README.Debian.tmp2

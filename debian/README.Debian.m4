@@ -74,9 +74,14 @@ ifenabled(`gnat',`	gnat		: gnat-PV_GCC')
 ifenabled(`gpc',`	gpc		: gpc-PV_GPC')
 ifenabled(`chill',`	chill		: chill-PV_CHILL')
 
+ifdef(`GFDL',`dnl
 Documentation for the default compilers can be found in
 
 	/usr/share/doc/<compiler>-<package version>.
+',`dnl
+Most of the documentation for GCC including the manual pages is
+licensed under the GFDL and therefore not included in the main section.
+')`'dnl
 
 Thanks to gcc-defaults, each architecture can choose its own preferred
 compiler for each language, and that preference can change without
