@@ -14,6 +14,7 @@ gcc-defaults (1.41) unstable; urgency= low
   * Do not build dependency packages for -doc packages licensed under the GFDL.
   * Do not install symlinks for manpages licensed under the GFDL.
     Closes: #200003.
+  * README: Mention gfortran.
 	
  -- Matthias Klose <doko@debian.org>  Sun, 13 Aug 2006 23:42:01 +0200
 
