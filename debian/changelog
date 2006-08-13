@@ -1,4 +1,4 @@
-gcc-defaults (1.41) UNRELEASED; urgency= low
+gcc-defaults (1.41) unstable; urgency= low
 
   [Ludovic Brenta]
   * Do not build gnat on m32r.  Closes: #379079.
@@ -10,7 +10,12 @@ gcc-defaults (1.41) UNRELEASED; urgency= low
     + Add gcj and gij to no_packages for hurd-i386.
   * Closes: #381018.
 
- -- Ludovic Brenta <lbrenta@debian.org>  Fri, 21 Jul 2006 14:45:54 +0200
+  [Matthias Klose]
+  * Do not build dependency packages for -doc packages licensed under the GFDL.
+  * Do not install symlinks for manpages licensed under the GFDL.
+    Closes: #200003.
+	
+ -- Matthias Klose <doko@debian.org>  Sun, 13 Aug 2006 23:42:01 +0200
 
 gcc-defaults (1.40) unstable; urgency=low
 
