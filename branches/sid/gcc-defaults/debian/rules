@@ -109,8 +109,14 @@ REQV_GPC	= $(REQV_34)
 
 EPOCH=4
 OS_NAME	:= Linux
+distribution := $(shell lsb_release -is)
 all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc
 no_packages	:= chill
+
+with_gfdl_docs := no
+ifeq ($(distribution),Ubuntu)
+  with_gfdl_docs := yes
+endif
 
 ifeq ($(DEB_HOST_ARCH),alpha)
 endif
@@ -175,6 +181,10 @@ endif
 
 ifneq (,$(findstring gnat, $(no_packages)))
     no_packages += gnat-doc
+endif
+
+ifneq ($(with_gfdl_docs),yes)
+    no_packages := $(sort $(no_packages) gnat-doc cpp-doc gcc-doc gfortran-doc g77-doc)
 endif
 
 packages := $(filter-out $(no_packages), $(all_packages))
@@ -290,13 +300,16 @@ install: build substvars
 	dh_installdirs -pcpp \
 		lib usr/bin \
 		usr/share/man/man1 usr/share/man/man7 usr/share/doc/cpp
+	dh_link -pcpp \
+	  /usr/bin/cpp-$(PV_CPP) /usr/bin/cpp \
+	  /usr/bin/cpp-$(PV_CPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-cpp
+
+  ifeq ($(with_gfdl_docs),yes)
 	for i in fsf-funding.7 gfdl.7 gpl.7; do \
 	  cp -p $$i debian/cpp/usr/share/man/man7/$${i}gcc; \
 	done
 	dh_link -pcpp \
-	  /usr/bin/cpp-$(PV_CPP) /usr/bin/cpp \
 	  /usr/share/man/man1/cpp-$(PV_CPP).1.gz /usr/share/man/man1/cpp.1.gz \
-	  /usr/bin/cpp-$(PV_CPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-cpp \
 	  /usr/share/man/man1/cpp-$(PV_CPP).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-cpp.1.gz
 
 	: # cpp-doc
@@ -306,21 +319,19 @@ install: build substvars
 	  /usr/share/doc/cpp-$(PV_CPP)-doc /usr/share/doc/cpp-doc \
 	  /usr/share/info/cpp-$(PV_CPP).info.gz /usr/share/info/cpp.info.gz \
 	  /usr/share/info/cppinternals-$(PV_CPP).info.gz /usr/share/info/cppinternals.info.gz
+  endif
 
 	: # gcc
 	dh_installdirs -pgcc usr/bin usr/share/man/man1 usr/share/doc
 	dh_link -pgcc \
 	  /usr/share/doc/cpp /usr/share/doc/gcc \
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/gcc \
-	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/gcc.1.gz \
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
-	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc.1.gz \
 	  /usr/bin/gccbug-$(PV_GCC) /usr/bin/gccbug \
 	  /usr/share/man/man1/gccbug-$(PV_GCC).1.gz /usr/share/man/man1/gccbug.1.gz \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
-	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/gcov.1.gz \
-	/usr/share/doc/gcc-$(PV_GCC)/FAQ.gz /usr/share/doc/cpp/FAQ.gz \
-	/usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs
+	  /usr/share/doc/gcc-$(PV_GCC)/FAQ.gz /usr/share/doc/cpp/FAQ.gz \
+	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs
 ifeq ($(DEB_HOST_ARCH),sparc)
 	rm -f debian/gcc/usr/bin/gcc
 	$(CC) -DGCC_NAME=gcc-$(PV_GCC) -O2 -Wall sparc-gcc.c -o debian/gcc/usr/bin/gcc
@@ -333,6 +344,12 @@ endif
 	install -m 644 -p c99.1 debian/gcc/usr/share/man/man1/c99-gcc.1
 	sed 's/@VER@/$(PV_GCC)/g' c99.1 > debian/gcc/usr/share/man/man1/c99-gcc.1
 
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pgcc \
+	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/gcc.1.gz \
+	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc.1.gz \
+	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/gcov.1.gz 
+
 	: # gcc-doc
 	dh_installdirs -pgcc-doc \
 		usr/share/doc usr/share/info
@@ -340,12 +357,16 @@ endif
 	  /usr/share/doc/gcc-$(PV_GCC)-doc /usr/share/doc/gcc-doc \
 	  /usr/share/info/gcc-$(PV_GCC).info.gz /usr/share/info/gcc.info.gz \
 	  /usr/share/info/gccint-$(PV_GCC).info.gz /usr/share/info/gccint.info.gz
+  endif
 
 	: # gnat
 ifneq (,$(findstring gnat,$(packages)))
 	dh_installdirs -pgnat usr/share/doc
 	dh_link -pgnat \
-	   /usr/bin/gcc-$(PV_GCC) /usr/bin/gnatgcc \
+	   /usr/bin/gcc-$(PV_GCC) /usr/bin/gnatgcc
+
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pgnat \
 	   /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/gnatgcc.1.gz
 
 	: # gnat-doc
@@ -355,6 +376,7 @@ ifneq (,$(findstring gnat,$(packages)))
 	  /usr/share/info/gnat_ugn_unw-$(PV_GCC).info.gz /usr/share/info/gnat_ugn_unw.info.gz \
 	  /usr/share/info/gnat_rm-$(PV_GCC).info.gz /usr/share/info/gnat_rm.info.gz \
 	  /usr/share/info/gnat_style-$(PV_GCC).info.gz /usr/share/info/gnat_style.info.gz
+  endif
 endif
 
 ifneq (,$(filter gobjc, $(packages)))
@@ -377,12 +399,15 @@ ifneq (,$(filter g++, $(packages)))
 	dh_link -pg++ \
 	  /usr/share/doc/cpp /usr/share/doc/g++ \
 	  /usr/bin/g++-$(PV_GPP) /usr/bin/g++ \
-	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/g++.1.gz \
-	  /usr/bin/g++-$(PV_GPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-g++ \
-	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-g++.1.gz
+	  /usr/bin/g++-$(PV_GPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-g++
   ifeq ($(DEB_HOST_ARCH),sparc)
 	rm -f debian/g++/usr/bin/g++
 	$(CC) -DGPP_NAME=g++-$(PV_GPP) -O2 -Wall sparc-g++.c -o debian/g++/usr/bin/g++
+  endif
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pg++ \
+	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/g++.1.gz \
+	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-g++.1.gz
   endif
 endif
 
@@ -392,8 +417,11 @@ ifneq (,$(filter g77, $(packages)))
 	dh_link -pg77 \
 	  /usr/share/doc/cpp /usr/share/doc/g77 \
 	  /usr/bin/g77-$(PV_G77) /usr/bin/g77 \
+	  /usr/bin/g77-$(PV_G77) /usr/bin/$(DEB_HOST_GNU_TYPE)-g77
+
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pg77 \
 	  /usr/share/man/man1/g77-$(PV_G77).1.gz /usr/share/man/man1/g77.1.gz \
-	  /usr/bin/g77-$(PV_G77) /usr/bin/$(DEB_HOST_GNU_TYPE)-g77 \
 	  /usr/share/man/man1/g77-$(PV_G77).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-g77.1.gz
 
 	: # g77-doc
@@ -402,6 +430,7 @@ ifneq (,$(filter g77, $(packages)))
 	dh_link -pg77-doc \
 	  /usr/share/doc/g77-$(PV_G77)-doc /usr/share/doc/g77-doc \
 	  /usr/share/info/g77-$(PV_G77).info.gz /usr/share/info/g77.info.gz
+  endif
 endif
 
 ifneq (,$(filter gfortran, $(packages)))
@@ -410,8 +439,11 @@ ifneq (,$(filter gfortran, $(packages)))
 	dh_link -pgfortran \
 	  /usr/share/doc/cpp /usr/share/doc/gfortran \
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/gfortran \
+	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/$(DEB_HOST_GNU_TYPE)-gfortran
+
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pgfortran \
 	  /usr/share/man/man1/gfortran-$(PV_GFORT).1.gz /usr/share/man/man1/gfortran.1.gz \
-	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/$(DEB_HOST_GNU_TYPE)-gfortran \
 	  /usr/share/man/man1/gfortran-$(PV_GFORT).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gfortran.1.gz
 
 	: # gfortran-doc
@@ -420,7 +452,7 @@ ifneq (,$(filter gfortran, $(packages)))
 	dh_link -pgfortran-doc \
 	  /usr/share/doc/gfortran-$(PV_GFORT)-doc /usr/share/doc/gfortran-doc \
 	  /usr/share/info/gfortran-$(PV_GFORT).info.gz /usr/share/info/gfortran.info.gz
-
+  endif
 endif
 
 ifeq (chill, $(findstring chill, $(packages)))
@@ -444,16 +476,7 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/bin/jv-convert-$(PV_GCJ) /usr/bin/jv-convert \
 	  /usr/bin/jv-scan-$(PV_GCJ) /usr/bin/jv-scan \
 	  /usr/bin/jcf-dump-$(PV_GCJ) /usr/bin/jcf-dump \
-	  /usr/share/man/man1/gjnih-$(PV_GCJ).1.gz /usr/share/man/man1/gjnih.1.gz \
-	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/gcj.1.gz \
-	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcj.1.gz \
-	  /usr/share/man/man1/gcjh-$(PV_GCJ).1.gz /usr/share/man/man1/gcjh.1.gz \
-	  /usr/share/man/man1/jv-convert-$(PV_GCJ).1.gz /usr/share/man/man1/jv-convert.1.gz \
-	  /usr/share/man/man1/jv-scan-$(PV_GCJ).1.gz /usr/share/man/man1/jv-scan.1.gz \
-	  /usr/share/man/man1/jcf-dump-$(PV_GCJ).1.gz /usr/share/man/man1/jcf-dump.1.gz \
 	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
-	  /usr/share/man/man1/gcj-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcj-wrapper.1.gz \
-	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz \
 	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar
 
 	: # gij
@@ -461,9 +484,23 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_link -pgij \
 	  /usr/share/doc/cpp /usr/share/doc/gij \
 	  /usr/bin/gij-$(PV_GIJ) /usr/bin/gij \
+	  /usr/bin/gij-wrapper-$(PV_GIJ) /usr/bin/gij-wrapper
+
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pgij \
 	  /usr/share/man/man1/gij-$(PV_GIJ).1.gz /usr/share/man/man1/gij.1.gz \
-	  /usr/bin/gij-wrapper-$(PV_GIJ) /usr/bin/gij-wrapper \
 	  /usr/share/man/man1/gij-wrapper-$(PV_GIJ).1.gz /usr/share/man/man1/gij-wrapper.1.gz
+	dh_link -pgcj \
+	  /usr/share/man/man1/gjnih-$(PV_GCJ).1.gz /usr/share/man/man1/gjnih.1.gz \
+	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/gcj.1.gz \
+	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcj.1.gz \
+	  /usr/share/man/man1/gcjh-$(PV_GCJ).1.gz /usr/share/man/man1/gcjh.1.gz \
+	  /usr/share/man/man1/jv-convert-$(PV_GCJ).1.gz /usr/share/man/man1/jv-convert.1.gz \
+	  /usr/share/man/man1/jv-scan-$(PV_GCJ).1.gz /usr/share/man/man1/jv-scan.1.gz \
+	  /usr/share/man/man1/jcf-dump-$(PV_GCJ).1.gz /usr/share/man/man1/jcf-dump.1.gz \
+	  /usr/share/man/man1/gcj-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcj-wrapper.1.gz \
+	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
+  endif
 endif
 
 ifneq (,$(filter gpc, $(packages)))
@@ -513,12 +550,16 @@ binary-arch: build install
 	dh_fixperms $(nopkgs)
 	dh_installdeb $(nopkgs)
 	dh_gencontrol -pcpp     -u-v$(EPOCH):$(CV_CPP)
-	dh_gencontrol -pcpp-doc -u-v$(EPOCH):$(CV_CPP)
 	dh_gencontrol -pgcc     -u-v$(EPOCH):$(CV_GCC)
+  ifeq ($(with_gfdl_docs),yes)
+	dh_gencontrol -pcpp-doc -u-v$(EPOCH):$(CV_CPP)
 	dh_gencontrol -pgcc-doc -u-v$(EPOCH):$(CV_GCC)
+  endif
 ifneq (,$(filter gnat, $(packages)))
 	dh_gencontrol -pgnat     -u-v$(CV_GCC)
+  ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pgnat-doc -u-v$(CV_GCC)
+  endif
 endif
 ifneq (,$(filter g++, $(packages)))
 	dh_gencontrol -pg++     -u-v$(EPOCH):$(CV_GPP)
@@ -531,11 +572,15 @@ ifneq (,$(filter gobjc++, $(packages)))
 endif
 ifneq (,$(filter g77, $(packages)))
 	dh_gencontrol -pg77     -u-v$(EPOCH):$(CV_G77)
+  ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pg77-doc -u-v$(EPOCH):$(CV_G77)
+  endif
 endif
 ifneq (,$(filter gfortran, $(packages)))
 	dh_gencontrol -pgfortran     -u-v$(EPOCH):$(CV_GFORT)
+  ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pgfortran-doc -u-v$(EPOCH):$(CV_GFORT)
+  endif
 endif
 ifneq (,$(filter gpc, $(packages)))
 	dh_gencontrol -pgpc     -u-v$(EPOCH):$(CV_GPC)
