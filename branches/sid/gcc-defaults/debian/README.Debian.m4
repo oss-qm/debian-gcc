@@ -65,7 +65,7 @@ The default compiler versions for Debian GNU/OS_NAME on DEB_ARCH are
 	gcc		: gcc-PV_GCC
 ifenabled(`g++',`	g++		: g++-PV_GPP')
 ifenabled(`g77',`	g77		: g77-PV_G77')
-ifenabled(`gortran',`	gfortran	: gfortran-PV_GFORT')
+ifenabled(`gfortran',`	gfortran	: gfortran-PV_GFORT')
 ifenabled(`gcj',`	gcj		: gcj-PV_GCJ')
 ifenabled(`gcj',`	gij		: gij-PV_GIJ')
 ifenabled(`gobjc',`	gobjc		: gobjc-PV_GOBJC')
