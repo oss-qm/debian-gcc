@@ -1,4 +1,41 @@
-gcc-defaults (1.41) unstable; urgency= low
+gcc-defaults (1.46) unstable; urgency=low
+
+  * Build libgcj-common from the gcc-defaults sources.
+
+ -- Matthias Klose <doko@debian.org>  Sat,  7 Oct 2006 15:00:14 +0200
+
+gcc-defaults (1.45) unstable; urgency=low
+
+  * Fix g77 and gfortran postinst installation scripts.
+
+ -- Matthias Klose <doko@debian.org>  Mon,  2 Oct 2006 00:47:13 +0200
+
+gcc-defaults (1.44) unstable; urgency=low
+
+  * Remove the subversion directory from the upload.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 30 Sep 2006 14:44:54 +0200
+
+gcc-defaults (1.43) unstable; urgency=low
+
+  * Do not install alternatives for man pages licensed under the GFDL,
+    second round. Closes: #387161, #390201, #388347.
+  * Upload package built with -Ifsf-funding. Closes: #385732.
+  * Let gij provide java2-runtime. Closes: #389215.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 30 Sep 2006 13:55:56 +0200
+
+gcc-defaults (1.42) unstable; urgency=medium
+
+  * Build libgcj-bc from the gcc-defaults source package.
+  * gij: Add symlinks for gcj-dbtool, grmiregistry.
+  * gcj: Add symlinks for gcjh-wrapper.
+  * Do not install alternatives for man pages licensed under the GFDL.
+    Closes: #384278, #384303, #384923, #384927.
+
+ -- Matthias Klose <doko@debian.org>  Sat,  2 Sep 2006 13:20:16 +0000
+
+gcc-defaults (1.41) unstable; urgency=low
 
   [Ludovic Brenta]
   * Do not build gnat on m32r.  Closes: #379079.
