@@ -9,7 +9,7 @@ fi
 
 update-alternatives --quiet \
     --install /usr/bin/cc cc /usr/bin/gcc 20 \
-    --slave /usr/share/man/man1/cc.1.gz cc.1.gz /usr/share/man/man1/gcc.1.gz
+    @GFDL@--slave /usr/share/man/man1/cc.1.gz cc.1.gz /usr/share/man/man1/gcc.1.gz
 
 update-alternatives --quiet \
     --install /usr/bin/c89 c89 /usr/bin/c89-gcc 20 \

@@ -81,11 +81,21 @@ Description: The GNU Fortran 95 compiler
  .
  This is a dependency package providing the default GNU Fortran 95 compiler.
 
+Package: libgcj-common
+Section: libs
+Architecture: all
+Priority: optional
+Conflicts: classpath (<= 0.04-4)
+Replaces: java-gcj-compat (<< 1.0.65-3), java-gcj-compat-dev (<< 1.0.65-3)
+Description: Java runtime library (common files)
+ This package contains files shared by classpath and libgcj libraries.
+
 Package: gcj
 Priority: optional
 Architecture: any
 Depends: cpp (>= ${version:cpp}), gij (>= ${version:gcj}), gcj-${pv:gcj} ${reqv:gcj}
 Provides: java-compiler, libgcj-dev
+Replaces: libgcj5-dev, libgcj6-dev, libgcj7-dev (<< 4.1.1-12)
 Description: The GNU Java compiler
  GCJ is a front end to the GCC compiler which can natively compile both
  Java(tm) source and bytecode files. The compiler can also generate class
@@ -96,10 +106,10 @@ Description: The GNU Java compiler
 Package: gij
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gij-${pv:gij} ${reqv:gij}
+Depends: libgcj-bc (>= ${version:libgcjbc}), gij-${pv:gij} ${reqv:gij}
 Suggests: gcj (>= ${version:cpp})
 Conflicts: libgcj2 (<= 3.0.2-4), java-gcj-compat (<< 1.0.56)
-Provides: java-runtime, java1-runtime, java-virtual-machine
+Provides: java-runtime, java1-runtime, java2-runtime, java-virtual-machine
 Description: The GNU Java bytecode interpreter
  GIJ is not limited to interpreting bytecode. It includes a class loader which
  can dynamically load shared objects, so it is possible to give it the name
@@ -108,6 +118,28 @@ Description: The GNU Java bytecode interpreter
  .
  This is a dependency package providing the default GNU Java bytecode
  interpreter.
+
+Package: libgcj-bc
+Section: libs
+Architecture: any
+Priority: optional
+Depends: ${pkg:libgcj} ${reqv:gij}
+Description: Link time only library for use with gcj
+ A fake library that is used at link time only.  It ensures that
+ binaries built with the BC-ABI link against a constant SONAME.
+ This way, BC-ABI binaries continue to work if the SONAME underlying
+ libgcj.so changes.
+
+Package: lib32gcj-bc
+Section: libs
+Architecture: amd64
+Priority: optional
+Depends: ${pkg:lib32gcj} ${reqv:gij}
+Description: Link time only library for use with gcj (32bit)
+ A fake library that is used at link time only.  It ensures that
+ binaries built with the BC-ABI link against a constant SONAME.
+ This way, BC-ABI binaries continue to work if the SONAME underlying
+ libgcj.so changes.
 
 Package: gpc
 Priority: optional
@@ -138,32 +170,6 @@ Description: The GNU C compiler
  .
  This is a dependency package providing the default GNU C compiler.
 
-Package: cpp-doc
-Section: doc
-Architecture: any
-Priority: optional
-Depends: cpp-${pv:cpp}-doc ${reqv:cpp}
-Suggests: cpp (>= ${version:cpp})
-Description: Documentation for the GNU C preprocessor (cpp)
- Documentation for the GNU C preprocessor in info format (dependency package).
-
-Package: g77-doc
-Architecture: any
-Priority: optional
-Depends: g77-${pv:g77}-doc ${reqv:g77}
-Suggests: g77 (>= ${version:g77})
-Description: Documentation for the GNU Fortran compiler (g77)
- Documentation for the GNU Fortran compiler in info format (dependency package).
-
-Package: gfortran-doc
-Section: doc
-Architecture: any
-Priority: optional
-Depends: gfortran-${pv:gfort}-doc ${reqv:gfort}
-Suggests: gfortran (>= ${version:gfort})
-Description: Documentation for the GNU Fortran compiler (gfortran)
- Documentation for the GNU Fortran compiler in info format (dependency package).
-
 Package: gpc-doc
 Section: doc
 Architecture: any
@@ -172,15 +178,6 @@ Depends: gpc-${pv:gpc}-doc ${reqv:gpc}
 Suggests: gpc (>= ${version:gpc})
 Description: Documentation for the GNU Pascal compiler (gpc)
  Documentation for the GNU Pascal compiler in info format (dependency package).
-
-Package: gcc-doc
-Section: doc
-Architecture: any
-Priority: optional
-Depends: gcc-${pv:gcc}-doc ${reqv:gcc}
-Suggests: gcc (>= ${version:gcc})
-Description: Documentation for the GNU C compilers (gcc, gobjc, g++)
- Documentation for the GNU compilers in info format (dependency package).
 
 Package: gnat
 Architecture: alpha amd64 hppa i386 ia64 mips mipsel powerpc s390 sparc kfreebsd-i386
@@ -191,13 +188,3 @@ Description: The GNU Ada compiler
  This is a dependency package providing the default GNU Ada compiler.
  Per policy, all packages that contain Ada sources must use this package
  in their Build-Depends line.
-
-Package: gnat-doc
-Section: doc
-Architecture: any
-Priority: optional
-Depends: gnat-${pv:gcc}-doc ${reqv:gcc}
-Suggests: gnat (>= ${version:gcc})
-Description: Documentation for the GNU Ada compiler
- Documentation for the GNU Ada compiler in info and html format
- (dependency package).
