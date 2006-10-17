@@ -1,3 +1,14 @@
+gcc-defaults (1.47) unstable; urgency=low
+
+  * libgcj-common: Add rebuild-security-providers, move
+    /usr/lib/security/classpath.security to /var, rebuild it
+    on installation.
+  * Fix libgcj-bc symlinks. Closes: #393351, #393562.
+  * /usr/share/gcj/debian_defaults: Makefile inclusion file
+    to define gcj_archs and gcj_native_archs.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 17 Oct 2006 01:47:31 +0200
+
 gcc-defaults (1.46) unstable; urgency=low
 
   * Build libgcj-common from the gcc-defaults sources.

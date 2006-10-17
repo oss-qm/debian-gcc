@@ -83,10 +83,10 @@ Description: The GNU Fortran 95 compiler
 
 Package: libgcj-common
 Section: libs
-Architecture: all
+Architecture: any
 Priority: optional
 Conflicts: classpath (<= 0.04-4)
-Replaces: java-gcj-compat (<< 1.0.65-3), java-gcj-compat-dev (<< 1.0.65-3)
+Replaces: java-gcj-compat (<< 1.0.65-7), java-gcj-compat-dev (<< 1.0.65-7)
 Description: Java runtime library (common files)
  This package contains files shared by classpath and libgcj libraries.
 
@@ -123,7 +123,7 @@ Package: libgcj-bc
 Section: libs
 Architecture: any
 Priority: optional
-Depends: ${pkg:libgcj} ${reqv:gij}
+Depends: libgcj-common, ${pkg:libgcj} ${reqv:gij}
 Description: Link time only library for use with gcj
  A fake library that is used at link time only.  It ensures that
  binaries built with the BC-ABI link against a constant SONAME.
@@ -134,7 +134,7 @@ Package: lib32gcj-bc
 Section: libs
 Architecture: amd64
 Priority: optional
-Depends: ${pkg:lib32gcj} ${reqv:gij}
+Depends: libgcj-common, ${pkg:lib32gcj} ${reqv:gij}
 Description: Link time only library for use with gcj (32bit)
  A fake library that is used at link time only.  It ensures that
  binaries built with the BC-ABI link against a constant SONAME.
