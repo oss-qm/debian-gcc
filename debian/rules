@@ -125,7 +125,8 @@ else
   lib32         = emul/ia32-linux/usr/lib
 endif
 
-gcj_native_archs = alpha amd64 i386 ia64 mips mipsel powerpc s390 sparc
+gcj_archs = alpha amd64 hppa i386 ia64 m68k mips mipsel powerpc ppc64 s390 sparc
+gcj_native_archs = alpha amd64 i386 ia64 mips mipsel powerpc ppc64 s390 sparc
 
 with_gfdl_docs := no
 ifeq ($(distribution),Ubuntu)
@@ -582,12 +583,40 @@ endif
 	: # libgcj-common
 	dh_installdirs -plibgcj-common \
 	  /usr/bin \
+	  /usr/sbin \
+	  /etc/java/security/security.d \
 	  /usr/lib/security \
+	  /var/lib/security \
 	  /usr/share/gcj
-	install -m644 classpath.security debian/libgcj-common/usr/lib/security/
-	install -m755 debian/rebuild-gcj-db debian/libgcj-common/usr/bin/
-	echo "gcj_native_archs = $(gcj_native_archs)" \
-	  > debian/libgcj-common/usr/share/gcj/debian_defaults
+	install -m644 classpath.security debian/libgcj-common/etc/java/security/
+	dh_link -plibgcj-common \
+	  /var/lib/security/classpath.security /usr/lib/security/classpath.security
+ifeq ($(DEB_HOST_ARCH),amd64)
+	mkdir -p debian/libgcj-common/$(lib32)/security
+	dh_link -plibgcj-common \
+	  /usr/lib/security/classpath.security /$(lib32)/security/classpath.security
+endif
+	install -m755 debian/rebuild-gcj-db \
+		debian/libgcj-common/usr/bin/
+	install -m755 debian/rebuild-security-providers \
+		debian/libgcj-common/usr/sbin/
+	( \
+	  echo "# architectures with gcj support"; \
+	  echo "gcj_archs = $(gcj_archs)"; \
+	  echo "# architectures which should provide gcj native support"; \
+	  echo "gcj_native_archs = $(gcj_native_archs)" \
+	) > debian/libgcj-common/usr/share/gcj/debian_defaults
+
+	: # GNU security provider
+	for i in \
+	  1000-gnu.java.security.provider.Gnu \
+	  1001-gnu.javax.crypto.jce.GnuCrypto \
+	  1002-gnu.javax.crypto.jce.GnuSasl \
+	  1003-gnu.javax.net.ssl.provider.Jessie \
+	  1004-gnu.javax.security.auth.callback.GnuCallbacks; \
+	do \
+	  touch debian/libgcj-common/etc/java/security/security.d/$$i; \
+	done
 
 ifneq (,$(filter gpc, $(packages)))
 	: # gpc
@@ -617,6 +646,9 @@ endif
 nopkgs :=-s $(foreach p, $(no_packages),-N$(p))
 
 binary-indep: build install
+# nothing needs to be done
+
+foo:
 	dh_testdir
 	dh_testroot
 	dh_installdocs -i
@@ -632,15 +664,24 @@ binary-arch: build install
 	dh_testdir
 	dh_testroot
 #	dh_installdebconf
-	dh_installdocs -pcpp
+	dh_installdocs -pcpp -plibgcj-common
 	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Nlib32gcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Nlibgcj-common`; do \
 	  echo ln -sf cpp debian/$$p/usr/share/doc/$$p; \
 	  rm -f debian/$$p/usr/share/doc/$$p; \
 	  ln -sf cpp debian/$$p/usr/share/doc/$$p; \
 	done
-	dh_installchangelogs -pcpp
+	mkdir -p debian/libgcj-bc/usr/share/doc
+	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
+  ifeq ($(DEB_HOST_ARCH),amd64)
+	mkdir -p debian/lib32gcj-bc/usr/share/doc
+	ln -sf libgcj-common debian/lib32gcj-bc/usr/share/doc/lib32gcj-bc
+  endif
+
+	dh_installchangelogs -pcpp -plibgcj-common
 	mv debian/cpp/usr/share/doc/cpp/changelog \
 		debian/cpp/usr/share/doc/cpp/changelog.Debian
+	mv debian/libgcj-common/usr/share/doc/libgcj-common/changelog \
+		debian/libgcj-common/usr/share/doc/libgcj-common/changelog.Debian
 	dh_compress $(nopkgs)
 	dh_fixperms $(nopkgs)
 	dh_installdeb $(nopkgs)
@@ -689,6 +730,7 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -plib32gcj-bc -u-v$(CV_LIBGCJBC)
   endif
 endif
+	dh_gencontrol -plibgcj-common -u-v1:$(CV_LIBGCJBC)
 ifneq (,$(filter chill, $(packages)))
 	dh_gencontrol -pchill -u-v$(EPOCH):$(CV_CHILL)
 endif
