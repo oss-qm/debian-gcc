@@ -18,8 +18,7 @@ Versions of GCC present in Debian Etch
   libgcc1, libgcc2 and libgcc4 which contain the GCC intrinsics, and
   libstdc++6.
 
-- GCC 4.0 is provided, but is not the default for any language.  It
-  might be removed in the future.  It only provides the C language.
+- GCC 4.0 is no longer provided.
 
 - GCC 3.4 is the default for Fortran 77 and Pascal.  It also provides
   C++.
@@ -87,7 +86,7 @@ C compiler, you should use the gcc-2.95 compiler driver for all your
 work.  When configuring sources, use
 
     CC=gcc-3.4 ./configure <configure options> 	# bash
-    setenv CC gcc-3.4; ./configure <options>		# csh
+    setenv CC gcc-3.4; ./configure <options>	# csh
 
 When calling make, use make CC=gcc-3.4.
 
@@ -169,4 +168,3 @@ Roman Zippel <zippel@linux-m68k.org>		(m68k-linux)
 Ludovic Brenta <ludovic.brenta@insalien.org>	(gnat)
 
 ===============================================================================
-
