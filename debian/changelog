@@ -1,3 +1,9 @@
+gcc-defaults (1.48) unstable; urgency=low
+
+   * Remove fsf-funding (again). Closes: #385732.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 18 Oct 2006 20:48:45 +0200
+
 gcc-defaults (1.47) unstable; urgency=low
 
   * libgcj-common: Add rebuild-security-providers, move

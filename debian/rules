@@ -327,7 +327,7 @@ install: build substvars
 	  /usr/bin/cpp-$(PV_CPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-cpp
 
   ifeq ($(with_gfdl_docs),yes)
-	for i in fsf-funding.7 gfdl.7 gpl.7; do \
+	for i in gfdl.7 gpl.7; do \
 	  cp -p $$i debian/cpp/usr/share/man/man7/$${i}gcc; \
 	done
 	dh_link -pcpp \
