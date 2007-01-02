@@ -86,7 +86,7 @@ Section: libs
 Architecture: any
 Priority: optional
 Conflicts: classpath (<= 0.04-4)
-Replaces: java-gcj-compat (<< 1.0.65-7), java-gcj-compat-dev (<< 1.0.65-7)
+Replaces: java-gcj-compat (<< 1.0.65-8), java-gcj-compat-dev (<< 1.0.65-8)
 Description: Java runtime library (common files)
  This package contains files shared by classpath and libgcj libraries.
 
@@ -96,6 +96,7 @@ Architecture: any
 Depends: cpp (>= ${version:cpp}), gij (>= ${version:gcj}), gcj-${pv:gcj} ${reqv:gcj}
 Provides: java-compiler, libgcj-dev
 Replaces: libgcj5-dev, libgcj6-dev, libgcj7-dev (<< 4.1.1-12)
+Conflicts: libgcj2, libgcj3
 Description: The GNU Java compiler
  GCJ is a front end to the GCC compiler which can natively compile both
  Java(tm) source and bytecode files. The compiler can also generate class
@@ -107,6 +108,7 @@ Package: gij
 Priority: optional
 Architecture: any
 Depends: libgcj-bc (>= ${version:libgcjbc}), gij-${pv:gij} ${reqv:gij}
+Recommends: libgcj7-awt
 Suggests: gcj (>= ${version:cpp})
 Conflicts: libgcj2 (<= 3.0.2-4), java-gcj-compat (<< 1.0.56)
 Provides: java-runtime, java1-runtime, java2-runtime, java-virtual-machine

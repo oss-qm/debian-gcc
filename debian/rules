@@ -116,6 +116,7 @@ all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc
 no_packages	:= chill
 
 LIBGCJ		= libgcj7-0
+LIBGCJ_PC	= libgcj7.pc
 LIB32GCJ	= lib32gcj7-0
 LIBGCJ_SONAME	= 70
 
@@ -510,7 +511,7 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
 	  /usr/bin/gcjh-wrapper-$(PV_GCJ) /usr/bin/gcjh-wrapper \
 	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar \
-	  /usr/lib/pkgconfig/$(LIBGCJ).pc /usr/lib/pkgconfig/libgcj.pc
+	  /usr/lib/pkgconfig/$(LIBGCJ_PC) /usr/lib/pkgconfig/libgcj.pc
 
 	: # gij
 	dh_installdirs -pgij usr/bin /usr/share/man/man1 usr/share/doc
