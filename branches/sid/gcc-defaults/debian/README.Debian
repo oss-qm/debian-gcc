@@ -18,20 +18,20 @@ Versions of GCC present in Debian Etch
   libgcc1, libgcc2 and libgcc4 which contain the GCC intrinsics, and
   libstdc++6.
 
-- GCC 4.0 is no longer provided.
+- GCC 4.0 is provided, but is not the default for any language.  It
+  might be removed in the future.  It provides all languages except
+  Java and Pascal.  This is the first version of GCC that supports
+  Fortran 95 (gfortran) instead of Fortran 77 (g77).
 
-- GCC 3.4 is the default for Fortran 77 and Pascal.  It also provides
-  C++.
+- GCC 3.4 is the default for Fortran 77 and Pascal.
 
 - GCC 3.3 is provided, but is not the default for any language.  It
-  might be removed in the future.  It supports C and C++, and provides
-  libstdc++5.  This version of GCC was the default in Debian 3.1 "Sarge".
+  might be removed in the future.  It also provides libstdc++5.  This
+  version of GCC was the default in Debian 3.1 "Sarge".
 
 - GCC 2.95 is provided on all architectures except ia64, which has GCC
   2.96 instead.  This version of GCC is necessary to build Linux 2.2;
-  it was the default in Debian 3.0 "Woody".  This package supports C,
-  C++, Chill, Fortran 77, Objective-C and Pascal, and provides
-  libstdc++2.10.
+  it was the default in Debian 3.0 "Woody".
 
 - GCC 2.7.2.3 is provided on i386 and m68k, where it is necessary to
   build Linux 2.0.
@@ -48,9 +48,9 @@ install a binary called "gcc-3.3", which is symlinked to in the "gcc"
 package as "gcc".
 
 This may seem confusing, but what it allows you do to is install more
-than one version of the GNU compiler collection at the same time,
+than one version of the GCC compiler collection at the same time,
 making sure you are always using the one preferred for that
-architecture. To use other compilers, simply set CC=gcc-2.95, or
+architecture. To use the other compiler, simply set CC=gcc-2.95, or
 similar.
 
 The default compiler versions for Debian GNU/Linux on i386 are
@@ -60,17 +60,17 @@ The default compiler versions for Debian GNU/Linux on i386 are
 	gcc		: gcc-4.1
 	g++		: g++-4.1
 	g77		: g77-3.4
-	gcj		: gcj-4.1
 	gfortran	: gfortran-4.1
+	gcj		: gcj-4.1
 	gij		: gij-4.1
 	gobjc		: gobjc-4.1
 	gobjc++		: gobjc++-4.1
 	gnat		: gnat-4.1
 	gpc		: gpc-2.1-3.4
 
-Most of the documentation for GCC including the manual pages is
-licensed under the GFDL with invariant sections and therefore not
-included in "main"; some are in "non-free".
+Documentation for the default compilers can be found in
+
+	/usr/share/doc/<compiler>-<package version>.
 
 Thanks to gcc-defaults, each architecture can choose its own preferred
 compiler for each language, and that preference can change without
@@ -86,7 +86,7 @@ C compiler, you should use the gcc-2.95 compiler driver for all your
 work.  When configuring sources, use
 
     CC=gcc-3.4 ./configure <configure options> 	# bash
-    setenv CC gcc-3.4; ./configure <options>	# csh
+    setenv CC gcc-3.4; ./configure <options>		# csh
 
 When calling make, use make CC=gcc-3.4.
 
@@ -168,3 +168,4 @@ Roman Zippel <zippel@linux-m68k.org>		(m68k-linux)
 Ludovic Brenta <ludovic.brenta@insalien.org>	(gnat)
 
 ===============================================================================
+
