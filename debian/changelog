@@ -1,30 +1,6 @@
-gcc-defaults (1.51) UNRELEASED; urgency=low
-
-  * Set priority of development packages to optional.
-
- -- Matthias Klose <doko@debian.org>  Sat,  6 Jan 2007 12:29:53 +0100
-
-gcc-defaults (1.50) unstable; urgency=medium
-
-  * gcj: Fix pkgconfig symlink. Closes: #394281, #404263.
-  * gcj: Conflict with libgcj2. Closes: #398127.
-  * Add copyright for the c89 and c99 manpages. Closes: #398065.
-  * gij: Recommend libgcj7-awt. Do not depend on it, because we want
-    to be able to install the runtime without X dependencies.
-    Closes: #394917.
-
- -- Matthias Klose <doko@debian.org>  Mon,  1 Jan 2007 19:09:28 +0100
-
-gcc-defaults (1.49) unstable; urgency=low
-
-  * Replaces java-gcj-compat (<< 1.0.65-8), not (<< 1.0.65-7).
-    Really fixes #393903.
-
- -- Matthias Klose <doko@debian.org>  Wed, 18 Oct 2006 21:11:19 +0200
-
 gcc-defaults (1.48) unstable; urgency=low
 
-  * Remove fsf-funding (again). Closes: #385732.
+   * Remove fsf-funding (again). Closes: #385732.
 
  -- Matthias Klose <doko@debian.org>  Wed, 18 Oct 2006 20:48:45 +0200
 
