@@ -59,8 +59,10 @@ REL_NO_403	:= $(shell expr $(VMINOR) - 31)$(REL_EXT)
 
 # gcc-defaults 1.33 is the first version with 4.1.0 support.
 REL_NO_410	:= $(shell expr $(VMINOR) - 33)$(REL_EXT)
-# gcc-defaults 1.36 is the first version with 4.1.0 support.
+# gcc-defaults 1.36 is the first version with 4.1.1 support.
 REL_NO_411	:= $(shell expr $(VMINOR) - 35)$(REL_EXT)
+# gcc-defaults 1.51 is the first version with 4.1.2 support.
+REL_NO_412	:= $(shell expr $(VMINOR) - 50)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 
@@ -73,7 +75,10 @@ REQV_33		:= (>= 1:3.3.6-1)
 REQV_GPC_33	:= (>= 1:3.3.6.$(GPC_DATE)-1)
 REQV_34		:= (>= 3.4.6-1)
 REQV_40		:= (>= 4.0.3-1)
-REQV_41		:= (>= 4.1.1-2)
+REQV_41		:= (>= 4.1.2-1)
+REQV_41_GCJ	:= (>= 4.1.2-1)
+
+REQV_LIBGCJ_BC	:= (>= 4.1.2-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -83,17 +88,18 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.1.1-$(REL_NO_411)
-CV_GCC		:= 4.1.1-$(REL_NO_411)
-CV_GPP		:= 4.1.1-$(REL_NO_411)
-CV_GOBJC	:= 4.1.1-$(REL_NO_411)
-CV_GOBJCXX	:= 4.1.1-$(REL_NO_411)
+CV_CPP		:= 4.1.2-$(REL_NO_412)
+CV_GCC		:= 4.1.2-$(REL_NO_412)
+CV_GPP		:= 4.1.2-$(REL_NO_412)
+CV_GOBJC	:= 4.1.2-$(REL_NO_412)
+CV_GOBJCXX	:= 4.1.2-$(REL_NO_412)
 CV_G77		:= 3.4.6-$(REL_NO_346)
-CV_GFORT	:= 4.1.1-$(REL_NO_411)
-CV_GCJ		:= 4.1.1-$(REL_NO_411)
-CV_GIJ		:= 4.1.1-$(REL_NO_411)
-# XXX sync with the releae of 4.1.2
-CV_LIBGCJBC	:= 4.1.1-$(shell expr $(VMINOR) - 29)$(REL_EXT)
+CV_GFORT	:= 4.1.2-$(REL_NO_412)
+CV_GCJ		:= 4.1.2-$(REL_NO_412)
+CV_GIJ		:= 4.1.2-$(REL_NO_412)
+CV_LIBGCJBC	:= 4.1.2-$(REL_NO_412)
+# undo, when 4.2 or higher is the default
+CV_LIBGCJCOMMON	:= 4.2-20070303-$(REL_NO_412)
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
@@ -115,10 +121,10 @@ distribution := $(shell lsb_release -is)
 all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc
 no_packages	:= chill
 
-LIBGCJ		= libgcj7-0
+LIBGCJ		= libgcj7-1
 LIBGCJ_PC	= libgcj7.pc
-LIB32GCJ	= lib32gcj7-0
-LIBGCJ_SONAME	= 70
+LIB32GCJ	= lib32gcj7-1
+LIBGCJ_SONAME	= 71
 
 ifneq ($(distribution)-$(DEB_HOST_ARCH),Debian-amd64)
   lib32         = usr/lib32
@@ -128,6 +134,11 @@ endif
 
 gcj_archs = alpha amd64 hppa i386 ia64 m68k mips mipsel powerpc ppc64 s390 sparc
 gcj_native_archs = alpha amd64 i386 ia64 mips mipsel powerpc ppc64 s390 sparc
+multilib_archs = amd64 i386 kfreebsd-amd64 powerpc ppc64 s390 sparc
+
+ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
+  with_multilib = yes
+endif
 
 with_gfdl_docs := no
 ifeq ($(distribution),Ubuntu)
@@ -293,6 +304,15 @@ substvars:
 	  echo 'pkg:lib32gcj=$(LIB32GCJ)'; \
 	  echo 'version:libgcjbc=$(CV_LIBGCJBC)'; \
 	) > debian/substvars.local
+ifeq ($(with_multilib),yes)
+	( \
+	  echo 'pkgmulti:gcc=gcc-multilib'; \
+	  echo 'pkgmulti:gpp=g++-multilib'; \
+	  echo 'pkgmulti:gobjc=gobjc-multilib'; \
+	  echo 'pkgmulti:gobjcxx=gobjc++-multilib'; \
+	  echo 'pkgmulti:gfort=gfortran-multilib'; \
+	) >> debian/substvars.local
+endif
 
 build: README build-stamp
 build-stamp:
@@ -328,7 +348,7 @@ install: build substvars
 	  /usr/bin/cpp-$(PV_CPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-cpp
 
   ifeq ($(with_gfdl_docs),yes)
-	for i in gfdl.7 gpl.7; do \
+	for i in gfdl.7 gpl.7 fsf-funding.7; do \
 	  cp -p $$i debian/cpp/usr/share/man/man7/$${i}gcc; \
 	done
 	dh_link -pcpp \
@@ -497,22 +517,6 @@ ifeq (chill, $(findstring chill, $(packages)))
 endif
 
 ifneq (,$(filter gcj, $(packages)))
-	: # gcj
-	dh_installdirs -pgcj usr/bin /usr/share/man/man1 usr/share/doc
-	dh_link -pgcj \
-	  /usr/share/doc/cpp /usr/share/doc/gcj \
-	  /usr/bin/gjnih-$(PV_GCJ) /usr/bin/gjnih \
-	  /usr/bin/gcj-$(PV_GCJ) /usr/bin/gcj \
-	  /usr/bin/gcj-$(PV_GCJ) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcj \
-	  /usr/bin/gcjh-$(PV_GCJ) /usr/bin/gcjh \
-	  /usr/bin/jv-convert-$(PV_GCJ) /usr/bin/jv-convert \
-	  /usr/bin/jv-scan-$(PV_GCJ) /usr/bin/jv-scan \
-	  /usr/bin/jcf-dump-$(PV_GCJ) /usr/bin/jcf-dump \
-	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
-	  /usr/bin/gcjh-wrapper-$(PV_GCJ) /usr/bin/gcjh-wrapper \
-	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar \
-	  /usr/lib/pkgconfig/$(LIBGCJ_PC) /usr/lib/pkgconfig/libgcj.pc
-
 	: # gij
 	dh_installdirs -pgij usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pgij \
@@ -520,16 +524,57 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/bin/gij-$(PV_GIJ) /usr/bin/gij \
 	  /usr/bin/gij-wrapper-$(PV_GIJ) /usr/bin/gij-wrapper \
 	  /usr/bin/gcj-dbtool-$(PV_GIJ) /usr/bin/gcj-dbtool \
-	  /usr/bin/grmiregistry-$(PV_GIJ) /usr/bin/grmiregistry \
 	  /usr/bin/gkeytool-$(PV_GIJ) /usr/bin/gkeytool \
+	  /usr/bin/gorbd-$(PV_GIJ) /usr/bin/gorbd \
+	  /usr/bin/grmid-$(PV_GIJ) /usr/bin/grmid \
+	  /usr/bin/grmiregistry-$(PV_GIJ) /usr/bin/grmiregistry \
+	  /usr/bin/gserialver-$(PV_GIJ) /usr/bin/gserialver \
+
+	: # gcj
+	dh_installdirs -pgcj usr/bin /usr/share/man/man1 usr/share/doc
+	dh_link -pgcj \
+	  /usr/share/doc/cpp /usr/share/doc/gcj \
+	  /usr/bin/gjavah-$(PV_GCJ) /usr/bin/gjavah \
+	  /usr/bin/gcj-$(PV_GCJ) /usr/bin/gcj \
+	  /usr/bin/gcj-$(PV_GCJ) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcj \
+	  /usr/bin/gjar-$(PV_GCJ) /usr/bin/gjar \
+	  /usr/bin/gjarsigner-$(PV_GCJ) /usr/bin/gjarsigner \
+	  /usr/bin/jv-convert-$(PV_GCJ) /usr/bin/jv-convert \
+	  /usr/bin/jv-scan-$(PV_GCJ) /usr/bin/jv-scan \
+	  /usr/bin/jcf-dump-$(PV_GCJ) /usr/bin/jcf-dump \
+	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
+	  /usr/bin/gtnameserv-$(PV_GCJ) /usr/bin/gtnameserv \
+	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar \
+	  /usr/lib/pkgconfig/$(LIBGCJ_PC) /usr/lib/pkgconfig/libgcj.pc
 
 	dh_link -pgij \
-	  /usr/share/doc/libgcj-bc /usr/share/doc/gij \
-	  /usr/bin/gij-$(PV_GIJ) /usr/bin/gij \
-	  /usr/bin/gij-wrapper-$(PV_GIJ) /usr/bin/gij-wrapper \
-	  /usr/bin/gcj-dbtool-$(PV_GIJ) /usr/bin/gcj-dbtool \
-	  /usr/bin/grmiregistry-$(PV_GIJ) /usr/bin/grmiregistry \
-	  /usr/bin/gkeytool-$(PV_GIJ) /usr/bin/gkeytool \
+	  /usr/share/man/man1/gkeytool-$(PV_GIJ).1.gz /usr/share/man/man1/gkeytool.1.gz \
+	  /usr/share/man/man1/gorbd-$(PV_GIJ).1.gz /usr/share/man/man1/gorbd.1.gz \
+	  /usr/share/man/man1/grmid-$(PV_GIJ).1.gz /usr/share/man/man1/grmid.1.gz \
+	  /usr/share/man/man1/grmiregistry-$(PV_GIJ).1.gz /usr/share/man/man1/grmiregistry.1.gz \
+	  /usr/share/man/man1/gserialver-$(PV_GIJ).1.gz /usr/share/man/man1/gserialver.1.gz
+
+	dh_link -pgcj \
+	  /usr/share/man/man1/gjar-$(PV_GCJ).1.gz /usr/share/man/man1/gjar.1.gz \
+	  /usr/share/man/man1/gjarsigner-$(PV_GCJ).1.gz /usr/share/man/man1/gjarsigner.1.gz \
+	  /usr/share/man/man1/gjavah-$(PV_GCJ).1.gz /usr/share/man/man1/gjavah.1.gz \
+	  /usr/share/man/man1/gnative2ascii-$(PV_GIJ).1.gz /usr/share/man/man1/gnative2ascii.1.gz \
+	  /usr/share/man/man1/grmic-$(PV_GIJ).1.gz /usr/share/man/man1/grmic.1.gz \
+	  /usr/share/man/man1/gtnameserv-$(PV_GCJ).1.gz /usr/share/man/man1/gtnameserv.1.gz
+
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pgij \
+	  /usr/share/man/man1/gij-$(PV_GIJ).1.gz /usr/share/man/man1/gij.1.gz \
+	  /usr/share/man/man1/gij-wrapper-$(PV_GIJ).1.gz /usr/share/man/man1/gij-wrapper.1.gz \
+	  /usr/share/man/man1/gcj-dbtool-$(PV_GIJ).1.gz /usr/share/man/man1/gcj-dbtool.1.gz
+	dh_link -pgcj \
+	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/gcj.1.gz \
+	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcj.1.gz \
+	  /usr/share/man/man1/jv-convert-$(PV_GCJ).1.gz /usr/share/man/man1/jv-convert.1.gz \
+	  /usr/share/man/man1/jcf-dump-$(PV_GCJ).1.gz /usr/share/man/man1/jcf-dump.1.gz \
+	  /usr/share/man/man1/gcj-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcj-wrapper.1.gz \
+	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
+  endif
 
 	: # libgcj-bc
 	dh_installdirs -plibgcj-bc \
@@ -541,7 +586,7 @@ ifneq (,$(filter gcj, $(packages)))
 	cp -p debian/libgcj-bc.overrides \
 		debian/libgcj-bc/usr/share/lintian/overrides/libgcj-bc
 
-	echo "libgcj_bc 1 libgcj-bc (>= $(PV_GIJ))" \
+	echo "libgcj_bc 1 libgcj-bc $(REQV_LIBGCJ_BC)" \
 		> debian/libgcj-bc.shlibs
 #	echo "libgcj_bc 1 libgcj-bc" > debian/libgcj-bc.shlibs
 
@@ -556,28 +601,9 @@ ifneq (,$(filter gcj, $(packages)))
 	cp -p debian/lib32gcj-bc.overrides \
 		debian/lib32gcj-bc/usr/share/lintian/overrides/lib32gcj-bc
 
-	echo "libgcj_bc 1 lib32gcj-bc (>= $(PV_GIJ))" \
+	echo "libgcj_bc 1 lib32gcj-bc $(REQV_LIBGCJ_BC)" \
 		> debian/lib32gcj-bc.shlibs
 #	echo "libgcj_bc 1 lib32gcj-bc" > debian/lib32gcj-bc.shlibs
-  endif
-
-  ifeq ($(with_gfdl_docs),yes)
-	dh_link -pgij \
-	  /usr/share/man/man1/gij-$(PV_GIJ).1.gz /usr/share/man/man1/gij.1.gz \
-	  /usr/share/man/man1/gij-wrapper-$(PV_GIJ).1.gz /usr/share/man/man1/gij-wrapper.1.gz \
-	  /usr/share/man/man1/gcj-dbtool-$(PV_GIJ).1.gz /usr/share/man/man1/gcj-dbtool.1.gz \
-	  /usr/share/man/man1/grmiregistry-$(PV_GIJ).1.gz /usr/share/man/man1/grmiregistry.1.gz
-	dh_link -pgcj \
-	  /usr/share/man/man1/gjnih-$(PV_GCJ).1.gz /usr/share/man/man1/gjnih.1.gz \
-	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/gcj.1.gz \
-	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcj.1.gz \
-	  /usr/share/man/man1/gcjh-$(PV_GCJ).1.gz /usr/share/man/man1/gcjh.1.gz \
-	  /usr/share/man/man1/jv-convert-$(PV_GCJ).1.gz /usr/share/man/man1/jv-convert.1.gz \
-	  /usr/share/man/man1/jv-scan-$(PV_GCJ).1.gz /usr/share/man/man1/jv-scan.1.gz \
-	  /usr/share/man/man1/jcf-dump-$(PV_GCJ).1.gz /usr/share/man/man1/jcf-dump.1.gz \
-	  /usr/share/man/man1/gcj-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcj-wrapper.1.gz \
-	  /usr/share/man/man1/gcjh-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcjh-wrapper.1.gz \
-	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
   endif
 endif
 
@@ -668,6 +694,7 @@ binary-arch: build install
 	dh_installdocs -pcpp -plibgcj-common
 	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Nlib32gcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Nlibgcj-common`; do \
 	  echo ln -sf cpp debian/$$p/usr/share/doc/$$p; \
+	  mkdir -p debian/$$p/usr/share/doc; \
 	  rm -f debian/$$p/usr/share/doc/$$p; \
 	  ln -sf cpp debian/$$p/usr/share/doc/$$p; \
 	done
@@ -688,6 +715,9 @@ binary-arch: build install
 	dh_installdeb $(nopkgs)
 	dh_gencontrol -pcpp     -u-v$(EPOCH):$(CV_CPP)
 	dh_gencontrol -pgcc     -u-v$(EPOCH):$(CV_GCC)
+  ifeq ($(with_multilib),yes)
+	dh_gencontrol -pgcc-multilib -u-v$(EPOCH):$(CV_GCC)
+  endif
   ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pcpp-doc -u-v$(EPOCH):$(CV_CPP)
 	dh_gencontrol -pgcc-doc -u-v$(EPOCH):$(CV_GCC)
@@ -700,12 +730,21 @@ ifneq (,$(filter gnat, $(packages)))
 endif
 ifneq (,$(filter g++, $(packages)))
 	dh_gencontrol -pg++     -u-v$(EPOCH):$(CV_GPP)
+  ifeq ($(with_multilib),yes)
+	dh_gencontrol -pg++-multilib -u-v$(EPOCH):$(CV_GPP)
+  endif
 endif
 ifneq (,$(filter gobjc, $(packages)))
 	dh_gencontrol -pgobjc   -u-v$(EPOCH):$(CV_GOBJC)
+  ifeq ($(with_multilib),yes)
+	dh_gencontrol -pgobjc-multilib -u-v$(EPOCH):$(CV_GOBJC)
+  endif
 endif
 ifneq (,$(filter gobjc++, $(packages)))
 	dh_gencontrol -pgobjc++   -u-v$(EPOCH):$(CV_GOBJCXX)
+  ifeq ($(with_multilib),yes)
+	dh_gencontrol -pgobjc++-multilib -u-v$(EPOCH):$(CV_GOBJCXX)
+  endif
 endif
 ifneq (,$(filter g77, $(packages)))
 	dh_gencontrol -pg77     -u-v$(EPOCH):$(CV_G77)
@@ -715,6 +754,9 @@ ifneq (,$(filter g77, $(packages)))
 endif
 ifneq (,$(filter gfortran, $(packages)))
 	dh_gencontrol -pgfortran     -u-v$(EPOCH):$(CV_GFORT)
+  ifeq ($(with_multilib),yes)
+	dh_gencontrol -pgfortran-multilib -u-v$(EPOCH):$(CV_GFORT)
+  endif
   ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pgfortran-doc -u-v$(EPOCH):$(CV_GFORT)
   endif
@@ -731,7 +773,7 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -plib32gcj-bc -u-v$(CV_LIBGCJBC)
   endif
 endif
-	dh_gencontrol -plibgcj-common -u-v1:$(CV_LIBGCJBC)
+	dh_gencontrol -plibgcj-common -u-v1:$(CV_LIBGCJCOMMON)
 ifneq (,$(filter chill, $(packages)))
 	dh_gencontrol -pchill -u-v$(EPOCH):$(CV_CHILL)
 endif

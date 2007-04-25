@@ -1,3 +1,41 @@
+gcc-defaults (1.52) unstable; urgency=medium
+
+  * Add multilib packages for gcc, g++, gobjc, gobjc++, gfortran.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 25 Apr 2007 23:10:56 +0200
+
+gcc-defaults (1.51) experimental; urgency=low
+
+  * Depend on the 4.1.2 final release.
+  * Set priority of development packages to optional.
+  * Merge from Ubuntu:
+    - Tighten dependencies for ecj-generics backport.
+    - gcj: Drop gcjh, gcjh-wrapper, gjnih, add gjavah, gtnameserv.
+    - gij: Add gorbd, grmid, gserialver.
+    - gij/gcj: Add links for manpages for the classpath tools.
+  * Bump debhelper compatibility to v5.
+  * Bump libgcj-common to a 4.2 version, previously built by gcc-4.2.
+
+ -- Matthias Klose <doko@debian.org>  Sun,  4 Mar 2007 12:30:54 +0100
+
+gcc-defaults (1.50) unstable; urgency=medium
+
+  * gcj: Fix pkgconfig symlink. Closes: #394281, #404263.
+  * gcj: Conflict with libgcj2. Closes: #398127.
+  * Add copyright for the c89 and c99 manpages. Closes: #398065.
+  * gij: Recommend libgcj7-awt. Do not depend on it, because we want
+    to be able to install the runtime without X dependencies.
+    Closes: #394917.
+
+ -- Matthias Klose <doko@debian.org>  Mon,  1 Jan 2007 19:09:28 +0100
+
+gcc-defaults (1.49) unstable; urgency=low
+
+  * Replaces java-gcj-compat (<< 1.0.65-8), not (<< 1.0.65-7).
+    Really fixes #393903.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 18 Oct 2006 21:11:19 +0200
+
 gcc-defaults (1.48) unstable; urgency=low
 
    * Remove fsf-funding (again). Closes: #385732.
