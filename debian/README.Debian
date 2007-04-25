@@ -72,8 +72,6 @@ Most of the documentation for GCC including the manual pages is
 licensed under the GFDL with invariant sections and therefore not
 included in "main"; some are in "non-free".
 
-	/usr/share/doc/<compiler>-<package version>.
-
 Thanks to gcc-defaults, each architecture can choose its own preferred
 compiler for each language, and that preference can change without
 requiring a complete rebuild of both compiler packages for all
