@@ -34,6 +34,7 @@ Description: The GNU C++ compiler
  This is a dependency package providing the default GNU C++ compiler.
 
 Package: g++-multilib
+Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), g++ (>= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}
 Description: The GNU C++ compiler (multilib files)
@@ -56,6 +57,7 @@ Description: The GNU Objective-C compiler
  This is a dependency package providing the default GNU Objective-C compiler.
 
 Package: gobjc-multilib
+Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gobjc (>= ${version:gcc}), gobjc-${pv:gobjc}-multilib ${reqv:gobjc}
 Description: The GNU Objective-C compiler (multilib files)
@@ -80,6 +82,7 @@ Description: The GNU Objective-C++ compiler
  This is a dependency package providing the default GNU Objective-C++ compiler.
 
 Package: gobjc++-multilib
+Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gobjc++ (>= ${version:gcc}), gobjc++-${pv:gobjcxx}-multilib ${reqv:gobjcxx}
 Description: The GNU Objective-C++ compiler (multilib files)
@@ -116,6 +119,7 @@ Description: The GNU Fortran 95 compiler
  This is a dependency package providing the default GNU Fortran 95 compiler.
 
 Package: gfortran-multilib
+Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gfortran (>= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}
 Description: The GNU Fortran 95 compiler (multilib files)
@@ -218,6 +222,7 @@ Description: The GNU C compiler
  This is a dependency package providing the default GNU C compiler.
 
 Package: gcc-multilib
+Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}
 Description: The GNU C compiler (multilib files)
