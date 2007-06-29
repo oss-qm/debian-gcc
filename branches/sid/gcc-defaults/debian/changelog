@@ -1,8 +1,11 @@
-gcc-defaults (1.53) UNRELEASED; urgency=low
+gcc-defaults (1.54) experimental; urgency=low
 
   * Lower the priority of the -multilib packages.
+  * Make GCC-4.2 the default for C, C++, ObjC, ObjC++, GFortran.
+  * Support kfreebsd-amd64. Closes: #423166.
+  * Re-add gcjh binary. Closes: #423740.
 
- -- Matthias Klose <doko@debian.org>  Thu, 26 Apr 2007 13:55:17 +0200
+ -- Matthias Klose <doko@debian.org>  Sat, 26 May 2007 16:33:24 +0200
 
 gcc-defaults (1.52) unstable; urgency=medium
 
