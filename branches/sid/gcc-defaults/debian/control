@@ -243,7 +243,7 @@ Description: Documentation for the GNU Pascal compiler (gpc)
 Package: gnat
 Architecture: alpha amd64 hppa i386 ia64 mips mipsel powerpc s390 sparc kfreebsd-i386
 Priority: optional
-Depends: gnat-${pv:gcc}, cpp (>= ${version:cpp})
+Depends: gnat-4.1 (>= 4.1.1-6)
 Conflicts: gnat-3.3, gnat-3.4, gnat-4.0, gnat-4.1 (<< 4.1.1-6)
 Description: The GNU Ada compiler
  This is a dependency package providing the default GNU Ada compiler.

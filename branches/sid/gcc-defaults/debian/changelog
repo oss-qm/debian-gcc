@@ -1,3 +1,10 @@
+gcc-defaults (1.55) experimental; urgency=low
+
+  * Revert gnat to depend on gnat-4.1 as the transition to gnat-4.2
+    has not yet started.  Closes: #431103.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sat, 30 Jun 2007 17:54:23 +0200
+
 gcc-defaults (1.54) experimental; urgency=low
 
   * Lower the priority of the -multilib packages.
