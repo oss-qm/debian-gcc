@@ -382,8 +382,6 @@ install: build substvars
 	  /usr/share/doc/cpp /usr/share/doc/gcc \
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/gcc \
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
-	  /usr/bin/gccbug-$(PV_GCC) /usr/bin/gccbug \
-	  /usr/share/man/man1/gccbug-$(PV_GCC).1.gz /usr/share/man/man1/gccbug.1.gz \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
 	  /usr/share/doc/gcc-$(PV_GCC)/FAQ.gz /usr/share/doc/cpp/FAQ.gz \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs

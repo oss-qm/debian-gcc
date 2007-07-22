@@ -2,6 +2,7 @@ gcc-defaults (1.56) UNRELEASED; urgency=low
 
   * Revert gnat to depend on gnat-4.1 as the transition to gnat-4.2
     has not yet started.  Closes: #431103.
+  * Don't provide the gccbug symlinks anymore.
 
  -- Ludovic Brenta <lbrenta@debian.org>  Sat, 30 Jun 2007 17:54:23 +0200
 
