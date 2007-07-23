@@ -160,6 +160,10 @@ ifeq ($(DEB_HOST_ARCH),arm)
     no_packages += gnat
 endif
 
+ifeq ($(DEB_HOST_ARCH),armel)
+    no_packages += gnat
+endif
+
 ifeq ($(DEB_HOST_ARCH),hppa)
 endif
 
