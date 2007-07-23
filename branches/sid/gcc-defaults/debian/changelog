@@ -4,6 +4,7 @@ gcc-defaults (1.56) UNRELEASED; urgency=low
     has not yet started.  Closes: #431103.
   * Don't provide the gccbug symlinks anymore.
   * Don't build gnat for armel. Closes: #408808.
+  * Don't install gij-wrapper symlink. Closes LP: #118464.
 
  -- Matthias Klose <doko@debian.org>  Sun, 22 Jul 2007 10:51:51 +0200
 

@@ -536,7 +536,6 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_link -pgij \
 	  /usr/share/doc/libgcj-bc /usr/share/doc/gij \
 	  /usr/bin/gij-$(PV_GIJ) /usr/bin/gij \
-	  /usr/bin/gij-wrapper-$(PV_GIJ) /usr/bin/gij-wrapper \
 	  /usr/bin/gcj-dbtool-$(PV_GIJ) /usr/bin/gcj-dbtool \
 	  /usr/bin/gkeytool-$(PV_GIJ) /usr/bin/gkeytool \
 	  /usr/bin/gorbd-$(PV_GIJ) /usr/bin/gorbd \
@@ -580,7 +579,6 @@ ifneq (,$(filter gcj, $(packages)))
   ifeq ($(with_gfdl_docs),yes)
 	dh_link -pgij \
 	  /usr/share/man/man1/gij-$(PV_GIJ).1.gz /usr/share/man/man1/gij.1.gz \
-	  /usr/share/man/man1/gij-wrapper-$(PV_GIJ).1.gz /usr/share/man/man1/gij-wrapper.1.gz \
 	  /usr/share/man/man1/gcj-dbtool-$(PV_GIJ).1.gz /usr/share/man/man1/gcj-dbtool.1.gz
 	dh_link -pgcj \
 	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/gcj.1.gz \
