@@ -553,6 +553,7 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/bin/gcjh-$(PV_GCJ) /usr/bin/gcjh \
 	  /usr/bin/gjar-$(PV_GCJ) /usr/bin/gjar \
 	  /usr/bin/gjarsigner-$(PV_GCJ) /usr/bin/gjarsigner \
+	  /usr/bin/grmic-$(PV_GCJ) /usr/bin/grmic \
 	  /usr/bin/jv-convert-$(PV_GCJ) /usr/bin/jv-convert \
 	  /usr/bin/jv-scan-$(PV_GCJ) /usr/bin/jv-scan \
 	  /usr/bin/jcf-dump-$(PV_GCJ) /usr/bin/jcf-dump \
