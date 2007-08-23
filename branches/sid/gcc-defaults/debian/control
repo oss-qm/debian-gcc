@@ -4,7 +4,7 @@ Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>
 Standards-Version: 3.7.2
-Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcc-3.4-base (>= 3.4.6), gcj-4.2-base (>= 4.2-20070707) [!hurd-i386], gcc-4.2-base (>= 4.2-20070707), lsb-release
+Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcc-3.4-base (>= 3.4.6), gcj-4.2-base (>= 4.2.1) [!hurd-i386 !hppa !m68k], gcc-4.2-base (>= 4.2.1), lsb-release
 
 Package: cpp
 Priority: optional
@@ -156,9 +156,9 @@ Package: gij
 Priority: optional
 Architecture: any
 Depends: libgcj-bc (>= ${version:libgcjbc}), gij-${pv:gij} ${reqv:gij}
-Recommends: libgcj7-1-awt
+Recommends: ${pkg:libgcjawt}
 Suggests: gcj (>= ${version:cpp})
-Conflicts: libgcj2 (<= 3.0.2-4), java-gcj-compat (<< 1.0.56)
+Conflicts: libgcj2 (<= 3.0.2-4), java-gcj-compat (<< 1.0.56) [hppa m68k], java-gcj-compat (<< 1.0.76-4) [!hppa !m68k]
 Provides: java-runtime, java1-runtime, java2-runtime, java-virtual-machine
 Description: The GNU Java bytecode interpreter
  GIJ is not limited to interpreting bytecode. It includes a class loader which
@@ -173,19 +173,8 @@ Package: libgcj-bc
 Section: libs
 Architecture: any
 Priority: optional
-Depends: libgcj-common (>= 1:4.2-20070303), ${pkg:libgcj} ${reqv:gij}
+Depends: libgcj-common (>= ${version:libgcjcommon}), ${pkg:libgcj} ${reqv:gij}
 Description: Link time only library for use with gcj
- A fake library that is used at link time only.  It ensures that
- binaries built with the BC-ABI link against a constant SONAME.
- This way, BC-ABI binaries continue to work if the SONAME underlying
- libgcj.so changes.
-
-Package: lib32gcj-bc
-Section: libs
-Architecture: amd64
-Priority: optional
-Depends: libgcj-common (>= 1:4.2-20070303), ${pkg:lib32gcj} ${reqv:gij}
-Description: Link time only library for use with gcj (32bit)
  A fake library that is used at link time only.  It ensures that
  binaries built with the BC-ABI link against a constant SONAME.
  This way, BC-ABI binaries continue to work if the SONAME underlying

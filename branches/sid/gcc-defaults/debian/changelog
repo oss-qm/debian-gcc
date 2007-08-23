@@ -1,4 +1,4 @@
-gcc-defaults (1.56) UNRELEASED; urgency=low
+gcc-defaults (1.56) unstable; urgency=medium
 
   * Revert gnat to depend on gnat-4.1 as the transition to gnat-4.2
     has not yet started.  Closes: #431103.
@@ -6,8 +6,11 @@ gcc-defaults (1.56) UNRELEASED; urgency=low
   * Don't build gnat for armel. Closes: #408808.
   * Don't install gij-wrapper symlink. Closes LP: #118464.
   * Add symlink for grmic.
+  * Keep GCC-4.1 as the default for C, C++, ObjC, ObjC++.
+  * GCJ-4.2 is the default for all architectures but hppa and m68k.
+  * Don't build the lib32gcj-bc package anymore.
 
- -- Matthias Klose <doko@debian.org>  Sun, 22 Jul 2007 10:51:51 +0200
+ -- Matthias Klose <doko@debian.org>  Fri, 24 Aug 2007 00:40:47 +0200
 
 gcc-defaults (1.55) experimental; urgency=low
 

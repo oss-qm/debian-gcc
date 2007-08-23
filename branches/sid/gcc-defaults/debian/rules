@@ -67,6 +67,9 @@ REL_NO_412	:= $(shell expr $(VMINOR) - 50)$(REL_EXT)
 # gcc-defaults 1.54 is the first version with 4.2.0 support.
 REL_NO_420	:= $(shell expr $(VMINOR) - 54)$(REL_EXT)
 
+# gcc-defaults 1.56 is the first version with 4.2.0 support.
+REL_NO_421	:= $(shell expr $(VMINOR) - 55)$(REL_EXT)
+
 GPC_VERSION	:= 2.1
 
 # minimum required gcc-X.Y versions
@@ -80,9 +83,9 @@ REQV_34		:= (>= 3.4.6-1)
 REQV_40		:= (>= 4.0.3-1)
 REQV_41		:= (>= 4.1.2-1)
 REQV_41_GCJ	:= (>= 4.1.2-1)
-REQV_42		:= (>= 4.2-20070707)
+REQV_42		:= (>= 4.2.1-3)
 
-REQV_LIBGCJ_BC	:= (>= 4.2-20070707)
+REQV_LIBGCJ_BC	:= (>= 4.2.1-3)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -92,28 +95,27 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.2.0-$(REL_NO_420)
-CV_GCC		:= 4.2.0-$(REL_NO_420)
-CV_GPP		:= 4.2.0-$(REL_NO_420)
-CV_GOBJC	:= 4.2.0-$(REL_NO_420)
-CV_GOBJCXX	:= 4.2.0-$(REL_NO_420)
+CV_CPP		:= 4.1.2-$(REL_NO_412)
+CV_GCC		:= 4.1.2-$(REL_NO_412)
+CV_GPP		:= 4.1.2-$(REL_NO_412)
+CV_GOBJC	:= 4.1.2-$(REL_NO_412)
+CV_GOBJCXX	:= 4.1.2-$(REL_NO_412)
 CV_G77		:= 3.4.6-$(REL_NO_346)
-CV_GFORT	:= 4.2.0-$(REL_NO_420)
-CV_GCJ		:= 4.2-20070707-$(REL_NO_420)
-CV_GIJ		:= 4.2-20070707-$(REL_NO_420)
-CV_LIBGCJBC	:= 4.2-20070707-$(REL_NO_420)
+CV_GFORT	:= 4.2.1-$(REL_NO_421)
+CV_GCJ		:= 4.2.1-$(REL_NO_421)
+CV_GIJ		:= 4.2.1-$(REL_NO_421)
+CV_LIBGCJBC	:= 4.2.1-$(REL_NO_421)
 CV_GNAT		:= 4.1.2-$(REL_NO_412)
-# undo, when 4.2 or higher is the default
-CV_LIBGCJCOMMON	:= 4.2-20070707-$(REL_NO_420)
+CV_LIBGCJCOMMON	:= 1:4.2.1-$(REL_NO_421)
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
 
-REQV_CPP	= $(REQV_42)
-REQV_GCC	= $(REQV_42)
-REQV_GPP	= $(REQV_42)
-REQV_GOBJC	= $(REQV_42)
-REQV_GOBJCXX	= $(REQV_42)
+REQV_CPP	= $(REQV_41)
+REQV_GCC	= $(REQV_41)
+REQV_GPP	= $(REQV_41)
+REQV_GOBJC	= $(REQV_41)
+REQV_GOBJCXX	= $(REQV_41)
 REQV_G77	= $(REQV_34)
 REQV_GFORT	= $(REQV_42)
 REQV_GCJ	= $(REQV_42)
@@ -126,10 +128,9 @@ distribution := $(shell lsb_release -is)
 all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc
 no_packages	:= chill
 
-LIBGCJ		= libgcj8-0
+LIBGCJ		= libgcj8-1
 LIBGCJ_PC	= libgcj8.pc
-LIB32GCJ	= lib32gcj8-0
-LIBGCJ_SONAME	= 80
+LIBGCJ_SONAME	= 81
 
 ifneq ($(distribution)-$(DEB_HOST_ARCH),Debian-amd64)
   lib32         = usr/lib32
@@ -137,8 +138,8 @@ else
   lib32         = emul/ia32-linux/usr/lib
 endif
 
-gcj_archs = alpha amd64 hppa i386 ia64 m68k mips mipsel powerpc ppc64 s390 sparc
-gcj_native_archs = alpha amd64 i386 ia64 mips mipsel powerpc ppc64 s390 sparc
+gcj_archs = alpha amd64 hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc
+gcj_native_archs = alpha amd64 i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc
 multilib_archs = amd64 i386 kfreebsd-amd64 powerpc ppc64 s390 sparc
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
@@ -162,9 +163,22 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),armel)
     no_packages += gnat
+    CV_GOBJC		:= 4.1.2-$(REL_NO_412)
+    CV_GOBJCXX		:= 4.1.2-$(REL_NO_412)
+    REQV_GOBJC		= $(REQV_41)
+    REQV_GOBJCXX	= $(REQV_41)
 endif
 
 ifeq ($(DEB_HOST_ARCH),hppa)
+    CV_GCJ		:= 4.2.1-$(REL_NO_412)
+    CV_GIJ		:= 4.2.1-$(REL_NO_412)
+    CV_LIBGCJBC		:= 4.2.1-$(REL_NO_412)
+    CV_LIBGCJCOMMON	:= 1:4.2-20070303-$(REL_NO_412)
+    REQV_GCJ	= $(REQV_41)
+    REQV_GIJ	= $(REQV_41)
+    LIBGCJ		= libgcj7-1
+    LIBGCJ_PC	= libgcj7.pc
+    LIBGCJ_SONAME	= 71
 endif
 
 ifeq ($(DEB_HOST_ARCH),i386)
@@ -182,6 +196,20 @@ ifeq ($(DEB_HOST_ARCH),kfreebsd-i386)
     OS_NAME	:= kFreeBSD
 endif
 
+ifeq ($(DEB_HOST_ARCH),lpia)
+	CV_CPP		:= 4.2.1-$(REL_NO_421)
+	CV_GCC		:= 4.2.1-$(REL_NO_421)
+	CV_GPP		:= 4.2.1-$(REL_NO_421)
+	CV_GOBJC	:= 4.2.1-$(REL_NO_421)
+	CV_GOBJCXX	:= 4.2.1-$(REL_NO_421)
+
+	REQV_CPP	= $(REQV_42)
+	REQV_GCC	= $(REQV_42)
+	REQV_GPP	= $(REQV_42)
+	REQV_GOBJC	= $(REQV_42)
+	REQV_GOBJCXX	= $(REQV_42)
+endif
+
 ifeq ($(DEB_HOST_ARCH),kfreebsd-amd64)
     OS_NAME	:= kFreeBSD
     no_packages += gnat
@@ -193,6 +221,15 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),m68k)
     no_packages += gnat
+    CV_GCJ		:= 4.2.1-$(REL_NO_412)
+    CV_GIJ		:= 4.2.1-$(REL_NO_412)
+    CV_LIBGCJBC		:= 4.2.1-$(REL_NO_412)
+    CV_LIBGCJCOMMON	:= 1:4.2-20070303-$(REL_NO_412)
+    REQV_GCJ	= $(REQV_41)
+    REQV_GIJ	= $(REQV_41)
+    LIBGCJ		= libgcj7-1
+    LIBGCJ_PC	= libgcj7.pc
+    LIBGCJ_SONAME	= 71
 endif
 
 ifeq ($(DEB_HOST_ARCH),mips)
@@ -294,6 +331,7 @@ substvars:
 	  echo 'version:gpc=$(EPOCH):$(CV_GPC)'; \
 	  echo 'version:g77=$(EPOCH):$(CV_G77)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
+	  echo 'version:libgcjcommon=$(CV_LIBGCJCOMMON)'; \
 	  echo 'pv:cpp=$(PV_CPP)'; \
 	  echo 'pv:gcc=$(PV_GCC)'; \
 	  echo 'pv:gpp=$(PV_GPP)'; \
@@ -317,7 +355,7 @@ substvars:
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
 	  echo 'reqv:gpc=$(REQV_GPC)'; \
 	  echo 'pkg:libgcj=$(LIBGCJ)'; \
-	  echo 'pkg:lib32gcj=$(LIB32GCJ)'; \
+	  echo 'pkg:libgcjawt=$(LIBGCJ)-awt'; \
 	  echo 'version:libgcjbc=$(CV_LIBGCJBC)'; \
 	) > debian/substvars.local
 ifeq ($(with_multilib),yes)
@@ -605,21 +643,6 @@ ifneq (,$(filter gcj, $(packages)))
 		> debian/libgcj-bc.shlibs
 #	echo "libgcj_bc 1 libgcj-bc" > debian/libgcj-bc.shlibs
 
-  ifeq ($(DEB_HOST_ARCH),amd64)
-	: # lib32gcj-bc
-	dh_installdirs -plib32gcj-bc \
-		$(lib32) usr/share/doc usr/share/lintian/overrides
-	ln -s libgcj.so.$(LIBGCJ_SONAME) \
-		debian/lib32gcj-bc/$(lib32)/libgcj_bc.so.1
-
-	mkdir -p debian/lib32gcj-bc/usr/share/lintian/overrides
-	cp -p debian/lib32gcj-bc.overrides \
-		debian/lib32gcj-bc/usr/share/lintian/overrides/lib32gcj-bc
-
-	echo "libgcj_bc 1 lib32gcj-bc $(REQV_LIBGCJ_BC)" \
-		> debian/lib32gcj-bc.shlibs
-#	echo "libgcj_bc 1 lib32gcj-bc" > debian/lib32gcj-bc.shlibs
-  endif
 endif
 
 	: # libgcj-common
@@ -633,11 +656,6 @@ endif
 	install -m644 classpath.security debian/libgcj-common/etc/java/security/
 	dh_link -plibgcj-common \
 	  /var/lib/security/classpath.security /usr/lib/security/classpath.security
-ifeq ($(DEB_HOST_ARCH),amd64)
-	mkdir -p debian/libgcj-common/$(lib32)/security
-	dh_link -plibgcj-common \
-	  /usr/lib/security/classpath.security /$(lib32)/security/classpath.security
-endif
 	install -m755 debian/rebuild-gcj-db \
 		debian/libgcj-common/usr/bin/
 	install -m755 debian/rebuild-security-providers \
@@ -784,11 +802,8 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -pgcj         -u-v$(EPOCH):$(CV_GCJ)
 	dh_gencontrol -pgij         -u-v$(EPOCH):$(CV_GIJ)
 	dh_gencontrol -plibgcj-bc   -u-v$(CV_LIBGCJBC)
-  ifeq ($(DEB_HOST_ARCH),amd64)
-	dh_gencontrol -plib32gcj-bc -u-v$(CV_LIBGCJBC)
-  endif
 endif
-	dh_gencontrol -plibgcj-common -u-v1:$(CV_LIBGCJCOMMON)
+	dh_gencontrol -plibgcj-common -u-v$(CV_LIBGCJCOMMON)
 ifneq (,$(filter chill, $(packages)))
 	dh_gencontrol -pchill -u-v$(EPOCH):$(CV_CHILL)
 endif
