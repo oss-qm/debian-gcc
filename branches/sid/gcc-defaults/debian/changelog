@@ -1,3 +1,9 @@
+gcc-defaults (1.57) unstable; urgency=low
+
+  * Fix version requirement in libgcj-bc shlibs file.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 24 Aug 2007 17:02:34 +0200
+
 gcc-defaults (1.56) unstable; urgency=medium
 
   * Revert gnat to depend on gnat-4.1 as the transition to gnat-4.2
