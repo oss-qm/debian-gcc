@@ -1,3 +1,9 @@
+gcc-defaults (1.58) unstable; urgency=low
+
+  * Keep GCJ-4.1 as the default for alpha.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 26 Aug 2007 13:29:19 +0200
+
 gcc-defaults (1.57) unstable; urgency=low
 
   * Fix version requirement in libgcj-bc shlibs file.

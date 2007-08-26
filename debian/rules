@@ -152,6 +152,14 @@ ifeq ($(distribution),Ubuntu)
 endif
 
 ifeq ($(DEB_HOST_ARCH),alpha)
+    CV_GCJ_HACKED	:= 4.1.2-$(REL_NO_412)
+    CV_GIJ_HACKED	:= 4.1.2-$(REL_NO_412)
+    REQV_LIBGCJ_BC	:= (>= 4.1.2-3)
+    REQV_GCJ	= $(REQV_41)
+    REQV_GIJ	= $(REQV_41)
+    LIBGCJ		= libgcj7-1
+    LIBGCJ_PC	= libgcj7.pc
+    LIBGCJ_SONAME	= 71
 endif
 
 ifeq ($(DEB_HOST_ARCH),amd64)
@@ -222,9 +230,11 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),m68k)
     no_packages += gnat
-    CV_GCJ		:= 4.1.2-$(REL_NO_412)
-    CV_GIJ		:= 4.1.2-$(REL_NO_412)
-    CV_LIBGCJBC		:= 4.1.2-$(REL_NO_412)
+    CV_GCJ		:= 4.2.1-$(REL_NO_412)
+    CV_GIJ		:= 4.2.1-$(REL_NO_412)
+    CV_GCJ_HACKED	:= 4.1.2-$(REL_NO_412)
+    CV_GIJ_HACKED	:= 4.1.2-$(REL_NO_412)
+    CV_LIBGCJBC		:= 4.2.1-$(REL_NO_412)
     CV_LIBGCJCOMMON	:= 1:4.2-20070303-$(REL_NO_412)
     REQV_LIBGCJ_BC	:= (>= 4.1.2-3)
     REQV_GCJ	= $(REQV_41)
@@ -281,6 +291,10 @@ V_GFORT	:= $(shell echo $(CV_GFORT) | sed 's/-[^-]*$$//')
 V_CHILL	:= $(shell echo $(CV_CHILL) | sed 's/-[^-]*$$//')
 V_GCJ	:= $(shell echo $(CV_GCJ)   | sed 's/-[^-]*$$//')
 V_GIJ	:= $(shell echo $(CV_GIJ)   | sed 's/-[^-]*$$//')
+ifneq (,$(CV_GCJ_HACKED))
+  V_GCJ	:= $(shell echo $(CV_GCJ_HACKED)   | sed 's/-[^-]*$$//')
+  V_GIJ	:= $(shell echo $(CV_GIJ_HACKED)   | sed 's/-[^-]*$$//')
+endif
 V_GPC	:= $(shell echo $(CV_GPC)   | sed 's/-[^-]*$$//')
 
 # number for the package name
@@ -311,7 +325,7 @@ README:
 	   -DV_G77=$(V_G77)     -DPV_G77=$(PV_G77) \
 	   -DV_GFORT=$(V_GFORT) -DPV_GFORT=$(PV_GFORT) \
 	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
-	   -DV_GIJ=$(V_GCJ)     -DPV_GIJ=$(PV_GCJ) \
+	   -DV_GIJ=$(V_GIJ)     -DPV_GIJ=$(PV_GIJ) \
 	   -DV_GPC=$(V_GPC)     -DPV_GPC=$(PV_GPC) \
 	   $(if $(filter yes,$(with_gfdl_docs)), -DGFDL) \
 		debian/README.Debian.m4 > debian/README.Debian.tmp2
