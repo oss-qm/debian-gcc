@@ -359,6 +359,7 @@ substvars:
 	  echo 'pv:gcj=$(PV_GCJ)'; \
 	  echo 'pv:gij=$(PV_GIJ)'; \
 	  echo 'pv:gpc=$(PV_GPC)'; \
+	  echo 'pv:gnat=$(PV_GNAT)'; \
 	  echo 'reqv:cpp=$(REQV_CPP)'; \
 	  echo 'reqv:gcc=$(REQV_GCC)'; \
 	  echo 'reqv:gpp=$(REQV_GPP)'; \
@@ -370,6 +371,7 @@ substvars:
 	  echo 'reqv:gcj=$(REQV_GCJ)'; \
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
 	  echo 'reqv:gpc=$(REQV_GPC)'; \
+	  echo 'reqv:gnat=$(REQV_GNAT)'; \
 	  echo 'pkg:libgcj=$(LIBGCJ)'; \
 	  echo 'pkg:libgcjawt=$(LIBGCJ)-awt'; \
 	  echo 'version:libgcjbc=$(CV_LIBGCJBC)'; \
