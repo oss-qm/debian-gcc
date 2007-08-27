@@ -79,7 +79,7 @@ gcc-defaults (1.49) unstable; urgency=low
 
 gcc-defaults (1.48) unstable; urgency=low
 
-   * Remove fsf-funding (again). Closes: #385732.
+  * Remove fsf-funding (again). Closes: #385732.
 
  -- Matthias Klose <doko@debian.org>  Wed, 18 Oct 2006 20:48:45 +0200
 
