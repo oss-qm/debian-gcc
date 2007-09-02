@@ -84,6 +84,7 @@ REQV_40		:= (>= 4.0.3-1)
 REQV_41		:= (>= 4.1.2-1)
 REQV_41_GCJ	:= (>= 4.1.2-1)
 REQV_42		:= (>= 4.2.1-3)
+REQV_42_GCJ	:= (>= 4.2.1-5)
 
 REQV_LIBGCJ_BC	:= (>= 4.2.1-1)
 
@@ -118,8 +119,8 @@ REQV_GOBJC	= $(REQV_42)
 REQV_GOBJCXX	= $(REQV_42)
 REQV_G77	= $(REQV_34)
 REQV_GFORT	= $(REQV_42)
-REQV_GCJ	= $(REQV_42)
-REQV_GIJ	= $(REQV_42)
+REQV_GCJ	= $(REQV_42_GCJ)
+REQV_GIJ	= $(REQV_42_GCJ)
 REQV_GPC	= $(REQV_34)
 
 EPOCH=4
@@ -170,7 +171,7 @@ ifeq ($(DEB_HOST_ARCH),arm)
 endif
 
 ifeq ($(DEB_HOST_ARCH),armel)
-    no_packages += gnat
+    no_packages += gnat g77 g77-doc
     CV_GOBJC		:= 4.1.2-$(REL_NO_412)
     CV_GOBJCXX		:= 4.1.2-$(REL_NO_412)
     REQV_GOBJC		= $(REQV_41)
@@ -626,6 +627,12 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/share/man/man1/gnative2ascii-$(PV_GIJ).1.gz /usr/share/man/man1/gnative2ascii.1.gz \
 	  /usr/share/man/man1/grmic-$(PV_GIJ).1.gz /usr/share/man/man1/grmic.1.gz \
 	  /usr/share/man/man1/gtnameserv-$(PV_GCJ).1.gz /usr/share/man/man1/gtnameserv.1.gz
+
+ifneq ($(REQV_GCJ),$(REQV_41))
+	dh_link -pgcj \
+	  /usr/bin/gc-analyze-$(PV_GCJ) /usr/bin/gc-analyze \
+	  /usr/share/man/man1/gc-analyze-$(PV_GCJ).1.gz /usr/share/man/man1/gc-analyze.1.gz
+endif
 
   ifeq ($(with_gfdl_docs),yes)
 	dh_link -pgij \
