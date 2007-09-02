@@ -1,8 +1,10 @@
-gcc-defaults (1.61) UNRELEASED; urgency=low
+gcc-defaults (1.61) UNRELEASED; urgency=medium
 
   * libgcj-common: Update classmap db's for gcj-4.3 as well.
+  * Do not build g77 and g77-doc for armel.
+  * gcj: Install gc-analyze symlinks where the default is >= 4.2.
 
- -- Matthias Klose <doko@debian.org>  Sun, 02 Sep 2007 16:59:24 +0200
+ -- Matthias Klose <doko@debian.org>  Mon, 03 Sep 2007 00:14:39 +0200
 
 gcc-defaults (1.60) unstable; urgency=low
 
