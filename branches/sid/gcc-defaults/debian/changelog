@@ -1,3 +1,22 @@
+gcc-defaults (1.61) UNRELEASED; urgency=low
+
+  * libgcj-common: Update classmap db's for gcj-4.3 as well.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 02 Sep 2007 16:59:24 +0200
+
+gcc-defaults (1.60) unstable; urgency=low
+
+  * Make GCC-4.2 the default for C, C++, ObjC, ObjC++, GFortran for
+    all architectures except m68k.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 01 Sep 2007 11:56:19 +0200
+
+gcc-defaults (1.59) unstable; urgency=low
+
+  * Make GCJ-4.2 the default on hppa.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 28 Aug 2007 00:58:50 +0200
+
 gcc-defaults (1.58) unstable; urgency=low
 
   * Keep GCJ-4.1 as the default for alpha.
