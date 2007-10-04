@@ -1,10 +1,16 @@
-gcc-defaults (1.61) UNRELEASED; urgency=medium
+gcc-defaults (1.62) UNRELEASED; urgency=low
+
+  * Dont build libgcj-bc on the Hurd (Michael Banck). Closes: #445279.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 04 Oct 2007 22:31:48 +0200
+
+gcc-defaults (1.61) unstable; urgency=medium
 
   * libgcj-common: Update classmap db's for gcj-4.3 as well.
   * Do not build g77 and g77-doc for armel.
   * gcj: Install gc-analyze symlinks where the default is >= 4.2.
 
- -- Matthias Klose <doko@debian.org>  Mon, 03 Sep 2007 00:14:39 +0200
+ -- Matthias Klose <doko@debian.org>  Tue, 04 Sep 2007 02:41:40 +0200
 
 gcc-defaults (1.60) unstable; urgency=low
 

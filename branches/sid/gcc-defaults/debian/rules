@@ -186,7 +186,7 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),hurd-i386)
     OS_NAME	:= Hurd
-    no_packages += gnat gcj gij
+    no_packages += gnat gcj gij libgcj-bc
 endif
 
 ifeq ($(DEB_HOST_ARCH),ia64)
