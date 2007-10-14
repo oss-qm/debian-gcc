@@ -1,8 +1,12 @@
 gcc-defaults (1.62) UNRELEASED; urgency=low
 
+  [Matthias Klose]
   * Dont build libgcj-bc on the Hurd (Michael Banck). Closes: #445279.
 
- -- Matthias Klose <doko@debian.org>  Thu, 04 Oct 2007 22:31:48 +0200
+  [Ludovic Brenta]
+  * Make gnat-4.2 the default (instead of gnat-4.1).
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun, 14 Oct 2007 13:51:06 +0200
 
 gcc-defaults (1.61) unstable; urgency=medium
 
