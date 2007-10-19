@@ -66,9 +66,10 @@ REL_NO_412	:= $(shell expr $(VMINOR) - 50)$(REL_EXT)
 
 # gcc-defaults 1.54 is the first version with 4.2.0 support.
 REL_NO_420	:= $(shell expr $(VMINOR) - 54)$(REL_EXT)
-
 # gcc-defaults 1.56 is the first version with 4.2.0 support.
 REL_NO_421	:= $(shell expr $(VMINOR) - 55)$(REL_EXT)
+# gcc-defaults 1.62 is the first version with 4.2.0 support.
+REL_NO_422	:= $(shell expr $(VMINOR) - 61)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 
@@ -83,10 +84,11 @@ REQV_34		:= (>= 3.4.6-1)
 REQV_40		:= (>= 4.0.3-1)
 REQV_41		:= (>= 4.1.2-1)
 REQV_41_GCJ	:= (>= 4.1.2-1)
-REQV_42		:= (>= 4.2.1-3)
-REQV_42_GCJ	:= (>= 4.2.1-5)
+REQV_41_GPC	:= (>= $(GPC_VERSION)-4.1.2-16)
+REQV_42		:= (>= 4.2.2-3)
+REQV_42_GCJ	:= (>= 4.2.2-3)
 
-REQV_LIBGCJ_BC	:= (>= 4.2.1-1)
+REQV_LIBGCJ_BC	:= (>= 4.2.2-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -96,18 +98,19 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.2.1-$(REL_NO_421)
-CV_GCC		:= 4.2.1-$(REL_NO_421)
-CV_GPP		:= 4.2.1-$(REL_NO_421)
-CV_GOBJC	:= 4.2.1-$(REL_NO_421)
-CV_GOBJCXX	:= 4.2.1-$(REL_NO_421)
+CV_CPP		:= 4.2.2-$(REL_NO_422)
+CV_GCC		:= 4.2.2-$(REL_NO_422)
+CV_GPP		:= 4.2.2-$(REL_NO_422)
+CV_GOBJC	:= 4.2.2-$(REL_NO_422)
+CV_GOBJCXX	:= 4.2.2-$(REL_NO_422)
 CV_G77		:= 3.4.6-$(REL_NO_346)
-CV_GFORT	:= 4.2.1-$(REL_NO_421)
-CV_GCJ		:= 4.2.1-$(REL_NO_421)
-CV_GIJ		:= 4.2.1-$(REL_NO_421)
-CV_LIBGCJBC	:= 4.2.1-$(REL_NO_421)
+CV_GFORT	:= 4.2.2-$(REL_NO_422)
+CV_GCJ		:= 4.2.2-$(REL_NO_422)
+CV_GIJ		:= 4.2.2-$(REL_NO_422)
+CV_LIBGCJBC	:= 4.2.2-$(REL_NO_422)
 CV_GNAT		:= 4.2.2-1
-CV_LIBGCJCOMMON	:= 1:4.2.1-$(REL_NO_421)
+CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
+CV_LIBGCJCOMMON	:= 1:4.2.2-$(REL_NO_422)
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
@@ -121,9 +124,10 @@ REQV_G77	= $(REQV_34)
 REQV_GFORT	= $(REQV_42)
 REQV_GCJ	= $(REQV_42_GCJ)
 REQV_GIJ	= $(REQV_42_GCJ)
-REQV_GPC	= $(REQV_34)
+REQV_GPC	= $(REQV_41_GPC)
 
 EPOCH=4
+EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
 all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc
@@ -286,7 +290,7 @@ ifneq (,$(CV_GCJ_HACKED))
   V_GCJ	:= $(shell echo $(CV_GCJ_HACKED)   | sed 's/-[^-]*$$//')
   V_GIJ	:= $(shell echo $(CV_GIJ_HACKED)   | sed 's/-[^-]*$$//')
 endif
-V_GPC	:= $(shell echo $(CV_GPC)   | sed 's/-[^-]*$$//')
+V_GPC	:= $(shell echo $(CV_GPC)   | sed 's/$(GPC_VERSION)-//;s/-[^-]*$$//')
 
 # number for the package name
 PV_CPP	:= $(shell echo $(V_CPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
@@ -301,7 +305,6 @@ PV_CHILL:= $(shell echo $(V_CHILL) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GPC	:= $(shell echo $(V_GPC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GPC := $(GPC_VERSION)-$(PV_GPC)
 
 README:
 	m4 -DPACKAGES="$(packages)" \
@@ -335,7 +338,7 @@ substvars:
 	  echo 'version:gobjc=$(EPOCH):$(CV_GOBJC)'; \
 	  echo 'version:gij=$(EPOCH):$(CV_GIJ)'; \
 	  echo 'version:gcj=$(EPOCH):$(CV_GCJ)'; \
-	  echo 'version:gpc=$(EPOCH):$(CV_GPC)'; \
+	  echo 'version:gpc=$(EPOCH_GPC):$(CV_GPC)'; \
 	  echo 'version:g77=$(EPOCH):$(CV_G77)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
 	  echo 'version:libgcjcommon=$(CV_LIBGCJCOMMON)'; \
@@ -810,8 +813,8 @@ ifneq (,$(filter gfortran, $(packages)))
   endif
 endif
 ifneq (,$(filter gpc, $(packages)))
-	dh_gencontrol -pgpc     -u-v$(EPOCH):$(CV_GPC)
-	dh_gencontrol -pgpc-doc -u-v$(EPOCH):$(CV_GPC)
+	dh_gencontrol -pgpc     -u-v$(EPOCH_GPC):$(CV_GPC)
+	dh_gencontrol -pgpc-doc -u-v$(EPOCH_GPC):$(CV_GPC)
 endif
 ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -pgcj         -u-v$(EPOCH):$(CV_GCJ)
