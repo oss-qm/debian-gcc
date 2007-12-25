@@ -72,6 +72,7 @@ REL_NO_421	:= $(shell expr $(VMINOR) - 55)$(REL_EXT)
 REL_NO_422	:= $(shell expr $(VMINOR) - 61)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
+GDC_VERSION	:= 0.25
 
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
@@ -87,6 +88,7 @@ REQV_41_GCJ	:= (>= 4.1.2-1)
 REQV_41_GPC	:= (>= $(GPC_VERSION)-4.1.2-16)
 REQV_42		:= (>= 4.2.2-3)
 REQV_42_GCJ	:= (>= 4.2.2-3)
+REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 
 REQV_LIBGCJ_BC	:= (>= 4.2.2-1)
 
@@ -110,6 +112,7 @@ CV_GIJ		:= 4.2.2-$(REL_NO_422)
 CV_LIBGCJBC	:= 4.2.2-$(REL_NO_422)
 CV_GNAT		:= 4.1.2-$(REL_NO_412)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
+CV_GDC		:= 4.1.2-$(REL_NO_412)
 CV_LIBGCJCOMMON	:= 1:4.2.2-$(REL_NO_422)
 
 REQV_CHILL	= $(REQV_295)
@@ -125,12 +128,13 @@ REQV_GFORT	= $(REQV_42)
 REQV_GCJ	= $(REQV_42_GCJ)
 REQV_GIJ	= $(REQV_42_GCJ)
 REQV_GPC	= $(REQV_41_GPC)
+REQV_GDC	= $(REQV_41_GDC)
 
 EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
-all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc
+all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc gdc
 no_packages	:= chill
 
 LIBGCJ		= libgcj8-1
@@ -273,11 +277,13 @@ ifneq (,$(CV_GCJ_HACKED))
   V_GIJ	:= $(shell echo $(CV_GIJ_HACKED)   | sed 's/-[^-]*$$//')
 endif
 V_GPC	:= $(shell echo $(CV_GPC)   | sed 's/$(GPC_VERSION)-//;s/-[^-]*$$//')
+V_GDC	:= $(shell echo $(CV_GDC)   | sed 's/-[^-]*$$//')
 
 # number for the package name
 PV_CPP	:= $(shell echo $(V_CPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GCC	:= $(shell echo $(V_GCC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GNAT	:= $(shell echo $(V_GNAT)  | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_GDC	:= $(shell echo $(V_GDC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GPP	:= $(shell echo $(V_GPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GOBJC:= $(shell echo $(V_GOBJC) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GOBJCXX:= $(shell echo $(V_GOBJCXX) | awk -F. '{printf "%d.%d", $$1, $$2}')
@@ -303,6 +309,7 @@ README:
 	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
 	   -DV_GIJ=$(V_GIJ)     -DPV_GIJ=$(PV_GIJ) \
 	   -DV_GPC=$(V_GPC)     -DPV_GPC=$(PV_GPC) \
+	   -DV_GDC=$(V_GDC)     -DPV_GDC=$(PV_GDC) \
 	   $(if $(filter yes,$(with_gfdl_docs)), -DGFDL) \
 		debian/README.Debian.m4 > debian/README.Debian.tmp2
 	uniq debian/README.Debian.tmp2 > debian/README.Debian.tmp
@@ -336,6 +343,7 @@ substvars:
 	  echo 'pv:gij=$(PV_GIJ)'; \
 	  echo 'pv:gpc=$(PV_GPC)'; \
 	  echo 'pv:gnat=$(PV_GNAT)'; \
+	  echo 'pv:gdc=$(PV_GDC)'; \
 	  echo 'reqv:cpp=$(REQV_CPP)'; \
 	  echo 'reqv:gcc=$(REQV_GCC)'; \
 	  echo 'reqv:gpp=$(REQV_GPP)'; \
@@ -348,6 +356,7 @@ substvars:
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
 	  echo 'reqv:gpc=$(REQV_GPC)'; \
 	  echo 'reqv:gnat=$(REQV_GNAT)'; \
+	  echo 'reqv:gdc=$(REQV_GDC)'; \
 	  echo 'pkg:libgcj=$(LIBGCJ)'; \
 	  echo 'pkg:libgcjawt=$(LIBGCJ)-awt'; \
 	  echo 'version:libgcjbc=$(CV_LIBGCJBC)'; \
@@ -469,6 +478,31 @@ ifneq (,$(findstring gnat,$(packages)))
 	  /usr/share/info/gnat_rm-$(PV_GNAT).info.gz /usr/share/info/gnat_rm.info.gz \
 	  /usr/share/info/gnat_style-$(PV_GNAT).info.gz /usr/share/info/gnat_style.info.gz
   endif
+endif
+
+ifneq (,$(filter gdc, $(packages)))
+	: # gdc
+	dh_installdirs -pgdc \
+	  usr/share/doc usr/bin usr/share/man/man1
+	dh_link -pgdc \
+	  /usr/share/doc/cpp /usr/share/doc/gdc
+
+	# gdc binaries
+	dh_link -pgdc \
+		/usr/bin/gdc-$(PV_GDC) /usr/bin/gdc \
+		/usr/bin/gdc-$(PV_GDC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gdc-$(PV_GDC) \
+		/usr/bin/gdc-$(PV_GDC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gdc
+	# gdmd binaries
+	dh_link -pgdc \
+		/usr/bin/gdmd-$(PV_GDC) /usr/bin/gdmd \
+		/usr/bin/gdmd-$(PV_GDC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gdmd-$(PV_GDC) \
+		/usr/bin/gdmd-$(PV_GDC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gdmd
+	# manpages
+	dh_link -pgdc \
+		/usr/share/man/man1/gdc-$(PV_GDC).1.gz /usr/share/man/man1/gdc.1.gz \
+		/usr/share/man/man1/gdc-$(PV_GDC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdc.1.gz \
+		/usr/share/man/man1/gdmd-$(PV_GDC).1.gz /usr/share/man/man1/gdmd.1.gz \
+		/usr/share/man/man1/gdmd-$(PV_GDC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdmd.1.gz
 endif
 
 ifneq (,$(filter gobjc, $(packages)))
@@ -760,6 +794,9 @@ ifneq (,$(filter gnat, $(packages)))
   ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pgnat-doc -u-v$(CV_GNAT)
   endif
+endif
+ifneq (,$(filter gdc, $(packages)))
+	dh_gencontrol -pgdc -u-v$(CV_GDC)
 endif
 ifneq (,$(filter g++, $(packages)))
 	dh_gencontrol -pg++     -u-v$(EPOCH):$(CV_GPP)
