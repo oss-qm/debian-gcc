@@ -216,28 +216,6 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),m68k)
     no_packages += gnat
-    CV_CPP		:= 4.1.2-$(REL_NO_412)
-    CV_GCC		:= 4.1.2-$(REL_NO_412)
-    CV_GPP		:= 4.1.2-$(REL_NO_412)
-    CV_GOBJC		:= 4.1.2-$(REL_NO_412)
-    CV_GOBJCXX		:= 4.1.2-$(REL_NO_412)
-    CV_GCJ		:= 4.2.1-$(REL_NO_412)
-    CV_GIJ		:= 4.2.1-$(REL_NO_412)
-    CV_GCJ_HACKED	:= 4.1.2-$(REL_NO_412)
-    CV_GIJ_HACKED	:= 4.1.2-$(REL_NO_412)
-    CV_LIBGCJBC		:= 4.2.1-$(REL_NO_412)
-    CV_LIBGCJCOMMON	:= 1:4.2-20070303-$(REL_NO_412)
-    REQV_CPP	= $(REQV_41)
-    REQV_GCC	= $(REQV_41)
-    REQV_GPP	= $(REQV_41)
-    REQV_GOBJC	= $(REQV_41)
-    REQV_GOBJCXX	= $(REQV_41)
-    REQV_LIBGCJ_BC	:= (>= 4.1.2-3)
-    REQV_GCJ	= $(REQV_41)
-    REQV_GIJ	= $(REQV_41)
-    LIBGCJ		= libgcj7-1
-    LIBGCJ_PC	= libgcj7.pc
-    LIBGCJ_SONAME	= 71
 endif
 
 ifeq ($(DEB_HOST_ARCH),mips)
