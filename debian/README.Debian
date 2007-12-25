@@ -67,6 +67,7 @@ The default compiler versions for Debian GNU/Linux on i386 are
 	gobjc++		: gobjc++-4.2
 	gnat		: gnat-4.2
 	gpc		: gpc-4.1
+	gdc		: gdc-4.1
 
 Most of the documentation for GCC including the manual pages is
 licensed under the GFDL and therefore not included in the main section.
@@ -155,8 +156,8 @@ Maintainers of these packages
 Matthias Klose <doko@debian.org>
 Ray Dassen <jdassen@debian.org>
 Philip Blundell <pb@debian.org>			(arm-linux)
-Jeff Bailey <jbailey@nisa.net>			(hurd-i386) 
-Joel Baker <fenton@debian.org>			(netbsd-i386) 
+Jeff Bailey <jbailey@nisa.net>			(hurd-i386)
+Joel Baker <fenton@debian.org>			(netbsd-i386)
 Ben Collins <bcollins@debian.org>		(sparc-linux)
 Falk Hueffner <falk@debian.org>			(alpha-linux)
 Randolph Chung <tausq@debian.org>		(ia64-linux, hppa-linux)
@@ -165,6 +166,7 @@ Dan Jacobowitz <dan@debian.org>			(powerpc-linux)
 Gerhard Tonn <GerhardTonn@swol.de>		(s390-linux)
 Roman Zippel <zippel@linux-m68k.org>		(m68k-linux)
 Ludovic Brenta <ludovic.brenta@insalien.org>	(gnat)
+Arthur Loiret <arthur.loiret@gmail.com>		(gdc)
 
 ===============================================================================
 

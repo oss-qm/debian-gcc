@@ -72,6 +72,7 @@ ifenabled(`gobjc',`	gobjc		: gobjc-PV_GOBJC')
 ifenabled(`gobjc++',`	gobjc++		: gobjc++-PV_GOBJCXX')
 ifenabled(`gnat',`	gnat		: gnat-PV_GCC')
 ifenabled(`gpc',`	gpc		: gpc-PV_GPC')
+ifenabled(`gdc',`	gdc		: gdc-PV_GDC')
 ifenabled(`chill',`	chill		: chill-PV_CHILL')
 
 ifdef(`GFDL',`dnl
@@ -172,8 +173,8 @@ Maintainers of these packages
 Matthias Klose <doko@debian.org>
 Ray Dassen <jdassen@debian.org>
 Philip Blundell <pb@debian.org>			(arm-linux)
-Jeff Bailey <jbailey@nisa.net>			(hurd-i386) 
-Joel Baker <fenton@debian.org>			(netbsd-i386) 
+Jeff Bailey <jbailey@nisa.net>			(hurd-i386)
+Joel Baker <fenton@debian.org>			(netbsd-i386)
 Ben Collins <bcollins@debian.org>		(sparc-linux)
 Falk Hueffner <falk@debian.org>			(alpha-linux)
 Randolph Chung <tausq@debian.org>		(ia64-linux, hppa-linux)
@@ -182,6 +183,7 @@ Dan Jacobowitz <dan@debian.org>			(powerpc-linux)
 Gerhard Tonn <GerhardTonn@swol.de>		(s390-linux)
 Roman Zippel <zippel@linux-m68k.org>		(m68k-linux)
 Ludovic Brenta <ludovic.brenta@insalien.org>	(gnat)
+Arthur Loiret <arthur.loiret@gmail.com>		(gdc)
 
 ===============================================================================
 
