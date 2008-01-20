@@ -89,12 +89,12 @@ REQV_40		:= (>= 4.0.3-1)
 REQV_41		:= (>= 4.1.2-1)
 REQV_41_GCJ	:= (>= 4.1.2-1)
 REQV_41_GPC	:= (>= $(GPC_VERSION)-4.1.2-16)
+REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 REQV_42		:= (>= 4.2.2-3)
 REQV_42_GCJ	:= (>= 4.2.2-3)
-REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 REQV_43		:= (>= 4.3)
 
-REQV_LIBGCJ_BC	:= (>= 4.2.2-1)
+REQV_LIBGCJ_BC	:= (>= 4.3-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -111,13 +111,13 @@ CV_GOBJC	:= 4.2.2-$(REL_NO_422)
 CV_GOBJCXX	:= 4.2.2-$(REL_NO_422)
 CV_G77		:= 3.4.6-$(REL_NO_346)
 CV_GFORT	:= 4.3-$(REL_NO_43)
-CV_GCJ		:= 4.2.2-$(REL_NO_422)
-CV_GIJ		:= 4.2.2-$(REL_NO_422)
-CV_LIBGCJBC	:= 4.2.2-$(REL_NO_422)
+CV_GCJ		:= 4.3-$(REL_NO_43)
+CV_GIJ		:= 4.3-$(REL_NO_43)
+CV_LIBGCJBC	:= 4.3-$(REL_NO_43)
 CV_GNAT		:= 4.1.2-$(REL_NO_412)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
-CV_LIBGCJCOMMON	:= 1:4.2.2-$(REL_NO_422)
+CV_LIBGCJCOMMON	:= 1:4.3-$(REL_NO_43)
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
@@ -129,8 +129,8 @@ REQV_GOBJC	= $(REQV_42)
 REQV_GOBJCXX	= $(REQV_42)
 REQV_G77	= $(REQV_34)
 REQV_GFORT	= $(REQV_43)
-REQV_GCJ	= $(REQV_42_GCJ)
-REQV_GIJ	= $(REQV_42_GCJ)
+REQV_GCJ	= $(REQV_43)
+REQV_GIJ	= $(REQV_43)
 REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_41_GDC)
 
@@ -141,9 +141,9 @@ distribution := $(shell lsb_release -is)
 all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc gdc
 no_packages	:= chill
 
-LIBGCJ		= libgcj8-1
-LIBGCJ_PC	= libgcj8.pc
-LIBGCJ_SONAME	= 81
+LIBGCJ		= libgcj9-0
+LIBGCJ_PC	= libgcj9.pc
+LIBGCJ_SONAME	= 90
 
 ifneq ($(distribution)-$(DEB_HOST_ARCH),Debian-amd64)
   lib32         = usr/lib32
