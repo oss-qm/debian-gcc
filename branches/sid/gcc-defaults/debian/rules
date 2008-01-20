@@ -71,6 +71,9 @@ REL_NO_421	:= $(shell expr $(VMINOR) - 55)$(REL_EXT)
 # gcc-defaults 1.62 is the first version with 4.2.0 support.
 REL_NO_422	:= $(shell expr $(VMINOR) - 61)$(REL_EXT)
 
+# gcc-defaults 1.63 is the first version with 4.3 support.
+REL_NO_43	:= $(shell expr $(VMINOR) - 62)$(REL_EXT)
+
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.25
 
@@ -89,6 +92,7 @@ REQV_41_GPC	:= (>= $(GPC_VERSION)-4.1.2-16)
 REQV_42		:= (>= 4.2.2-3)
 REQV_42_GCJ	:= (>= 4.2.2-3)
 REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
+REQV_43		:= (>= 4.3)
 
 REQV_LIBGCJ_BC	:= (>= 4.2.2-1)
 
@@ -106,7 +110,7 @@ CV_GPP		:= 4.2.2-$(REL_NO_422)
 CV_GOBJC	:= 4.2.2-$(REL_NO_422)
 CV_GOBJCXX	:= 4.2.2-$(REL_NO_422)
 CV_G77		:= 3.4.6-$(REL_NO_346)
-CV_GFORT	:= 4.2.2-$(REL_NO_422)
+CV_GFORT	:= 4.3-$(REL_NO_43)
 CV_GCJ		:= 4.2.2-$(REL_NO_422)
 CV_GIJ		:= 4.2.2-$(REL_NO_422)
 CV_LIBGCJBC	:= 4.2.2-$(REL_NO_422)
@@ -124,7 +128,7 @@ REQV_GPP	= $(REQV_42)
 REQV_GOBJC	= $(REQV_42)
 REQV_GOBJCXX	= $(REQV_42)
 REQV_G77	= $(REQV_34)
-REQV_GFORT	= $(REQV_42)
+REQV_GFORT	= $(REQV_43)
 REQV_GCJ	= $(REQV_42_GCJ)
 REQV_GIJ	= $(REQV_42_GCJ)
 REQV_GPC	= $(REQV_41_GPC)
@@ -570,6 +574,12 @@ ifneq (,$(filter gfortran, $(packages)))
 	  /usr/share/doc/cpp /usr/share/doc/gfortran \
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/gfortran \
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/$(DEB_HOST_GNU_TYPE)-gfortran
+
+	: # keep these as long as gcc version != gfortran version
+	dh_link -pgfortran \
+	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortran.so /usr/lib/libgfortran.so \
+	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortran.a /usr/lib/libgfortran.a \
+	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortranbegin.a /usr/lib/libgfortranbegin.a
 
   ifeq ($(with_gfdl_docs),yes)
 	dh_link -pgfortran \
