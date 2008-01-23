@@ -432,7 +432,6 @@ install: build substvars
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/gcc \
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
-	  /usr/share/doc/gcc-$(PV_GCC)/FAQ.gz /usr/share/doc/cpp/FAQ.gz \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs
 ifeq ($(DEB_HOST_ARCH),sparc)
 	rm -f debian/gcc/usr/bin/gcc
