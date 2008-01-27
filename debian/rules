@@ -114,7 +114,12 @@ CV_GFORT	:= 4.3-$(REL_NO_43)
 CV_GCJ		:= 4.3-$(REL_NO_43)
 CV_GIJ		:= 4.3-$(REL_NO_43)
 CV_LIBGCJBC	:= 4.3-$(REL_NO_43)
-CV_GNAT		:= 4.1.2-$(REL_NO_412)
+# TODO: after switching GNAT to 4.2 or 4.3, do not use minor version
+# numbers anymore, like for Fortran above.
+# HACK: we use REL_NO_410, not 412, as a basis because libgnatvsn-dev
+# must be at least 4.1.2-18 to work.  This hack will go away when we
+# do the above.
+CV_GNAT		:= 4.1.2-$(REL_NO_410)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
 CV_LIBGCJCOMMON	:= 1:4.3-$(REL_NO_43)
@@ -138,7 +143,8 @@ EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
-all_packages	:= gnat g++ g77 gfortran gcj gobjc gobjc++ gpc gdc
+all_packages	:= gnat libgnatvsn-dev libgnatprj-dev
+all_packages    += g++ g77 gfortran gcj gobjc gobjc++ gpc gdc
 no_packages	:= chill
 
 LIBGCJ		= libgcj9-0
@@ -208,11 +214,6 @@ ifeq ($(DEB_HOST_ARCH),kfreebsd-i386)
     OS_NAME	:= kFreeBSD
 endif
 
-ifeq ($(DEB_HOST_ARCH),lpia)
-	CV_GNAT		:= 4.2.1-$(REL_NO_421)
-	CV_GNAT_HACKED	:= 4.1.2-$(REL_NO_412)
-endif
-
 ifeq ($(DEB_HOST_ARCH),kfreebsd-amd64)
     OS_NAME	:= kFreeBSD
     no_packages += gnat
@@ -252,7 +253,7 @@ ifeq ($(DEB_HOST_ARCH),sparc)
 endif
 
 ifneq (,$(findstring gnat, $(no_packages)))
-    no_packages += gnat-doc
+    no_packages += libgnatvsn-dev libgnatprj-dev gnat-doc
 endif
 
 ifneq ($(with_gfdl_docs),yes)
@@ -265,9 +266,6 @@ packages := $(filter-out $(no_packages), $(all_packages))
 V_CPP	:= $(shell echo $(CV_CPP)   | sed 's/-[^-]*$$//')
 V_GCC	:= $(shell echo $(CV_GCC)   | sed 's/-[^-]*$$//')
 V_GNAT	:= $(shell echo $(CV_GNAT)  | sed 's/-[^-]*$$//')
-ifneq (,$(CV_GNAT_HACKED))
-  V_GNAT	:= $(shell echo $(CV_GNAT_HACKED)  | sed 's/-[^-]*$$//')
-endif
 V_GPP	:= $(shell echo $(CV_GPP)   | sed 's/-[^-]*$$//')
 V_GOBJC	:= $(shell echo $(CV_GOBJC) | sed 's/-[^-]*$$//')
 V_GOBJCXX	:= $(shell echo $(CV_GOBJCXX) | sed 's/-[^-]*$$//')
@@ -803,6 +801,12 @@ ifneq (,$(filter gnat, $(packages)))
   ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pgnat-doc -u-v$(CV_GNAT)
   endif
+endif
+ifneq (,$(filter libgnatvsn-dev, $(packages)))
+	dh_gencontrol -plibgnatvsn-dev -u-v$(CV_GNAT)
+endif
+ifneq (,$(filter libgnatprj-dev, $(packages)))
+	dh_gencontrol -plibgnatprj-dev -u-v$(CV_GNAT)
 endif
 ifneq (,$(filter gdc, $(packages)))
 	dh_gencontrol -pgdc -u-v$(CV_GDC)

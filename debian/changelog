@@ -1,8 +1,13 @@
-gcc-defaults (1.64) UNRELEASED; urgency=low
+gcc-defaults (1.64) unstable; urgency=low
 
+  [Matthias Klose]
   * gcc: Remove dangling FAQ symlink. Closes: #453812.
 
- -- Matthias Klose <doko@debian.org>  Wed, 23 Jan 2008 18:39:48 +0100
+  [Ludovic Brenta]
+  * libgnatvsn-dev, libgnatprj-dev: new packages; depend on the
+    corresponding packages from gnat-4.1.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sun, 27 Jan 2008 14:18:18 +0100
 
 gcc-defaults (1.63) unstable; urgency=low
 
