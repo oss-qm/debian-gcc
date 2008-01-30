@@ -158,8 +158,8 @@ Architecture: any
 Depends: libgcj-bc (>= ${version:libgcjbc}), gij-${pv:gij} ${reqv:gij}
 Recommends: ${pkg:libgcjawt}
 Suggests: gcj (>= ${version:cpp})
-Conflicts: libgcj2 (<= 3.0.2-4), java-gcj-compat (<< 1.0.56) [hppa m68k], java-gcj-compat (<< 1.0.76-4) [!hppa !m68k]
-Provides: java-runtime, java1-runtime, java2-runtime, java-virtual-machine
+Conflicts: libgcj2 (<= 3.0.2-4), java-gcj-compat (<< 1.0.77-3)
+Provides: java-runtime-headless, java1-runtime-headless, java2-runtime-headless, java5-runtime-headless, java-virtual-machine
 Description: The GNU Java bytecode interpreter
  GIJ is not limited to interpreting bytecode. It includes a class loader which
  can dynamically load shared objects, so it is possible to give it the name
