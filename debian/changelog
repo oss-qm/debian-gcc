@@ -13,7 +13,7 @@ gcc-defaults (1.64) unstable; urgency=low
   [Arthur Loiret]
   * gdc: Make gdc-4.2 the default on hurd-i386.
 
- -- Ludovic Brenta <lbrenta@debian.org>  Sun, 27 Jan 2008 14:18:18 +0100
+ -- Matthias Klose <doko@debian.org>  Sun, 03 Feb 2008 00:29:03 +0100
 
 gcc-defaults (1.63) unstable; urgency=low
 
