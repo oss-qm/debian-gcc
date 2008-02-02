@@ -4,6 +4,7 @@ gcc-defaults (1.64) unstable; urgency=low
   * gcc: Remove dangling FAQ symlink. Closes: #453812.
   * gij: Update conflict with java-gcj-compat,
     provide java*-runtime-headless instead of java*-runtime.
+  * Depend on the packages of the GCC-4.2.3 release.
 
   [Ludovic Brenta]
   * libgnatvsn-dev, libgnatprj-dev: new packages; depend on the
