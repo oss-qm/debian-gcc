@@ -94,7 +94,7 @@ REQV_41_GPC	:= (>= $(GPC_VERSION)-4.1.2-16)
 REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 REQV_42		:= (>= 4.2.3-1)
 REQV_42_GCJ	:= (>= 4.2.3-1)
-REQV_42_GDC	:= (>= $(GDC_VERSION)-4.3.1-1)
+REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.3-1)
 REQV_43		:= (>= 4.3)
 
 REQV_LIBGCJ_BC	:= (>= 4.3-1)
