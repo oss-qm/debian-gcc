@@ -141,6 +141,7 @@ REQV_GCJ	= $(REQV_43)
 REQV_GIJ	= $(REQV_43)
 REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_41_GDC)
+REQV_GNAT	= $(REQV_41)
 
 EPOCH=4
 EPOCH_GPC=5
@@ -338,6 +339,7 @@ substvars:
 	  echo 'version:g77=$(EPOCH):$(CV_G77)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
 	  echo 'version:libgcjcommon=$(CV_LIBGCJCOMMON)'; \
+	  echo 'version:gnat=$(EPOCH):$(CV_GNAT)'; \
 	  echo 'pv:cpp=$(PV_CPP)'; \
 	  echo 'pv:gcc=$(PV_GCC)'; \
 	  echo 'pv:gpp=$(PV_GPP)'; \
@@ -772,10 +774,11 @@ binary-arch: build install
 #	dh_installdebconf
 	dh_installdocs -pcpp -plibgcj-common
 	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Nlib32gcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Nlibgcj-common`; do \
-	  echo ln -sf cpp debian/$$p/usr/share/doc/$$p; \
+	  case "$$p" in libgnat*) t=gnat;; *) t=cpp; esac; \
+	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
 	  rm -f debian/$$p/usr/share/doc/$$p; \
-	  ln -sf cpp debian/$$p/usr/share/doc/$$p; \
+	  ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	done
 	mkdir -p debian/libgcj-bc/usr/share/doc
 	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
@@ -806,11 +809,7 @@ ifneq (,$(filter gnat, $(packages)))
   ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pgnat-doc -u-v$(CV_GNAT)
   endif
-endif
-ifneq (,$(filter libgnatvsn-dev, $(packages)))
 	dh_gencontrol -plibgnatvsn-dev -u-v$(CV_GNAT)
-endif
-ifneq (,$(filter libgnatprj-dev, $(packages)))
 	dh_gencontrol -plibgnatprj-dev -u-v$(CV_GNAT)
 endif
 ifneq (,$(filter gdc, $(packages)))

@@ -242,7 +242,7 @@ Description: The GNU Ada compiler
 Package: libgnatvsn-dev
 Architecture: alpha amd64 hppa i386 ia64 lpia mips mipsel powerpc s390 sparc kfreebsd-i386
 Priority: optional
-Depends: libgnatvsn${pv:gnat}-dev
+Depends: gnat (>= ${version:gnat}), libgnatvsn${pv:gnat}-dev ${reqv:gnat}
 Description: GNU Ada compiler version library - development files
  This library exports selected components of GNAT, the GNU Ada compiler, for use
  in other packages, most notably ASIS and ASIS-based packages.  It is licensed
@@ -253,7 +253,7 @@ Description: GNU Ada compiler version library - development files
 Package: libgnatprj-dev
 Architecture: alpha amd64 hppa i386 ia64 lpia mips mipsel powerpc s390 sparc kfreebsd-i386
 Priority: optional
-Depends: libgnatprj${pv:gnat}-dev
+Depends: gnat (>= ${version:gnat}), libgnatprj${pv:gnat}-dev ${reqv:gnat}
 Description: GNU Ada Project Manager development files
  GNAT, the GNU Ada compiler, uses project files to organise source and object
  files in large-scale development efforts.  Several other tools, such as

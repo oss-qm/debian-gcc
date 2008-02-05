@@ -1,0 +1,45 @@
+
+Package: cpp-doc
+Section: doc
+Architecture: any
+Priority: optional
+Depends: cpp-${pv:cpp}-doc ${reqv:cpp}
+Suggests: cpp (>= ${version:cpp})
+Description: Documentation for the GNU C preprocessor (cpp)
+ Documentation for the GNU C preprocessor in info format (dependency package).
+
+Package: g77-doc
+Architecture: any
+Priority: optional
+Depends: g77-${pv:g77}-doc ${reqv:g77}
+Suggests: g77 (>= ${version:g77})
+Description: Documentation for the GNU Fortran compiler (g77)
+ Documentation for the GNU Fortran compiler in info format (dependency package).
+
+Package: gfortran-doc
+Section: doc
+Architecture: any
+Priority: optional
+Depends: gfortran-${pv:gfort}-doc ${reqv:gfort}
+Suggests: gfortran (>= ${version:gfort})
+Description: Documentation for the GNU Fortran compiler (gfortran)
+ Documentation for the GNU Fortran compiler in info format (dependency package).
+
+Package: gcc-doc
+Section: doc
+Architecture: any
+Priority: optional
+Depends: gcc-${pv:gcc}-doc ${reqv:gcc}
+Suggests: gcc (>= ${version:gcc})
+Description: Documentation for the GNU C compilers (gcc, gobjc, g++)
+ Documentation for the GNU compilers in info format (dependency package).
+
+Package: gnat-doc
+Section: doc
+Architecture: any
+Priority: optional
+Depends: gnat-${pv:gnat}-doc ${reqv:gnat}
+Suggests: gnat (>= ${version:gnat})
+Description: Documentation for the GNU Ada compiler
+ Documentation for the GNU Ada compiler in info and html format
+ (dependency package).
