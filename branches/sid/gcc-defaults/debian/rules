@@ -339,7 +339,7 @@ substvars:
 	  echo 'version:g77=$(EPOCH):$(CV_G77)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
 	  echo 'version:libgcjcommon=$(CV_LIBGCJCOMMON)'; \
-	  echo 'version:gnat=$(EPOCH):$(CV_GNAT)'; \
+	  echo 'version:gnat=$(CV_GNAT)'; \
 	  echo 'pv:cpp=$(PV_CPP)'; \
 	  echo 'pv:gcc=$(PV_GCC)'; \
 	  echo 'pv:gpp=$(PV_GPP)'; \
