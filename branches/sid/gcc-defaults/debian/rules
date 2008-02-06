@@ -68,7 +68,7 @@ REL_NO_412	:= $(shell expr $(VMINOR) - 50)$(REL_EXT)
 REL_NO_420	:= $(shell expr $(VMINOR) - 54)$(REL_EXT)
 # gcc-defaults 1.56 is the first version with 4.2.1 support.
 REL_NO_421	:= $(shell expr $(VMINOR) - 55)$(REL_EXT)
-# gcc-defaults 1.62 is the first version with 4.2.3 support.
+# gcc-defaults 1.62 is the first version with 4.2.2 support.
 REL_NO_422	:= $(shell expr $(VMINOR) - 61)$(REL_EXT)
 # gcc-defaults 1.63 is the first version with 4.2.3 support.
 REL_NO_423	:= $(shell expr $(VMINOR) - 62)$(REL_EXT)
