@@ -96,6 +96,7 @@ REQV_42		:= (>= 4.2.3-1)
 REQV_42_GCJ	:= (>= 4.2.3-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.3-1)
 REQV_43		:= (>= 4.3)
+REQV_43_GCC	:= (>= 4.3.0~rc2-1)
 
 REQV_LIBGCJ_BC	:= (>= 4.3-1)
 
@@ -127,6 +128,14 @@ CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
 CV_LIBGCJCOMMON	:= 1:4.3-$(REL_NO_43)
 
+ifneq (,$(filter $(DEB_HOST_ARCH), amd64 ia64 i386 powerpc sparc))
+    CV_CPP	:= 4.3-$(REL_NO_43)
+    CV_GCC	:= 4.3-$(REL_NO_43)
+    CV_GPP	:= 4.3-$(REL_NO_43)
+    CV_GOBJC	:= 4.3-$(REL_NO_43)
+    CV_GOBJCXX	:= 4.3-$(REL_NO_43)
+endif
+
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
 
@@ -142,6 +151,14 @@ REQV_GIJ	= $(REQV_43)
 REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_41_GDC)
 REQV_GNAT	= $(REQV_41)
+
+ifneq (,$(filter $(DEB_HOST_ARCH), amd64 ia64 i386 powerpc sparc))
+    REQV_CPP	= $(REQV_43_GCC)
+    REQV_GCC	= $(REQV_43_GCC)
+    REQV_GPP	= $(REQV_43_GCC)
+    REQV_GOBJC	= $(REQV_43_GCC)
+    REQV_GOBJCXX= $(REQV_43_GCC)
+endif
 
 EPOCH=4
 EPOCH_GPC=5

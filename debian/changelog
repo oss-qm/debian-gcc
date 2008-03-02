@@ -1,4 +1,4 @@
-gcc-defaults (1.64) unstable; urgency=low
+gcc-defaults (1.66) unstable; urgency=low
 
   [Matthias Klose]
   * gcc: Remove dangling FAQ symlink. Closes: #453812.
@@ -14,7 +14,15 @@ gcc-defaults (1.64) unstable; urgency=low
   [Arthur Loiret]
   * gdc: Make gdc-4.2 the default on hurd-i386.
 
- -- Matthias Klose <doko@debian.org>  Sun, 03 Feb 2008 00:29:03 +0100
+ -- Matthias Klose <doko@debian.org>  Sun, 02 Mar 2008 18:42:36 +0100
+
+gcc-defaults (1.64) unstable; urgency=low
+
+  * Make GCC-4.3 the default on amd64, ia64, i386, powerpc, sparc.
+    Reasonable test results for the GCC testsuite and the glibc testsuite
+    built using GCC-4.3.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 02 Mar 2008 14:30:57 +0100
 
 gcc-defaults (1.63) unstable; urgency=low
 
