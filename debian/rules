@@ -204,7 +204,7 @@ ifeq ($(DEB_HOST_ARCH),arm)
 endif
 
 ifeq ($(DEB_HOST_ARCH),armel)
-    no_packages += gnat g77 g77-doc
+    no_packages += gnat g77 g77-doc gobjc gobjc-doc
     CV_GOBJC		:= 4.1.2-$(REL_NO_412)
     CV_GOBJCXX		:= 4.1.2-$(REL_NO_412)
     REQV_GOBJC		= $(REQV_41)

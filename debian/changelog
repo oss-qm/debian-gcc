@@ -6,6 +6,7 @@ gcc-defaults (1.66) unstable; urgency=low
     provide java*-runtime-headless instead of java*-runtime.
   * Depend on the packages of the GCC-4.2.3 release.
   * Tighten dependencies for gnat packages.
+  * Don't build gobjc and gobjc on armel.
 
   [Ludovic Brenta]
   * libgnatvsn-dev, libgnatprj-dev: new packages; depend on the
