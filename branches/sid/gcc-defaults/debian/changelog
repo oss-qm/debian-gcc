@@ -11,11 +11,14 @@ gcc-defaults (1.64) unstable; urgency=low
   * libgnatvsn-dev, libgnatprj-dev: new packages; depend on the
     corresponding packages from gnat-4.3.
   * Make gnat-4.3 the default on all architectures.
+  * gnat: install documentation in /usr/share/doc/gnat; do not symlink
+    to cpp and do not depend on cpp (Ada does not need a C
+    preprocessor).
 
   [Arthur Loiret]
   * gdc: Make gdc-4.2 the default on hurd-i386.
 
- -- Ludovic Brenta <lbrenta@debian.org>  Sun,  9 Mar 2008 14:22:27 +0100
+ -- Ludovic Brenta <lbrenta@debian.org>  Wed, 12 Mar 2008 22:32:44 +0100
 
 gcc-defaults (1.63) unstable; urgency=low
 
