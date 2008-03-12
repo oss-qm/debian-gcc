@@ -96,7 +96,6 @@ REQV_42		:= (>= 4.2.3-1)
 REQV_42_GCJ	:= (>= 4.2.3-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.3-1)
 REQV_43		:= (>= 4.3)
-REQV_43_GCC	:= (>= 4.3.0~rc2-1)
 
 REQV_LIBGCJ_BC	:= (>= 4.3-1)
 
@@ -123,14 +122,6 @@ CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
 CV_LIBGCJCOMMON	:= 1:4.3-$(REL_NO_43)
 
-ifneq (,$(filter $(DEB_HOST_ARCH), amd64 ia64 i386 powerpc sparc))
-    CV_CPP	:= 4.3-$(REL_NO_43)
-    CV_GCC	:= 4.3-$(REL_NO_43)
-    CV_GPP	:= 4.3-$(REL_NO_43)
-    CV_GOBJC	:= 4.3-$(REL_NO_43)
-    CV_GOBJCXX	:= 4.3-$(REL_NO_43)
-endif
-
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
 
@@ -147,14 +138,6 @@ REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_41_GDC)
 REQV_GNAT	= $(REQV_43)
 
-ifneq (,$(filter $(DEB_HOST_ARCH), amd64 ia64 i386 powerpc sparc))
-    REQV_CPP	= $(REQV_43_GCC)
-    REQV_GCC	= $(REQV_43_GCC)
-    REQV_GPP	= $(REQV_43_GCC)
-    REQV_GOBJC	= $(REQV_43_GCC)
-    REQV_GOBJCXX= $(REQV_43_GCC)
-endif
-
 EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
@@ -166,12 +149,6 @@ no_packages	:= chill
 LIBGCJ		= libgcj9-0
 LIBGCJ_PC	= libgcj9.pc
 LIBGCJ_SONAME	= 90
-
-ifneq ($(distribution)-$(DEB_HOST_ARCH),Debian-amd64)
-  lib32         = usr/lib32
-else
-  lib32         = emul/ia32-linux/usr/lib
-endif
 
 gcj_archs = alpha amd64 hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc
 gcj_native_archs = alpha amd64 i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc
@@ -320,6 +297,7 @@ README:
 	   -DDEB_ARCH=$(DEB_HOST_ARCH) \
 	   -DV_CPP=$(V_CPP)     -DPV_CPP=$(PV_CPP) \
 	   -DV_GCC=$(V_GCC)     -DPV_GCC=$(PV_GCC) \
+	   -DV_GNAT=$(V_GNAT)   -DPV_GNAT=$(PV_GNAT) \
 	   -DV_GPP=$(V_GPP)     -DPV_GPP=$(PV_GPP) \
 	   -DV_GOBJC=$(V_GOBJC) -DPV_GOBJC=$(PV_GOBJC) \
 	   -DV_GOBJCXX=$(V_GOBJCXX) -DPV_GOBJCXX=$(PV_GOBJCXX) \
@@ -788,7 +766,7 @@ binary-arch: build install
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp -plibgcj-common
-	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Nlib32gcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common`; do \
+	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common`; do \
 	  case "$$p" in libgnat*) t=gnat;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
@@ -797,10 +775,6 @@ binary-arch: build install
 	done
 	mkdir -p debian/libgcj-bc/usr/share/doc
 	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
-  ifeq ($(DEB_HOST_ARCH),amd64)
-	mkdir -p debian/lib32gcj-bc/usr/share/doc
-	ln -sf libgcj-common debian/lib32gcj-bc/usr/share/doc/lib32gcj-bc
-  endif
 
 	dh_installchangelogs -pcpp -plibgcj-common
 	mv debian/cpp/usr/share/doc/cpp/changelog \
