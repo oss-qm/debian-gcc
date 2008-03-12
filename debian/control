@@ -241,6 +241,7 @@ Description: The GNU Ada compiler
 
 Package: libgnatvsn-dev
 Architecture: alpha amd64 hppa i386 ia64 lpia mips mipsel powerpc s390 sparc kfreebsd-i386
+Section: libdevel
 Priority: optional
 Depends: gnat (>= ${version:gnat}), libgnatvsn${pv:gnat}-dev ${reqv:gnat}
 Description: GNU Ada compiler version library - development files
@@ -252,6 +253,7 @@ Description: GNU Ada compiler version library - development files
 
 Package: libgnatprj-dev
 Architecture: alpha amd64 hppa i386 ia64 lpia mips mipsel powerpc s390 sparc kfreebsd-i386
+Section: libdevel
 Priority: optional
 Depends: gnat (>= ${version:gnat}), libgnatprj${pv:gnat}-dev ${reqv:gnat}
 Description: GNU Ada Project Manager development files

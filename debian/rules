@@ -483,6 +483,9 @@ endif
 	: # gnat
 ifneq (,$(findstring gnat,$(packages)))
 	dh_installdirs -pgnat usr/share/doc
+	dh_installdocs -pgnat debian/README.Debian
+	dh_installchangelogs -pgnat
+	mv debian/gnat/usr/share/doc/gnat/changelog debian/gnat/usr/share/doc/gnat/changelog.Debian
 	dh_link -pgnat \
 	   /usr/bin/gcc-$(PV_GNAT) /usr/bin/gnatgcc
 
@@ -785,7 +788,7 @@ binary-arch: build install
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp -plibgcj-common
-	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Nlib32gcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Nlibgcj-common`; do \
+	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Nlib32gcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common`; do \
 	  case "$$p" in libgnat*) t=gnat;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
