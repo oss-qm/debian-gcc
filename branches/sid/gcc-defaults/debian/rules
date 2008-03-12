@@ -172,6 +172,12 @@ LIBGCJ		= libgcj9-0
 LIBGCJ_PC	= libgcj9.pc
 LIBGCJ_SONAME	= 90
 
+ifneq ($(distribution)-$(DEB_HOST_ARCH),Debian-amd64)
+  lib32         = usr/lib32
+else
+  lib32         = emul/ia32-linux/usr/lib
+endif
+
 gcj_archs = alpha amd64 hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc
 gcj_native_archs = alpha amd64 i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc
 multilib_archs = amd64 i386 kfreebsd-amd64 powerpc ppc64 s390 sparc
@@ -204,7 +210,7 @@ ifeq ($(DEB_HOST_ARCH),arm)
 endif
 
 ifeq ($(DEB_HOST_ARCH),armel)
-    no_packages += gnat g77 g77-doc gobjc gobjc-doc
+    no_packages += gnat g77 g77-doc
     CV_GOBJC		:= 4.1.2-$(REL_NO_412)
     CV_GOBJCXX		:= 4.1.2-$(REL_NO_412)
     REQV_GOBJC		= $(REQV_41)
@@ -784,7 +790,7 @@ binary-arch: build install
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp -plibgcj-common
-	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Nlibgcj-common`; do \
+	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Nlib32gcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Nlibgcj-common`; do \
 	  case "$$p" in libgnat*) t=gnat;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
@@ -793,6 +799,10 @@ binary-arch: build install
 	done
 	mkdir -p debian/libgcj-bc/usr/share/doc
 	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
+  ifeq ($(DEB_HOST_ARCH),amd64)
+	mkdir -p debian/lib32gcj-bc/usr/share/doc
+	ln -sf libgcj-common debian/lib32gcj-bc/usr/share/doc/lib32gcj-bc
+  endif
 
 	dh_installchangelogs -pcpp -plibgcj-common
 	mv debian/cpp/usr/share/doc/cpp/changelog \
