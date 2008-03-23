@@ -75,6 +75,8 @@ REL_NO_423	:= $(shell expr $(VMINOR) - 62)$(REL_EXT)
 
 # gcc-defaults 1.63 is the first version with 4.3 support.
 REL_NO_43	:= $(shell expr $(VMINOR) - 62)$(REL_EXT)
+# gcc-defaults 1.66 is the first version with 4.3 support.
+REL_NO_430	:= $(shell expr $(VMINOR) - 65)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.25
@@ -95,9 +97,10 @@ REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 REQV_42		:= (>= 4.2.3-1)
 REQV_42_GCJ	:= (>= 4.2.3-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.3-1)
-REQV_43		:= (>= 4.3)
+REQV_43		:= (>= 4.3.0-1)
+REQV_43_GNAT	:= (>= 4.3)
 
-REQV_LIBGCJ_BC	:= (>= 4.3-1)
+REQV_LIBGCJ_BC	:= (>= 4.3.0-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -113,14 +116,22 @@ CV_GPP		:= 4.2.3-$(REL_NO_423)
 CV_GOBJC	:= 4.2.3-$(REL_NO_423)
 CV_GOBJCXX	:= 4.2.3-$(REL_NO_423)
 CV_G77		:= 3.4.6-$(REL_NO_346)
-CV_GFORT	:= 4.3-$(REL_NO_43)
-CV_GCJ		:= 4.3-$(REL_NO_43)
-CV_GIJ		:= 4.3-$(REL_NO_43)
-CV_LIBGCJBC	:= 4.3-$(REL_NO_43)
+CV_GFORT	:= 4.3.0-$(REL_NO_430)
+CV_GCJ		:= 4.3.0-$(REL_NO_430)
+CV_GIJ		:= 4.3.0-$(REL_NO_430)
+CV_LIBGCJBC	:= 4.3.0-$(REL_NO_430)
 CV_GNAT		:= 4.3-$(REL_NO_43)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
-CV_LIBGCJCOMMON	:= 1:4.3-$(REL_NO_43)
+CV_LIBGCJCOMMON	:= 1:4.3.0-$(REL_NO_430)
+
+ifeq (,$(filter $(DEB_HOST_ARCH), alpha amd64 hppa i386))
+    CV_CPP      := 4.3.0-$(REL_NO_430)
+    CV_GCC      := 4.3.0-$(REL_NO_430)
+    CV_GPP      := 4.3.0-$(REL_NO_430)
+    CV_GOBJC    := 4.3.0-$(REL_NO_430)
+    CV_GOBJCXX  := 4.3.0-$(REL_NO_430)
+endif
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
@@ -136,7 +147,15 @@ REQV_GCJ	= $(REQV_43)
 REQV_GIJ	= $(REQV_43)
 REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_41_GDC)
-REQV_GNAT	= $(REQV_43)
+REQV_GNAT	= $(REQV_43_GNAT)
+
+ifeq (,$(filter $(DEB_HOST_ARCH), alpha amd64 hppa i386))
+    REQV_CPP    = $(REQV_43)
+    REQV_GCC    = $(REQV_43)
+    REQV_GPP    = $(REQV_43)
+    REQV_GOBJC  = $(REQV_43)
+    REQV_GOBJCXX= $(REQV_43)
+endif
 
 EPOCH=4
 EPOCH_GPC=5
@@ -572,11 +591,13 @@ ifneq (,$(filter gfortran, $(packages)))
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/gfortran \
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/$(DEB_HOST_GNU_TYPE)-gfortran
 
+ifeq (,$(filter $(DEB_HOST_ARCH), alpha amd64 hppa i386))
 	: # keep these as long as gcc version != gfortran version
 	dh_link -pgfortran \
 	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortran.so /usr/lib/libgfortran.so \
 	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortran.a /usr/lib/libgfortran.a \
 	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortranbegin.a /usr/lib/libgfortranbegin.a
+endif
 
   ifeq ($(with_gfdl_docs),yes)
 	dh_link -pgfortran \
