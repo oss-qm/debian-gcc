@@ -4,7 +4,7 @@ Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>
 Standards-Version: 3.7.3
-Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcc-3.4-base (>= 3.4.6) [!armel], gcj-4.2-base (>= 4.2.3-1) [!hurd-i386 !hppa !m68k], gcc-4.2-base (>= 4.2.3-1), gcc-4.3-base (>= 4.3.0-1), lsb-release
+Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcc-3.4-base (>= 3.4.6) [!armel], gcj-4.3-base (>= 4.3.0-1) [!hurd-i386 !alpha !hppa], gcc-4.2-base (>= 4.2.3-1), gcc-4.3-base (>= 4.3.0-1), gnat-4.3-base [alpha amd64 hppa i386 ia64 lpia mips mipsel powerpc s390 sparc kfreebsd-i386], lsb-release
 
 Package: cpp
 Priority: optional
