@@ -1,4 +1,10 @@
-gcc-defaults (1.66) UNRELEASED; urgency=low
+gcc-defaults (1.67) UNRELEASED; urgency=low
+
+  * Add build-dependency on gnat-4.3-base.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 26 Mar 2008 22:00:35 +0100
+
+gcc-defaults (1.66) unstable; urgency=low
 
   [Arthur Loiret]
   * Build multilib packages for mips and mipsel.
@@ -6,8 +12,11 @@ gcc-defaults (1.66) UNRELEASED; urgency=low
   [Matthias Klose]
   * Make GCC-4.3 the default on all architectures except alpha, amd64,
     hppa, i386.
+    - alpha and hppa show regressions in the glibc testsuite.
+    - amd64 and i386 have a patch in debian not supported upstream, and
+      changing code generation.
 
- -- Matthias Klose <doko@debian.org>  Sun, 23 Mar 2008 13:05:35 +0100
+ -- Matthias Klose <doko@debian.org>  Sun, 23 Mar 2008 18:24:47 +0100
 
 gcc-defaults (1.64) unstable; urgency=low
 
