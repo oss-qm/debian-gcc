@@ -115,7 +115,6 @@ CV_GCC		:= 4.2.3-$(REL_NO_423)
 CV_GPP		:= 4.2.3-$(REL_NO_423)
 CV_GOBJC	:= 4.2.3-$(REL_NO_423)
 CV_GOBJCXX	:= 4.2.3-$(REL_NO_423)
-CV_G77		:= 3.4.6-$(REL_NO_346)
 CV_GFORT	:= 4.3.0-$(REL_NO_430)
 CV_GCJ		:= 4.3.0-$(REL_NO_430)
 CV_GIJ		:= 4.3.0-$(REL_NO_430)
@@ -141,7 +140,6 @@ REQV_GCC	= $(REQV_42)
 REQV_GPP	= $(REQV_42)
 REQV_GOBJC	= $(REQV_42)
 REQV_GOBJCXX	= $(REQV_42)
-REQV_G77	= $(REQV_34)
 REQV_GFORT	= $(REQV_43)
 REQV_GCJ	= $(REQV_43)
 REQV_GIJ	= $(REQV_43)
@@ -162,7 +160,7 @@ EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
 all_packages	:= gnat libgnatvsn-dev libgnatprj-dev
-all_packages    += g++ g77 gfortran gcj gobjc gobjc++ gpc gdc
+all_packages    += g++ gfortran gcj gobjc gobjc++ gpc gdc
 no_packages	:= chill
 
 LIBGCJ		= libgcj9-0
@@ -201,7 +199,7 @@ ifeq ($(DEB_HOST_ARCH),arm)
 endif
 
 ifeq ($(DEB_HOST_ARCH),armel)
-    no_packages += gnat g77 g77-doc
+    no_packages += gnat
     CV_GOBJC		:= 4.1.2-$(REL_NO_412)
     CV_GOBJCXX		:= 4.1.2-$(REL_NO_412)
     REQV_GOBJC		= $(REQV_41)
@@ -260,7 +258,7 @@ endif
 
 tmp:=$(filter $(DEB_HOST_ARCH),sh3-linux sh4-linux sh3eb-linux sh4eb-linux)
 ifeq ($(DEB_HOST_ARCH),$(tmp))
-    no_packages += gnat g77 gfortran gcj gpc
+    no_packages += gnat gfortran gcj gpc
 endif
 
 ifeq ($(DEB_HOST_ARCH),sparc)
@@ -271,7 +269,7 @@ ifneq (,$(findstring gnat, $(no_packages)))
 endif
 
 ifneq ($(with_gfdl_docs),yes)
-    no_packages := $(sort $(no_packages) gnat-doc cpp-doc gcc-doc gfortran-doc g77-doc)
+    no_packages := $(sort $(no_packages) gnat-doc cpp-doc gcc-doc gfortran-doc)
 endif
 
 packages := $(filter-out $(no_packages), $(all_packages))
@@ -283,7 +281,6 @@ V_GNAT	:= $(shell echo $(CV_GNAT)  | sed 's/-[^-]*$$//')
 V_GPP	:= $(shell echo $(CV_GPP)   | sed 's/-[^-]*$$//')
 V_GOBJC	:= $(shell echo $(CV_GOBJC) | sed 's/-[^-]*$$//')
 V_GOBJCXX	:= $(shell echo $(CV_GOBJCXX) | sed 's/-[^-]*$$//')
-V_G77	:= $(shell echo $(CV_G77)   | sed 's/-[^-]*$$//')
 V_GFORT	:= $(shell echo $(CV_GFORT) | sed 's/-[^-]*$$//')
 V_CHILL	:= $(shell echo $(CV_CHILL) | sed 's/-[^-]*$$//')
 V_GCJ	:= $(shell echo $(CV_GCJ)   | sed 's/-[^-]*$$//')
@@ -303,7 +300,6 @@ PV_GDC	:= $(shell echo $(V_GDC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GPP	:= $(shell echo $(V_GPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GOBJC:= $(shell echo $(V_GOBJC) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GOBJCXX:= $(shell echo $(V_GOBJCXX) | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_G77	:= $(shell echo $(V_G77)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GFORT:= $(shell echo $(V_GFORT) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_CHILL:= $(shell echo $(V_CHILL) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
@@ -321,7 +317,6 @@ README:
 	   -DV_GOBJC=$(V_GOBJC) -DPV_GOBJC=$(PV_GOBJC) \
 	   -DV_GOBJCXX=$(V_GOBJCXX) -DPV_GOBJCXX=$(PV_GOBJCXX) \
 	   -DV_CHILL=$(V_CHILL) -DPV_CHILL=$(PV_CHILL) \
-	   -DV_G77=$(V_G77)     -DPV_G77=$(PV_G77) \
 	   -DV_GFORT=$(V_GFORT) -DPV_GFORT=$(PV_GFORT) \
 	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
 	   -DV_GIJ=$(V_GIJ)     -DPV_GIJ=$(PV_GIJ) \
@@ -345,7 +340,6 @@ substvars:
 	  echo 'version:gij=$(EPOCH):$(CV_GIJ)'; \
 	  echo 'version:gcj=$(EPOCH):$(CV_GCJ)'; \
 	  echo 'version:gpc=$(EPOCH_GPC):$(CV_GPC)'; \
-	  echo 'version:g77=$(EPOCH):$(CV_G77)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
 	  echo 'version:libgcjcommon=$(CV_LIBGCJCOMMON)'; \
 	  echo 'version:gnat=$(CV_GNAT)'; \
@@ -355,7 +349,6 @@ substvars:
 	  echo 'pv:gobjc=$(PV_GOBJC)'; \
 	  echo 'pv:gobjcxx=$(PV_GOBJCXX)'; \
 	  echo 'pv:chill=$(PV_CHILL)'; \
-	  echo 'pv:g77=$(PV_G77)'; \
 	  echo 'pv:gfort=$(PV_GFORT)'; \
 	  echo 'pv:gcj=$(PV_GCJ)'; \
 	  echo 'pv:gij=$(PV_GIJ)'; \
@@ -368,7 +361,6 @@ substvars:
 	  echo 'reqv:gobjc=$(REQV_GOBJC)'; \
 	  echo 'reqv:gobjcxx=$(REQV_GOBJCXX)'; \
 	  echo 'reqv:chill=$(REQV_CHILL)'; \
-	  echo 'reqv:g77=$(REQV_G77)'; \
 	  echo 'reqv:gfort=$(REQV_GFORT)'; \
 	  echo 'reqv:gcj=$(REQV_GCJ)'; \
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
@@ -402,7 +394,6 @@ clean:
 	rm -f debian/substvars.local
 	rm -f debian/lib*gcj-bc.shlibs
 	rm -f debian/gcc.postinst debian/g++.postinst
-	rm -f debian/g77.postinst debian/gfortran.postinst
 	dh_clean
 
 install: build substvars
@@ -557,30 +548,6 @@ ifneq (,$(filter g++, $(packages)))
   endif
 	sed -e 's/@GFDL@/$(if $(filter-out yes,$(with_gfdl_docs)),\#)/g' \
 		debian/g++.postinst.in > debian/g++.postinst
-endif
-
-ifneq (,$(filter g77, $(packages)))
-	: # g77
-	dh_installdirs -pg77 usr/bin /usr/share/man/man1 usr/share/doc
-	dh_link -pg77 \
-	  /usr/share/doc/cpp /usr/share/doc/g77 \
-	  /usr/bin/g77-$(PV_G77) /usr/bin/g77 \
-	  /usr/bin/g77-$(PV_G77) /usr/bin/$(DEB_HOST_GNU_TYPE)-g77
-
-  ifeq ($(with_gfdl_docs),yes)
-	dh_link -pg77 \
-	  /usr/share/man/man1/g77-$(PV_G77).1.gz /usr/share/man/man1/g77.1.gz \
-	  /usr/share/man/man1/g77-$(PV_G77).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-g77.1.gz
-
-	: # g77-doc
-	dh_installdirs -pg77-doc \
-		usr/share/doc usr/share/info
-	dh_link -pg77-doc \
-	  /usr/share/doc/g77-$(PV_G77)-doc /usr/share/doc/g77-doc \
-	  /usr/share/info/g77-$(PV_G77).info.gz /usr/share/info/g77.info.gz
-  endif
-	sed -e 's/@GFDL@/$(if $(filter-out yes,$(with_gfdl_docs)),\#)/g' \
-		debian/g77.postinst.in > debian/g77.postinst
 endif
 
 ifneq (,$(filter gfortran, $(packages)))
@@ -787,7 +754,7 @@ binary-arch: build install
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp -plibgcj-common
-	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ng77-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common`; do \
+	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common`; do \
 	  case "$$p" in libgnat*) t=gnat;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
@@ -841,12 +808,6 @@ ifneq (,$(filter gobjc++, $(packages)))
 	dh_gencontrol -pgobjc++   -u-v$(EPOCH):$(CV_GOBJCXX)
   ifeq ($(with_multilib),yes)
 	dh_gencontrol -pgobjc++-multilib -u-v$(EPOCH):$(CV_GOBJCXX)
-  endif
-endif
-ifneq (,$(filter g77, $(packages)))
-	dh_gencontrol -pg77     -u-v$(EPOCH):$(CV_G77)
-  ifeq ($(with_gfdl_docs),yes)
-	dh_gencontrol -pg77-doc -u-v$(EPOCH):$(CV_G77)
   endif
 endif
 ifneq (,$(filter gfortran, $(packages)))

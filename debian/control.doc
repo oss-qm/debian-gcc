@@ -8,14 +8,6 @@ Suggests: cpp (>= ${version:cpp})
 Description: Documentation for the GNU C preprocessor (cpp)
  Documentation for the GNU C preprocessor in info format (dependency package).
 
-Package: g77-doc
-Architecture: any
-Priority: optional
-Depends: g77-${pv:g77}-doc ${reqv:g77}
-Suggests: g77 (>= ${version:g77})
-Description: Documentation for the GNU Fortran compiler (g77)
- Documentation for the GNU Fortran compiler in info format (dependency package).
-
 Package: gfortran-doc
 Section: doc
 Architecture: any

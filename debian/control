@@ -92,19 +92,6 @@ Description: The GNU Objective-C++ compiler (multilib files)
  On architectures with multilib support, the package contains dependencies
  for the non-default multilib architecture(s).
 
-Package: g77
-Priority: optional
-Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), g77-${pv:g77} ${reqv:g77}
-Suggests: g77-doc
-Provides: fortran-compiler
-Description: The GNU Fortran 77 compiler
- This is the GNU g77 Fortran compiler, which compiles Fortran 77 on platforms
- supported by the gcc compiler. It uses the gcc backend to generate optimized
- code.
- .
- This is a dependency package providing the default GNU Fortran 77 compiler.
-
 Package: gfortran
 Priority: optional
 Architecture: any
