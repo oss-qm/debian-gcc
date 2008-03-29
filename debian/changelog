@@ -2,6 +2,7 @@ gcc-defaults (1.67) UNRELEASED; urgency=low
 
   * Add build-dependency on gnat-4.3-base.
   * Don't build the g77 package anymore.
+  * Update README for Lenny.
 
  -- Matthias Klose <doko@debian.org>  Wed, 26 Mar 2008 22:00:35 +0100
 

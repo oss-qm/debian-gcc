@@ -15,47 +15,44 @@ of GCC to coexist on the same system, and selects the default version
 by means of the gcc-defaults package, which creates symbolic links as
 appropriate.
 
-Versions of GCC present in Debian Etch
---------------------------------------
+Versions of GCC present in Debian Lenny
+---------------------------------------
 
-- GCC 4.1 is the default compiler for Ada, C, C++, Fortran 95, Java,
-  Objective-C, Objective-C++ and Treelang.  This package also provides
-  libgcc1, libgcc2 and libgcc4 which contain the GCC intrinsics, and
-  libstdc++6.
+- GCC 4.3 is the default compiler for Ada, Fortran 95, and Java on
+  all architectures. This package also provides libgcc1, libgcc2 (m68k)
+  and libgcc4 (hppa) which contain the GCC intrinsics, and  libstdc++6.
 
-- GCC 4.0 is provided, but is not the default for any language.  It
-  might be removed in the future.  It provides all languages except
-  Java and Pascal.  This is the first version of GCC that supports
-  Fortran 95 (gfortran) instead of Fortran 77 (g77).
+  GCC-4.3 is the default compiler for C, C++, Objective-C and Objective-C++
+  on all architectures except alpha, amd64, hppa and i386.
 
-- GCC 3.4 is the default for Pascal.
+- GCC-4.2 is the default compiler for C, C++, Objective-C and Objective-C++
+  on the architectures alpha, amd64, hppa and i386.
 
-- GCC 3.3 is provided, but is not the default for any language.  It
-  might be removed in the future.  It also provides libstdc++5.  This
-  version of GCC was the default in Debian 3.1 "Sarge".
+- GCC 4.1 is the default compiler for D and Pascal.
 
-- GCC 2.95 is provided on all architectures except ia64, which has GCC
-  2.96 instead.  This version of GCC is necessary to build Linux 2.2;
-  it was the default in Debian 3.0 "Woody".
+- GCC 3.4 is provided for the C, but is not the default for any language.
 
-- GCC 2.7.2.3 is provided on i386 and m68k, where it is necessary to
-  build Linux 2.0.
+- GCC 3.3 is not provided anymore; it is used to build libstdc++5 on
+  the amd64 and i386 architectures. It is expected that libstdc++5 is
+  not available anymore for the release following Lenny.
+
+- GCC 2.95 and GCC 2.7.2.3 were removed for the release of Lenny.
 
 How are the default compilers selected?
 ---------------------------------------
 
 Starting in Debian 3.0, there is now a gcc-defaults package set. This
-creates the actual packages for gcc, gnat, g++, gobjc, chill, g77, gcj,
-gij, treelang and gpc.  These packages will depend on the corresponding
-default compiler for that architecture. For Debian 3.1 for example,
-"gcc" depends on "gcc-3.3", which means that the "gcc-3.3" package will
-install a binary called "gcc-3.3", which is symlinked to in the "gcc"
+creates the actual packages for gcc, gnat, g++, gobjc, chill, gcj, gij
+and gpc.  These packages will depend on the corresponding default
+compiler for that architecture. For Debian 4.0 for example, "gcc"
+depends on "gcc-4.1", which means that the "gcc-4.1" package will
+install a binary called "gcc-4.1", which is symlinked to in the "gcc"
 package as "gcc".
 
 This may seem confusing, but what it allows you do to is install more
 than one version of the GCC compiler collection at the same time,
 making sure you are always using the one preferred for that
-architecture. To use the other compiler, simply set CC=gcc-2.95, or
+architecture. To use the other compiler, simply set CC=gcc-4.1, or
 similar.
 
 The default compiler versions for Debian GNU/OS_NAME on DEB_ARCH are
@@ -72,7 +69,6 @@ ifenabled(`gobjc++',`	gobjc++		: gobjc++-PV_GOBJCXX')
 ifenabled(`gnat',`	gnat		: gnat-PV_GNAT')
 ifenabled(`gpc',`	gpc		: gpc-PV_GPC')
 ifenabled(`gdc',`	gdc		: gdc-PV_GDC')
-ifenabled(`chill',`	chill		: chill-PV_CHILL')
 
 ifdef(`GFDL',`dnl
 Documentation for the default compilers can be found in
@@ -93,15 +89,24 @@ Practical implications
 ----------------------
 
 The most important practical implications are in the merging/linking
-of object files built with different compilers; If you use the 2.95.x
-C compiler, you should use the `gcc-2.95' compiler driver for all your
+of object files built with different compilers; If you use the 4.1
+C compiler, you should use the `gcc-4.1' compiler driver for all your
 work.  When configuring sources, use
 
-    CC=gcc-3.4 ./configure <configure options> 	# bash
-    setenv CC gcc-3.4; ./configure <options>		# csh
+    CC=gcc-4.1 ./configure <configure options> 	# bash
+    setenv CC gcc-4.1; ./configure <options>	# csh
 
-When calling make, use `make CC=gcc-3.4'.
+When calling make, use `make CC=gcc-4.1'.
 
+C Application Binary Interface
+------------------------------
+
+Starting with Lenny, gcc-4.1 and newer compilers do support the `long
+double' datatype with 128bit on the alpha, powerpc, s390 and sparc
+architectures.  Libraries and applications using this datatype have to
+be rebuilt using the compiler versions in Lenny unless these depend on
+libc6/libc6.1 and libstdc++6, which still have compatibilty with a
+64bit `long double' datatype.
 
 gcc/g++/... are not handled using alternatives
 ----------------------------------------------
@@ -118,21 +123,11 @@ set the appropriate environment variables as described above in the section
 C++ libraries
 -------------
 
-GCC versions prior to 3.0 included libstdc++2 (e.g. libstdc++-2.10 in
-gcc 2.95).  GCC versions since 3.0 contain a totally rewritten, and
-more standards-compliant, C++ library, called libstdc++-v3.  Migration
-notes are available in the package libstdc++6-4.1-doc.
-
-After the installation of the package, look at:
-
-/usr/share/doc/gcc-4.1-base/libstdc++/html/17_intro/porting-howto.html
-
-Code compiled with gcc-2.95.x has to use the libstdc++2.10 libraries.
-
-To use the libstdc++ library (found in the libstd++<N>-dbg package) for 
-debugging, add /usr/lib/debug to your LD_LIBRARY_PATH. For gdb to display
-the source you need to get the correspondig gcc-X.Y source package, unpack
-the source and point gdb to the location of the source (`dir' directive).
+To use the libstdc++ library for debugging (found in the libstd++<N>-dbg
+package), add /usr/lib/debug to your LD_LIBRARY_PATH. For gdb to
+display the source you need to get the correspondig gcc-X.Y source
+package, unpack the source and point gdb to the location of the source
+(`dir' directive).
 
 C++ Application Binary Interface
 --------------------------------
@@ -146,10 +141,11 @@ Version 4 of the ABI was used by GCC 3.0 and 3.1; it is no longer
 supported.
 
 Version 5 of the ABI is common to GCC 3.2 and 3.3; GCC 3.3
-provides libstdc++5.
+provides libstdc++5. It is only supported as a runtime library.
 
 Version 6 of the ABI is common to GCC 3.4 and later; GCC 4.1 provides
 libstdc++6.
+
 
 Bugs
 ----
