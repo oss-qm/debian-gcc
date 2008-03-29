@@ -23,7 +23,7 @@ Versions of GCC present in Debian Etch
   Java and Pascal.  This is the first version of GCC that supports
   Fortran 95 (gfortran) instead of Fortran 77 (g77).
 
-- GCC 3.4 is the default for Fortran 77 and Pascal.
+- GCC 3.4 is the default for Pascal.
 
 - GCC 3.3 is provided, but is not the default for any language.  It
   might be removed in the future.  It also provides libstdc++5.  This
@@ -59,7 +59,6 @@ The default compiler versions for Debian GNU/Linux on i386 are
 	cpp		: cpp-4.2
 	gcc		: gcc-4.2
 	g++		: g++-4.2
-	g77		: g77-3.4
 	gfortran	: gfortran-4.3
 	gcj		: gcj-4.3
 	gij		: gij-4.3
