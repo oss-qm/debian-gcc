@@ -6,7 +6,8 @@ gcc-defaults (1.67) UNRELEASED; urgency=low
   * Update README for Lenny.
   * Make gnat-4.2 the default on alpha, mips and mipsel. The Debian
     patches are not yet ported for these architectures (keep 4.3-x
-    version numbers for gnat, libgnatvsn-dev, libgnatprj-dev).
+    version numbers for gnat, libgnatvsn-dev, libgnatprj-dev). Add
+    build dependency on gnat-4.2-base for these architectures.
   * Tighten versions and dependencies for the gnat packages to the
     final 4.3.0 release.
 
