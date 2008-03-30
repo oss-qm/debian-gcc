@@ -1,4 +1,4 @@
-gcc-defaults (1.67) UNRELEASED; urgency=low
+gcc-defaults (1.67) unstable; urgency=medium
 
   * Add build-dependency on gnat-4.3-base.
   * Don't build the g77 package anymore, remove build dependency on
@@ -11,7 +11,7 @@ gcc-defaults (1.67) UNRELEASED; urgency=low
   * Tighten versions and dependencies for the gnat packages to the
     final 4.3.0 release.
 
- -- Matthias Klose <doko@debian.org>  Wed, 26 Mar 2008 22:00:35 +0100
+ -- Matthias Klose <doko@debian.org>  Sun, 30 Mar 2008 15:07:31 +0200
 
 gcc-defaults (1.66) unstable; urgency=low
 
