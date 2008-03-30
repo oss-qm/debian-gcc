@@ -1,7 +1,8 @@
 gcc-defaults (1.67) UNRELEASED; urgency=low
 
   * Add build-dependency on gnat-4.3-base.
-  * Don't build the g77 package anymore.
+  * Don't build the g77 package anymore, remove build dependency on
+    gcc-3.4-base.
   * Update README for Lenny.
   * Make gnat-4.2 the default on alpha, mips and mipsel. The Debian
     patches are not yet ported for these architectures (keep 4.3-x
