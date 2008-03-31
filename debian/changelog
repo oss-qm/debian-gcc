@@ -1,3 +1,9 @@
+gcc-defaults (1.68) unstable; urgency=low
+
+  * gfortran: Restore the gfortran library symlinks on alpha, amd64, i386, hppa.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 30 Mar 2008 19:21:50 +0200
+
 gcc-defaults (1.67) unstable; urgency=medium
 
   * Add build-dependency on gnat-4.3-base.
