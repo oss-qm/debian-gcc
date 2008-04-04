@@ -69,6 +69,9 @@ ifenabled(`gobjc++',`	gobjc++		: gobjc++-PV_GOBJCXX')
 ifenabled(`gnat',`	gnat		: gnat-PV_GNAT')
 ifenabled(`gpc',`	gpc		: gpc-PV_GPC')
 ifenabled(`gdc',`	gdc		: gdc-PV_GDC')
+ifenabled(`gcc-spu',`	gcc-spu		: gcc-PV_SPU-spu')
+ifenabled(`g++-spu',`	g++-spu		: g++-PV_SPU-spu')
+ifenabled(`gfortran-spu',`	gfortran-spu	: gfortran-PV_SPU-spu')
 
 ifdef(`GFDL',`dnl
 Documentation for the default compilers can be found in
