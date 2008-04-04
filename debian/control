@@ -258,9 +258,34 @@ Description: GNU Ada Project Manager development files
 Package: gdc
 Priority: optional
 Architecture: any
-Depends: gdc-${pv:gdc} ${reqv:gdc}
+Depends: cpp (>= ${version:cpp}), gdc-${pv:gdc} ${reqv:gdc}
 Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7)
 Description: The D compiler
  This is a dependency package providing the default D compiler.
  Per policy, all packages that contain D sources must use this package
  in their Build-Depends line.
+
+Package: gcc-spu
+Architecture: powerpc ppc64
+Section: devel
+Priority: optional
+Depends: cpp (>= ${version:cpp}), gcc-${pv:spu}-spu ${reqv:spu}
+Description: SPU cross-compiler (preprocessor and C compiler)
+ GNU Compiler Collection for the Cell Broadband Engine SPU (preprocessor
+ and C compiler).
+
+Package: g++-spu
+Architecture: powerpc ppc64
+Section: devel
+Priority: optional
+Depends: cpp (>= ${version:cpp}), g++-${pv:spu}-spu ${reqv:spu}
+Description: SPU cross-compiler (C++ compiler)
+ GNU Compiler Collection for the Cell Broadband Engine SPU (C++ compiler).
+
+Package: gfortran-spu
+Architecture: powerpc ppc64
+Section: devel
+Priority: optional
+Depends: cpp (>= ${version:cpp}), gfortran-${pv:spu}-spu ${reqv:spu}
+Description: SPU cross-compiler (Fortran compiler)
+ GNU Compiler Collection for the Cell Broadband Engine SPU (Fortran compiler).

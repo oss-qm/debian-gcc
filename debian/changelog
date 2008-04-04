@@ -1,3 +1,11 @@
+gcc-defaults (1.69) unstable; urgency=low
+
+  [Arthur Loiret]
+  * Build gcc-spu, g++-spu, gfortran-spu packages, defaulted to GCC-4.3.
+  * Fix sh3, sh4 binary package generation.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 02 Apr 2008 01:44:48 +0200
+
 gcc-defaults (1.68) unstable; urgency=low
 
   * gfortran: Restore the gfortran library symlinks on alpha, amd64, i386, hppa.
