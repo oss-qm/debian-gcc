@@ -1,3 +1,11 @@
+gcc-defaults (1.70) UNRELEASED; urgency=low
+
+  * /usr/share/gcj/debian_defaults: Remove alpha, arm, hppa from
+    gcj_archs, remove alpha from gcj_native_archs, add armel to
+    gcj_archs and gcj_native_archs.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 08 Apr 2008 15:56:29 +0200
+
 gcc-defaults (1.69) unstable; urgency=low
 
   [Arthur Loiret]
