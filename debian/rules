@@ -124,7 +124,7 @@ CV_GDC		:= 4.1.2-$(REL_NO_412)
 CV_LIBGCJCOMMON	:= 1:4.3.0-$(REL_NO_430)
 CV_SPU		:= 4.3.0-$(REL_NO_430)
 
-ifeq (,$(filter $(DEB_HOST_ARCH), alpha amd64 hppa i386))
+ifeq (,$(filter $(DEB_HOST_ARCH), alpha amd64 i386))
     CV_CPP      := 4.3.0-$(REL_NO_430)
     CV_GCC      := 4.3.0-$(REL_NO_430)
     CV_GPP      := 4.3.0-$(REL_NO_430)
@@ -148,7 +148,7 @@ REQV_GDC	= $(REQV_41_GDC)
 REQV_GNAT	= $(REQV_43)
 REQV_SPU	= $(REQV_43)
 
-ifeq (,$(filter $(DEB_HOST_ARCH), alpha amd64 hppa i386))
+ifeq (,$(filter $(DEB_HOST_ARCH), alpha amd64 i386))
     REQV_CPP    = $(REQV_43)
     REQV_GCC    = $(REQV_43)
     REQV_GPP    = $(REQV_43)
@@ -564,7 +564,7 @@ ifneq (,$(filter gfortran, $(packages)))
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/gfortran \
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/$(DEB_HOST_GNU_TYPE)-gfortran
 
-ifneq (,$(filter $(DEB_HOST_ARCH), alpha amd64 hppa i386))
+ifneq (,$(filter $(DEB_HOST_ARCH), alpha amd64 i386))
 	: # keep these as long as gcc version != gfortran version
 	dh_link -pgfortran \
 	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortran.so /usr/lib/libgfortran.so \

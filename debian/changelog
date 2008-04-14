@@ -4,6 +4,7 @@ gcc-defaults (1.70) UNRELEASED; urgency=low
   * /usr/share/gcj/debian_defaults: Remove alpha, arm, hppa from
     gcj_archs, remove alpha from gcj_native_archs, add armel to
     gcj_archs and gcj_native_archs.
+  * Make GCC-4.3 the default on hppa.
 
   [Ludovic Brenta]
   * make gnat-4.3 the default on alpha, mips and mipsel again, so
