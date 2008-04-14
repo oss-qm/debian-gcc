@@ -5,6 +5,7 @@ gcc-defaults (1.70) UNRELEASED; urgency=low
     gcj_archs, remove alpha from gcj_native_archs, add armel to
     gcj_archs and gcj_native_archs.
   * Make GCC-4.3 the default on hppa.
+  * Remove gcj-4.3 build dependency on arm.
 
   [Ludovic Brenta]
   * make gnat-4.3 the default on alpha, mips and mipsel again, so
