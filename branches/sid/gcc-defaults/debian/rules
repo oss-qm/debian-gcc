@@ -265,6 +265,7 @@ ifeq ($(DEB_HOST_ARCH),$(tmp))
 endif
 
 ifeq ($(DEB_HOST_ARCH),sparc)
+    no_packages += gdc
 endif
 
 ifneq (,$(findstring gnat, $(no_packages)))
@@ -503,6 +504,7 @@ ifneq (,$(filter gdc, $(packages)))
 	: # gdc
 	dh_installdirs -pgdc \
 	  usr/share/doc usr/bin usr/share/man/man1
+	dh_installdocs -pgdc debian/README.Debian
 
 	# gdc binaries
 	dh_link -pgdc \
@@ -774,7 +776,7 @@ foo:
 	dh_testroot
 	dh_installdocs -i
 	dh_installchangelogs -i
-	dh_compress -i
+	dh_compress -i -XREADME.Debian
 	dh_fixperms -i
 	dh_installdeb -i
 	dh_gencontrol -plibgcj-common -u-v1:$(CV_LIBGCJBC)
@@ -786,7 +788,7 @@ binary-arch: build install
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp -plibgcj-common
-	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common`; do \
+	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common -Ngdc`; do \
 	  case "$$p" in libgnat*) t=gnat;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
@@ -796,12 +798,14 @@ binary-arch: build install
 	mkdir -p debian/libgcj-bc/usr/share/doc
 	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
 
-	dh_installchangelogs -pcpp -plibgcj-common
+	dh_installchangelogs -pcpp -plibgcj-common -pgdc
 	mv debian/cpp/usr/share/doc/cpp/changelog \
 		debian/cpp/usr/share/doc/cpp/changelog.Debian
 	mv debian/libgcj-common/usr/share/doc/libgcj-common/changelog \
 		debian/libgcj-common/usr/share/doc/libgcj-common/changelog.Debian
-	dh_compress $(nopkgs)
+	mv debian/gdc/usr/share/doc/gdc/changelog \
+		debian/gdc/usr/share/doc/gdc/changelog.Debian
+	dh_compress $(nopkgs) -XREADME.Debian
 	dh_fixperms $(nopkgs)
 	dh_installdeb $(nopkgs)
 	dh_gencontrol -pcpp     -u-v$(EPOCH):$(CV_CPP)

@@ -258,7 +258,7 @@ Description: GNU Ada Project Manager development files
 Package: gdc
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gdc-${pv:gdc} ${reqv:gdc}
+Depends: gdc-${pv:gdc} ${reqv:gdc}
 Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7)
 Description: The D compiler
  This is a dependency package providing the default D compiler.

@@ -11,6 +11,15 @@ gcc-defaults (1.70) UNRELEASED; urgency=low
   * make gnat-4.3 the default on alpha, mips and mipsel again, so
     now all architectures have the same default.  Closes: #475365.
 
+  [Arthur Loiret]
+  * debian/README.Debian:
+    - Mention libstdc++ is provided by GCC-4.3.
+    - Updates for gdc.
+  * Remove gdc's Depends on cpp, gdc now has its own doc dir.
+    - debian/gdc.preinst: handle symlink->directory conversion.
+  * Don't build gdc on sparc.  Closes: #461101.
+  * Don't compress README.Debian anymore.
+
  -- Matthias Klose <doko@debian.org>  Tue, 08 Apr 2008 15:56:29 +0200
 
 gcc-defaults (1.69) unstable; urgency=low

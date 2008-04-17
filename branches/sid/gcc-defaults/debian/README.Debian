@@ -37,8 +37,8 @@ How are the default compilers selected?
 ---------------------------------------
 
 Starting in Debian 3.0, there is now a gcc-defaults package set. This
-creates the actual packages for gcc, gnat, g++, gobjc, chill, gcj, gij
-and gpc.  These packages will depend on the corresponding default
+creates the actual packages for gcc, gnat, g++, gobjc, chill, gcj, gij,
+gdc and gpc.  These packages will depend on the corresponding default
 compiler for that architecture. For Debian 4.0 for example, "gcc"
 depends on "gcc-4.1", which means that the "gcc-4.1" package will
 install a binary called "gcc-4.1", which is symlinked to in the "gcc"
@@ -50,17 +50,17 @@ making sure you are always using the one preferred for that
 architecture. To use the other compiler, simply set CC=gcc-4.1, or
 similar.
 
-The default compiler versions for Debian GNU/Linux on amd64 are
+The default compiler versions for Debian GNU/Linux on sparc are
 (minor version numbers omitted):
 
-	cpp		: cpp-4.2
-	gcc		: gcc-4.2
-	g++		: g++-4.2
+	cpp		: cpp-4.3
+	gcc		: gcc-4.3
+	g++		: g++-4.3
 	gfortran	: gfortran-4.3
 	gcj		: gcj-4.3
 	gij		: gij-4.3
-	gobjc		: gobjc-4.2
-	gobjc++		: gobjc++-4.2
+	gobjc		: gobjc-4.3
+	gobjc++		: gobjc++-4.3
 	gnat		: gnat-4.3
 	gpc		: gpc-4.1
 	gdc		: gdc-4.1
@@ -130,7 +130,7 @@ supported.
 Version 5 of the ABI is common to GCC 3.2 and 3.3; GCC 3.3
 provides libstdc++5. It is only supported as a runtime library.
 
-Version 6 of the ABI is common to GCC 3.4 and later; GCC 4.1 provides
+Version 6 of the ABI is common to GCC 3.4 and later; GCC 4.3 provides
 libstdc++6.
 
 Bugs
