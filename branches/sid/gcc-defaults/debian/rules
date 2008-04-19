@@ -256,6 +256,10 @@ ifeq (,$(filter $(DEB_HOST_ARCH),powerpc ppc64))
     no_packages += gcc-spu g++-spu gfortran-spu
 endif
 
+ifeq (,$(filter $(DEB_HOST_ARCH),ppc64))
+    no_packages += gnat
+endif
+
 ifeq ($(DEB_HOST_ARCH),s390)
 endif
 

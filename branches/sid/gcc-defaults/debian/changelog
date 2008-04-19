@@ -1,3 +1,11 @@
+gcc-defaults (1.71) unstable; urgency=low
+
+  [Ludovic Brenta]
+  * Do not build gnat on ppc64 until such time as gnat-4.3 is available
+    on this architecture.  Closes: #476812.
+
+ -- Ludovic Brenta <lbrenta@debian.org>  Sat, 19 Apr 2008 15:47:50 +0200
+
 gcc-defaults (1.70) unstable; urgency=low
 
   [Matthias Klose]
