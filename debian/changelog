@@ -4,6 +4,11 @@ gcc-defaults (1.71) unstable; urgency=low
   * Do not build gnat on ppc64 until such time as gnat-4.3 is available
     on this architecture.  Closes: #476812.
 
+  [Arthur Loiret]
+  * Some clean up in build system. Add gnat_no_archs java_no_archs,
+    gpc_no_archs and gdc_no_archs vars.
+  * Build gfortran on sh3 and sh4, don't build java.
+
  -- Ludovic Brenta <lbrenta@debian.org>  Sat, 19 Apr 2008 15:47:50 +0200
 
 gcc-defaults (1.70) unstable; urgency=low

@@ -182,6 +182,26 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
+gnat_no_archs := arm armel hurd-i386 kfreebsd-amd64 m32r m68k netbsd-i386 ppc64 sh3 sh4
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat_no_archs)))
+  no_packages += gnat
+endif
+
+java_no_archs := hurd-i386 sh3 sh4
+ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
+  no_packages += gcj gij libgcj-common libgcj-bc
+endif
+
+gpc_no_archs := sh3 sh4
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gpc_no_archs)))
+  no_packages += gpc
+endif
+
+gdc_no_archs := sparc
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
+  no_packages += gdc
+endif
+
 ifeq ($(DEB_HOST_ARCH),alpha)
     CV_GCJ_HACKED	:= 4.1.2-$(REL_NO_412)
     CV_GIJ_HACKED	:= 4.1.2-$(REL_NO_412)
@@ -193,83 +213,29 @@ ifeq ($(DEB_HOST_ARCH),alpha)
     LIBGCJ_SONAME	= 71
 endif
 
-ifeq ($(DEB_HOST_ARCH),amd64)
-endif
-
-ifeq ($(DEB_HOST_ARCH),arm)
-    no_packages += gnat
-endif
-
 ifeq ($(DEB_HOST_ARCH),armel)
-    no_packages += gnat
     CV_GOBJC		:= 4.1.2-$(REL_NO_412)
     CV_GOBJCXX		:= 4.1.2-$(REL_NO_412)
     REQV_GOBJC		= $(REQV_41)
     REQV_GOBJCXX	= $(REQV_41)
 endif
 
-ifeq ($(DEB_HOST_ARCH),hppa)
-endif
-
-ifeq ($(DEB_HOST_ARCH),i386)
-endif
-
 ifeq ($(DEB_HOST_ARCH),hurd-i386)
     OS_NAME	:= Hurd
-    no_packages += gnat gcj gij libgcj-bc
     CV_GDC	:= 4.2.3-$(REL_NO_423)
     REQV_GDC	= $(REQV_42_GDC)
 endif
 
-ifeq ($(DEB_HOST_ARCH),ia64)
-endif
-
-ifeq ($(DEB_HOST_ARCH),kfreebsd-i386)
+ifneq (,$(filter $(DEB_HOST_ARCH),kfreebsd-i386 kfreebsd-amd64))
     OS_NAME	:= kFreeBSD
-endif
-
-ifeq ($(DEB_HOST_ARCH),kfreebsd-amd64)
-    OS_NAME	:= kFreeBSD
-    no_packages += gnat
-endif
-
-ifeq ($(DEB_HOST_ARCH),m32r)
-    no_packages += gnat
-endif
-
-ifeq ($(DEB_HOST_ARCH),m68k)
-    no_packages += gnat
-endif
-
-ifeq ($(DEB_HOST_ARCH),mips)
-endif
-
-ifeq ($(DEB_HOST_ARCH),mipsel)
 endif
 
 ifeq ($(DEB_HOST_ARCH),netbsd-i386)
     OS_NAME	:= NetBSD
-    no_packages += gnat
 endif
 
 ifeq (,$(filter $(DEB_HOST_ARCH),powerpc ppc64))
     no_packages += gcc-spu g++-spu gfortran-spu
-endif
-
-ifeq ($(DEB_HOST_ARCH),ppc64)
-    no_packages += gnat
-endif
-
-ifeq ($(DEB_HOST_ARCH),s390)
-endif
-
-tmp:=$(filter $(DEB_HOST_ARCH),sh3 sh4)
-ifeq ($(DEB_HOST_ARCH),$(tmp))
-    no_packages += gnat gfortran gcj gpc
-endif
-
-ifeq ($(DEB_HOST_ARCH),sparc)
-    no_packages += gdc
 endif
 
 ifneq (,$(findstring gnat, $(no_packages)))
