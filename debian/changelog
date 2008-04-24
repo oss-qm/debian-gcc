@@ -12,6 +12,8 @@ gcc-defaults (1.71) unstable; urgency=low
   [Matthias Klose]
   * Don't add a symlink for gc-analyze(1) when building without GFDL docs.
     Closes: #471818.
+  * rebuild-gcj-db: Don't complain about gcj-dbtool succeeding on armel.
+    Closes: #469412.
  
  -- Matthias Klose <doko@debian.org>  Sun, 20 Apr 2008 14:03:35 +0200
 

@@ -32,7 +32,7 @@ rebuild_db()
     fi
     mkdir -p $(dirname $dbLocation)
     if $dbtool -n $dbLocation.tmp 64; then
-	case "$uname" in arm*|m68k|parisc*)
+	case "$uname" in parisc*)
 	    echo >&2 "$dbtool succeeded unexpectedly"
 	esac
     else
