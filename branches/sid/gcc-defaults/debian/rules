@@ -165,6 +165,12 @@ all_packages    += g++ gfortran gcj gobjc gobjc++ gpc gdc
 all_packages	+= gcc-spu g++-spu gfortran-spu
 no_packages	:= chill
 
+ifneq (,$(filter $(distribution), Debian))
+  lib32 = /emul/ia32-linux/usr/lib/
+else
+  lib32 = /usr/lib32
+endif
+
 LIBGCJ		= libgcj9-0
 LIBGCJ_PC	= libgcj9.pc
 LIBGCJ_SONAME	= 90
@@ -542,6 +548,12 @@ ifneq (,$(filter $(DEB_HOST_ARCH), alpha amd64 i386))
 	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortran.so /usr/lib/libgfortran.so \
 	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortran.a /usr/lib/libgfortran.a \
 	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortranbegin.a /usr/lib/libgfortranbegin.a
+  ifneq (,$(filter $(DEB_HOST_ARCH), amd64))
+	dh_link -pgfortran-multilib \
+	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/32/libgfortran.so $(lib32)/libgfortran.so \
+	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/32/libgfortran.a $(lib32)/libgfortran.a \
+	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/32/libgfortranbegin.a $(lib32)/libgfortranbegin.a
+  endif
 endif
 
   ifeq ($(with_gfdl_docs),yes)
