@@ -618,8 +618,11 @@ ifneq (,$(filter gcj, $(packages)))
 
 ifneq ($(REQV_GCJ),$(REQV_41))
 	dh_link -pgcj \
-	  /usr/bin/gc-analyze-$(PV_GCJ) /usr/bin/gc-analyze \
+	  /usr/bin/gc-analyze-$(PV_GCJ) /usr/bin/gc-analyze
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pgcj \
 	  /usr/share/man/man1/gc-analyze-$(PV_GCJ).1.gz /usr/share/man/man1/gc-analyze.1.gz
+  endif
 endif
 
   ifeq ($(with_gfdl_docs),yes)

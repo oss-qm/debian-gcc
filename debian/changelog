@@ -9,7 +9,11 @@ gcc-defaults (1.71) unstable; urgency=low
     gpc_no_archs and gdc_no_archs vars.
   * Build gfortran on sh3 and sh4, don't build java.
 
- -- Ludovic Brenta <lbrenta@debian.org>  Sat, 19 Apr 2008 15:47:50 +0200
+  [Matthias Klose]
+  * Don't add a symlink for gc-analyze(1) when building without GFDL docs.
+    Closes: #471818.
+ 
+ -- Matthias Klose <doko@debian.org>  Sun, 20 Apr 2008 14:03:35 +0200
 
 gcc-defaults (1.70) unstable; urgency=low
 
