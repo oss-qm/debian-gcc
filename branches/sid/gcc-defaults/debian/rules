@@ -594,7 +594,6 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/bin/gjarsigner-$(PV_GCJ) /usr/bin/gjarsigner \
 	  /usr/bin/grmic-$(PV_GCJ) /usr/bin/grmic \
 	  /usr/bin/jv-convert-$(PV_GCJ) /usr/bin/jv-convert \
-	  /usr/bin/jv-scan-$(PV_GCJ) /usr/bin/jv-scan \
 	  /usr/bin/jcf-dump-$(PV_GCJ) /usr/bin/jcf-dump \
 	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
 	  /usr/bin/gtnameserv-$(PV_GCJ) /usr/bin/gtnameserv \
