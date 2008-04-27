@@ -219,13 +219,6 @@ ifeq ($(DEB_HOST_ARCH),alpha)
     LIBGCJ_SONAME	= 71
 endif
 
-ifeq ($(DEB_HOST_ARCH),armel)
-    CV_GOBJC		:= 4.1.2-$(REL_NO_412)
-    CV_GOBJCXX		:= 4.1.2-$(REL_NO_412)
-    REQV_GOBJC		= $(REQV_41)
-    REQV_GOBJCXX	= $(REQV_41)
-endif
-
 ifeq ($(DEB_HOST_ARCH),hurd-i386)
     OS_NAME	:= Hurd
     CV_GDC	:= 4.2.3-$(REL_NO_423)
