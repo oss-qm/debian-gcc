@@ -16,6 +16,7 @@ gcc-defaults (1.71) unstable; urgency=low
     Closes: #469412.
   * Remove jv-scan symlink. Closes: #477548.
   * Make ObjC, Obj-C++ 4.3 the default on armel.
+  * Use /emul/... for amd64 biarch only.
  
  -- Matthias Klose <doko@debian.org>  Sun, 20 Apr 2008 14:03:35 +0200
 
