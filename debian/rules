@@ -165,7 +165,7 @@ all_packages    += g++ gfortran gcj gobjc gobjc++ gpc gdc
 all_packages	+= gcc-spu g++-spu gfortran-spu
 no_packages	:= chill
 
-ifneq (,$(filter $(distribution), Debian))
+ifeq ($(distribution)-$(DEB_HOST_ARCH),Debian-amd64)
   lib32 = /emul/ia32-linux/usr/lib/
 else
   lib32 = /usr/lib32
