@@ -1,9 +1,5 @@
 gcc-defaults (1.71) unstable; urgency=low
 
-  [Ludovic Brenta]
-  * Do not build gnat on ppc64 until such time as gnat-4.3 is available
-    on this architecture.  Closes: #476812.
-
   [Arthur Loiret]
   * Some clean up in build system. Add gnat_no_archs java_no_archs,
     gpc_no_archs and gdc_no_archs vars.
@@ -18,7 +14,7 @@ gcc-defaults (1.71) unstable; urgency=low
   * Make ObjC, Obj-C++ 4.3 the default on armel.
   * Use /emul/... for amd64 biarch only.
  
- -- Matthias Klose <doko@debian.org>  Sun, 20 Apr 2008 14:03:35 +0200
+ -- Matthias Klose <doko@debian.org>  Fri, 09 May 2008 00:39:11 +0200
 
 gcc-defaults (1.70) unstable; urgency=low
 
