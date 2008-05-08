@@ -1,4 +1,4 @@
-gcc-defaults (1.71) unstable; urgency=low
+gcc-defaults (1.71) unstable; urgency=high
 
   [Arthur Loiret]
   * Some clean up in build system. Add gnat_no_archs java_no_archs,
