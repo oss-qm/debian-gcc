@@ -1,3 +1,9 @@
+gcc-defaults (1.72) unstable; urgency=high
+
+  * Dont't build java related packages on alpha, arm, hppa. Closes: #483135.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 28 May 2008 06:47:59 +0200
+
 gcc-defaults (1.71) unstable; urgency=high
 
   [Arthur Loiret]
