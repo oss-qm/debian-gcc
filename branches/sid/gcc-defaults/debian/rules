@@ -193,7 +193,7 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat_no_archs)))
   no_packages += gnat
 endif
 
-java_no_archs := hurd-i386 sh3 sh4
+java_no_archs := alpha arm hppa hurd-i386 sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
   no_packages += gcj gij libgcj-common libgcj-bc
 endif
@@ -657,8 +657,6 @@ endif
 		> debian/libgcj-bc.shlibs
 #	echo "libgcj_bc 1 libgcj-bc" > debian/libgcj-bc.shlibs
 
-endif
-
 	: # libgcj-common
 	dh_installdirs -plibgcj-common \
 	  /usr/bin \
@@ -691,6 +689,8 @@ endif
 	do \
 	  touch debian/libgcj-common/etc/java/security/security.d/$$i; \
 	done
+
+endif
 
 ifneq (,$(filter gpc, $(packages)))
 	: # gpc
@@ -764,7 +764,7 @@ binary-arch: build install
 	dh_testdir
 	dh_testroot
 #	dh_installdebconf
-	dh_installdocs -pcpp -plibgcj-common
+	dh_installdocs -pcpp
 	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common -Ngdc`; do \
 	  case "$$p" in libgnat*) t=gnat;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
@@ -772,14 +772,18 @@ binary-arch: build install
 	  rm -f debian/$$p/usr/share/doc/$$p; \
 	  ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	done
+ifneq (,$(filter gcj, $(packages)))
+	dh_installdocs -plibgcj-common
 	mkdir -p debian/libgcj-bc/usr/share/doc
 	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
-
-	dh_installchangelogs -pcpp -plibgcj-common -pgdc
-	mv debian/cpp/usr/share/doc/cpp/changelog \
-		debian/cpp/usr/share/doc/cpp/changelog.Debian
+	dh_installchangelogs -plibgcj-common
 	mv debian/libgcj-common/usr/share/doc/libgcj-common/changelog \
 		debian/libgcj-common/usr/share/doc/libgcj-common/changelog.Debian
+endif
+
+	dh_installchangelogs -pcpp -pgdc
+	mv debian/cpp/usr/share/doc/cpp/changelog \
+		debian/cpp/usr/share/doc/cpp/changelog.Debian
 	mv debian/gdc/usr/share/doc/gdc/changelog \
 		debian/gdc/usr/share/doc/gdc/changelog.Debian
 	dh_compress $(nopkgs) -XREADME.Debian
@@ -840,8 +844,8 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -pgcj         -u-v$(EPOCH):$(CV_GCJ)
 	dh_gencontrol -pgij         -u-v$(EPOCH):$(CV_GIJ)
 	dh_gencontrol -plibgcj-bc   -u-v$(CV_LIBGCJBC)
-endif
 	dh_gencontrol -plibgcj-common -u-v$(CV_LIBGCJCOMMON)
+endif
 ifneq (,$(filter chill, $(packages)))
 	dh_gencontrol -pchill -u-v$(EPOCH):$(CV_CHILL)
 endif
