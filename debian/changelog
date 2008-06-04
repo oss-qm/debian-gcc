@@ -1,3 +1,17 @@
+gcc-defaults (1.74) UNRELEASED; urgency=low
+
+  * Tighten the dependencies to 4.3.1.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 04 Jun 2008 16:01:57 +0200
+
+gcc-defaults (1.73) unstable; urgency=low
+
+  * Make GCC-4.3 the default on amd64 and i386.
+  * Tighten the dependencies to 4.3.0-5.
+  * Tighten the dependencies to 4.2.4-1.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 04 Jun 2008 00:56:41 +0200
+
 gcc-defaults (1.72) unstable; urgency=high
 
   * Dont't build java related packages on alpha, arm, hppa. Closes: #483135.

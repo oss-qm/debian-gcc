@@ -50,17 +50,17 @@ making sure you are always using the one preferred for that
 architecture. To use the other compiler, simply set CC=gcc-4.1, or
 similar.
 
-The default compiler versions for Debian GNU/Linux on amd64 are
+The default compiler versions for Debian GNU/Linux on i386 are
 (minor version numbers omitted):
 
-	cpp		: cpp-4.2
-	gcc		: gcc-4.2
-	g++		: g++-4.2
+	cpp		: cpp-4.3
+	gcc		: gcc-4.3
+	g++		: g++-4.3
 	gfortran	: gfortran-4.3
 	gcj		: gcj-4.3
 	gij		: gij-4.3
-	gobjc		: gobjc-4.2
-	gobjc++		: gobjc++-4.2
+	gobjc		: gobjc-4.3
+	gobjc++		: gobjc++-4.3
 	gnat		: gnat-4.3
 	gpc		: gpc-4.1
 	gdc		: gdc-4.1
