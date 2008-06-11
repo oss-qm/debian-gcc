@@ -199,7 +199,7 @@ endif
 
 java_no_archs := alpha arm hppa hurd-i386 sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
-  no_packages += gcj gij libgcj-common libgcj-bc
+  no_packages += gcj gij libgcj-bc
 endif
 
 gpc_no_archs := sh3 sh4
@@ -661,6 +661,7 @@ endif
 		> debian/libgcj-bc.shlibs
 #	echo "libgcj_bc 1 libgcj-bc" > debian/libgcj-bc.shlibs
 
+endif
 	: # libgcj-common
 	dh_installdirs -plibgcj-common \
 	  /usr/bin \
@@ -694,7 +695,6 @@ endif
 	  touch debian/libgcj-common/etc/java/security/security.d/$$i; \
 	done
 
-endif
 
 ifneq (,$(filter gpc, $(packages)))
 	: # gpc
@@ -776,13 +776,13 @@ binary-arch: build install
 	  rm -f debian/$$p/usr/share/doc/$$p; \
 	  ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	done
-ifneq (,$(filter gcj, $(packages)))
 	dh_installdocs -plibgcj-common
-	mkdir -p debian/libgcj-bc/usr/share/doc
-	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
 	dh_installchangelogs -plibgcj-common
 	mv debian/libgcj-common/usr/share/doc/libgcj-common/changelog \
 		debian/libgcj-common/usr/share/doc/libgcj-common/changelog.Debian
+ifneq (,$(filter gcj, $(packages)))
+	mkdir -p debian/libgcj-bc/usr/share/doc
+	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
 endif
 
 	dh_installchangelogs -pcpp -pgdc
@@ -848,8 +848,8 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -pgcj         -u-v$(EPOCH):$(CV_GCJ)
 	dh_gencontrol -pgij         -u-v$(EPOCH):$(CV_GIJ)
 	dh_gencontrol -plibgcj-bc   -u-v$(CV_LIBGCJBC)
-	dh_gencontrol -plibgcj-common -u-v$(CV_LIBGCJCOMMON)
 endif
+	dh_gencontrol -plibgcj-common -u-v$(CV_LIBGCJCOMMON)
 ifneq (,$(filter chill, $(packages)))
 	dh_gencontrol -pchill -u-v$(EPOCH):$(CV_CHILL)
 endif

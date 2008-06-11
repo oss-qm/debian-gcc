@@ -3,6 +3,7 @@ gcc-defaults (1.74) UNRELEASED; urgency=low
   * Tighten the dependencies to 4.3.1.
   * gfortran: Don't include symlinks for runtime libs in /usr/lib.
     Closes: #485792.
+  * Build libgcj-common on all architectures.
 
  -- Matthias Klose <doko@debian.org>  Wed, 04 Jun 2008 16:01:57 +0200
 
