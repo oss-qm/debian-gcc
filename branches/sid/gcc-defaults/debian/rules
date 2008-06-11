@@ -539,7 +539,7 @@ ifneq (,$(filter gfortran, $(packages)))
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/gfortran \
 	  /usr/bin/gfortran-$(PV_GFORT) /usr/bin/$(DEB_HOST_GNU_TYPE)-gfortran
 
-ifneq (,$(filter $(DEB_HOST_ARCH), alpha amd64 i386))
+ifneq (,$(filter $(DEB_HOST_ARCH), alpha))
 	: # keep these as long as gcc version != gfortran version
 	dh_link -pgfortran \
 	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/4.3/libgfortran.so /usr/lib/libgfortran.so \
