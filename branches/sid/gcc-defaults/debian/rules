@@ -621,7 +621,6 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/share/man/man1/gjarsigner-$(PV_GCJ).1.gz /usr/share/man/man1/gjarsigner.1.gz \
 	  /usr/share/man/man1/gjavah-$(PV_GCJ).1.gz /usr/share/man/man1/gjavah.1.gz \
 	  /usr/share/man/man1/gnative2ascii-$(PV_GIJ).1.gz /usr/share/man/man1/gnative2ascii.1.gz \
-	  /usr/share/man/man1/grmic-$(PV_GIJ).1.gz /usr/share/man/man1/grmic.1.gz \
 	  /usr/share/man/man1/gtnameserv-$(PV_GCJ).1.gz /usr/share/man/man1/gtnameserv.1.gz
 
 ifneq ($(REQV_GCJ),$(REQV_41))
@@ -641,6 +640,7 @@ endif
 	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/gcj.1.gz \
 	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcj.1.gz \
 	  /usr/share/man/man1/gcjh-$(PV_GCJ).1.gz /usr/share/man/man1/gcjh.1.gz \
+	  /usr/share/man/man1/grmic-$(PV_GCJ).1.gz /usr/share/man/man1/grmic.1.gz \
 	  /usr/share/man/man1/jv-convert-$(PV_GCJ).1.gz /usr/share/man/man1/jv-convert.1.gz \
 	  /usr/share/man/man1/jcf-dump-$(PV_GCJ).1.gz /usr/share/man/man1/jcf-dump.1.gz \
 	  /usr/share/man/man1/gcj-wrapper-$(PV_GCJ).1.gz /usr/share/man/man1/gcj-wrapper.1.gz \
