@@ -1,11 +1,17 @@
-gcc-defaults (1.74) UNRELEASED; urgency=low
+gcc-defaults (1.75) unstable; urgency=low
+
+  * gcj: Don't provide the grmic(1) symlink. Closes: #486713.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 28 Jun 2008 15:31:07 +0200
+
+gcc-defaults (1.74) unstable; urgency=low
 
   * Tighten the dependencies to 4.3.1.
   * gfortran: Don't include symlinks for runtime libs in /usr/lib.
     Closes: #485792.
   * Build libgcj-common on all architectures.
 
- -- Matthias Klose <doko@debian.org>  Wed, 04 Jun 2008 16:01:57 +0200
+ -- Matthias Klose <doko@debian.org>  Wed, 18 Jun 2008 15:51:36 -0400
 
 gcc-defaults (1.73) unstable; urgency=low
 
