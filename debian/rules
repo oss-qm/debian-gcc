@@ -105,7 +105,7 @@ REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.4-1)
 REQV_43		:= (>= 4.3.2-1)
 
-REQV_LIBGCJ_BC	:= (>= 4.3.2-1)
+REQV_LIBGCJ_BC	:= (>= 4.3.1-9)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -181,8 +181,8 @@ LIBGCJ		= libgcj9-0
 LIBGCJ_PC	= libgcj9.pc
 LIBGCJ_SONAME	= 90
 
-gcj_archs = amd64 armel i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
-gcj_native_archs = amd64 armel i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
+gcj_archs = alpha amd64 armel i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
+gcj_native_archs = alpha amd64 armel i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
 multilib_archs = amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
@@ -199,7 +199,7 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat_no_archs)))
   no_packages += gnat
 endif
 
-java_no_archs := alpha arm hppa hurd-i386 sh3 sh4
+java_no_archs := arm hppa hurd-i386 sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
   no_packages += gcj gij libgcj-bc
 endif
@@ -212,17 +212,6 @@ endif
 gdc_no_archs := sparc
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
   no_packages += gdc
-endif
-
-ifeq ($(DEB_HOST_ARCH),alpha)
-    CV_GCJ_HACKED	:= 4.1.2-$(REL_NO_412)
-    CV_GIJ_HACKED	:= 4.1.2-$(REL_NO_412)
-    REQV_LIBGCJ_BC	:= (>= 4.1.2-3)
-    REQV_GCJ	= $(REQV_41)
-    REQV_GIJ	= $(REQV_41)
-    LIBGCJ		= libgcj7-1
-    LIBGCJ_PC	= libgcj7.pc
-    LIBGCJ_SONAME	= 71
 endif
 
 ifeq ($(DEB_HOST_ARCH),hurd-i386)

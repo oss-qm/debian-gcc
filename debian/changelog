@@ -1,3 +1,15 @@
+gcc-defaults (1.78) unstable; urgency=low
+
+  * Build gij/gcj packages for alpha.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 01 Feb 2009 12:29:37 +0100
+
+gcc-defaults (1.77) unstable; urgency=medium
+
+  * libgcj-bc: Don't require 4.3.2.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 25 Sep 2008 07:38:56 +0200
+
 gcc-defaults (1.76) unstable; urgency=low
 
   [ Aurelien Jarno ]
