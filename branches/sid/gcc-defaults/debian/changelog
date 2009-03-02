@@ -4,6 +4,7 @@ gcc-defaults (1.79) unstable; urgency=low
   * Tighten the dependencies to 4.3.3-2.
     - Contains a fix for PR middle-end/38969, adresses: #513007.
   * Bump Standards-Version to 3.8.0.
+  * Add myself to Uploaders.
 
  -- Arthur Loiret  <aloiret@debian.org>  Mon, 02 Mar 2009 10:27:21 +0000
 
