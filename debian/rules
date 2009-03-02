@@ -83,6 +83,8 @@ REL_NO_430	:= $(shell expr $(VMINOR) - 65)$(REL_EXT)
 REL_NO_431	:= $(shell expr $(VMINOR) - 73)$(REL_EXT)
 # gcc-defaults 1.76 is the first version with 4.3.2 support.
 REL_NO_432	:= $(shell expr $(VMINOR) - 75)$(REL_EXT)
+# gcc-defaults 1.79 is the first version with 4.3.3 support.
+REL_NO_433	:= $(shell expr $(VMINOR) - 78)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.25
@@ -103,7 +105,7 @@ REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.4-1)
-REQV_43		:= (>= 4.3.2-1)
+REQV_43		:= (>= 4.3.3-2)
 
 REQV_LIBGCJ_BC	:= (>= 4.3.1-9)
 
@@ -115,28 +117,20 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.2.4-$(REL_NO_424)
-CV_GCC		:= 4.2.4-$(REL_NO_424)
-CV_GPP		:= 4.2.4-$(REL_NO_424)
-CV_GOBJC	:= 4.2.4-$(REL_NO_424)
-CV_GOBJCXX	:= 4.2.4-$(REL_NO_424)
-CV_GFORT	:= 4.3.2-$(REL_NO_432)
-CV_GCJ		:= 4.3.2-$(REL_NO_432)
-CV_GIJ		:= 4.3.2-$(REL_NO_432)
-CV_LIBGCJBC	:= 4.3.2-$(REL_NO_432)
-CV_GNAT		:= 4.3.2-$(REL_NO_432)
+CV_CPP      := 4.3.3-$(REL_NO_433)
+CV_GCC      := 4.3.3-$(REL_NO_433)
+CV_GPP      := 4.3.3-$(REL_NO_433)
+CV_GOBJC    := 4.3.3-$(REL_NO_433)
+CV_GOBJCXX  := 4.3.3-$(REL_NO_433)
+CV_GFORT	:= 4.3.3-$(REL_NO_433)
+CV_GCJ		:= 4.3.3-$(REL_NO_433)
+CV_GIJ		:= 4.3.3-$(REL_NO_433)
+CV_LIBGCJBC	:= 4.3.3-$(REL_NO_433)
+CV_GNAT		:= 4.3.3-$(REL_NO_433)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
-CV_LIBGCJCOMMON	:= 1:4.3.2-$(REL_NO_432)
-CV_SPU		:= 4.3.2-$(REL_NO_432)
-
-ifeq (,$(filter $(DEB_HOST_ARCH), alpha))
-    CV_CPP      := 4.3.2-$(REL_NO_432)
-    CV_GCC      := 4.3.2-$(REL_NO_432)
-    CV_GPP      := 4.3.2-$(REL_NO_432)
-    CV_GOBJC    := 4.3.2-$(REL_NO_432)
-    CV_GOBJCXX  := 4.3.2-$(REL_NO_432)
-endif
+CV_LIBGCJCOMMON	:= 1:4.3.3-$(REL_NO_433)
+CV_SPU		:= 4.3.3-$(REL_NO_433)
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
