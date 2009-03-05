@@ -6,7 +6,7 @@ gcc-defaults (1.79) unstable; urgency=low
   * Bump Standards-Version to 3.8.0.
   * Add myself to Uploaders.
 
- -- Arthur Loiret <aloiret@debian.org>  Mon, 02 Mar 2009 16:13:26 +0000
+ -- Arthur Loiret <aloiret@debian.org>  Thu, 05 Mar 2009 19:34:05 +0000
 
 gcc-defaults (1.78) unstable; urgency=low
 
