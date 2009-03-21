@@ -85,6 +85,8 @@ REL_NO_431	:= $(shell expr $(VMINOR) - 73)$(REL_EXT)
 REL_NO_432	:= $(shell expr $(VMINOR) - 75)$(REL_EXT)
 # gcc-defaults 1.79 is the first version with 4.3.3 support.
 REL_NO_433	:= $(shell expr $(VMINOR) - 78)$(REL_EXT)
+# gcc-defaults 1.80 is the first version with 4.4.0 support.
+REL_NO_440	:= $(shell expr $(VMINOR) - 80)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.25
@@ -106,6 +108,7 @@ REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.4-1)
 REQV_43		:= (>= 4.3.3-2)
+REQV_44		:= (>= 4.4-1)
 
 REQV_LIBGCJ_BC	:= (>= 4.3.1-9)
 
@@ -132,6 +135,13 @@ CV_GDC		:= 4.1.2-$(REL_NO_412)
 CV_LIBGCJCOMMON	:= 1:4.3.3-$(REL_NO_433)
 CV_SPU		:= 4.3.3-$(REL_NO_433)
 
+ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+  CV_GCJ		:= 4.4-$(REL_NO_440)
+  CV_GIJ		:= 4.4-$(REL_NO_440)
+  CV_LIBGCJBC		:= 4.4-$(REL_NO_440)
+  CV_LIBGCJCOMMON	:= 1:4.4-$(REL_NO_440)
+endif
+
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
 
@@ -156,6 +166,11 @@ ifeq (,$(filter $(DEB_HOST_ARCH), alpha))
     REQV_GOBJCXX= $(REQV_43)
 endif
 
+ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+    REQV_GCJ	= $(REQV_44)
+    REQV_GIJ	= $(REQV_44)
+endif
+
 EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
@@ -175,8 +190,14 @@ LIBGCJ		= libgcj9-0
 LIBGCJ_PC	= libgcj9.pc
 LIBGCJ_SONAME	= 90
 
-gcj_archs = alpha amd64 armel i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
-gcj_native_archs = alpha amd64 armel i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
+ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+  LIBGCJ	= libgcj10
+  LIBGCJ_PC	= libgcj10.pc
+  LIBGCJ_SONAME	= 10
+endif
+
+gcj_archs = alpha amd64 armel hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
+gcj_native_archs = alpha amd64 armel hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
 multilib_archs = amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
@@ -193,7 +214,7 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat_no_archs)))
   no_packages += gnat
 endif
 
-java_no_archs := arm hppa hurd-i386 sh3 sh4
+java_no_archs := arm hurd-i386 sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
   no_packages += gcj gij libgcj-bc
 endif
