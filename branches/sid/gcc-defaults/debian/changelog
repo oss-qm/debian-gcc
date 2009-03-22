@@ -1,12 +1,18 @@
-gcc-defaults (1.80) UNRELEASED; urgency=low
+gcc-defaults (1.81) UNRELEASED; urgency=low
 
   * Build java packages on hppa, using GCC-4.4.
 
  -- Matthias Klose <doko@debian.org>  Sat, 21 Mar 2009 16:39:38 +0100
 
+gcc-defaults (1.80) unstable; urgency=low
+
+  * Fix required version on alpha.
+
+ -- Arthur Loiret <aloiret@debian.org>  Fri, 06 Mar 2009 06:27:00 +0000
+
 gcc-defaults (1.79) unstable; urgency=low
 
-  * Make GCC-4.3 the default on alpha
+  * Make GCC-4.3 the default on alpha.
   * Tighten the dependencies to 4.3.3-2.
     - This version has a fix for PR middle-end/38969, adresses: #513007.
   * Bump Standards-Version to 3.8.0.
