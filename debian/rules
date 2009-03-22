@@ -85,7 +85,7 @@ REL_NO_431	:= $(shell expr $(VMINOR) - 73)$(REL_EXT)
 REL_NO_432	:= $(shell expr $(VMINOR) - 75)$(REL_EXT)
 # gcc-defaults 1.79 is the first version with 4.3.3 support.
 REL_NO_433	:= $(shell expr $(VMINOR) - 78)$(REL_EXT)
-# gcc-defaults 1.80 is the first version with 4.4.0 support.
+# gcc-defaults 1.81 is the first version with 4.4.0 support.
 REL_NO_440	:= $(shell expr $(VMINOR) - 80)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
@@ -145,11 +145,11 @@ endif
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
 
-REQV_CPP	= $(REQV_42)
-REQV_GCC	= $(REQV_42)
-REQV_GPP	= $(REQV_42)
-REQV_GOBJC	= $(REQV_42)
-REQV_GOBJCXX	= $(REQV_42)
+REQV_CPP	= $(REQV_43)
+REQV_GCC	= $(REQV_43)
+REQV_GPP	= $(REQV_43)
+REQV_GOBJC	= $(REQV_43)
+REQV_GOBJCXX= $(REQV_43)
 REQV_GFORT	= $(REQV_43)
 REQV_GCJ	= $(REQV_43)
 REQV_GIJ	= $(REQV_43)
@@ -157,14 +157,6 @@ REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_41_GDC)
 REQV_GNAT	= $(REQV_43)
 REQV_SPU	= $(REQV_43)
-
-ifeq (,$(filter $(DEB_HOST_ARCH), alpha))
-    REQV_CPP    = $(REQV_43)
-    REQV_GCC    = $(REQV_43)
-    REQV_GPP    = $(REQV_43)
-    REQV_GOBJC  = $(REQV_43)
-    REQV_GOBJCXX= $(REQV_43)
-endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
     REQV_GCJ	= $(REQV_44)
