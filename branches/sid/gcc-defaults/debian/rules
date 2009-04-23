@@ -206,7 +206,7 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat_no_archs)))
   no_packages += gnat
 endif
 
-java_no_archs := arm hurd-i386 sh3 sh4
+java_no_archs := arm sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
   no_packages += gcj gij libgcj-bc
 endif

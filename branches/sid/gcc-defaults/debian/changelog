@@ -1,8 +1,14 @@
-gcc-defaults (1.81) UNRELEASED; urgency=low
+gcc-defaults (1.82) UNRELEASED; urgency=low
 
   * Build java packages on hppa, using GCC-4.4.
 
  -- Matthias Klose <doko@debian.org>  Sat, 21 Mar 2009 16:39:38 +0100
+
+gcc-defaults (1.81) unstable; urgency=low
+
+  * Enable java on hurd-i386 (Samuel Thibault). Closes: #525083.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 23 Apr 2009 08:42:48 +0200
 
 gcc-defaults (1.80) unstable; urgency=low
 
