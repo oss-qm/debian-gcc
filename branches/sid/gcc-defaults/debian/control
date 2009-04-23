@@ -117,7 +117,7 @@ Description: The GNU Fortran 95 compiler (multilib files)
  for the non-default multilib architecture(s).
 
 Package: libgcj-common
-Section: libs
+Section: java
 Architecture: any
 Priority: optional
 Conflicts: classpath (<= 0.04-4)
@@ -126,6 +126,7 @@ Description: Java runtime library (common files)
  This package contains files shared by classpath and libgcj libraries.
 
 Package: gcj
+Section: java
 Priority: optional
 Architecture: any
 Depends: cpp (>= ${version:cpp}), gij (>= ${version:gcj}), gcj-${pv:gcj} ${reqv:gcj}
@@ -140,6 +141,7 @@ Description: The GNU Java compiler
  This is a dependency package providing the default GNU Java compiler.
 
 Package: gij
+Section: java
 Priority: optional
 Architecture: any
 Depends: libgcj-bc (>= ${version:libgcjbc}), gij-${pv:gij} ${reqv:gij}
@@ -157,7 +159,7 @@ Description: The GNU Java bytecode interpreter
  interpreter.
 
 Package: libgcj-bc
-Section: libs
+Section: java
 Architecture: any
 Priority: optional
 Depends: libgcj-common (>= ${version:libgcjcommon}), ${pkg:libgcj} ${reqv:gij}

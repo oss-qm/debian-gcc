@@ -1,6 +1,7 @@
 gcc-defaults (1.82) UNRELEASED; urgency=low
 
   * Build java packages on hppa, using GCC-4.4.
+  * Change section names of java packages.
 
  -- Matthias Klose <doko@debian.org>  Sat, 21 Mar 2009 16:39:38 +0100
 
