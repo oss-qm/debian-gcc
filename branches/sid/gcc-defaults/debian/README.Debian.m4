@@ -15,18 +15,13 @@ of GCC to coexist on the same system, and selects the default version
 by means of the gcc-defaults package, which creates symbolic links as
 appropriate.
 
-Versions of GCC present in Debian Lenny
----------------------------------------
+Versions of GCC present in Debian Squeeze
+-----------------------------------------
 
-- GCC 4.3 is the default compiler for Ada, Fortran 95, and Java on
-  all architectures. This package also provides libgcc1, libgcc2 (m68k)
-  and libgcc4 (hppa) which contain the GCC intrinsics, and  libstdc++6.
-
-  GCC-4.3 is the default compiler for C, C++, Objective-C and Objective-C++
-  on all architectures except alpha, amd64, hppa and i386.
-
-- GCC-4.2 is the default compiler for C, C++, Objective-C and Objective-C++
-  on the architectures alpha, amd64, hppa and i386.
+- GCC 4.3 is the default compiler for C, C++, Objective-C, Objective-C++,
+  Ada, Fortran 95, and Java on all architectures. This package also
+  provides libgcc1, libgcc2 (m68k) and libgcc4 (hppa) which contain the
+  GCC intrinsics, and  libstdc++6.
 
 - GCC 4.1 is the default compiler for D and Pascal.
 
@@ -101,15 +96,17 @@ work.  When configuring sources, use
 
 When calling make, use `make CC=gcc-4.1'.
 
+
 C Application Binary Interface
 ------------------------------
 
-Starting with Lenny, gcc-4.1 and newer compilers do support the `long
-double' datatype with 128bit on the alpha, powerpc, s390 and sparc
-architectures.  Libraries and applications using this datatype have to
-be rebuilt using the compiler versions in Lenny unless these depend on
-libc6/libc6.1 and libstdc++6, which still have compatibilty with a
-64bit `long double' datatype.
+Starting with Debian 4.0 (lenny), gcc-4.1 and newer compilers do
+support the `long double' datatype with 128bit on the alpha, powerpc,
+s390 and sparc architectures.  Libraries and applications using this
+datatype have to be rebuilt using the compiler versions in Lenny
+unless these depend on libc6/libc6.1 and libstdc++6, which still have
+compatibilty with a 64bit `long double' datatype.
+
 
 gcc/g++/... are not handled using alternatives
 ----------------------------------------------
@@ -126,11 +123,12 @@ set the appropriate environment variables as described above in the section
 C++ libraries
 -------------
 
-To use the libstdc++ library for debugging (found in the libstd++<N>-dbg
-package), add /usr/lib/debug to your LD_LIBRARY_PATH. For gdb to
-display the source you need to get the correspondig gcc-X.Y source
-package, unpack the source and point gdb to the location of the source
-(`dir' directive).
+To use the libstdc++ library for debugging (found in the
+libstd++6-<GCC version>-dbg package), add /usr/lib/debug to your
+LD_LIBRARY_PATH. For gdb to display the source you need to get the
+correspondig gcc-X.Y source package, unpack the source and point gdb
+to the location of the source (`dir' directive).
+
 
 C++ Application Binary Interface
 --------------------------------
