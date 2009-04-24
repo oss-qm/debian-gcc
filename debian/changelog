@@ -2,6 +2,8 @@ gcc-defaults (1.82) UNRELEASED; urgency=low
 
   * Build java packages on hppa, using GCC-4.4.
   * Change section names of java packages.
+  * Handle wrong /usr/share/doc/libgcj-common symlink left over from
+    gcj-4.1. Closes: #396583.
 
  -- Matthias Klose <doko@debian.org>  Sat, 21 Mar 2009 16:39:38 +0100
 
