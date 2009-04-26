@@ -877,7 +877,6 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -pgcj-jre-headless -pgcj-jre -pgcj-jdk \
 		-u-v$(EPOCH):$(CV_GCJ)
 endif
-	dh_gencontrol -plibgcj-common -u-v$(CV_LIBGCJCOMMON)
 ifneq (,$(filter chill, $(packages)))
 	dh_gencontrol -pchill -u-v$(EPOCH):$(CV_CHILL)
 endif
