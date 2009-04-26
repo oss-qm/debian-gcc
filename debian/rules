@@ -108,9 +108,9 @@ REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.4-1)
 REQV_43		:= (>= 4.3.3-2)
-REQV_44		:= (>= 4.4-1)
+REQV_44		:= (>= 4.4.0-0)
 
-REQV_LIBGCJ_BC	:= (>= 4.3.1-9)
+REQV_LIBGCJ_BC	:= (>= 4.3.3-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -135,12 +135,12 @@ CV_GDC		:= 4.1.2-$(REL_NO_412)
 CV_LIBGCJCOMMON	:= 1:4.3.3-$(REL_NO_433)
 CV_SPU		:= 4.3.3-$(REL_NO_433)
 
-ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
-  CV_GCJ		:= 4.4-$(REL_NO_440)
-  CV_GIJ		:= 4.4-$(REL_NO_440)
-  CV_LIBGCJBC		:= 4.4-$(REL_NO_440)
-  CV_LIBGCJCOMMON	:= 1:4.4-$(REL_NO_440)
-endif
+#ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+  CV_GCJ		:= 4.4.0-$(REL_NO_440)
+  CV_GIJ		:= 4.4.0-$(REL_NO_440)
+  CV_LIBGCJBC		:= 4.4.0-$(REL_NO_440)
+  CV_LIBGCJCOMMON	:= 1:4.4.0-$(REL_NO_440)
+#endif
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
@@ -158,10 +158,10 @@ REQV_GDC	= $(REQV_41_GDC)
 REQV_GNAT	= $(REQV_43)
 REQV_SPU	= $(REQV_43)
 
-ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+#ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
     REQV_GCJ	= $(REQV_44)
     REQV_GIJ	= $(REQV_44)
-endif
+#endif
 
 EPOCH=4
 EPOCH_GPC=5
@@ -182,11 +182,11 @@ LIBGCJ		= libgcj9-0
 LIBGCJ_PC	= libgcj9.pc
 LIBGCJ_SONAME	= 90
 
-ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+#ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
   LIBGCJ	= libgcj10
   LIBGCJ_PC	= libgcj10.pc
   LIBGCJ_SONAME	= 10
-endif
+#endif
 
 gcj_archs = alpha amd64 armel hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
 gcj_native_archs = alpha amd64 armel hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
@@ -208,7 +208,7 @@ endif
 
 java_no_archs := arm sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
-  no_packages += gcj gij libgcj-bc
+  no_packages += gcj gij libgcj-bc gcj-jre-headless gcj-jre gcj-jdk
 endif
 
 gpc_no_archs := sh3 sh4
@@ -369,11 +369,14 @@ build-stamp:
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp
+	rm -f *-stamp
+	rm -rf build
 	rm -f debian/control.tmp*
 	rm -f debian/substvars.local
 	rm -f debian/lib*gcj-bc.shlibs
 	rm -f debian/gcc.postinst debian/g++.postinst
+	rm -f debian/generate-cacerts.pl
+	rm -f debian/dh_nativejava.1
 	dh_clean
 
 install: build substvars
@@ -577,10 +580,10 @@ ifeq (chill, $(findstring chill, $(packages)))
 endif
 
 ifneq (,$(filter gcj, $(packages)))
-	: # gij
-	dh_installdirs -pgij usr/bin /usr/share/man/man1 usr/share/doc
-	dh_link -pgij \
-	  /usr/share/doc/libgcj-bc /usr/share/doc/gij \
+	: # gcj-jre-headless
+	dh_installdirs -pgcj-jre-headless usr/bin /usr/share/man/man1 usr/share/doc
+	dh_link -pgcj-jre-headless \
+	  /usr/share/doc/libgcj-common /usr/share/doc/gcj-jre-headless \
 	  /usr/bin/gij-$(PV_GIJ) /usr/bin/gij \
 	  /usr/bin/gcj-dbtool-$(PV_GIJ) /usr/bin/gcj-dbtool \
 	  /usr/bin/gkeytool-$(PV_GIJ) /usr/bin/gkeytool \
@@ -591,8 +594,8 @@ ifneq (,$(filter gcj, $(packages)))
 
 	: # gcj
 	dh_installdirs -pgcj usr/bin /usr/share/man/man1 usr/share/doc
-	dh_link -pgcj \
-	  /usr/share/doc/cpp /usr/share/doc/gcj \
+	dh_link -pgcj-jdk \
+	  /usr/share/doc/cpp /usr/share/doc/gcj-jdk \
 	  /usr/bin/gjavah-$(PV_GCJ) /usr/bin/gjavah \
 	  /usr/bin/gcj-$(PV_GCJ) /usr/bin/gcj \
 	  /usr/bin/gcj-$(PV_GCJ) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcj \
@@ -604,22 +607,24 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/bin/jcf-dump-$(PV_GCJ) /usr/bin/jcf-dump \
 	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
 	  /usr/bin/gtnameserv-$(PV_GCJ) /usr/bin/gtnameserv \
+	  /usr/bin/gappletviewer-$(PV_GCJ) /usr/bin/gappletviewer \
 	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar \
 	  /usr/lib/pkgconfig/$(LIBGCJ_PC) /usr/lib/pkgconfig/libgcj.pc
 
-	dh_link -pgij \
+	dh_link -pgcj-jre-headless \
 	  /usr/share/man/man1/gkeytool-$(PV_GIJ).1.gz /usr/share/man/man1/gkeytool.1.gz \
 	  /usr/share/man/man1/gorbd-$(PV_GIJ).1.gz /usr/share/man/man1/gorbd.1.gz \
 	  /usr/share/man/man1/grmid-$(PV_GIJ).1.gz /usr/share/man/man1/grmid.1.gz \
 	  /usr/share/man/man1/grmiregistry-$(PV_GIJ).1.gz /usr/share/man/man1/grmiregistry.1.gz \
 	  /usr/share/man/man1/gserialver-$(PV_GIJ).1.gz /usr/share/man/man1/gserialver.1.gz
 
-	dh_link -pgcj \
+	dh_link -pgcj-jdk \
 	  /usr/share/man/man1/gjar-$(PV_GCJ).1.gz /usr/share/man/man1/gjar.1.gz \
 	  /usr/share/man/man1/gjarsigner-$(PV_GCJ).1.gz /usr/share/man/man1/gjarsigner.1.gz \
 	  /usr/share/man/man1/gjavah-$(PV_GCJ).1.gz /usr/share/man/man1/gjavah.1.gz \
 	  /usr/share/man/man1/gnative2ascii-$(PV_GIJ).1.gz /usr/share/man/man1/gnative2ascii.1.gz \
-	  /usr/share/man/man1/gtnameserv-$(PV_GCJ).1.gz /usr/share/man/man1/gtnameserv.1.gz
+	  /usr/share/man/man1/gtnameserv-$(PV_GCJ).1.gz /usr/share/man/man1/gtnameserv.1.gz \
+	  /usr/share/man/man1/gappletviewer-$(PV_GCJ).1.gz /usr/share/man/man1/gappletviewer.1.gz
 
 ifneq ($(REQV_GCJ),$(REQV_41))
 	dh_link -pgcj \
@@ -631,10 +636,10 @@ ifneq ($(REQV_GCJ),$(REQV_41))
 endif
 
   ifeq ($(with_gfdl_docs),yes)
-	dh_link -pgij \
+	dh_link -pgcj-jre-headless \
 	  /usr/share/man/man1/gij-$(PV_GIJ).1.gz /usr/share/man/man1/gij.1.gz \
 	  /usr/share/man/man1/gcj-dbtool-$(PV_GIJ).1.gz /usr/share/man/man1/gcj-dbtool.1.gz
-	dh_link -pgcj \
+	dh_link -pgcj-jdk \
 	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/gcj.1.gz \
 	  /usr/share/man/man1/gcj-$(PV_GCJ).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcj.1.gz \
 	  /usr/share/man/man1/gcjh-$(PV_GCJ).1.gz /usr/share/man/man1/gcjh.1.gz \
@@ -659,7 +664,17 @@ endif
 		> debian/libgcj-bc.shlibs
 #	echo "libgcj_bc 1 libgcj-bc" > debian/libgcj-bc.shlibs
 
+	: # gcj-jre-headless
+	dh_installdirs -pgcj-jre-headless \
+		usr/share/doc usr/lib/jvm
+#	ln -sf java-1.5.0-gcj-$(PV_GCJ)-1.5.0.0 \
+#		debian/gcj-jre-headless/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0
+	ln -sf java-1.5.0-gcj-$(PV_GCJ) \
+		debian/gcj-jre-headless/usr/lib/jvm/java-1.5.0-gcj
+	ln -sf java-gcj-$(PV_GCJ) \
+		debian/gcj-jre-headless/usr/lib/jvm/java-gcj
 endif
+
 	: # libgcj-common
 	dh_installdirs -plibgcj-common \
 	  /usr/bin \
@@ -693,6 +708,20 @@ endif
 	  touch debian/libgcj-common/etc/java/security/security.d/$$i; \
 	done
 
+	: # aotcompile & dh_nativejava
+
+	mkdir -p debian/libgcj-common/usr/bin
+	install -m755 debian/aot-compile debian/libgcj-common/usr/bin/
+	mkdir -p debian/libgcj-common/usr/share/pyshared
+	install -m644 debian/*.py debian/libgcj-common/usr/share/pyshared/
+
+	install -m755 debian/dh_nativejava debian/libgcj-common/usr/bin/
+	mkdir -p debian/libgcj-common/usr/share/debhelper/autoscripts
+	install -m 644 debian/p*-rebuild-gcj-db \
+		debian/libgcj-common/usr/share/debhelper/autoscripts/
+	pod2man -c Debhelper debian/dh_nativejava debian/dh_nativejava.1
+	mkdir -p debian/libgcj-common/usr/share/man/man1
+	install -m644 debian/dh_nativejava.1 debian/libgcj-common/usr/share/man/man1/
 
 ifneq (,$(filter gpc, $(packages)))
 	: # gpc
@@ -747,16 +776,31 @@ endif
 
 nopkgs :=-s $(foreach p, $(no_packages),-N$(p))
 
-binary-indep: build install
-# nothing needs to be done
+cacerts-stamp:
+	dh_testdir
+	rm -rf build
+	mkdir -p build
+	sed 's/@gcc_suffix@//' debian/generate-cacerts.pl.in \
+		> debian/generate-cacerts.pl
+	cd build && perl ../debian/generate-cacerts.pl \
+		/etc/ssl/certs/ca-certificates.crt
+	touch $@
 
-foo:
+binary-indep: build cacerts-stamp install
 	dh_testdir
 	dh_testroot
-	dh_installdocs -i
 	dh_installchangelogs -i
+
+	dh_installdocs -plibgcj-common
+	dh_installchangelogs -plibgcj-common
+	mv debian/libgcj-common/usr/share/doc/libgcj-common/changelog \
+		debian/libgcj-common/usr/share/doc/libgcj-common/changelog.Debian
+
+	install -m644 build/cacerts debian/libgcj-common/etc/java/cacerts-gcj
+
 	dh_compress -i -XREADME.Debian
 	dh_fixperms -i
+	dh_pycentral -plibgcj-common
 	dh_installdeb -i
 	dh_gencontrol -plibgcj-common -u-v1:$(CV_LIBGCJBC)
 	dh_md5sums -i
@@ -768,29 +812,21 @@ binary-arch: build install
 #	dh_installdebconf
 	dh_installdocs -pcpp
 	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common -Ngdc`; do \
-	  case "$$p" in libgnat*) t=gnat;; *) t=cpp; esac; \
+	  case "$$p" in libgnat*) t=gnat;; gcj-*) t=libgcj-common;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
 	  rm -f debian/$$p/usr/share/doc/$$p; \
 	  ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	done
-	dh_installdocs -plibgcj-common
-	dh_installchangelogs -plibgcj-common
-	mv debian/libgcj-common/usr/share/doc/libgcj-common/changelog \
-		debian/libgcj-common/usr/share/doc/libgcj-common/changelog.Debian
-ifneq (,$(filter gcj, $(packages)))
-	mkdir -p debian/libgcj-bc/usr/share/doc
-	ln -sf libgcj-common debian/libgcj-bc/usr/share/doc/libgcj-bc
-endif
 
 	dh_installchangelogs -pcpp -pgdc
 	mv debian/cpp/usr/share/doc/cpp/changelog \
 		debian/cpp/usr/share/doc/cpp/changelog.Debian
 	mv debian/gdc/usr/share/doc/gdc/changelog \
 		debian/gdc/usr/share/doc/gdc/changelog.Debian
-	dh_compress $(nopkgs) -XREADME.Debian
-	dh_fixperms $(nopkgs)
-	dh_installdeb $(nopkgs)
+	dh_compress -s $(nopkgs) -XREADME.Debian
+	dh_fixperms -s $(nopkgs)
+	dh_installdeb -s $(nopkgs)
 	dh_gencontrol -pcpp     -u-v$(EPOCH):$(CV_CPP)
 	dh_gencontrol -pgcc     -u-v$(EPOCH):$(CV_GCC)
   ifeq ($(with_multilib),yes)
@@ -846,6 +882,9 @@ ifneq (,$(filter gcj, $(packages)))
 	dh_gencontrol -pgcj         -u-v$(EPOCH):$(CV_GCJ)
 	dh_gencontrol -pgij         -u-v$(EPOCH):$(CV_GIJ)
 	dh_gencontrol -plibgcj-bc   -u-v$(CV_LIBGCJBC)
+
+	dh_gencontrol -pgcj-jre-headless -pgcj-jre -pgcj-jdk \
+		-u-v$(EPOCH):$(CV_GCJ)
 endif
 	dh_gencontrol -plibgcj-common -u-v$(CV_LIBGCJCOMMON)
 ifneq (,$(filter chill, $(packages)))
@@ -860,8 +899,8 @@ endif
 ifneq (,$(filter gfortran-spu, $(packages)))
 	dh_gencontrol -pgfortran-spu -u-v$(CV_SPU)
 endif
-	dh_md5sums $(nopkgs)
-	dh_builddeb $(nopkgs)
+	dh_md5sums -s $(nopkgs)
+	dh_builddeb -s $(nopkgs)
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install

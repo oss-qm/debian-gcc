@@ -3,8 +3,10 @@ Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>, Arthur Loiret <aloiret@debian.org>
-Standards-Version: 3.8.0
-Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.3-base (>= 4.3.3-2) [!alpha !arm !hppa !sh3 !sh4], gcc-4.2-base (>= 4.2.4-1), gcc-4.3-base (>= 4.3.3-2), gnat-4.3-base (>= 4.3.3-2) [alpha amd64 hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-i386], lsb-release
+Standards-Version: 3.8.1
+Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.0-1) [!arm !sh3 !sh4], gcc-4.2-base (>= 4.2.4-1), gcc-4.3-base (>= 4.3.3-2), gnat-4.3-base (>= 4.3.3-2) [alpha amd64 hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-i386], lsb-release
+Build-Depends-Indep: ca-certificates, gcj-jdk | java-gcj-compat-dev, python, python-central
+XS-Python-Version: all
 
 Package: cpp
 Priority: optional
@@ -118,10 +120,12 @@ Description: The GNU Fortran 95 compiler (multilib files)
 
 Package: libgcj-common
 Section: java
-Architecture: any
+Architecture: all
 Priority: optional
+Depends: ${python:Depends}
 Conflicts: classpath (<= 0.04-4)
-Replaces: java-gcj-compat (<< 1.0.65-8), java-gcj-compat-dev (<< 1.0.65-8)
+Replaces: java-gcj-compat (<< 1.0.65-8), java-gcj-compat-dev (<< 1.0.80-2)
+XB-Python-Version: ${python:Versions}
 Description: Java runtime library (common files)
  This package contains files shared by classpath and libgcj libraries.
 
@@ -129,34 +133,26 @@ Package: gcj
 Section: java
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gij (>= ${version:gcj}), gcj-${pv:gcj} ${reqv:gcj}
-Provides: java-compiler, libgcj-dev
-Replaces: libgcj5-dev, libgcj6-dev, libgcj7-dev (<< 4.1.1-12)
-Conflicts: libgcj2, libgcj3
-Description: The GNU Java compiler
+Depends: cpp (>= ${version:cpp}), gcj-jdk (>= ${version:gcj})
+Description: The GNU Java compiler (transitional package)
  GCJ is a front end to the GCC compiler which can natively compile both
  Java(tm) source and bytecode files. The compiler can also generate class
  files.
  .
- This is a dependency package providing the default GNU Java compiler.
+ This is a transitional package. It can be removed.
 
 Package: gij
 Section: java
 Priority: optional
 Architecture: any
-Depends: libgcj-bc (>= ${version:libgcjbc}), gij-${pv:gij} ${reqv:gij}
-Recommends: ${pkg:libgcjawt}
-Suggests: gcj (>= ${version:cpp})
-Conflicts: libgcj2 (<= 3.0.2-4), java-gcj-compat (<< 1.0.77-3)
-Provides: java-runtime-headless, java1-runtime-headless, java2-runtime-headless, java5-runtime-headless, java-virtual-machine
-Description: The GNU Java bytecode interpreter
+Depends: libgcj-bc (>= ${version:libgcjbc}), gcj-jre-headless (>= ${version:gcj})
+Description: The GNU Java bytecode interpreter (transitional package)
  GIJ is not limited to interpreting bytecode. It includes a class loader which
  can dynamically load shared objects, so it is possible to give it the name
  of a class which has been compiled and put into a shared library on the
  class path.
  .
- This is a dependency package providing the default GNU Java bytecode
- interpreter.
+ This is a transitional package. It can be removed.
 
 Package: libgcj-bc
 Section: java
@@ -168,6 +164,55 @@ Description: Link time only library for use with gcj
  binaries built with the BC-ABI link against a constant SONAME.
  This way, BC-ABI binaries continue to work if the SONAME underlying
  libgcj.so changes.
+
+Package: gcj-jdk
+Section: java
+Architecture: any
+Priority: optional
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre (>= ${version:gcj}), gcj-${pv:gcj}-jdk ${reqv:gcj}
+Provides: java-gcj-compat-dev, java-compiler, java-sdk, java2-sdk, java5-sdk
+Conflicts: gcj (<< 4:4.4.0-2), classpath-common (<= 2:0.97.2-1.1)
+Description: gcj and classpath development tools for Java(TM)
+ GCJ is a front end to the GCC compiler which can natively compile both
+ Java(tm) source and bytecode files. The compiler can also generate class
+ files. Other java development tools from classpath are included in this
+ package.
+ .
+ The package contains as well a collection of wrapper scripts and symlinks.
+ It is meant to provide a Java-SDK-like interface to the GCJ tool set.
+
+Package: gcj-jre-headless
+Priority: optional
+Section: java
+Architecture: any
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-${pv:gij}-jre-headless ${reqv:gij}
+Suggests: gcj-jdk
+Conflicts: gij (<< 4:4.4.0-2), java-gcj-compat-headless
+Provides: java-gcj-compat-headless, java-virtual-machine, java5-runtime-headless, java2-runtime-headless, java1-runtime-headless, java-runtime-headless
+Description: Java runtime environment using GIJ/classpath (headless version)
+ GIJ is a Java bytecode interpreter, not limited to interpreting bytecode.
+ It includes a class loader which can dynamically load shared objects, so
+ it is possible to give it the name of a class which has been compiled and
+ put into a shared library on the class path.
+ .
+ The package contains as well a collection of wrapper scripts and symlinks.
+ It is meant to provide a Java-RTE-like interface to the GIJ/GCJ tool set,
+ limited to the headless tools and libraries.
+
+Package: gcj-jre
+Section: java
+Architecture: any
+Priority: optional
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj}), gcj-${pv:gij}-jre ${reqv:gij}
+Provides: java-gcj-compat, java5-runtime, java2-runtime, java1-runtime, java-runtime
+Description: Java runtime environment using GIJ/classpath
+ GIJ is a Java bytecode interpreter, not limited to interpreting bytecode.
+ It includes a class loader which can dynamically load shared objects, so
+ it is possible to give it the name of a class which has been compiled and
+ put into a shared library on the class path.
+ .
+ The package contains as well a collection of wrapper scripts and symlinks.
+ It is meant to provide a Java-RTE-like interface to the GIJ/GCJ tool set.
 
 Package: gpc
 Priority: optional
