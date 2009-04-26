@@ -84,14 +84,14 @@ rebuild_databases()
 
 # still two different databases for each gcj-4.x
 
-if [ -x /usr/bin/gcj-dbtool-4.1 ]; then
-    rebuild_databases 4.1
-fi
-
 if [ -x /usr/bin/gcj-dbtool-4.2 ]; then
     rebuild_databases 4.2
 fi
 
 if [ -x /usr/bin/gcj-dbtool-4.3 ]; then
     rebuild_databases 4.3
+fi
+
+if [ -x /usr/bin/gcj-dbtool-4.4 ]; then
+    rebuild_databases 4.4
 fi

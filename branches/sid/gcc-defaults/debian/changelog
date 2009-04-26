@@ -1,12 +1,16 @@
 gcc-defaults (1.82) UNRELEASED; urgency=low
 
-  * Build java packages on hppa, using GCC-4.4.
+  * Make GCC-4.4 the default for java packages.
+  * Build packages gcj-{jre-headless,jre,jdk}, mark gij and gcj as
+    transitional packages.
+  * gcj-jdk: Conflict with classpath-common (<= 2:0.97.2-1.1), common
+    binary gappletviewer and man page.
   * Change section names of java packages.
   * Handle wrong /usr/share/doc/libgcj-common symlink left over from
     gcj-4.1. Closes: #396583.
   * Update Debian README. Closes: #498950.
 
- -- Matthias Klose <doko@debian.org>  Sat, 21 Mar 2009 16:39:38 +0100
+ -- Matthias Klose <doko@debian.org>  Sun, 26 Apr 2009 15:56:42 +0200
 
 gcc-defaults (1.81) unstable; urgency=low
 
