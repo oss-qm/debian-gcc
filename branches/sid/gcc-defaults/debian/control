@@ -169,9 +169,10 @@ Package: gcj-jdk
 Section: java
 Architecture: any
 Priority: optional
-Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre (>= ${version:gcj}), gcj-${pv:gcj}-jdk ${reqv:gcj}
-Provides: java-gcj-compat-dev, java-compiler, java-sdk, java2-sdk, java5-sdk
-Conflicts: gcj (<< 4:4.4.0-2), classpath-common (<= 2:0.97.2-1.1)
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre (>= ${version:gcj}), ${dep:jdk}, ${pkg:gjdoc}
+Provides: java-gcj-compat-dev, java-compiler, java-sdk, java2-sdk, java5-sdk, ${pkg:gjdoc}
+Conflicts: gcj (<< ${ver:gcjconflict}), classpath-common (<= 2:0.97.2-1.1), ${pkg:gjdoc}, java-gcj-compat-dev (<< 1.0.80-2)
+Replaces: ${pkg:gjdoc}, java-gcj-compat-dev (<< 1.0.80-2)
 Description: gcj and classpath development tools for Java(TM)
  GCJ is a front end to the GCC compiler which can natively compile both
  Java(tm) source and bytecode files. The compiler can also generate class
@@ -185,9 +186,10 @@ Package: gcj-jre-headless
 Priority: optional
 Section: java
 Architecture: any
-Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-${pv:gij}-jre-headless ${reqv:gij}
+Depends: libgcj-common (>= ${version:libgcjcommon}), ${dep:jrehl}
 Suggests: gcj-jdk
-Conflicts: gij (<< 4:4.4.0-2), java-gcj-compat-headless
+Conflicts: gij (<< ${ver:gcjconflict}), java-gcj-compat-headless (<< 1.0.80-2)
+Replaces: java-gcj-compat-headless (<< 1.0.80-2)
 Provides: java-gcj-compat-headless, java-virtual-machine, java5-runtime-headless, java2-runtime-headless, java1-runtime-headless, java-runtime-headless
 Description: Java runtime environment using GIJ/classpath (headless version)
  GIJ is a Java bytecode interpreter, not limited to interpreting bytecode.
@@ -203,7 +205,7 @@ Package: gcj-jre
 Section: java
 Architecture: any
 Priority: optional
-Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj}), gcj-${pv:gij}-jre ${reqv:gij}
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj}), ${dep:jre}
 Provides: java-gcj-compat, java5-runtime, java2-runtime, java1-runtime, java-runtime
 Description: Java runtime environment using GIJ/classpath
  GIJ is a Java bytecode interpreter, not limited to interpreting bytecode.

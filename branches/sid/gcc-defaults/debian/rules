@@ -108,13 +108,18 @@ REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.4-1)
 REQV_43		:= (>= 4.3.3-2)
-REQV_44		:= (>= 4.4.0-0)
+REQV_44		:= (>= 4.4.0-2)
 
 REQV_LIBGCJ_BC	:= (>= 4.3.3-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
+# gcj-4.4 has some regressions in the testsuite compared to 4.3
+# results on alpha are bad in both 4.3 and 4.4.
+gcj44_archs = amd64 armel hppa hurd-i386 lpia mips mipsel powerpc ppc64 kfreebsd-amd64 kfreebsd-i386
+gcj44_archs = hppa
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
@@ -132,15 +137,14 @@ CV_LIBGCJBC	:= 4.3.3-$(REL_NO_433)
 CV_GNAT		:= 4.3.3-$(REL_NO_433)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
-CV_LIBGCJCOMMON	:= 1:4.3.3-$(REL_NO_433)
+CV_LIBGCJCOMMON	:= 1:4.4.0-$(REL_NO_440)
 CV_SPU		:= 4.3.3-$(REL_NO_433)
 
-#ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
   CV_GCJ		:= 4.4.0-$(REL_NO_440)
   CV_GIJ		:= 4.4.0-$(REL_NO_440)
   CV_LIBGCJBC		:= 4.4.0-$(REL_NO_440)
-  CV_LIBGCJCOMMON	:= 1:4.4.0-$(REL_NO_440)
-#endif
+endif
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
@@ -158,10 +162,10 @@ REQV_GDC	= $(REQV_41_GDC)
 REQV_GNAT	= $(REQV_43)
 REQV_SPU	= $(REQV_43)
 
-#ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
     REQV_GCJ	= $(REQV_44)
     REQV_GIJ	= $(REQV_44)
-#endif
+endif
 
 EPOCH=4
 EPOCH_GPC=5
@@ -182,11 +186,11 @@ LIBGCJ		= libgcj9-0
 LIBGCJ_PC	= libgcj9.pc
 LIBGCJ_SONAME	= 90
 
-#ifneq (,$(filter $(DEB_HOST_ARCH), hppa))
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
   LIBGCJ	= libgcj10
   LIBGCJ_PC	= libgcj10.pc
   LIBGCJ_SONAME	= 10
-#endif
+endif
 
 gcj_archs = alpha amd64 armel hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
 gcj_native_archs = alpha amd64 armel hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
@@ -358,6 +362,22 @@ ifeq ($(with_multilib),yes)
 	  echo 'pkgmulti:gobjc=gobjc-multilib'; \
 	  echo 'pkgmulti:gobjcxx=gobjc++-multilib'; \
 	  echo 'pkgmulti:gfort=gfortran-multilib'; \
+	) >> debian/substvars.local
+endif
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
+	( \
+	  echo 'dep:jrehl=gcj-$${pv:gij}-jre-headless $${reqv:gij}'; \
+	  echo 'dep:jre=gcj-$${pv:gij}-jre $${reqv:gij}'; \
+	  echo 'dep:jdk=gcj-$${pv:gcj}-jdk $${reqv:gcj}'; \
+	  echo 'pkg:gjdoc=gjdoc'; \
+	  echo 'ver:gcjconflict=4:4.4.0-2'; \
+	) >> debian/substvars.local
+else
+	( \
+	  echo 'dep:jrehl=java-gcj-compat-headless (>= 1.0.80)'; \
+	  echo 'dep:jre=java-gcj-compat (>= 1.0.80)'; \
+	  echo 'dep:jdk=java-gcj-compat-dev (>= 1.0.80)'; \
+	  echo 'ver:gcjconflict=4:4.3.3-6'; \
 	) >> debian/substvars.local
 endif
 
@@ -641,6 +661,12 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
   endif
 
+  ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
+	dh_link -pgcj-jdk \
+	  /usr/bin/gjdoc-$(PV_GCJ) /usr/bin/gjdoc \
+	  /usr/share/man/man1/gjdoc-$(PV_GCJ).1.gz /usr/share/man/man1/gjdoc.1.gz
+  endif
+
 	: # libgcj-bc
 	dh_installdirs -plibgcj-bc \
 		usr/lib usr/share/doc usr/share/lintian/overrides
@@ -655,6 +681,7 @@ ifneq (,$(filter gcj, $(packages)))
 		> debian/libgcj-bc.shlibs
 #	echo "libgcj_bc 1 libgcj-bc" > debian/libgcj-bc.shlibs
 
+  ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	: # gcj-jre-headless
 	dh_installdirs -pgcj-jre-headless \
 		usr/share/doc usr/lib/jvm
@@ -664,6 +691,7 @@ ifneq (,$(filter gcj, $(packages)))
 		debian/gcj-jre-headless/usr/lib/jvm/java-1.5.0-gcj
 	ln -sf java-gcj-$(PV_GCJ) \
 		debian/gcj-jre-headless/usr/lib/jvm/java-gcj
+  endif
 endif
 
 	: # libgcj-common
@@ -793,7 +821,7 @@ binary-indep: build cacerts-stamp install
 	dh_fixperms -i
 	dh_pycentral -plibgcj-common
 	dh_installdeb -i
-	dh_gencontrol -plibgcj-common -u-v1:$(CV_LIBGCJBC)
+	dh_gencontrol -plibgcj-common -u-v$(CV_LIBGCJCOMMON)
 	dh_md5sums -i
 	dh_builddeb -i
 
