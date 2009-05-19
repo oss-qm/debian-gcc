@@ -731,8 +731,8 @@ endif
 
 	mkdir -p debian/libgcj-common/usr/bin
 	install -m755 debian/aot-compile debian/libgcj-common/usr/bin/
-	mkdir -p debian/libgcj-common/usr/share/pyshared
-	install -m644 debian/*.py debian/libgcj-common/usr/share/pyshared/
+	mkdir -p debian/libgcj-common/usr/lib/gcc
+	install -m644 debian/*.py debian/libgcj-common/usr/lib/gcc
 
 	install -m755 debian/dh_nativejava debian/libgcj-common/usr/bin/
 	mkdir -p debian/libgcj-common/usr/share/debhelper/autoscripts

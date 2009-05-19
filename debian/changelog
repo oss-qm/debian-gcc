@@ -1,3 +1,9 @@
+gcc-defaults (1.85) unstable; urgency=low
+
+  * Move library files for aot-compi√le into a private directory.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 19 May 2009 04:48:34 +0200
+
 gcc-defaults (1.84) unstable; urgency=low
 
   * Make GCC-4.4 the default for java packages on hppa.
