@@ -13,10 +13,11 @@
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
+import sys
+sys.path.append("/usr/lib/gcc")
 import aotcompile
 import getopt
 import os
-import sys
 
 usage = """\
 Usage: %s [OPTION...] SRCDIR DSTDIR
