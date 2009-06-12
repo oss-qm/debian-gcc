@@ -374,9 +374,9 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	) >> debian/substvars.local
 else
 	( \
-	  echo 'dep:jrehl=java-gcj-compat-headless (>= 1.0.80)'; \
+	  echo 'dep:jrehl=java-gcj-compat-headless (>= 1.0.80), gij-$${pv:gij} $${reqv:gij}'; \
 	  echo 'dep:jre=java-gcj-compat (>= 1.0.80)'; \
-	  echo 'dep:jdk=java-gcj-compat-dev (>= 1.0.80)'; \
+	  echo 'dep:jdk=java-gcj-compat-dev (>= 1.0.80), gcj-$${pv:gcj} $${reqv:gcj}'; \
 	  echo 'ver:gcjconflict=4:4.3.3-6'; \
 	) >> debian/substvars.local
 endif
