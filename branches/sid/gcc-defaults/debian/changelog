@@ -1,3 +1,15 @@
+gcc-defaults (1.87) unstable; urgency=low
+
+  * gcj-jre-headless/gcj-jdk: Depend on gij-4.3/gcj-4.3. Closes: #532292.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 11 Jun 2009 18:31:42 -0400
+
+gcc-defaults (1.86) unstable; urgency=low
+
+  * Reupload, last upload rejected due to wrong encoding in changelog.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 20 May 2009 15:02:31 +0200
+
 gcc-defaults (1.85) unstable; urgency=low
 
   * Move library files for aot-compile into a private directory.
