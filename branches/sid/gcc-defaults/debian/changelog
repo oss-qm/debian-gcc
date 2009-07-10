@@ -1,3 +1,10 @@
+gcc-defaults (1.88) UNRELEASED; urgency=low
+
+  * libgcj-common: Don't use absolute paths in debhelper autoscripts.
+    Closes: #511491.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 10 Jul 2009 08:03:15 +0200
+
 gcc-defaults (1.87) unstable; urgency=low
 
   * gcj-jre-headless/gcj-jdk: Depend on gij-4.3/gcj-4.3. Closes: #532292.

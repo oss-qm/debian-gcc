@@ -82,16 +82,16 @@ rebuild_databases()
 	/usr/share/gcj-$v/classmap.d
 }
 
-# still two different databases for each gcj-4.x
+# still different databases for each gcj-4.x
 
-if [ -x /usr/bin/gcj-dbtool-4.2 ]; then
+if which gcj-dbtool-4.2 >/dev/null 2>&1; then
     rebuild_databases 4.2
 fi
 
-if [ -x /usr/bin/gcj-dbtool-4.3 ]; then
+if which gcj-dbtool-4.3 >/dev/null 2>&1; then
     rebuild_databases 4.3
 fi
 
-if [ -x /usr/bin/gcj-dbtool-4.4 ]; then
+if which gcj-dbtool-4.4 >/dev/null 2>&1; then
     rebuild_databases 4.4
 fi
