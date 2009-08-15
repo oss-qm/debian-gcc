@@ -1,7 +1,11 @@
 gcc-defaults (1.88) UNRELEASED; urgency=low
 
+  [ Matthias Klose ]
   * libgcj-common: Don't use absolute paths in debhelper autoscripts.
     Closes: #511491.
+
+  [ Aurelien Jarno ]
+  * Enable ada on kfreebsd-amd64.
 
  -- Matthias Klose <doko@debian.org>  Fri, 10 Jul 2009 08:03:15 +0200
 

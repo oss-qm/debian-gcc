@@ -201,7 +201,7 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
-gnat_no_archs := arm armel hurd-i386 kfreebsd-amd64 m32r m68k netbsd-i386 sh3 sh4
+gnat_no_archs := arm armel hurd-i386 m32r m68k netbsd-i386 sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat_no_archs)))
   no_packages += gnat
 endif
