@@ -3,6 +3,8 @@ gcc-defaults (1.88) UNRELEASED; urgency=low
   [ Matthias Klose ]
   * libgcj-common: Don't use absolute paths in debhelper autoscripts.
     Closes: #511491.
+  * Build gnat for armel.
+  * Tighten the dependencies to 4.3.4.
 
   [ Aurelien Jarno ]
   * Enable ada on kfreebsd-amd64.
