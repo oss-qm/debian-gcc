@@ -85,8 +85,12 @@ REL_NO_431	:= $(shell expr $(VMINOR) - 73)$(REL_EXT)
 REL_NO_432	:= $(shell expr $(VMINOR) - 75)$(REL_EXT)
 # gcc-defaults 1.79 is the first version with 4.3.3 support.
 REL_NO_433	:= $(shell expr $(VMINOR) - 78)$(REL_EXT)
+# gcc-defaults 1.88 is the first version with 4.3.4 support.
+REL_NO_434	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
 # gcc-defaults 1.81 is the first version with 4.4.0 support.
 REL_NO_440	:= $(shell expr $(VMINOR) - 80)$(REL_EXT)
+# gcc-defaults 1.88 is the first version with 4.4.0 support.
+REL_NO_441	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.25
@@ -107,10 +111,10 @@ REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.4-1)
-REQV_43		:= (>= 4.3.3-2)
-REQV_44		:= (>= 4.4.0-2)
+REQV_43		:= (>= 4.3.4-1)
+REQV_44		:= (>= 4.4.1-2)
 
-REQV_LIBGCJ_BC	:= (>= 4.3.3-1)
+REQV_LIBGCJ_BC	:= (>= 4.3.4-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -125,25 +129,28 @@ gcj44_archs = hppa
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP      := 4.3.3-$(REL_NO_433)
-CV_GCC      := 4.3.3-$(REL_NO_433)
-CV_GPP      := 4.3.3-$(REL_NO_433)
-CV_GOBJC    := 4.3.3-$(REL_NO_433)
-CV_GOBJCXX  := 4.3.3-$(REL_NO_433)
-CV_GFORT	:= 4.3.3-$(REL_NO_433)
-CV_GCJ		:= 4.3.3-$(REL_NO_433)
-CV_GIJ		:= 4.3.3-$(REL_NO_433)
-CV_LIBGCJBC	:= 4.3.3-$(REL_NO_433)
+CV_CPP      := 4.3.4-$(REL_NO_434)
+CV_GCC      := 4.3.4-$(REL_NO_434)
+CV_GPP      := 4.3.4-$(REL_NO_434)
+CV_GOBJC    := 4.3.4-$(REL_NO_434)
+CV_GOBJCXX  := 4.3.4-$(REL_NO_434)
+CV_GFORT	:= 4.3.4-$(REL_NO_434)
+CV_GCJ		:= 4.3.4-$(REL_NO_434)
+CV_GIJ		:= 4.3.4-$(REL_NO_434)
+CV_LIBGCJBC	:= 4.3.4-$(REL_NO_434)
 CV_GNAT		:= 4.3.3-$(REL_NO_433)
+ifneq (,$(filter $(DEB_HOST_ARCH),armel))
+  CV_GNAT		:= 4.4.1-$(REL_NO_441)
+endif
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
-CV_LIBGCJCOMMON	:= 1:4.4.0-$(REL_NO_440)
-CV_SPU		:= 4.3.3-$(REL_NO_433)
+CV_LIBGCJCOMMON	:= 1:4.4.1-$(REL_NO_441)
+CV_SPU		:= 4.3.4-$(REL_NO_434)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
-  CV_GCJ		:= 4.4.0-$(REL_NO_440)
-  CV_GIJ		:= 4.4.0-$(REL_NO_440)
-  CV_LIBGCJBC		:= 4.4.0-$(REL_NO_440)
+  CV_GCJ		:= 4.4.1-$(REL_NO_441)
+  CV_GIJ		:= 4.4.1-$(REL_NO_441)
+  CV_LIBGCJBC		:= 4.4.1-$(REL_NO_441)
 endif
 
 REQV_CHILL	= $(REQV_295)
@@ -160,6 +167,9 @@ REQV_GIJ	= $(REQV_43)
 REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_41_GDC)
 REQV_GNAT	= $(REQV_43)
+ifneq (,$(filter $(DEB_HOST_ARCH),armel))
+  REQV_GNAT	= $(REQV_44)
+endif
 REQV_SPU	= $(REQV_43)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
@@ -201,7 +211,7 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
-gnat_no_archs := arm armel hurd-i386 m32r m68k netbsd-i386 sh3 sh4
+gnat_no_archs := arm hurd-i386 m32r m68k netbsd-i386 sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat_no_archs)))
   no_packages += gnat
 endif
