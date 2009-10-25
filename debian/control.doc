@@ -25,13 +25,3 @@ Depends: gcc-${pv:gcc}-doc ${reqv:gcc}
 Suggests: gcc (>= ${version:gcc})
 Description: Documentation for the GNU C compilers (gcc, gobjc, g++)
  Documentation for the GNU compilers in info format (dependency package).
-
-Package: gnat-doc
-Section: doc
-Architecture: any
-Priority: optional
-Depends: gnat-${pv:gnat}-doc ${reqv:gnat}
-Suggests: gnat (>= ${version:gnat})
-Description: Documentation for the GNU Ada compiler
- Documentation for the GNU Ada compiler in info and html format
- (dependency package).

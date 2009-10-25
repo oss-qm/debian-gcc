@@ -89,7 +89,7 @@ REL_NO_433	:= $(shell expr $(VMINOR) - 78)$(REL_EXT)
 REL_NO_434	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
 # gcc-defaults 1.81 is the first version with 4.4.0 support.
 REL_NO_440	:= $(shell expr $(VMINOR) - 80)$(REL_EXT)
-# gcc-defaults 1.88 is the first version with 4.4.0 support.
+# gcc-defaults 1.88 is the first version with 4.4.1 support.
 REL_NO_441	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
@@ -138,10 +138,6 @@ CV_GFORT	:= 4.3.4-$(REL_NO_434)
 CV_GCJ		:= 4.3.4-$(REL_NO_434)
 CV_GIJ		:= 4.3.4-$(REL_NO_434)
 CV_LIBGCJBC	:= 4.3.4-$(REL_NO_434)
-CV_GNAT		:= 4.3.3-$(REL_NO_433)
-ifneq (,$(filter $(DEB_HOST_ARCH),armel))
-  CV_GNAT		:= 4.4.1-$(REL_NO_441)
-endif
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
 CV_LIBGCJCOMMON	:= 1:4.4.1-$(REL_NO_441)
@@ -166,10 +162,6 @@ REQV_GCJ	= $(REQV_43)
 REQV_GIJ	= $(REQV_43)
 REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_41_GDC)
-REQV_GNAT	= $(REQV_43)
-ifneq (,$(filter $(DEB_HOST_ARCH),armel))
-  REQV_GNAT	= $(REQV_44)
-endif
 REQV_SPU	= $(REQV_43)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
@@ -181,8 +173,7 @@ EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
-all_packages	:= gnat libgnatvsn-dev libgnatprj-dev
-all_packages    += g++ gfortran gcj gobjc gobjc++ gpc gdc
+all_packages    := g++ gfortran gcj gobjc gobjc++ gpc gdc
 all_packages	+= gcc-spu g++-spu gfortran-spu
 no_packages	:= chill
 
@@ -209,11 +200,6 @@ endif
 with_gfdl_docs := no
 ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
-endif
-
-gnat_no_archs := arm hurd-i386 m32r m68k netbsd-i386 sh3 sh4
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat_no_archs)))
-  no_packages += gnat
 endif
 
 java_no_archs := arm sh3 sh4
@@ -249,12 +235,8 @@ ifeq (,$(filter $(DEB_HOST_ARCH),powerpc ppc64))
     no_packages += gcc-spu g++-spu gfortran-spu
 endif
 
-ifneq (,$(findstring gnat, $(no_packages)))
-    no_packages += libgnatvsn-dev libgnatprj-dev gnat-doc
-endif
-
 ifneq ($(with_gfdl_docs),yes)
-    no_packages := $(sort $(no_packages) gnat-doc cpp-doc gcc-doc gfortran-doc)
+    no_packages := $(sort $(no_packages) cpp-doc gcc-doc gfortran-doc)
 endif
 
 packages := $(filter-out $(no_packages), $(all_packages))
@@ -262,7 +244,6 @@ packages := $(filter-out $(no_packages), $(all_packages))
 # derived version number (without release)
 V_CPP	:= $(shell echo $(CV_CPP)   | sed 's/-[^-]*$$//')
 V_GCC	:= $(shell echo $(CV_GCC)   | sed 's/-[^-]*$$//')
-V_GNAT	:= $(shell echo $(CV_GNAT)  | sed 's/-[^-]*$$//')
 V_GPP	:= $(shell echo $(CV_GPP)   | sed 's/-[^-]*$$//')
 V_GOBJC	:= $(shell echo $(CV_GOBJC) | sed 's/-[^-]*$$//')
 V_GOBJCXX	:= $(shell echo $(CV_GOBJCXX) | sed 's/-[^-]*$$//')
@@ -281,7 +262,6 @@ V_SPU	:= $(shell echo $(CV_SPU)   | sed 's/-[^-]*$$//')
 # number for the package name
 PV_CPP	:= $(shell echo $(V_CPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GCC	:= $(shell echo $(V_GCC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GNAT	:= $(shell echo $(V_GNAT)  | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GDC	:= $(shell echo $(V_GDC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GPP	:= $(shell echo $(V_GPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GOBJC:= $(shell echo $(V_GOBJC) | awk -F. '{printf "%d.%d", $$1, $$2}')
@@ -299,7 +279,6 @@ README:
 	   -DDEB_ARCH=$(DEB_HOST_ARCH) \
 	   -DV_CPP=$(V_CPP)     -DPV_CPP=$(PV_CPP) \
 	   -DV_GCC=$(V_GCC)     -DPV_GCC=$(PV_GCC) \
-	   -DV_GNAT=$(V_GNAT)   -DPV_GNAT=$(PV_GNAT) \
 	   -DV_GPP=$(V_GPP)     -DPV_GPP=$(PV_GPP) \
 	   -DV_GOBJC=$(V_GOBJC) -DPV_GOBJC=$(PV_GOBJC) \
 	   -DV_GOBJCXX=$(V_GOBJCXX) -DPV_GOBJCXX=$(PV_GOBJCXX) \
@@ -330,7 +309,6 @@ substvars:
 	  echo 'version:gpc=$(EPOCH_GPC):$(CV_GPC)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
 	  echo 'version:libgcjcommon=$(CV_LIBGCJCOMMON)'; \
-	  echo 'version:gnat=$(CV_GNAT)'; \
 	  echo 'pv:cpp=$(PV_CPP)'; \
 	  echo 'pv:gcc=$(PV_GCC)'; \
 	  echo 'pv:gpp=$(PV_GPP)'; \
@@ -341,7 +319,6 @@ substvars:
 	  echo 'pv:gcj=$(PV_GCJ)'; \
 	  echo 'pv:gij=$(PV_GIJ)'; \
 	  echo 'pv:gpc=$(PV_GPC)'; \
-	  echo 'pv:gnat=$(PV_GNAT)'; \
 	  echo 'pv:gdc=$(PV_GDC)'; \
 	  echo 'pv:spu=$(PV_SPU)'; \
 	  echo 'reqv:cpp=$(REQV_CPP)'; \
@@ -354,7 +331,6 @@ substvars:
 	  echo 'reqv:gcj=$(REQV_GCJ)'; \
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
 	  echo 'reqv:gpc=$(REQV_GPC)'; \
-	  echo 'reqv:gnat=$(REQV_GNAT)'; \
 	  echo 'reqv:gdc=$(REQV_GDC)'; \
 	  echo 'reqv:spu=$(REQV_SPU)'; \
 	  echo 'pkg:libgcj=$(LIBGCJ)'; \
@@ -476,29 +452,6 @@ endif
 	  /usr/share/info/gcc-$(PV_GCC).info.gz /usr/share/info/gcc.info.gz \
 	  /usr/share/info/gccint-$(PV_GCC).info.gz /usr/share/info/gccint.info.gz
   endif
-
-	: # gnat
-ifneq (,$(findstring gnat,$(packages)))
-	dh_installdirs -pgnat usr/share/doc
-	dh_installdocs -pgnat debian/README.Debian
-	dh_installchangelogs -pgnat
-	mv debian/gnat/usr/share/doc/gnat/changelog debian/gnat/usr/share/doc/gnat/changelog.Debian
-	dh_link -pgnat \
-	   /usr/bin/gcc-$(PV_GNAT) /usr/bin/gnatgcc
-
-  ifeq ($(with_gfdl_docs),yes)
-	dh_link -pgnat \
-	   /usr/share/man/man1/gcc-$(PV_GNAT).1.gz /usr/share/man/man1/gnatgcc.1.gz
-
-	: # gnat-doc
-	dh_installdirs -pgnat-doc \
-		usr/share/doc usr/share/info
-	dh_link -pgnat-doc \
-	  /usr/share/info/gnat_ugn_unw-$(PV_GNAT).info.gz /usr/share/info/gnat_ugn_unw.info.gz \
-	  /usr/share/info/gnat_rm-$(PV_GNAT).info.gz /usr/share/info/gnat_rm.info.gz \
-	  /usr/share/info/gnat_style-$(PV_GNAT).info.gz /usr/share/info/gnat_style.info.gz
-  endif
-endif
 
 ifneq (,$(filter gdc, $(packages)))
 	: # gdc
@@ -836,8 +789,8 @@ binary-arch: build install
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp
-	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ngfortran-doc -Ngnat-doc -Ngnat -Nlibgcj-common -Ngdc`; do \
-	  case "$$p" in libgnat*) t=gnat;; gcj-*) t=libgcj-common;; *) t=cpp; esac; \
+	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ngfortran-doc -Nlibgcj-common -Ngdc`; do \
+	  case "$$p" in gcj-*) t=libgcj-common;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
 	  rm -f debian/$$p/usr/share/doc/$$p; \
@@ -861,14 +814,6 @@ binary-arch: build install
 	dh_gencontrol -pcpp-doc -u-v$(EPOCH):$(CV_CPP)
 	dh_gencontrol -pgcc-doc -u-v$(EPOCH):$(CV_GCC)
   endif
-ifneq (,$(filter gnat, $(packages)))
-	dh_gencontrol -pgnat -u-v$(CV_GNAT)
-  ifeq ($(with_gfdl_docs),yes)
-	dh_gencontrol -pgnat-doc -u-v$(CV_GNAT)
-  endif
-	dh_gencontrol -plibgnatvsn-dev -u-v$(CV_GNAT)
-	dh_gencontrol -plibgnatprj-dev -u-v$(CV_GNAT)
-endif
 ifneq (,$(filter gdc, $(packages)))
 	dh_gencontrol -pgdc -u-v$(CV_GDC)
 endif
