@@ -719,7 +719,6 @@ ifneq (,$(filter gpc, $(packages)))
 	dh_installdirs -pgpc-doc \
 		usr/share/doc usr/share/info
 	dh_link -pgpc-doc \
-	  /usr/share/doc/gpc-$(PV_GPC)-doc /usr/share/doc/gpc-doc \
 	  /usr/share/info/gpc-$(PV_GPC).info.gz /usr/share/info/gpc.info.gz \
 	  /usr/share/info/gpcs-$(PV_GPC).info.gz /usr/share/info/gpcs.info.gz \
 	  /usr/share/info/gpcs-de-$(PV_GPC).info.gz /usr/share/info/gpcs-de.info.gz \
