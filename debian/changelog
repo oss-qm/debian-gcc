@@ -6,6 +6,7 @@ gcc-defaults (1.88) UNRELEASED; urgency=low
   * Build gnat for armel.
   * Tighten the dependencies to 4.3.4.
   * gpc-doc: Install non-shared doc directory. Closes: #553570.
+  * libgcj-bc: Add doc dir symlink. Closes: #552764.
 
   [ Aurelien Jarno ]
   * Enable ada on kfreebsd-amd64.
