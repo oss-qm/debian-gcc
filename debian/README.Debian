@@ -56,7 +56,6 @@ The default compiler versions for Debian GNU/Linux on i386 are
 	gij		: gij-4.3
 	gobjc		: gobjc-4.3
 	gobjc++		: gobjc++-4.3
-	gnat		: gnat-4.3
 	gpc		: gpc-4.1
 	gdc		: gdc-4.1
 

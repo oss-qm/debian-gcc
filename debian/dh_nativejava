@@ -44,6 +44,8 @@ registered.
 Use this if you want the compiled files to be put in a directory
 other than the default of "/usr/lib/gcj"
 
+=back
+
 =head1 NOTES
 
 Note that this command is not idempotent. "dh_clean -k" should be called

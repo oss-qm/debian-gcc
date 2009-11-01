@@ -7,6 +7,9 @@ gcc-defaults (1.88) UNRELEASED; urgency=low
   * Tighten the dependencies to 4.3.4.
   * gpc-doc: Install non-shared doc directory. Closes: #553570.
   * libgcj-bc: Add doc dir symlink. Closes: #552764.
+  * Remove the alternative build-dependency on java-gcj-compat-dev.
+    Closes: #536192.
+  * Fix formatting error in dh_nativejava(1). Closes: #531912.
 
   [ Aurelien Jarno ]
   * Enable ada on kfreebsd-amd64.
@@ -18,7 +21,7 @@ gcc-defaults (1.88) UNRELEASED; urgency=low
   * Don't build gpc-doc on sh3 and sh4. Closes: #547990.
   * Build java packages for sh4. Closes: #547989.
 
- -- Matthias Klose <doko@debian.org>  Fri, 10 Jul 2009 08:03:15 +0200
+ -- Matthias Klose <doko@debian.org>  Sun, 01 Nov 2009 15:44:21 +0100
 
 gcc-defaults (1.87) unstable; urgency=low
 
