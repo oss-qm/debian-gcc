@@ -11,6 +11,9 @@ gcc-defaults (1.88) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * Enable ada on kfreebsd-amd64.
 
+  [ Ludovic Brenta ]
+  * Don't build gnat from gcc-defaults anymore.
+
  -- Matthias Klose <doko@debian.org>  Fri, 10 Jul 2009 08:03:15 +0200
 
 gcc-defaults (1.87) unstable; urgency=low
