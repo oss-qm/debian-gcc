@@ -122,7 +122,7 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 
 # gcj-4.4 has some regressions in the testsuite compared to 4.3
 # results on alpha are bad in both 4.3 and 4.4.
-gcj44_archs = amd64 armel hppa hurd-i386 lpia mips mipsel powerpc ppc64 kfreebsd-amd64 kfreebsd-i386
+gcj44_archs = amd64 armel hppa hurd-i386 lpia mips mipsel powerpc ppc64 kfreebsd-amd64 kfreebsd-i386 sh4
 gcj44_archs = hppa
 
 # CV_XXX is the complete version number, including the release, without epoch
@@ -189,8 +189,8 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
   LIBGCJ_SONAME	= 10
 endif
 
-gcj_archs = alpha amd64 armel hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
-gcj_native_archs = alpha amd64 armel hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 sparc kfreebsd-amd64 kfreebsd-i386
+gcj_archs = alpha amd64 armel hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sh4 sparc kfreebsd-amd64 kfreebsd-i386
+gcj_native_archs = alpha amd64 armel hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 sh4 sparc kfreebsd-amd64 kfreebsd-i386
 multilib_archs = amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
@@ -202,14 +202,14 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
-java_no_archs := arm sh3 sh4
+java_no_archs := arm 
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
   no_packages += gcj gij libgcj-bc gcj-jre-headless gcj-jre gcj-jdk
 endif
 
 gpc_no_archs := sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gpc_no_archs)))
-  no_packages += gpc
+  no_packages += gpc gpc-doc
 endif
 
 gdc_no_archs := sparc

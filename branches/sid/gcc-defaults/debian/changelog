@@ -14,6 +14,10 @@ gcc-defaults (1.88) UNRELEASED; urgency=low
   [ Ludovic Brenta ]
   * Don't build gnat from gcc-defaults anymore.
 
+  [ Nobuhiro Iwamatsu ]
+  * Don't build gpc-doc on sh3 and sh4. Closes: #547990.
+  * Build java packages for sh4. Closes: #547989.
+
  -- Matthias Klose <doko@debian.org>  Fri, 10 Jul 2009 08:03:15 +0200
 
 gcc-defaults (1.87) unstable; urgency=low
