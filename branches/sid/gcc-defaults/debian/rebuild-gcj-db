@@ -32,12 +32,13 @@ rebuild_db()
     fi
     mkdir -p $(dirname $dbLocation)
     if $dbtool -n $dbLocation.tmp 64; then
-	case "$uname" in parisc*)
-	    echo >&2 "$dbtool succeeded unexpectedly"
-	esac
+	:
+	#case "$uname" in parisc*)
+	#    echo >&2 "$dbtool succeeded unexpectedly"
+	#esac
     else
 	case "$uname" in
-	    arm*|m68k|parisc*)
+	    m68k)
 	        echo >&2 "ERROR: $dbtool did fail; known problem on $uname"
 		return 0;;
 	    *)
@@ -57,12 +58,12 @@ rebuild_databases()
     dbLocation=`$dbtool -p || true`
 
     if [ -n "$dbLocation" ]; then
-	case "$uname" in arm*|m68k|parisc*)
+	case "$uname" in m68k)
 	    echo >&2 "$dbtool succeeded unexpectedly"
 	esac
     else
 	case "$uname" in
-	    arm*|m68k|parisc*)
+	    m68k)
 	        echo >&2 "ERROR: $dbtool did fail; known problem on $uname"
 		return 0;;
 	    *)
