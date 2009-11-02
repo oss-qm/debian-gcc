@@ -12,6 +12,7 @@ gcc-defaults (1.88) unstable; urgency=low
   * Fix formatting error in dh_nativejava(1). Closes: #531912.
   * libgcj-common (rebuild-gcj-db): Be quiet, armel and hppa are known
     to work.
+  * Add hurd-i386 to gcj_archs and gcj_native_archs.
 
   [ Aurelien Jarno ]
   * Enable ada on kfreebsd-amd64.
