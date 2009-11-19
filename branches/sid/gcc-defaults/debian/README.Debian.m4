@@ -105,7 +105,7 @@ support the `long double' datatype with 128bit on the alpha, powerpc,
 s390 and sparc architectures.  Libraries and applications using this
 datatype have to be rebuilt using the compiler versions in Lenny
 unless these depend on libc6/libc6.1 and libstdc++6, which still have
-compatibilty with a 64bit `long double' datatype.
+compatibility with a 64bit `long double' datatype.
 
 
 gcc/g++/... are not handled using alternatives
