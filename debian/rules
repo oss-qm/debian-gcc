@@ -410,7 +410,8 @@ install: build substvars
 	dh_installdirs -pcpp-doc \
 		usr/share/doc usr/share/info
 	dh_link -pcpp-doc \
-	  /usr/share/doc/cpp-$(PV_CPP)-doc /usr/share/doc/cpp-doc \
+	  /usr/share/doc/gcc-$(PV_CPP)-base/cpp.html /usr/share/doc/cpp-doc/cpp.html \
+	  /usr/share/doc/gcc-$(PV_CPP)-base/cppinternals.html /usr/share/doc/cpp-doc/cppinternals.html \
 	  /usr/share/info/cpp-$(PV_CPP).info.gz /usr/share/info/cpp.info.gz \
 	  /usr/share/info/cppinternals-$(PV_CPP).info.gz /usr/share/info/cppinternals.info.gz
   endif
@@ -448,9 +449,12 @@ endif
 	dh_installdirs -pgcc-doc \
 		usr/share/doc usr/share/info
 	dh_link -pgcc-doc \
-	  /usr/share/doc/gcc-$(PV_GCC)-doc /usr/share/doc/gcc-doc \
+	  /usr/share/doc/gcc-$(PV_GCC)-base/gcc.html /usr/share/doc/gcc-doc/gcc.html \
+	  /usr/share/doc/gcc-$(PV_GCC)-base/gccint.html /usr/share/doc/gcc-doc/gccint.html \
+	  /usr/share/doc/gcc-$(PV_GCC)-base/libgomp.html /usr/share/doc/gcc-doc/libgomp.html \
 	  /usr/share/info/gcc-$(PV_GCC).info.gz /usr/share/info/gcc.info.gz \
-	  /usr/share/info/gccint-$(PV_GCC).info.gz /usr/share/info/gccint.info.gz
+	  /usr/share/info/gccint-$(PV_GCC).info.gz /usr/share/info/gccint.info.gz \
+	  /usr/share/info/libgomp-$(PV_GCC).info.gz /usr/share/info/libgomp.info.gz 
   endif
 
 ifneq (,$(filter gdc, $(packages)))
@@ -542,7 +546,8 @@ endif
 	dh_installdirs -pgfortran-doc \
 		usr/share/doc usr/share/info
 	dh_link -pgfortran-doc \
-	  /usr/share/doc/gfortran-$(PV_GFORT)-doc /usr/share/doc/gfortran-doc \
+	  /usr/share/doc/gcc-$(PV_GFORT)-base/fortran/gfortran.html \
+	    /usr/share/doc/gfortran-doc/fortran/gfortran.html \
 	  /usr/share/info/gfortran-$(PV_GFORT).info.gz /usr/share/info/gfortran.info.gz
   endif
 	sed -e 's/@GFDL@/$(if $(filter-out yes,$(with_gfdl_docs)),\#)/g' \
@@ -555,7 +560,6 @@ ifeq (chill, $(findstring chill, $(packages)))
 	dh_link -pchill \
 	  /usr/share/doc/cpp /usr/share/doc/chill \
 	  /usr/bin/chill-$(PV_CHILL) /usr/bin/chill
-	dh_undocumented -pchill chill.1
 endif
 
 ifneq (,$(filter gcj, $(packages)))
@@ -791,7 +795,7 @@ binary-arch: build install
 #	dh_installdebconf
 	dh_installdocs -pcpp
 	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngpc-doc -Ngfortran-doc -Nlibgcj-common -Ngdc`; do \
-	  case "$$p" in gcj-*) t=libgcj-common;; *) t=cpp; esac; \
+	  case "$$p" in gij|gcj-*) t=libgcj-common;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
 	  rm -f debian/$$p/usr/share/doc/$$p; \
@@ -803,6 +807,16 @@ binary-arch: build install
 		debian/cpp/usr/share/doc/cpp/changelog.Debian
 	mv debian/gdc/usr/share/doc/gdc/changelog \
 		debian/gdc/usr/share/doc/gdc/changelog.Debian
+ifneq (,$(filter gpc, $(packages)))
+	dh_installdocs -pgpc-doc
+	dh_installchangelogs -pgpc-doc
+	mv debian/gpc-doc/usr/share/doc/gpc-doc/changelog \
+		debian/gpc-doc/usr/share/doc/gpc-doc/changelog.Debian
+endif
+ifeq ($(with_gfdl_docs),yes)
+	dh_installdocs -pcpp-doc -pgcc-doc -pgfortran-doc
+	dh_installchangelogs -pcpp-doc -pgcc-doc -pgfortran-doc
+endif
 	dh_compress -s $(nopkgs) -XREADME.Debian
 	dh_fixperms -s $(nopkgs)
 	dh_installdeb -s $(nopkgs)

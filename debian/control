@@ -3,7 +3,7 @@ Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>, Arthur Loiret <aloiret@debian.org>
-Standards-Version: 3.8.1
+Standards-Version: 3.8.3
 Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.2-2) [!arm], gcc-4.3-base (>= 4.3.4-1), lsb-release
 Build-Depends-Indep: ca-certificates, gcj-jdk, python, python-central
 XS-Python-Version: all
@@ -145,7 +145,7 @@ Package: gij
 Section: java
 Priority: optional
 Architecture: any
-Depends: libgcj-bc (>= ${version:libgcjbc}), gcj-jre-headless (>= ${version:gcj})
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj})
 Description: The GNU Java bytecode interpreter (transitional package)
  GIJ is not limited to interpreting bytecode. It includes a class loader which
  can dynamically load shared objects, so it is possible to give it the name
