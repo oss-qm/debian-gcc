@@ -110,7 +110,6 @@ REQV_41_GPC	:= (>= $(GPC_VERSION)-4.1.2-16)
 REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
-REQV_42_GDC	:= (>= $(GDC_VERSION)-4.2.4-1)
 REQV_43		:= (>= 4.3.4-1)
 REQV_44		:= (>= 4.4.1-2)
 
@@ -212,15 +211,13 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gpc_no_archs)))
   no_packages += gpc gpc-doc
 endif
 
-gdc_no_archs := sparc
+gdc_no_archs := sparc hurd-i386
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
   no_packages += gdc
 endif
 
 ifeq ($(DEB_HOST_ARCH),hurd-i386)
     OS_NAME	:= Hurd
-    CV_GDC	:= 4.2.4-$(REL_NO_424)
-    REQV_GDC	= $(REQV_42_GDC)
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH),kfreebsd-i386 kfreebsd-amd64))
