@@ -1,9 +1,9 @@
-gcc-defaults (1.89) UNRELEASED; urgency=low
+gcc-defaults (1.89) unstable; urgency=low
 
   * Remove support for gdc-4.2.  Addresses: #559361.
   * Don't build gdc on hurd-i386.
 
- -- Arthur Loiret <aloiret@debian.org>  Thu, 03 Dec 2009 22:58:53 +0000
+ -- Arthur Loiret <aloiret@debian.org>  Sun, 06 Dec 2009 21:13:48 +0000
 
 gcc-defaults (1.88) unstable; urgency=low
 
