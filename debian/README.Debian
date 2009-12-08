@@ -48,14 +48,14 @@ similar.
 The default compiler versions for Debian GNU/Linux on i386 are
 (minor version numbers omitted):
 
-	cpp		: cpp-4.3
-	gcc		: gcc-4.3
-	g++		: g++-4.3
-	gfortran	: gfortran-4.3
-	gcj		: gcj-4.3
-	gij		: gij-4.3
-	gobjc		: gobjc-4.3
-	gobjc++		: gobjc++-4.3
+	cpp		: cpp-4.4
+	gcc		: gcc-4.4
+	g++		: g++-4.4
+	gfortran	: gfortran-4.4
+	gcj		: gcj-4.4
+	gij		: gij-4.4
+	gobjc		: gobjc-4.4
+	gobjc++		: gobjc++-4.4
 	gpc		: gpc-4.1
 	gdc		: gdc-4.1
 

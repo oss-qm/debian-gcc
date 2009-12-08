@@ -1,3 +1,9 @@
+gcc-defaults (1.90) unstable; urgency=low
+
+  * Make GCC-4.4 the default.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 08 Dec 2009 00:39:44 +0100
+
 gcc-defaults (1.89) unstable; urgency=low
 
   * Remove support for gdc-4.2.  Addresses: #559361.
