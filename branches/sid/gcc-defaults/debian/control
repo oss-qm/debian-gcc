@@ -4,7 +4,7 @@ Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>, Arthur Loiret <aloiret@debian.org>
 Standards-Version: 3.8.3
-Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.2-2) [!arm], gcc-4.3-base (>= 4.3.4-1), lsb-release
+Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.2-2) [!arm], gcc-4.4-base (>= 4.4.2-1), lsb-release
 Build-Depends-Indep: ca-certificates, gcj-jdk, python, python-central
 XS-Python-Version: all
 
@@ -188,8 +188,8 @@ Section: java
 Architecture: any
 Depends: libgcj-common (>= ${version:libgcjcommon}), ${dep:jrehl}
 Suggests: gcj-jdk
-Conflicts: gij (<< ${ver:gcjconflict}), java-gcj-compat-headless (<< 1.0.80-2)
-Replaces: java-gcj-compat-headless (<< 1.0.80-2)
+Conflicts: gij (<< ${ver:gcjconflict}), java-gcj-compat-headless (<< 1.0.80-6)
+Replaces: java-gcj-compat-headless (<< 1.0.80-6)
 Provides: java-gcj-compat-headless, java-virtual-machine, java5-runtime-headless, java2-runtime-headless, java1-runtime-headless, java-runtime-headless
 Description: Java runtime environment using GIJ/classpath (headless version)
  GIJ is a Java bytecode interpreter, not limited to interpreting bytecode.
