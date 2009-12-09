@@ -333,7 +333,7 @@ ifeq ($(with_multilib),yes)
 	  echo 'pkgmulti:gfort=gfortran-multilib'; \
 	) >> debian/substvars.local
 endif
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
+#ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	( \
 	  echo 'dep:jrehl=gcj-$${pv:gij}-jre-headless $${reqv:gij}'; \
 	  echo 'dep:jre=gcj-$${pv:gij}-jre $${reqv:gij}'; \
@@ -341,14 +341,14 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	  echo 'pkg:gjdoc=gjdoc'; \
 	  echo 'ver:gcjconflict=4:4.4.0-2'; \
 	) >> debian/substvars.local
-else
-	( \
-	  echo 'dep:jrehl=java-gcj-compat-headless (>= 1.0.80), gij-$${pv:gij} $${reqv:gij}'; \
-	  echo 'dep:jre=java-gcj-compat (>= 1.0.80)'; \
-	  echo 'dep:jdk=java-gcj-compat-dev (>= 1.0.80), gcj-$${pv:gcj} $${reqv:gcj}'; \
-	  echo 'ver:gcjconflict=4:4.3.3-6'; \
-	) >> debian/substvars.local
-endif
+#else
+#	( \
+#	  echo 'dep:jrehl=java-gcj-compat-headless (>= 1.0.80), gij-$${pv:gij} $${reqv:gij}'; \
+#	  echo 'dep:jre=java-gcj-compat (>= 1.0.80)'; \
+#	  echo 'dep:jdk=java-gcj-compat-dev (>= 1.0.80), gcj-$${pv:gcj} $${reqv:gcj}'; \
+#	  echo 'ver:gcjconflict=4:4.3.3-6'; \
+#	) >> debian/substvars.local
+#endif
 
 build: README build-stamp
 build-stamp:
@@ -611,11 +611,14 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
   endif
 
-  ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
+#  ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	dh_link -pgcj-jdk \
 	  /usr/bin/gjdoc-$(PV_GCJ) /usr/bin/gjdoc \
 	  /usr/share/man/man1/gjdoc-$(PV_GCJ).1.gz /usr/share/man/man1/gjdoc.1.gz
-  endif
+	cp -p debian/dh_javadoc debian/gcj-jdk/usr/bin/
+	pod2man -c Debhelper -r $(PV_GCJ) \
+		debian/dh_javadoc debian/gcj-jdk/usr/share/man/man1/dh_javadoc.1
+# endif
 
 	: # libgcj-bc
 	dh_installdirs -plibgcj-bc \
@@ -633,7 +636,7 @@ ifneq (,$(filter gcj, $(packages)))
 		> debian/libgcj-bc.shlibs
 #	echo "libgcj_bc 1 libgcj-bc" > debian/libgcj-bc.shlibs
 
-  ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
+#  ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	: # gcj-jre-headless
 	dh_installdirs -pgcj-jre-headless \
 		usr/share/doc usr/lib/jvm
@@ -643,7 +646,7 @@ ifneq (,$(filter gcj, $(packages)))
 		debian/gcj-jre-headless/usr/lib/jvm/java-1.5.0-gcj
 	ln -sf java-gcj-$(PV_GCJ) \
 		debian/gcj-jre-headless/usr/lib/jvm/java-gcj
-  endif
+#  endif
 endif
 
 	: # libgcj-common
