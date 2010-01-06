@@ -1,3 +1,9 @@
+gcc-defaults (1.92) unstable; urgency=low
+
+  * Make GCC-4.4 the default for the spu cross compilers.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 06 Jan 2010 14:20:22 +0100
+
 gcc-defaults (1.91) unstable; urgency=low
 
   * gcj-jdk: Add dh_javadoc, conflict with gjdoc.
