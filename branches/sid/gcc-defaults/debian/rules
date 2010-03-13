@@ -93,6 +93,8 @@ REL_NO_440	:= $(shell expr $(VMINOR) - 80)$(REL_EXT)
 REL_NO_441	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
 # gcc-defaults 1.90 is the first version with 4.4.2 support.
 REL_NO_442	:= $(shell expr $(VMINOR) - 89)$(REL_EXT)
+# gcc-defaults 1.93 is the first version with 4.4.3 support.
+REL_NO_443	:= $(shell expr $(VMINOR) - 92)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.25
@@ -113,9 +115,9 @@ REQV_41_GDC	:= (>= $(GDC_VERSION)-4.1.2-18)
 REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_43		:= (>= 4.3.4-1)
-REQV_44		:= (>= 4.4.2-1)
+REQV_44		:= (>= 4.4.3-1)
 
-REQV_LIBGCJ_BC	:= (>= 4.4.2-1)
+REQV_LIBGCJ_BC	:= (>= 4.4.3-1)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -129,19 +131,19 @@ gcj44_archs = amd64 armel hppa hurd-i386 i386 lpia mips mipsel powerpc ppc64 kfr
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.4.2-$(REL_NO_442)
-CV_GCC		:= 4.4.2-$(REL_NO_442)
-CV_GPP		:= 4.4.2-$(REL_NO_442)
-CV_GOBJC	:= 4.4.2-$(REL_NO_442)
-CV_GOBJCXX	:= 4.4.2-$(REL_NO_442)
-CV_GFORT	:= 4.4.2-$(REL_NO_442)
-CV_GCJ		:= 4.4.2-$(REL_NO_442)
-CV_GIJ		:= 4.4.2-$(REL_NO_442)
-CV_LIBGCJBC	:= 4.4.2-$(REL_NO_442)
+CV_CPP		:= 4.4.3-$(REL_NO_443)
+CV_GCC		:= 4.4.3-$(REL_NO_443)
+CV_GPP		:= 4.4.3-$(REL_NO_443)
+CV_GOBJC	:= 4.4.3-$(REL_NO_443)
+CV_GOBJCXX	:= 4.4.3-$(REL_NO_443)
+CV_GFORT	:= 4.4.3-$(REL_NO_443)
+CV_GCJ		:= 4.4.3-$(REL_NO_443)
+CV_GIJ		:= 4.4.3-$(REL_NO_443)
+CV_LIBGCJBC	:= 4.4.3-$(REL_NO_442)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.1.2-$(REL_NO_412)
-CV_LIBGCJCOMMON	:= 1:4.4.2-$(REL_NO_442)
-CV_SPU		:= 4.4.2-$(REL_NO_442)
+CV_LIBGCJCOMMON	:= 1:4.4.2-$(REL_NO_443)
+CV_SPU		:= 4.4.3-$(REL_NO_443)
 
 #ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 #  CV_GCJ		:= 4.4.2-$(REL_NO_442)
