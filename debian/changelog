@@ -1,3 +1,9 @@
+gcc-defaults (1.93) unstable; urgency=low
+
+  * Bump dependencies to 4.4.3.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 13 Mar 2010 04:11:13 +0100
+
 gcc-defaults (1.92) unstable; urgency=low
 
   * Make GCC-4.4 the default for the spu cross compilers.
