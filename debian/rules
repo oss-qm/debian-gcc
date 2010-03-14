@@ -142,7 +142,7 @@ CV_GIJ		:= 4.4.3-$(REL_NO_443)
 CV_LIBGCJBC	:= 4.4.3-$(REL_NO_442)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.3.4-$(REL_NO_434)
-CV_LIBGCJCOMMON	:= 1:4.4.2-$(REL_NO_443)
+CV_LIBGCJCOMMON	:= 1:4.4.3-$(REL_NO_443)
 CV_SPU		:= 4.4.3-$(REL_NO_443)
 
 #ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
