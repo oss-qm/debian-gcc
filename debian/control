@@ -269,7 +269,7 @@ Package: gdc
 Priority: optional
 Architecture: any
 Depends: gdc-${pv:gdc} ${reqv:gdc}
-Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7)
+Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7), gdc-4.3 (<< 1:1.043-4.3.4-1)
 Description: The D compiler
  This is a dependency package providing the default D compiler.
  Per policy, all packages that contain D sources must use this package
