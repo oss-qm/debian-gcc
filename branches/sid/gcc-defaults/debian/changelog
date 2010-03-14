@@ -2,8 +2,10 @@ gcc-defaults (1.93) unstable; urgency=low
 
   * Bump dependencies to 4.4.3.
   * gdc: Make gdc-4.3 the default.
+  * Fix file conflict error install gdc. Closes: #573487.
+  * Fix some lintian warnings.
 
- -- Matthias Klose <doko@debian.org>  Sat, 13 Mar 2010 04:11:13 +0100
+ -- Matthias Klose <doko@debian.org>  Sun, 14 Mar 2010 04:29:59 +0100
 
 gcc-defaults (1.92) unstable; urgency=low
 
