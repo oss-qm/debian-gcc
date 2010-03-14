@@ -1,7 +1,0 @@
-#! /bin/sh -e
-
-install-info --quiet --remove gpc
-
-#DEBHELPER#
-
-exit 0

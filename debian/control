@@ -3,8 +3,8 @@ Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>, Arthur Loiret <aloiret@debian.org>
-Standards-Version: 3.8.3
-Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.2-2) [!arm], gcc-4.4-base (>= 4.4.2-1), lsb-release
+Standards-Version: 3.8.4
+Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.2-2) [!arm], gcc-4.4-base (>= 4.4.3~), lsb-release
 Build-Depends-Indep: ca-certificates, gcj-jdk, python, python-central
 XS-Python-Version: all
 
@@ -12,7 +12,7 @@ Package: cpp
 Priority: optional
 Architecture: any
 Section: interpreters
-Depends: cpp-${pv:cpp} ${reqv:cpp}
+Depends: cpp-${pv:cpp} ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
 Conflicts: cpp-doc (<< 1:2.95.3)
 Description: The GNU C preprocessor (cpp)
@@ -27,7 +27,7 @@ Description: The GNU C preprocessor (cpp)
 Package: g++
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), g++-${pv:gpp} ${reqv:gpp}, gcc-${pv:gpp} ${reqv:gpp}
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), g++-${pv:gpp} ${reqv:gpp}, gcc-${pv:gpp} ${reqv:gpp}, ${misc:Depends}
 Suggests: ${pkgmulti:gpp}
 Provides: c++-compiler
 Description: The GNU C++ compiler
@@ -38,7 +38,7 @@ Description: The GNU C++ compiler
 Package: g++-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), g++ (>= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}
+Depends: cpp (>= ${version:cpp}), g++ (>= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}, ${misc:Depends}
 Description: The GNU C++ compiler (multilib files)
  This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
  .
@@ -48,7 +48,7 @@ Description: The GNU C++ compiler (multilib files)
 Package: gobjc
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gobjc-${pv:gobjc} ${reqv:gobjc}
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gobjc-${pv:gobjc} ${reqv:gobjc}, ${misc:Depends}
 Suggests: ${pkgmulti:gobjc}
 Provides: objc-compiler
 Description: The GNU Objective-C compiler
@@ -61,7 +61,7 @@ Description: The GNU Objective-C compiler
 Package: gobjc-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), gobjc (>= ${version:gcc}), gobjc-${pv:gobjc}-multilib ${reqv:gobjc}
+Depends: cpp (>= ${version:cpp}), gobjc (>= ${version:gcc}), gobjc-${pv:gobjc}-multilib ${reqv:gobjc}, ${misc:Depends}
 Description: The GNU Objective-C compiler (multilib files)
  This is the GNU Objective-C compiler, which compiles Objective-C on
  platforms supported by the gcc compiler.
@@ -72,7 +72,7 @@ Description: The GNU Objective-C compiler (multilib files)
 Package: gobjc++
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gobjc++-${pv:gobjcxx} ${reqv:gobjcxx}
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gobjc++-${pv:gobjcxx} ${reqv:gobjcxx}, ${misc:Depends}
 Recommends: g++ (>= ${version:cpp}), gobjc (>= ${version:cpp})
 Suggests: ${pkgmulti:gobjcxx}
 Provides: objc++-compiler
@@ -86,7 +86,7 @@ Description: The GNU Objective-C++ compiler
 Package: gobjc++-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), gobjc++ (>= ${version:gcc}), gobjc++-${pv:gobjcxx}-multilib ${reqv:gobjcxx}
+Depends: cpp (>= ${version:cpp}), gobjc++ (>= ${version:gcc}), gobjc++-${pv:gobjcxx}-multilib ${reqv:gobjcxx}, ${misc:Depends}
 Description: The GNU Objective-C++ compiler (multilib files)
  This is the GNU Objective-C++ compiler, which compiles Objective-C++ on
  platforms supported by the gcc compiler.
@@ -97,7 +97,7 @@ Description: The GNU Objective-C++ compiler (multilib files)
 Package: gfortran
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gfortran-${pv:gfort} ${reqv:gfort}
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gfortran-${pv:gfort} ${reqv:gfort}, ${misc:Depends}
 Suggests: ${pkgmulti:gfort}, gfortran-doc
 Provides: fortran-compiler
 Description: The GNU Fortran 95 compiler
@@ -110,7 +110,7 @@ Description: The GNU Fortran 95 compiler
 Package: gfortran-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), gfortran (>= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}
+Depends: cpp (>= ${version:cpp}), gfortran (>= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}, ${misc:Depends}
 Description: The GNU Fortran 95 compiler (multilib files)
  This is the GNU Fortran compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler.
@@ -122,7 +122,7 @@ Package: libgcj-common
 Section: java
 Architecture: all
 Priority: optional
-Depends: ${python:Depends}
+Depends: ${python:Depends}, ${misc:Depends}
 Conflicts: classpath (<= 0.04-4)
 Replaces: java-gcj-compat (<< 1.0.65-8), java-gcj-compat-dev (<< 1.0.80-2)
 XB-Python-Version: ${python:Versions}
@@ -133,7 +133,7 @@ Package: gcj
 Section: java
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcj-jdk (>= ${version:gcj})
+Depends: cpp (>= ${version:cpp}), gcj-jdk (>= ${version:gcj}), ${misc:Depends}
 Description: The GNU Java compiler (transitional package)
  GCJ is a front end to the GCC compiler which can natively compile both
  Java(tm) source and bytecode files. The compiler can also generate class
@@ -145,7 +145,7 @@ Package: gij
 Section: java
 Priority: optional
 Architecture: any
-Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj})
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj}), ${misc:Depends}
 Description: The GNU Java bytecode interpreter (transitional package)
  GIJ is not limited to interpreting bytecode. It includes a class loader which
  can dynamically load shared objects, so it is possible to give it the name
@@ -158,7 +158,7 @@ Package: libgcj-bc
 Section: java
 Architecture: any
 Priority: optional
-Depends: libgcj-common (>= ${version:libgcjcommon}), ${pkg:libgcj} ${reqv:gij}
+Depends: libgcj-common (>= ${version:libgcjcommon}), ${pkg:libgcj} ${reqv:gij}, ${misc:Depends}
 Description: Link time only library for use with gcj
  A fake library that is used at link time only.  It ensures that
  binaries built with the BC-ABI link against a constant SONAME.
@@ -169,7 +169,7 @@ Package: gcj-jdk
 Section: java
 Architecture: any
 Priority: optional
-Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre (>= ${version:gcj}), ${dep:jdk}, ${pkg:gjdoc}
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre (>= ${version:gcj}), ${dep:jdk}, ${pkg:gjdoc}, ${misc:Depends}
 Provides: java-gcj-compat-dev, java-compiler, java-sdk, java2-sdk, java5-sdk, ${pkg:gjdoc}
 Conflicts: gcj (<< ${ver:gcjconflict}), classpath-common (<= 2:0.97.2-1.1), ${pkg:gjdoc}, java-gcj-compat-dev (<< 1.0.80-2)
 Replaces: ${pkg:gjdoc}, java-gcj-compat-dev (<< 1.0.80-2)
@@ -186,7 +186,7 @@ Package: gcj-jre-headless
 Priority: optional
 Section: java
 Architecture: any
-Depends: libgcj-common (>= ${version:libgcjcommon}), ${dep:jrehl}
+Depends: libgcj-common (>= ${version:libgcjcommon}), ${dep:jrehl}, ${misc:Depends}
 Suggests: gcj-jdk
 Conflicts: gij (<< ${ver:gcjconflict}), java-gcj-compat-headless (<< 1.0.80-6)
 Replaces: java-gcj-compat-headless (<< 1.0.80-6)
@@ -205,7 +205,7 @@ Package: gcj-jre
 Section: java
 Architecture: any
 Priority: optional
-Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj}), ${dep:jre}
+Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj}), ${dep:jre}, ${misc:Depends}
 Provides: java-gcj-compat, java5-runtime, java2-runtime, java1-runtime, java-runtime
 Description: Java runtime environment using GIJ/classpath
  GIJ is a Java bytecode interpreter, not limited to interpreting bytecode.
@@ -219,7 +219,7 @@ Description: Java runtime environment using GIJ/classpath
 Package: gpc
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gpc-${pv:gpc} ${reqv:gpc}
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gpc-${pv:gpc} ${reqv:gpc}, ${misc:Depends}
 Suggests: gpc-doc
 Conflicts: gpc-doc (<< 1:2.95.3)
 Provides: pascal-compiler
@@ -236,7 +236,7 @@ Description: The GNU Pascal compiler
 Package: gcc
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}
+Depends: cpp (>= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
 Recommends: libc6-dev | libc-dev
 Suggests: gcc-multilib, make, manpages-dev, autoconf, automake1.9, libtool, flex, bison, gdb, gcc-doc
 Provides: c-compiler
@@ -249,7 +249,7 @@ Description: The GNU C compiler
 Package: gcc-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}
 Description: The GNU C compiler (multilib files)
  This is the GNU C compiler, a fairly portable optimizing compiler for C.
  .
@@ -260,7 +260,7 @@ Package: gpc-doc
 Section: doc
 Architecture: any
 Priority: optional
-Depends: gpc-${pv:gpc}-doc ${reqv:gpc}
+Depends: gpc-${pv:gpc}-doc ${reqv:gpc}, ${misc:Depends}, dpkg (>= 1.15.4) | install-info
 Suggests: gpc (>= ${version:gpc})
 Description: Documentation for the GNU Pascal compiler (gpc)
  Documentation for the GNU Pascal compiler in info format (dependency package).
@@ -268,7 +268,7 @@ Description: Documentation for the GNU Pascal compiler (gpc)
 Package: gdc
 Priority: optional
 Architecture: any
-Depends: gdc-${pv:gdc} ${reqv:gdc}
+Depends: gdc-${pv:gdc} ${reqv:gdc}, ${misc:Depends}
 Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7), gdc-4.3 (<< 1:1.043-4.3.4-1)
 Description: The D compiler
  This is a dependency package providing the default D compiler.
@@ -279,7 +279,7 @@ Package: gcc-spu
 Architecture: powerpc ppc64
 Section: devel
 Priority: optional
-Depends: cpp (>= ${version:cpp}), gcc-${pv:spu}-spu ${reqv:spu}
+Depends: cpp (>= ${version:cpp}), gcc-${pv:spu}-spu ${reqv:spu}, ${misc:Depends}
 Description: SPU cross-compiler (preprocessor and C compiler)
  GNU Compiler Collection for the Cell Broadband Engine SPU (preprocessor
  and C compiler).
@@ -288,7 +288,7 @@ Package: g++-spu
 Architecture: powerpc ppc64
 Section: devel
 Priority: optional
-Depends: cpp (>= ${version:cpp}), g++-${pv:spu}-spu ${reqv:spu}
+Depends: cpp (>= ${version:cpp}), g++-${pv:spu}-spu ${reqv:spu}, ${misc:Depends}
 Description: SPU cross-compiler (C++ compiler)
  GNU Compiler Collection for the Cell Broadband Engine SPU (C++ compiler).
 
@@ -296,6 +296,6 @@ Package: gfortran-spu
 Architecture: powerpc ppc64
 Section: devel
 Priority: optional
-Depends: cpp (>= ${version:cpp}), gfortran-${pv:spu}-spu ${reqv:spu}
+Depends: cpp (>= ${version:cpp}), gfortran-${pv:spu}-spu ${reqv:spu}, ${misc:Depends}
 Description: SPU cross-compiler (Fortran compiler)
  GNU Compiler Collection for the Cell Broadband Engine SPU (Fortran compiler).
