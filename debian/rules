@@ -87,6 +87,9 @@ REL_NO_432	:= $(shell expr $(VMINOR) - 75)$(REL_EXT)
 REL_NO_433	:= $(shell expr $(VMINOR) - 78)$(REL_EXT)
 # gcc-defaults 1.88 is the first version with 4.3.4 support.
 REL_NO_434	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
+# gcc-defaults 1.94 is the first version with 4.3.5 support.
+REL_NO_435	:= $(shell expr $(VMINOR) - 93)$(REL_EXT)
+
 # gcc-defaults 1.81 is the first version with 4.4.0 support.
 REL_NO_440	:= $(shell expr $(VMINOR) - 80)$(REL_EXT)
 # gcc-defaults 1.88 is the first version with 4.4.1 support.
@@ -95,6 +98,8 @@ REL_NO_441	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
 REL_NO_442	:= $(shell expr $(VMINOR) - 89)$(REL_EXT)
 # gcc-defaults 1.93 is the first version with 4.4.3 support.
 REL_NO_443	:= $(shell expr $(VMINOR) - 92)$(REL_EXT)
+# gcc-defaults 1.94 is the first version with 4.4.4 support.
+REL_NO_444	:= $(shell expr $(VMINOR) - 93)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 1:1.043
@@ -113,11 +118,11 @@ REQV_41_GCJ	:= (>= 4.1.2-1)
 REQV_41_GPC	:= (>= $(GPC_VERSION)-4.1.2-16)
 REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
-REQV_43		:= (>= 4.3.4-1)
-REQV_43_GDC	:= (>= $(GDC_VERSION)-4.3.4-1)
-REQV_44		:= (>= 4.4.3-1)
+REQV_43		:= (>= 4.3.5-1)
+REQV_43_GDC	:= (>= $(GDC_VERSION)-4.3.5-1)
+REQV_44		:= (>= 4.4.4-2)
 
-REQV_LIBGCJ_BC	:= (>= 4.4.3-1)
+REQV_LIBGCJ_BC	:= (>= 4.4.4-2)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -125,25 +130,25 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 
 # gcj-4.4 has some regressions in the testsuite compared to 4.3
 # results on alpha are bad in both 4.3 and 4.4.
-gcj44_archs = amd64 armel hppa hurd-i386 i386 lpia mips mipsel powerpc ppc64 kfreebsd-amd64 kfreebsd-i386 sh4
+gcj44_archs = amd64 armel hppa hurd-i386 i386 lpia mips mipsel powerpc powerpcspe ppc64 kfreebsd-amd64 kfreebsd-i386 sh4
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.4.3-$(REL_NO_443)
-CV_GCC		:= 4.4.3-$(REL_NO_443)
-CV_GPP		:= 4.4.3-$(REL_NO_443)
-CV_GOBJC	:= 4.4.3-$(REL_NO_443)
-CV_GOBJCXX	:= 4.4.3-$(REL_NO_443)
-CV_GFORT	:= 4.4.3-$(REL_NO_443)
-CV_GCJ		:= 4.4.3-$(REL_NO_443)
-CV_GIJ		:= 4.4.3-$(REL_NO_443)
-CV_LIBGCJBC	:= 4.4.3-$(REL_NO_442)
+CV_CPP		:= 4.4.4-$(REL_NO_444)
+CV_GCC		:= 4.4.4-$(REL_NO_444)
+CV_GPP		:= 4.4.4-$(REL_NO_444)
+CV_GOBJC	:= 4.4.4-$(REL_NO_444)
+CV_GOBJCXX	:= 4.4.4-$(REL_NO_444)
+CV_GFORT	:= 4.4.4-$(REL_NO_444)
+CV_GCJ		:= 4.4.4-$(REL_NO_444)
+CV_GIJ		:= 4.4.4-$(REL_NO_444)
+CV_LIBGCJBC	:= 4.4.4-$(REL_NO_444)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
-CV_GDC		:= 4.3.4-$(REL_NO_434)
-CV_LIBGCJCOMMON	:= 1:4.4.3-$(REL_NO_443)
-CV_SPU		:= 4.4.3-$(REL_NO_443)
+CV_GDC		:= 4.3.5-$(REL_NO_435)
+CV_LIBGCJCOMMON	:= 1:4.4.4-$(REL_NO_444)
+CV_SPU		:= 4.4.4-$(REL_NO_444)
 
 #ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 #  CV_GCJ		:= 4.4.2-$(REL_NO_442)
@@ -180,8 +185,8 @@ LIBGCJ	= libgcj10
 LIBGCJ_PC	= libgcj10.pc
 LIBGCJ_SONAME	= 10
 
-gcj_archs = alpha amd64 armel hppa i386 ia64 lpia m68k mips mipsel powerpc ppc64 s390 sh4 sparc kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj_native_archs = alpha amd64 armel hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 sh4 sparc kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj_archs = alpha amd64 armel hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj_native_archs = alpha amd64 armel hppa i386 ia64 lpia mips mipsel powerpc powerpcspe ppc64 s390 sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 multilib_archs = amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
@@ -203,7 +208,7 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gpc_no_archs)))
   no_packages += gpc gpc-doc
 endif
 
-gdc_no_archs := sparc hurd-i386
+gdc_no_archs := hurd-i386
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
   no_packages += gdc
 endif

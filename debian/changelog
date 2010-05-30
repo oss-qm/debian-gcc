@@ -1,3 +1,11 @@
+gcc-defaults (1.94) unstable; urgency=low
+
+  * Bump dependencies to 4.4.4 / 4.3.5.
+  * Build gdc for sparc.
+  * Add powerpcspe to gcj_archs.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 30 May 2010 22:18:54 +0200
+
 gcc-defaults (1.93) unstable; urgency=low
 
   * Bump dependencies to 4.4.3.
