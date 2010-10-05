@@ -1,3 +1,17 @@
+gcc-defaults (1.96) unstable; urgency=low
+
+  * Bump dependencies to 4.4.5.
+  * Bump gdc version to 1.060.
+  * Build using dh_python2 instead of python-central.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 05 Oct 2010 10:19:12 +0200
+
+gcc-defaults (1.95) unstable; urgency=low
+
+  * Fix libgcj-bc shlibs file. Closes: #584545.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 05 Jun 2010 19:05:46 +0200
+
 gcc-defaults (1.94) unstable; urgency=low
 
   * Bump dependencies to 4.4.4 / 4.3.5.

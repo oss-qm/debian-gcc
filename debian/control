@@ -3,9 +3,9 @@ Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>, Arthur Loiret <aloiret@debian.org>
-Standards-Version: 3.8.4
-Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.2-2) [!arm], gcc-4.4-base (>= 4.4.3~), lsb-release
-Build-Depends-Indep: ca-certificates, gcj-jdk, python, python-central
+Standards-Version: 3.9.1
+Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.5~) [!arm], gcc-4.4-base (>= 4.4.5~), lsb-release
+Build-Depends-Indep: ca-certificates, gcj-jdk, python
 XS-Python-Version: all
 
 Package: cpp
