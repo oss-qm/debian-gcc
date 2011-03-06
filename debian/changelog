@@ -1,3 +1,11 @@
+gcc-defaults (1.97) unstable; urgency=low
+
+  * On armhf, point gdc to gdc-4.4.
+  * Tighten build dependency on python. Closes: #604188.
+  * Add Vcs-* attributes to the control file. Closes: #597058.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 06 Dec 2010 02:28:32 +0100
+
 gcc-defaults (1.96) unstable; urgency=low
 
   * Bump dependencies to 4.4.5.

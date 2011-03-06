@@ -5,7 +5,9 @@ Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>, Arthur Loiret <aloiret@debian.org>
 Standards-Version: 3.9.1
 Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.5~) [!arm], gcc-4.4-base (>= 4.4.5~), lsb-release
-Build-Depends-Indep: ca-certificates, gcj-jdk, python
+Build-Depends-Indep: ca-certificates, gcj-jdk, python (>= 2.6.6)
+Vcs-Svn: svn+ssh://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
+Vcs-Browser: http://svn.debian.org/viewsvn/gcccvs/branches/sid/gcc-defaults
 XS-Python-Version: all
 
 Package: cpp
