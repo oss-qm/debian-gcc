@@ -183,7 +183,7 @@ EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
-all_packages    := g++ gfortran gcj gobjc gobjc++ gpc gdc
+all_packages    := g++ gfortran gcj gobjc gobjc++ gdc #gpc
 all_packages	+= gcc-spu g++-spu gfortran-spu
 no_packages	:= chill
 
@@ -215,6 +215,7 @@ gpc_no_archs := sh3 sh4
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gpc_no_archs)))
   no_packages += gpc gpc-doc
 endif
+no_packages += gpc gpc-doc
 
 gdc_no_archs := hurd-i386
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
