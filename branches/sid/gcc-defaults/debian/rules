@@ -133,7 +133,7 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 
 # gcj-4.4 has some regressions in the testsuite compared to 4.3
 # results on alpha are bad in both 4.3 and 4.4.
-gcj44_archs = amd64 armel hppa hurd-i386 i386 lpia mips mipsel powerpc powerpcspe ppc64 kfreebsd-amd64 kfreebsd-i386 sh4
+gcj44_archs = amd64 armel armhf hppa hurd-i386 i386 lpia mips mipsel powerpc powerpcspe ppc64 kfreebsd-amd64 kfreebsd-i386 sh4
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
@@ -174,6 +174,11 @@ REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_43_GDC)
 REQV_SPU	= $(REQV_44)
 
+ifneq (,$(filter $(DEB_HOST_ARCH),armhf))
+  CV_GDC	:= 4.4.5-$(REL_NO_445)
+  REQV_GDC	= $(REQV_44_GDC)
+endif
+
 EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
@@ -188,8 +193,8 @@ LIBGCJ	= libgcj10
 LIBGCJ_PC	= libgcj10.pc
 LIBGCJ_SONAME	= 10
 
-gcj_archs = alpha amd64 armel hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj_native_archs = alpha amd64 armel hppa i386 ia64 lpia mips mipsel powerpc powerpcspe ppc64 s390 sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj_native_archs = alpha amd64 armel armhf hppa i386 ia64 lpia mips mipsel powerpc powerpcspe ppc64 s390 sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 multilib_archs = amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
