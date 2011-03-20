@@ -138,7 +138,7 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 # gcj-4.4 has some regressions in the testsuite compared to 4.3
 # results on alpha are bad in both 4.3 and 4.4.
 gcj44_archs = amd64 armel armhf hppa hurd-i386 i386 lpia mips mipsel powerpc powerpcspe ppc64 kfreebsd-amd64 kfreebsd-i386 sh4
-gcc45_archs = amd64 armel armhf i386 lpia powerpc ppc64 kfreebsd-amd64 kfreebsd-i386
+gcc45_archs = amd64 armel armhf hppa i386 lpia powerpc ppc64 kfreebsd-amd64 kfreebsd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
