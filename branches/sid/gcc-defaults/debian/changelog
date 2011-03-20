@@ -3,6 +3,7 @@ gcc-defaults (1.100) unstable; urgency=low
   * c99: Do not accept -ansi option (Mike Miller). Closes: #617321.
   * c99: Clarify c99 error message incorrectly refering to ANSI C
     (Mike Miller). Closes: #618718.
+  * On hppa, default gcc, g++, gobjc, gobjc++, gfortran to GCC-4.5.
 
  -- Matthias Klose <doko@debian.org>  Sun, 20 Mar 2011 14:09:54 +0100
 
