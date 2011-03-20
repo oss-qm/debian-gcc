@@ -1,6 +1,17 @@
+gcc-defaults (1.99) unstable; urgency=low
+
+  * gdc: Fix versioned dependency on gdc-4.4.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 07 Mar 2011 22:43:33 +0100
+
 gcc-defaults (1.98) unstable; urgency=low
 
   * Stop building gpc. Closes: #613923.
+  * Default to gdc-4.4.
+  * On amd64, armel, armhf, i386, powerpc, ppc64, kfreebsd-amd64
+    and kfreebsd-i386:
+    Default gcc, g++, gobjc, gobjc++, gfortran to GCC-4.5.
+  * Do not install anymore the sparc gcc/g++ wrappers.
 
  -- Matthias Klose <doko@debian.org>  Sun, 06 Mar 2011 03:10:53 +0100
 
