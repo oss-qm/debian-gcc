@@ -1,3 +1,9 @@
+gcc-defaults (1.101) UNRELEASED; urgency=low
+
+  * Update rebuild-gcj-db for gcj-4.5 and gcj-4.6.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 27 Mar 2011 16:59:23 +0200
+
 gcc-defaults (1.100) unstable; urgency=low
 
   * c99: Do not accept -ansi option (Mike Miller). Closes: #617321.
