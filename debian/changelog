@@ -4,8 +4,9 @@ gcc-defaults (1.100) unstable; urgency=low
   * c99: Clarify c99 error message incorrectly refering to ANSI C
     (Mike Miller). Closes: #618718.
   * On hppa, default gcc, g++, gobjc, gobjc++, gfortran to GCC-4.5.
+  * Build gccgo and gccgo-multilib packages.
 
- -- Matthias Klose <doko@debian.org>  Sun, 20 Mar 2011 14:09:54 +0100
+ -- Matthias Klose <doko@debian.org>  Sun, 27 Mar 2011 13:05:18 +0200
 
 gcc-defaults (1.99) unstable; urgency=low
 

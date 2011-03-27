@@ -106,6 +106,9 @@ REL_NO_445	:= $(shell expr $(VMINOR) - 95)$(REL_EXT)
 # gcc-defaults 1.98 is the first version with 4.5.2 support.
 REL_NO_452	:= $(shell expr $(VMINOR) - 97)$(REL_EXT)
 
+# gcc-defaults 1.100 is the first version with 4.6.0 support.
+REL_NO_460	:= $(shell expr $(VMINOR) - 99)$(REL_EXT)
+
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 1.063
 
@@ -128,6 +131,7 @@ REQV_43_GDC	:= (>= $(GDC_VERSION)-4.3.5-1)
 REQV_44		:= (>= 4.4.5-1~)
 REQV_44_GDC	:= (>= $(GDC_VERSION)-4.4.5-1)
 REQV_45		:= (>= 4.5.2-3)
+REQV_46		:= (>= 4.6.0-1)
 
 REQV_LIBGCJ_BC	:= (>= 4.4.5-1~)
 
@@ -150,6 +154,7 @@ CV_GPP		:= 4.4.5-$(REL_NO_445)
 CV_GOBJC	:= 4.4.5-$(REL_NO_445)
 CV_GOBJCXX	:= 4.4.5-$(REL_NO_445)
 CV_GFORT	:= 4.4.5-$(REL_NO_445)
+CV_GGO		:= 4.6.0-$(REL_NO_460)
 CV_GCJ		:= 4.4.5-$(REL_NO_445)
 CV_GIJ		:= 4.4.5-$(REL_NO_445)
 CV_LIBGCJBC	:= 4.4.5-$(REL_NO_445)
@@ -173,6 +178,7 @@ REQV_GPP	= $(REQV_44)
 REQV_GOBJC	= $(REQV_44)
 REQV_GOBJCXX	= $(REQV_44)
 REQV_GFORT	= $(REQV_44)
+REQV_GGO	= $(REQV_46)
 REQV_GCJ	= $(REQV_44)
 REQV_GIJ	= $(REQV_44)
 REQV_GPC	= $(REQV_41_GPC)
@@ -206,7 +212,7 @@ EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
-all_packages    := g++ gfortran gcj gobjc gobjc++ gdc #gpc
+all_packages    := g++ gfortran gcj gobjc gobjc++ gdc gccgo #gpc
 all_packages	+= gcc-spu g++-spu gfortran-spu
 no_packages	:= chill
 
@@ -229,7 +235,12 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
-java_no_archs := arm 
+go_archs = amd64 armel armhf i386
+ifeq (,$(filter $(DEB_HOST_ARCH),$(go_archs)))
+  no_packages += gccgo
+endif
+
+java_no_archs := arm
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
   no_packages += gcj gij libgcj-bc gcj-jre-headless gcj-jre gcj-jdk
 endif
@@ -274,6 +285,7 @@ V_GPP	:= $(shell echo $(CV_GPP)   | sed 's/-[^-]*$$//')
 V_GOBJC	:= $(shell echo $(CV_GOBJC) | sed 's/-[^-]*$$//')
 V_GOBJCXX	:= $(shell echo $(CV_GOBJCXX) | sed 's/-[^-]*$$//')
 V_GFORT	:= $(shell echo $(CV_GFORT) | sed 's/-[^-]*$$//')
+V_GGO	:= $(shell echo $(CV_GGO)   | sed 's/-[^-]*$$//')
 V_CHILL	:= $(shell echo $(CV_CHILL) | sed 's/-[^-]*$$//')
 V_GCJ	:= $(shell echo $(CV_GCJ)   | sed 's/-[^-]*$$//')
 V_GIJ	:= $(shell echo $(CV_GIJ)   | sed 's/-[^-]*$$//')
@@ -293,6 +305,7 @@ PV_GPP	:= $(shell echo $(V_GPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GOBJC:= $(shell echo $(V_GOBJC) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GOBJCXX:= $(shell echo $(V_GOBJCXX) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GFORT:= $(shell echo $(V_GFORT) | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_GGO	:= $(shell echo $(V_GGO)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_CHILL:= $(shell echo $(V_CHILL) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
@@ -310,6 +323,7 @@ README:
 	   -DV_GOBJCXX=$(V_GOBJCXX) -DPV_GOBJCXX=$(PV_GOBJCXX) \
 	   -DV_CHILL=$(V_CHILL) -DPV_CHILL=$(PV_CHILL) \
 	   -DV_GFORT=$(V_GFORT) -DPV_GFORT=$(PV_GFORT) \
+	   -DV_GGO=$(V_GGO)     -DPV_GGO=$(PV_GGO) \
 	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
 	   -DV_GIJ=$(V_GIJ)     -DPV_GIJ=$(PV_GIJ) \
 	   -DV_GPC=$(V_GPC)     -DPV_GPC=$(PV_GPC) \
@@ -334,6 +348,7 @@ substvars:
 	  echo 'version:gcj=$(EPOCH):$(CV_GCJ)'; \
 	  echo 'version:gpc=$(EPOCH_GPC):$(CV_GPC)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
+	  echo 'version:ggo=$(EPOCH):$(CV_GGO)'; \
 	  echo 'version:libgcjcommon=$(CV_LIBGCJCOMMON)'; \
 	  echo 'pv:cpp=$(PV_CPP)'; \
 	  echo 'pv:gcc=$(PV_GCC)'; \
@@ -342,6 +357,7 @@ substvars:
 	  echo 'pv:gobjcxx=$(PV_GOBJCXX)'; \
 	  echo 'pv:chill=$(PV_CHILL)'; \
 	  echo 'pv:gfort=$(PV_GFORT)'; \
+	  echo 'pv:ggo=$(PV_GGO)'; \
 	  echo 'pv:gcj=$(PV_GCJ)'; \
 	  echo 'pv:gij=$(PV_GIJ)'; \
 	  echo 'pv:gpc=$(PV_GPC)'; \
@@ -354,6 +370,7 @@ substvars:
 	  echo 'reqv:gobjcxx=$(REQV_GOBJCXX)'; \
 	  echo 'reqv:chill=$(REQV_CHILL)'; \
 	  echo 'reqv:gfort=$(REQV_GFORT)'; \
+	  echo 'reqv:ggo=$(REQV_GGO)'; \
 	  echo 'reqv:gcj=$(REQV_GCJ)'; \
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
 	  echo 'reqv:gpc=$(REQV_GPC)'; \
@@ -370,6 +387,7 @@ ifeq ($(with_multilib),yes)
 	  echo 'pkgmulti:gobjc=gobjc-multilib'; \
 	  echo 'pkgmulti:gobjcxx=gobjc++-multilib'; \
 	  echo 'pkgmulti:gfort=gfortran-multilib'; \
+	  echo 'pkgmulti:ggo=gccgo-multilib'; \
 	) >> debian/substvars.local
 endif
 #ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
@@ -578,6 +596,20 @@ endif
   endif
 	sed -e 's/@GFDL@/$(if $(filter-out yes,$(with_gfdl_docs)),\#)/g' \
 		debian/gfortran.postinst.in > debian/gfortran.postinst
+endif
+
+ifneq (,$(filter gccgo, $(packages)))
+	: # Go
+	dh_installdirs -pgccgo usr/share/doc
+	dh_link -pgccgo \
+	  /usr/share/doc/cpp /usr/share/doc/gccgo \
+	  /usr/bin/gccgo-$(PV_GGO) /usr/bin/gccgo \
+	  /usr/bin/gccgo-$(PV_GGO) /usr/bin/$(DEB_HOST_GNU_TYPE)-gccgo
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pgccgo \
+	  /usr/share/man/man1/gccgo-$(PV_GGO).1.gz /usr/share/man/man1/gccgo.1.gz \
+	  /usr/share/man/man1/gccgo-$(PV_GGO).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gccgo.1.gz
+  endif
 endif
 
 ifeq (chill, $(findstring chill, $(packages)))
@@ -886,6 +918,12 @@ ifneq (,$(filter gfortran, $(packages)))
   endif
   ifeq ($(with_gfdl_docs),yes)
 	dh_gencontrol -pgfortran-doc -u-v$(EPOCH):$(CV_GFORT)
+  endif
+endif
+ifneq (,$(filter gccgo, $(packages)))
+	dh_gencontrol -pgccgo     -u-v$(EPOCH):$(CV_GGO)
+  ifeq ($(with_multilib),yes)
+	dh_gencontrol -pgccgo-multilib -u-v$(EPOCH):$(CV_GGO)
   endif
 endif
 ifneq (,$(filter gpc, $(packages)))
