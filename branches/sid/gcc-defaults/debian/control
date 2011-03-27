@@ -120,6 +120,29 @@ Description: The GNU Fortran 95 compiler (multilib files)
  On architectures with multilib support, the package contains dependencies
  for the non-default multilib architecture(s).
 
+Package: gccgo
+Priority: optional
+Architecture: any
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gccgo-${pv:ggo} ${reqv:ggo}, ${misc:Depends}
+Suggests: ${pkgmulti:ggo}
+Provides: go-compiler
+Description: The GNU Go compiler
+ This is the GNU Go compiler, which compiles Go on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Go compiler.
+
+Package: gccgo-multilib
+Priority: optional
+Architecture: amd64 i386
+Depends: cpp (>= ${version:cpp}), ggcgo (>= ${version:gcc}), gccgo-${pv:ggo}-multilib ${reqv:ggo}, ${misc:Depends}
+Description: The GNU Go compiler (multilib files)
+ This is the GNU Go compiler, which compiles Go on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ On architectures with multilib support, the package contains dependencies
+ for the non-default multilib architecture(s).
+
 Package: libgcj-common
 Section: java
 Architecture: all
