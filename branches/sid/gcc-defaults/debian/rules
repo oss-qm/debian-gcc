@@ -212,11 +212,17 @@ EPOCH=4
 EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
+distrelease  := $(shell lsb_release -cs)
 all_packages    := g++ gfortran gcj gobjc gobjc++ gdc gccgo #gpc
 all_packages	+= gcc-spu g++-spu gfortran-spu
 no_packages	:= chill
 
 lib32 = /usr/lib32
+
+# is this a multiarch-enabled build?
+ifeq (,$(filter $(distrelease),lenny etch squeeze wheezy sid dapper hardy jaunty karmic lucid maverick))
+  with_multiarch_lib := yes
+endif
 
 LIBGCJ	= libgcj10
 LIBGCJ_PC	= libgcj10.pc
@@ -692,12 +698,19 @@ ifneq (,$(filter gcj, $(packages)))
 # endif
 
 	: # libgcj-bc
+  ifeq ($(with_multiarch_lib),yes)
+	dh_installdirs -plibgcj-bc \
+		usr/lib/$(DEB_BUILD_MULTIARCH) usr/share/doc usr/share/lintian/overrides
+	ln -s libgcj.so.$(LIBGCJ_SONAME) \
+		debian/libgcj-bc/usr/lib/$(DEB_BUILD_MULTIARCH)/libgcj_bc.so.1
+  else
 	dh_installdirs -plibgcj-bc \
 		usr/lib usr/share/doc usr/share/lintian/overrides
-	dh_link -plibgcj-bc \
-	  /usr/share/doc/libgcj-common /usr/share/doc/libgcj-bc
 	ln -s libgcj.so.$(LIBGCJ_SONAME) \
 		debian/libgcj-bc/usr/lib/libgcj_bc.so.1
+  endif
+	dh_link -plibgcj-bc \
+	  /usr/share/doc/libgcj-common /usr/share/doc/libgcj-bc
 
 	mkdir -p debian/libgcj-bc/usr/share/lintian/overrides
 	cp -p debian/libgcj-bc.overrides \

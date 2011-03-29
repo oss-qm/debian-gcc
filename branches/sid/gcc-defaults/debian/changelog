@@ -1,6 +1,8 @@
 gcc-defaults (1.101) UNRELEASED; urgency=low
 
   * Update rebuild-gcj-db for gcj-4.5 and gcj-4.6.
+  * debian/rules: Fix libgcj-bc.so.1 symlink for multiarch path,
+    when building for multiarch (Martin Pitt).
 
  -- Matthias Klose <doko@debian.org>  Sun, 27 Mar 2011 16:59:23 +0200
 
