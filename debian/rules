@@ -474,12 +474,6 @@ install: build substvars
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs
-#ifeq ($(DEB_HOST_ARCH),sparc)
-#	rm -f debian/gcc/usr/bin/gcc
-#	$(CC) -DGCC_NAME=gcc-$(PV_GCC) -O2 -Wall sparc-gcc.c -o debian/gcc/usr/bin/gcc
-#	mkdir -p debian/gcc/etc
-#	cp -p debian/disable_64_gcc debian/gcc/etc/.
-#endif
 	install -m 755 -p c89 debian/gcc/usr/bin/c89-gcc
 	install -m 644 -p c89.1 debian/gcc/usr/share/man/man1/c89-gcc.1
 	install -m 755 -p c99 debian/gcc/usr/bin/c99-gcc
@@ -552,10 +546,6 @@ ifneq (,$(filter g++, $(packages)))
 	  /usr/share/doc/cpp /usr/share/doc/g++ \
 	  /usr/bin/g++-$(PV_GPP) /usr/bin/g++ \
 	  /usr/bin/g++-$(PV_GPP) /usr/bin/$(DEB_HOST_GNU_TYPE)-g++
-#  ifeq ($(DEB_HOST_ARCH),sparc)
-#	rm -f debian/g++/usr/bin/g++
-#	$(CC) -DGPP_NAME=g++-$(PV_GPP) -O2 -Wall sparc-g++.c -o debian/g++/usr/bin/g++
-#  endif
   ifeq ($(with_gfdl_docs),yes)
 	dh_link -pg++ \
 	  /usr/share/man/man1/g++-$(PV_GPP).1.gz /usr/share/man/man1/g++.1.gz \
