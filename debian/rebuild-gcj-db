@@ -89,7 +89,7 @@ if which gcj-dbtool-4.6 >/dev/null 2>&1; then
     rebuild_databases 4.6
 fi
 
-if which gcj-dbtool-4.4 >/dev/null 2>&1; then
+if which gcj-dbtool-4.5 >/dev/null 2>&1; then
     rebuild_databases 4.5
 fi
 
