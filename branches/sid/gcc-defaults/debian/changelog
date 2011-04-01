@@ -1,11 +1,17 @@
-gcc-defaults (1.101) UNRELEASED; urgency=low
+gcc-defaults (1.102) unstable; urgency=medium
+
+  * Fix typos. Closes: #620275, #620190.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 01 Apr 2011 15:53:14 +0200
+
+gcc-defaults (1.101) unstable; urgency=low
 
   * Update rebuild-gcj-db for gcj-4.5 and gcj-4.6.
   * debian/rules: Fix libgcj-bc.so.1 symlink for multiarch path,
     when building for multiarch (Martin Pitt).
   * Remove sparc gcc/g++ wrappers.
 
- -- Matthias Klose <doko@debian.org>  Sun, 27 Mar 2011 16:59:23 +0200
+ -- Matthias Klose <doko@debian.org>  Wed, 30 Mar 2011 00:37:25 +0200
 
 gcc-defaults (1.100) unstable; urgency=low
 
