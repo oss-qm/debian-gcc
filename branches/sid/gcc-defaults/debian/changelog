@@ -1,6 +1,7 @@
 gcc-defaults (1.103) UNRELEASED; urgency=low
 
   * Don't build gccgo on armel and armhf. Closes: #622095.
+  * Add dependency on gcc-multilib to the other -multilib packages.
 
  -- Matthias Klose <doko@ubuntu.com, 11 Apr 2011 10:17:39 +0200
 
