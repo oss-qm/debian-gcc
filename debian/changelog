@@ -1,3 +1,9 @@
+gcc-defaults (1.103) UNRELEASED; urgency=low
+
+  * Don't build gccgo on armel and armhf. Closes: #622095.
+
+ -- Matthias Klose <doko@ubuntu.com, 11 Apr 2011 10:17:39 +0200
+
 gcc-defaults (1.102) unstable; urgency=medium
 
   * Fix typos. Closes: #620275, #620190.
