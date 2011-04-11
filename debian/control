@@ -40,7 +40,7 @@ Description: The GNU C++ compiler
 Package: g++-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), g++ (>= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}, ${misc:Depends}
+Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), g++ (>= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}, ${misc:Depends}
 Description: The GNU C++ compiler (multilib files)
  This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
  .
@@ -63,7 +63,7 @@ Description: The GNU Objective-C compiler
 Package: gobjc-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), gobjc (>= ${version:gcc}), gobjc-${pv:gobjc}-multilib ${reqv:gobjc}, ${misc:Depends}
+Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gobjc (>= ${version:gcc}), gobjc-${pv:gobjc}-multilib ${reqv:gobjc}, ${misc:Depends}
 Description: The GNU Objective-C compiler (multilib files)
  This is the GNU Objective-C compiler, which compiles Objective-C on
  platforms supported by the gcc compiler.
@@ -88,7 +88,7 @@ Description: The GNU Objective-C++ compiler
 Package: gobjc++-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), gobjc++ (>= ${version:gcc}), gobjc++-${pv:gobjcxx}-multilib ${reqv:gobjcxx}, ${misc:Depends}
+Depends: cpp (>= ${version:cpp}), gobjc-multilib (>= ${version:cpp}), gobjc++ (>= ${version:gcc}), gobjc++-${pv:gobjcxx}-multilib ${reqv:gobjcxx}, ${misc:Depends}
 Description: The GNU Objective-C++ compiler (multilib files)
  This is the GNU Objective-C++ compiler, which compiles Objective-C++ on
  platforms supported by the gcc compiler.
@@ -112,7 +112,7 @@ Description: The GNU Fortran 95 compiler
 Package: gfortran-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
-Depends: cpp (>= ${version:cpp}), gfortran (>= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}, ${misc:Depends}
+Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gfortran (>= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}, ${misc:Depends}
 Description: The GNU Fortran 95 compiler (multilib files)
  This is the GNU Fortran compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler.
@@ -135,7 +135,7 @@ Description: The GNU Go compiler
 Package: gccgo-multilib
 Priority: optional
 Architecture: amd64 i386
-Depends: cpp (>= ${version:cpp}), gccgo (>= ${version:gcc}), gccgo-${pv:ggo}-multilib ${reqv:ggo}, ${misc:Depends}
+Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gccgo (>= ${version:gcc}), gccgo-${pv:ggo}-multilib ${reqv:ggo}, ${misc:Depends}
 Description: The GNU Go compiler (multilib files)
  This is the GNU Go compiler, which compiles Go on platforms supported by
  the gcc compiler. It uses the gcc backend to generate optimized code.
