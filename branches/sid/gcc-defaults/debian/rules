@@ -105,6 +105,8 @@ REL_NO_445	:= $(shell expr $(VMINOR) - 95)$(REL_EXT)
 
 # gcc-defaults 1.98 is the first version with 4.5.2 support.
 REL_NO_452	:= $(shell expr $(VMINOR) - 97)$(REL_EXT)
+# gcc-defaults 1.103 is the first version with 4.5.3 support.
+REL_NO_453	:= $(shell expr $(VMINOR) - 102)$(REL_EXT)
 
 # gcc-defaults 1.100 is the first version with 4.6.0 support.
 REL_NO_460	:= $(shell expr $(VMINOR) - 99)$(REL_EXT)
@@ -130,7 +132,7 @@ REQV_43		:= (>= 4.3.5-1)
 REQV_43_GDC	:= (>= $(GDC_VERSION)-4.3.5-1)
 REQV_44		:= (>= 4.4.5-1~)
 REQV_44_GDC	:= (>= $(GDC_VERSION)-4.4.5-1)
-REQV_45		:= (>= 4.5.2-3)
+REQV_45		:= (>= 4.5.3-1)
 REQV_46		:= (>= 4.6.0-1)
 
 REQV_LIBGCJ_BC	:= (>= 4.4.5-1~)
@@ -138,11 +140,10 @@ REQV_LIBGCJ_BC	:= (>= 4.4.5-1~)
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
-# gcj-4.4 has some regressions in the testsuite compared to 4.3
-# results on alpha are bad in both 4.3 and 4.4.
-gcj44_archs = amd64 armel armhf hppa hurd-i386 i386 lpia mips mipsel powerpc powerpcspe ppc64 kfreebsd-amd64 kfreebsd-i386 sh4
-gcc45_archs = amd64 armel armhf hppa i386 lpia powerpc ppc64 kfreebsd-amd64 kfreebsd-i386
+gcc46_archs = amd64 armel armhf hppa i386 lpia mips mipsel powerpc ppc64 s390 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj46_archs = amd64 armel armhf hppa i386 lpia mips mipsel powerpc ppc64 s390 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
@@ -163,11 +164,20 @@ CV_GDC		:= 4.4.5-$(REL_NO_445)
 CV_LIBGCJCOMMON	:= 1:4.4.5-$(REL_NO_445)
 CV_SPU		:= 4.4.5-$(REL_NO_445)
 
-#ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
-#  CV_GCJ		:= 4.4.2-$(REL_NO_442)
-#  CV_GIJ		:= 4.4.2-$(REL_NO_442)
-#  CV_LIBGCJBC		:= 4.4.2-$(REL_NO_442)
-#endif
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc46_archs)))
+  CV_CPP		:= 4.6.0-$(REL_NO_460)
+  CV_GCC		:= 4.6.0-$(REL_NO_460)
+  CV_GPP		:= 4.6.0-$(REL_NO_460)
+  CV_GOBJC		:= 4.6.0-$(REL_NO_460)
+  CV_GOBJCXX		:= 4.6.0-$(REL_NO_460)
+  CV_GFORT		:= 4.6.0-$(REL_NO_460)
+endif
+
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj46_archs)))
+  CV_GCJ		:= 4.6.0-$(REL_NO_460)
+  CV_GIJ		:= 4.6.0-$(REL_NO_460)
+  CV_LIBGCJBC		:= 4.6.0-$(REL_NO_460)
+endif
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
@@ -185,27 +195,30 @@ REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_44_GDC)
 REQV_SPU	= $(REQV_44)
 
-ifneq (,$(filter $(DEB_HOST_ARCH),armhf))
-  CV_GDC	:= 4.4.5-$(REL_NO_445)
-  REQV_GDC	= $(REQV_44_GDC)
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc46_archs)))
+  CV_CPP	:= 4.6.0-$(REL_NO_460)
+  CV_GCC	:= 4.6.0-$(REL_NO_460)
+  CV_GPP	:= 4.6.0-$(REL_NO_460)
+  CV_GOBJC	:= 4.6.0-$(REL_NO_460)
+  CV_GOBJCXX	:= 4.6.0-$(REL_NO_460)
+  CV_GFORT	:= 4.6.0-$(REL_NO_460)
+  CV_SPU	:= 4.6.0-$(REL_NO_460)
+
+  REQV_CPP	= $(REQV_46)
+  REQV_GCC	= $(REQV_46)
+  REQV_GPP	= $(REQV_46)
+  REQV_GOBJC	= $(REQV_46)
+  REQV_GOBJCXX	= $(REQV_46)
+  REQV_GFORT	= $(REQV_46)
+  REQV_SPU	= $(REQV_46)
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc45_archs)))
-  CV_CPP	:= 4.5.2-$(REL_NO_452)
-  CV_GCC	:= 4.5.2-$(REL_NO_452)
-  CV_GPP	:= 4.5.2-$(REL_NO_452)
-  CV_GOBJC	:= 4.5.2-$(REL_NO_452)
-  CV_GOBJCXX	:= 4.5.2-$(REL_NO_452)
-  CV_GFORT	:= 4.5.2-$(REL_NO_452)
-  CV_SPU	:= 4.5.2-$(REL_NO_452)
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj46_archs)))
+  CV_GCJ	:= 4.6.0-$(REL_NO_460)
+  CV_GIJ	:= 4.6.0-$(REL_NO_460)
 
-  REQV_CPP	= $(REQV_45)
-  REQV_GCC	= $(REQV_45)
-  REQV_GPP	= $(REQV_45)
-  REQV_GOBJC	= $(REQV_45)
-  REQV_GOBJCXX	= $(REQV_45)
-  REQV_GFORT	= $(REQV_45)
-  REQV_SPU	= $(REQV_45)
+  REQV_GCJ	= $(REQV_46)
+  REQV_GIJ	= $(REQV_46)
 endif
 
 EPOCH=4
@@ -227,6 +240,12 @@ endif
 LIBGCJ	= libgcj10
 LIBGCJ_PC	= libgcj10.pc
 LIBGCJ_SONAME	= 10
+
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj46_archs)))
+  LIBGCJ	= libgcj12
+  LIBGCJ_PC	= libgcj12.pc
+  LIBGCJ_SONAME	= 12
+endif
 
 gcj_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 gcj_native_archs = alpha amd64 armel armhf hppa i386 ia64 lpia mips mipsel powerpc powerpcspe ppc64 s390 sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
@@ -500,6 +519,17 @@ install: build substvars
 	  /usr/share/info/gccint-$(PV_GCC).info.gz /usr/share/info/gccint.info.gz \
 	  /usr/share/info/libgomp-$(PV_GCC).info.gz /usr/share/info/libgomp.info.gz 
   endif
+
+ifeq ($(with_multiarch_lib),yes)
+  ifeq ($(with_multilib),yes)
+	: # gcc-multilib
+	# multilib needs to provide a compat symlink pointing to the asm
+	# header directory of the primary architecture, since we may not
+	# have separate asm headers installed for our non-default targets.
+	dh_link -pgcc-multilib \
+	  /usr/include/$(DEB_HOST_MULTIARCH)/asm /usr/include/asm
+  endif  
+endif  
 
 ifneq (,$(filter gdc, $(packages)))
 	: # gdc
@@ -934,10 +964,7 @@ ifneq (,$(filter gpc, $(packages)))
 	dh_gencontrol -pgpc-doc -u-v$(EPOCH_GPC):$(CV_GPC)
 endif
 ifneq (,$(filter gcj, $(packages)))
-	dh_gencontrol -pgcj         -u-v$(EPOCH):$(CV_GCJ)
-	dh_gencontrol -pgij         -u-v$(EPOCH):$(CV_GIJ)
 	dh_gencontrol -plibgcj-bc   -u-v$(CV_LIBGCJBC)
-
 	dh_gencontrol -pgcj-jre-headless -pgcj-jre -pgcj-jdk \
 		-u-v$(EPOCH):$(CV_GCJ)
 endif

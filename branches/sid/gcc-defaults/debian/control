@@ -3,8 +3,8 @@ Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>, Arthur Loiret <aloiret@debian.org>
-Standards-Version: 3.9.1
-Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.13.9), gcj-4.4-base (>= 4.4.5~) [!arm], gcc-4.4-base (>= 4.4.5~), lsb-release
+Standards-Version: 3.9.2
+Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.16.0~ubuntu4), gcj-4.6-base (>= 4.6.0~) [!arm], gcc-4.6-base (>= 4.6.0~), lsb-release
 Build-Depends-Indep: ca-certificates, gcj-jdk, python (>= 2.6.6)
 Vcs-Svn: svn+ssh://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
 Vcs-Browser: http://svn.debian.org/viewsvn/gcccvs/branches/sid/gcc-defaults
@@ -17,7 +17,7 @@ Section: interpreters
 Depends: cpp-${pv:cpp} ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
 Conflicts: cpp-doc (<< 1:2.95.3)
-Description: The GNU C preprocessor (cpp)
+Description: GNU C preprocessor (cpp)
  The GNU C preprocessor is a macro processor that is used automatically
  by the GNU C compiler to transform programs before actual compilation.
  .
@@ -32,7 +32,7 @@ Architecture: any
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), g++-${pv:gpp} ${reqv:gpp}, gcc-${pv:gpp} ${reqv:gpp}, ${misc:Depends}
 Suggests: ${pkgmulti:gpp}
 Provides: c++-compiler
-Description: The GNU C++ compiler
+Description: GNU C++ compiler
  This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
  .
  This is a dependency package providing the default GNU C++ compiler.
@@ -41,7 +41,7 @@ Package: g++-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), g++ (>= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}, ${misc:Depends}
-Description: The GNU C++ compiler (multilib files)
+Description: GNU C++ compiler (multilib files)
  This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
  .
  On architectures with multilib support, the package contains dependencies
@@ -53,7 +53,7 @@ Architecture: any
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gobjc-${pv:gobjc} ${reqv:gobjc}, ${misc:Depends}
 Suggests: ${pkgmulti:gobjc}
 Provides: objc-compiler
-Description: The GNU Objective-C compiler
+Description: GNU Objective-C compiler
  This is the GNU Objective-C compiler, which compiles Objective-C on platforms
  supported by the gcc compiler. It uses the gcc backend to generate optimized
  code.
@@ -64,7 +64,7 @@ Package: gobjc-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gobjc (>= ${version:gcc}), gobjc-${pv:gobjc}-multilib ${reqv:gobjc}, ${misc:Depends}
-Description: The GNU Objective-C compiler (multilib files)
+Description: GNU Objective-C compiler (multilib files)
  This is the GNU Objective-C compiler, which compiles Objective-C on
  platforms supported by the gcc compiler.
  .
@@ -78,7 +78,7 @@ Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), gobjc++-${pv:gobjcxx}
 Recommends: g++ (>= ${version:cpp}), gobjc (>= ${version:cpp})
 Suggests: ${pkgmulti:gobjcxx}
 Provides: objc++-compiler
-Description: The GNU Objective-C++ compiler
+Description: GNU Objective-C++ compiler
  This is the GNU Objective-C++ compiler, which compiles
  Objective-C++ on platforms supported by the gcc compiler. It uses the
  gcc backend to generate optimized code.
@@ -89,7 +89,7 @@ Package: gobjc++-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gobjc-multilib (>= ${version:cpp}), gobjc++ (>= ${version:gcc}), gobjc++-${pv:gobjcxx}-multilib ${reqv:gobjcxx}, ${misc:Depends}
-Description: The GNU Objective-C++ compiler (multilib files)
+Description: GNU Objective-C++ compiler (multilib files)
  This is the GNU Objective-C++ compiler, which compiles Objective-C++ on
  platforms supported by the gcc compiler.
  .
@@ -102,7 +102,7 @@ Architecture: any
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gfortran-${pv:gfort} ${reqv:gfort}, ${misc:Depends}
 Suggests: ${pkgmulti:gfort}, gfortran-doc
 Provides: fortran-compiler
-Description: The GNU Fortran 95 compiler
+Description: GNU Fortran 95 compiler
  This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler. It uses the gcc backend to generate optimized
  code.
@@ -113,7 +113,7 @@ Package: gfortran-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gfortran (>= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}, ${misc:Depends}
-Description: The GNU Fortran 95 compiler (multilib files)
+Description: GNU Fortran 95 compiler (multilib files)
  This is the GNU Fortran compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler.
  .
@@ -126,7 +126,7 @@ Architecture: any
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gccgo-${pv:ggo} ${reqv:ggo}, ${misc:Depends}
 Suggests: ${pkgmulti:ggo}
 Provides: go-compiler
-Description: The GNU Go compiler
+Description: Go compiler, based on the GCC backend
  This is the GNU Go compiler, which compiles Go on platforms supported by
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
@@ -136,7 +136,7 @@ Package: gccgo-multilib
 Priority: optional
 Architecture: amd64 i386
 Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gccgo (>= ${version:gcc}), gccgo-${pv:ggo}-multilib ${reqv:ggo}, ${misc:Depends}
-Description: The GNU Go compiler (multilib files)
+Description: Go compiler, based on the GCC backend (multilib files)
  This is the GNU Go compiler, which compiles Go on platforms supported by
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
@@ -154,35 +154,12 @@ XB-Python-Version: ${python:Versions}
 Description: Java runtime library (common files)
  This package contains files shared by classpath and libgcj libraries.
 
-Package: gcj
-Section: java
-Priority: optional
-Architecture: any
-Depends: cpp (>= ${version:cpp}), gcj-jdk (>= ${version:gcj}), ${misc:Depends}
-Description: The GNU Java compiler (transitional package)
- GCJ is a front end to the GCC compiler which can natively compile both
- Java(tm) source and bytecode files. The compiler can also generate class
- files.
- .
- This is a transitional package. It can be removed.
-
-Package: gij
-Section: java
-Priority: optional
-Architecture: any
-Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre-headless (>= ${version:gcj}), ${misc:Depends}
-Description: The GNU Java bytecode interpreter (transitional package)
- GIJ is not limited to interpreting bytecode. It includes a class loader which
- can dynamically load shared objects, so it is possible to give it the name
- of a class which has been compiled and put into a shared library on the
- class path.
- .
- This is a transitional package. It can be removed.
-
 Package: libgcj-bc
 Section: java
 Architecture: any
+Multi-Arch: same
 Priority: optional
+Pre-Depends: multiarch-support
 Depends: libgcj-common (>= ${version:libgcjcommon}), ${pkg:libgcj} ${reqv:gij}, ${misc:Depends}
 Description: Link time only library for use with gcj
  A fake library that is used at link time only.  It ensures that
@@ -248,7 +225,7 @@ Description: Java runtime environment using GIJ/classpath
 #Suggests: gpc-doc
 #Conflicts: gpc-doc (<< 1:2.95.3)
 #Provides: pascal-compiler
-#Description: The GNU Pascal compiler
+#Description: GNU Pascal compiler
 # This is the GNU Pascal compiler, which compiles Pascal on platforms supported
 # by the gcc compiler. It uses the gcc backend to generate optimized code.
 # .
@@ -266,7 +243,7 @@ Recommends: libc6-dev | libc-dev
 Suggests: gcc-multilib, make, manpages-dev, autoconf, automake1.9, libtool, flex, bison, gdb, gcc-doc
 Provides: c-compiler
 Conflicts: gcc-doc (<< 1:2.95.3)
-Description: The GNU C compiler
+Description: GNU C compiler
  This is the GNU C compiler, a fairly portable optimizing compiler for C.
  .
  This is a dependency package providing the default GNU C compiler.
@@ -275,7 +252,7 @@ Package: gcc-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 sparc
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}
-Description: The GNU C compiler (multilib files)
+Description: GNU C compiler (multilib files)
  This is the GNU C compiler, a fairly portable optimizing compiler for C.
  .
  On architectures with multilib support, the package contains dependencies
@@ -295,7 +272,7 @@ Priority: optional
 Architecture: any
 Depends: gdc-${pv:gdc} ${reqv:gdc}, ${misc:Depends}
 Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7), gdc-4.3 (<< 1:1.043-4.3.4-1)
-Description: The D compiler
+Description: D compiler, based on the GCC backend
  This is a dependency package providing the default D compiler.
  Per policy, all packages that contain D sources must use this package
  in their Build-Depends line.
