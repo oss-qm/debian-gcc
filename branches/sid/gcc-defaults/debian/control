@@ -14,6 +14,7 @@ Package: cpp
 Priority: optional
 Architecture: any
 Section: interpreters
+Multi-Arch: allowed
 Depends: cpp-${pv:cpp} ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
 Conflicts: cpp-doc (<< 1:2.95.3)
