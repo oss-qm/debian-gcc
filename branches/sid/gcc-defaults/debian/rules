@@ -230,14 +230,14 @@ EPOCH_GPC=5
 OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
 distrelease  := $(shell lsb_release -cs)
-all_packages    := g++ gfortran gcj gobjc gobjc++ gdc gccgo #gpc
+all_packages    := g++ gfortran gcj-jdk gobjc gobjc++ gdc gccgo #gpc
 all_packages	+= gcc-spu g++-spu gfortran-spu
 no_packages	:= chill
 
 lib32 = /usr/lib32
 
 # is this a multiarch-enabled build?
-ifeq (,$(filter $(distrelease),lenny etch squeeze wheezy sid dapper hardy jaunty karmic lucid maverick))
+ifeq (,$(filter $(distrelease),lenny etch squeeze dapper hardy jaunty karmic lucid maverick))
   with_multiarch_lib := yes
 endif
 
@@ -271,7 +271,7 @@ endif
 
 java_no_archs := arm
 ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
-  no_packages += gcj gij libgcj-bc gcj-jre-headless gcj-jre gcj-jdk
+  no_packages += libgcj-bc gcj-jre-headless gcj-jre gcj-jdk
 endif
 
 gpc_no_archs := sh3 sh4
@@ -650,7 +650,7 @@ ifeq (chill, $(findstring chill, $(packages)))
 	  /usr/bin/chill-$(PV_CHILL) /usr/bin/chill
 endif
 
-ifneq (,$(filter gcj, $(packages)))
+ifneq (,$(filter gcj-jdk, $(packages)))
 	: # gcj-jre-headless
 	dh_installdirs -pgcj-jre-headless usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pgcj-jre-headless \
@@ -663,8 +663,8 @@ ifneq (,$(filter gcj, $(packages)))
 	  /usr/bin/grmiregistry-$(PV_GIJ) /usr/bin/grmiregistry \
 	  /usr/bin/gserialver-$(PV_GIJ) /usr/bin/gserialver \
 
-	: # gcj
-	dh_installdirs -pgcj usr/bin /usr/share/man/man1 usr/share/doc
+	: # gcj-jdk
+	dh_installdirs -pgcj-jdk usr/bin /usr/share/man/man1 usr/share/doc
 	dh_link -pgcj-jdk \
 	  /usr/share/doc/cpp /usr/share/doc/gcj-jdk \
 	  /usr/bin/gjavah-$(PV_GCJ) /usr/bin/gjavah \
@@ -967,7 +967,7 @@ ifneq (,$(filter gpc, $(packages)))
 	dh_gencontrol -pgpc     -u-v$(EPOCH_GPC):$(CV_GPC)
 	dh_gencontrol -pgpc-doc -u-v$(EPOCH_GPC):$(CV_GPC)
 endif
-ifneq (,$(filter gcj, $(packages)))
+ifneq (,$(filter gcj-jdk, $(packages)))
 	dh_gencontrol -plibgcj-bc   -u-v$(CV_LIBGCJBC)
 	dh_gencontrol -pgcj-jre-headless -pgcj-jre -pgcj-jdk \
 		-u-v$(EPOCH):$(CV_GCJ)
