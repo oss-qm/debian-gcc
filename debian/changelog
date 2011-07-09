@@ -1,3 +1,10 @@
+gcc-defaults (1.106) unstable; urgency=low
+
+  * Bump GCC 4.6 versions to 4.6.1.
+  * Bump GCC 4.4 versions to 4.4.6.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 09 Jul 2011 15:59:53 +0200
+
 gcc-defaults (1.105) unstable; urgency=low
 
   * Build libgcj-bc for multiarch. Closes: #630417.

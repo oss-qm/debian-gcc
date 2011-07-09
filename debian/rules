@@ -102,6 +102,8 @@ REL_NO_443	:= $(shell expr $(VMINOR) - 92)$(REL_EXT)
 REL_NO_444	:= $(shell expr $(VMINOR) - 93)$(REL_EXT)
 # gcc-defaults 1.96 is the first version with 4.4.5 support.
 REL_NO_445	:= $(shell expr $(VMINOR) - 95)$(REL_EXT)
+# gcc-defaults 1.106 is the first version with 4.4.6 support.
+REL_NO_446	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
 
 # gcc-defaults 1.98 is the first version with 4.5.2 support.
 REL_NO_452	:= $(shell expr $(VMINOR) - 97)$(REL_EXT)
@@ -110,6 +112,8 @@ REL_NO_453	:= $(shell expr $(VMINOR) - 102)$(REL_EXT)
 
 # gcc-defaults 1.100 is the first version with 4.6.0 support.
 REL_NO_460	:= $(shell expr $(VMINOR) - 99)$(REL_EXT)
+# gcc-defaults 1.106 is the first version with 4.6.1 support.
+REL_NO_461	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 1.063
@@ -130,10 +134,10 @@ REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_43		:= (>= 4.3.5-1)
 REQV_43_GDC	:= (>= $(GDC_VERSION)-4.3.5-1)
-REQV_44		:= (>= 4.4.5-1~)
+REQV_44		:= (>= 4.4.6-1~)
 REQV_44_GDC	:= (>= $(GDC_VERSION)-4.4.5-1)
 REQV_45		:= (>= 4.5.3-1)
-REQV_46		:= (>= 4.6.0-1)
+REQV_46		:= (>= 4.6.1-1~)
 
 REQV_LIBGCJ_BC	:= (>= 4.4.5-1~)
 
@@ -149,34 +153,34 @@ gcj46_archs = amd64 armel armhf hppa i386 lpia mips mipsel powerpc ppc64 s390 kf
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.4.5-$(REL_NO_445)
-CV_GCC		:= 4.4.5-$(REL_NO_445)
-CV_GPP		:= 4.4.5-$(REL_NO_445)
-CV_GOBJC	:= 4.4.5-$(REL_NO_445)
-CV_GOBJCXX	:= 4.4.5-$(REL_NO_445)
-CV_GFORT	:= 4.4.5-$(REL_NO_445)
-CV_GGO		:= 4.6.0-$(REL_NO_460)
-CV_GCJ		:= 4.4.5-$(REL_NO_445)
-CV_GIJ		:= 4.4.5-$(REL_NO_445)
-CV_LIBGCJBC	:= 4.4.5-$(REL_NO_445)
+CV_CPP		:= 4.4.6-$(REL_NO_446)
+CV_GCC		:= 4.4.6-$(REL_NO_446)
+CV_GPP		:= 4.4.6-$(REL_NO_446)
+CV_GOBJC	:= 4.4.6-$(REL_NO_446)
+CV_GOBJCXX	:= 4.4.6-$(REL_NO_446)
+CV_GFORT	:= 4.4.6-$(REL_NO_446)
+CV_GGO		:= 4.6.1-$(REL_NO_461)
+CV_GCJ		:= 4.4.6-$(REL_NO_446)
+CV_GIJ		:= 4.4.6-$(REL_NO_446)
+CV_LIBGCJBC	:= 4.4.6-$(REL_NO_446)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
-CV_GDC		:= 4.4.5-$(REL_NO_445)
-CV_LIBGCJCOMMON	:= 1:4.4.5-$(REL_NO_445)
-CV_SPU		:= 4.4.5-$(REL_NO_445)
+CV_GDC		:= 4.4.6-$(REL_NO_446)
+CV_LIBGCJCOMMON	:= 1:4.4.6-$(REL_NO_446)
+CV_SPU		:= 4.4.6-$(REL_NO_446)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc46_archs)))
-  CV_CPP		:= 4.6.0-$(REL_NO_460)
-  CV_GCC		:= 4.6.0-$(REL_NO_460)
-  CV_GPP		:= 4.6.0-$(REL_NO_460)
-  CV_GOBJC		:= 4.6.0-$(REL_NO_460)
-  CV_GOBJCXX		:= 4.6.0-$(REL_NO_460)
-  CV_GFORT		:= 4.6.0-$(REL_NO_460)
+  CV_CPP		:= 4.6.1-$(REL_NO_461)
+  CV_GCC		:= 4.6.1-$(REL_NO_461)
+  CV_GPP		:= 4.6.1-$(REL_NO_461)
+  CV_GOBJC		:= 4.6.1-$(REL_NO_461)
+  CV_GOBJCXX		:= 4.6.1-$(REL_NO_461)
+  CV_GFORT		:= 4.6.1-$(REL_NO_461)
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj46_archs)))
-  CV_GCJ		:= 4.6.0-$(REL_NO_460)
-  CV_GIJ		:= 4.6.0-$(REL_NO_460)
-  CV_LIBGCJBC		:= 4.6.0-$(REL_NO_460)
+  CV_GCJ		:= 4.6.1-$(REL_NO_461)
+  CV_GIJ		:= 4.6.1-$(REL_NO_461)
+  CV_LIBGCJBC		:= 4.6.1-$(REL_NO_461)
 endif
 
 REQV_CHILL	= $(REQV_295)
@@ -196,13 +200,13 @@ REQV_GDC	= $(REQV_44_GDC)
 REQV_SPU	= $(REQV_44)
 
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc46_archs)))
-  CV_CPP	:= 4.6.0-$(REL_NO_460)
-  CV_GCC	:= 4.6.0-$(REL_NO_460)
-  CV_GPP	:= 4.6.0-$(REL_NO_460)
-  CV_GOBJC	:= 4.6.0-$(REL_NO_460)
-  CV_GOBJCXX	:= 4.6.0-$(REL_NO_460)
-  CV_GFORT	:= 4.6.0-$(REL_NO_460)
-  CV_SPU	:= 4.6.0-$(REL_NO_460)
+  CV_CPP	:= 4.6.1-$(REL_NO_461)
+  CV_GCC	:= 4.6.1-$(REL_NO_461)
+  CV_GPP	:= 4.6.1-$(REL_NO_461)
+  CV_GOBJC	:= 4.6.1-$(REL_NO_461)
+  CV_GOBJCXX	:= 4.6.1-$(REL_NO_461)
+  CV_GFORT	:= 4.6.1-$(REL_NO_461)
+  CV_SPU	:= 4.6.1-$(REL_NO_461)
 
   REQV_CPP	= $(REQV_46)
   REQV_GCC	= $(REQV_46)
@@ -214,8 +218,8 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc46_archs)))
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj46_archs)))
-  CV_GCJ	:= 4.6.0-$(REL_NO_460)
-  CV_GIJ	:= 4.6.0-$(REL_NO_460)
+  CV_GCJ	:= 4.6.1-$(REL_NO_461)
+  CV_GIJ	:= 4.6.1-$(REL_NO_461)
 
   REQV_GCJ	= $(REQV_46)
   REQV_GIJ	= $(REQV_46)
