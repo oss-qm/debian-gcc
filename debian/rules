@@ -146,8 +146,8 @@ DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
-gcc46_archs = amd64 armel armhf hppa i386 lpia mips mipsel powerpc ppc64 s390 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj46_archs = amd64 armel armhf hppa i386 lpia mips mipsel powerpc ppc64 s390 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcc46_archs = amd64 armel armhf hppa i386 lpia mips mipsel powerpc ppc64 s390 sh4 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj46_archs = amd64 armel armhf hppa i386 lpia mips mipsel powerpc ppc64 s390 sh4 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
