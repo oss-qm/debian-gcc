@@ -1,3 +1,11 @@
+gcc-defaults (1.107) unstable; urgency=low
+
+  * Enable multiarch build for libgcj-bc. Closes: #633359.
+  * Don't care about gc[cj]-4.6 build dependencies on m68k.
+  * Fix last references to obsolete gcj package.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 09 Jul 2011 19:23:28 +0200
+
 gcc-defaults (1.106) unstable; urgency=low
 
   * Bump GCC 4.6 versions to 4.6.1.
