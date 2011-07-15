@@ -1,3 +1,9 @@
+gcc-defaults (1.108) UNRELEASED; urgency=low
+
+  * debian/rules: Remove duplicate code.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 15 Jul 2011 11:31:48 +0200
+
 gcc-defaults (1.107) unstable; urgency=low
 
   * Enable multiarch build for libgcj-bc. Closes: #633359.
