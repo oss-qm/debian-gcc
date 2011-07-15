@@ -175,6 +175,7 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc46_archs)))
   CV_GOBJC		:= 4.6.1-$(REL_NO_461)
   CV_GOBJCXX		:= 4.6.1-$(REL_NO_461)
   CV_GFORT		:= 4.6.1-$(REL_NO_461)
+  CV_SPU		:= 4.6.1-$(REL_NO_461)
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj46_archs)))
@@ -200,14 +201,6 @@ REQV_GDC	= $(REQV_44_GDC)
 REQV_SPU	= $(REQV_44)
 
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc46_archs)))
-  CV_CPP	:= 4.6.1-$(REL_NO_461)
-  CV_GCC	:= 4.6.1-$(REL_NO_461)
-  CV_GPP	:= 4.6.1-$(REL_NO_461)
-  CV_GOBJC	:= 4.6.1-$(REL_NO_461)
-  CV_GOBJCXX	:= 4.6.1-$(REL_NO_461)
-  CV_GFORT	:= 4.6.1-$(REL_NO_461)
-  CV_SPU	:= 4.6.1-$(REL_NO_461)
-
   REQV_CPP	= $(REQV_46)
   REQV_GCC	= $(REQV_46)
   REQV_GPP	= $(REQV_46)
@@ -218,9 +211,6 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc46_archs)))
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj46_archs)))
-  CV_GCJ	:= 4.6.1-$(REL_NO_461)
-  CV_GIJ	:= 4.6.1-$(REL_NO_461)
-
   REQV_GCJ	= $(REQV_46)
   REQV_GIJ	= $(REQV_46)
 endif
