@@ -1,6 +1,10 @@
 gcc-defaults (1.108) UNRELEASED; urgency=low
 
+  [ Matthias Klose ]
   * debian/rules: Remove duplicate code.
+  
+  [ Aurelien Jarno ]
+  * Add support for s390x.
 
  -- Matthias Klose <doko@debian.org>  Fri, 15 Jul 2011 11:31:48 +0200
 
