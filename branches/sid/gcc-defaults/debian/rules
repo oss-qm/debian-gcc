@@ -669,8 +669,15 @@ ifneq (,$(filter gcj-jdk, $(packages)))
 	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
 	  /usr/bin/gtnameserv-$(PV_GCJ) /usr/bin/gtnameserv \
 	  /usr/bin/gappletviewer-$(PV_GCJ) /usr/bin/gappletviewer \
-	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar \
+	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar
+ifeq ($(with_multiarch_lib),yes)
+	dh_link -pgcj-jdk \
+	  /usr/lib/pkgconfig/$(DEB_HOST_MULTIARCH)/$(LIBGCJ_PC) \
+	  /usr/lib/pkgconfig/$(DEB_HOST_MULTIARCH)/libgcj.pc
+else
+	dh_link -pgcj-jdk \
 	  /usr/lib/pkgconfig/$(LIBGCJ_PC) /usr/lib/pkgconfig/libgcj.pc
+endif
 
 	dh_link -pgcj-jre-headless \
 	  /usr/share/man/man1/gkeytool-$(PV_GIJ).1.gz /usr/share/man/man1/gkeytool.1.gz \
