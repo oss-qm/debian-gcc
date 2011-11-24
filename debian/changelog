@@ -1,3 +1,10 @@
+gcc-defaults (1.109) unstable; urgency=low
+
+  * Bump GCC 4.6 versions to 4.6.2.
+  * Default to 4.6 for powerpcspe (Kyle Moffett). Closes: #647456.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 24 Nov 2011 13:19:06 +0100
+
 gcc-defaults (1.108) unstable; urgency=low
 
   [ Matthias Klose ]
