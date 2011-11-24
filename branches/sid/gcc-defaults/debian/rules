@@ -114,6 +114,8 @@ REL_NO_453	:= $(shell expr $(VMINOR) - 102)$(REL_EXT)
 REL_NO_460	:= $(shell expr $(VMINOR) - 99)$(REL_EXT)
 # gcc-defaults 1.106 is the first version with 4.6.1 support.
 REL_NO_461	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
+# gcc-defaults 1.109 is the first version with 4.6.1 support.
+REL_NO_462	:= $(shell expr $(VMINOR) - 108)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 1.063
@@ -137,7 +139,7 @@ REQV_43_GDC	:= (>= $(GDC_VERSION)-4.3.5-1)
 REQV_44		:= (>= 4.4.6-1~)
 REQV_44_GDC	:= (>= $(GDC_VERSION)-4.4.5-1)
 REQV_45		:= (>= 4.5.3-1)
-REQV_46		:= (>= 4.6.1-9~)
+REQV_46		:= (>= 4.6.2-2~)
 
 REQV_LIBGCJ_BC	:= (>= 4.4.5-1~)
 
@@ -146,8 +148,8 @@ DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
-gcc46_archs = amd64 armel armhf hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj46_archs = amd64 armel armhf hppa i386 ia64 lpia mips mipsel powerpc ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcc46_archs = amd64 armel armhf hppa i386 ia64 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj46_archs = amd64 armel armhf hppa i386 ia64 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
@@ -169,19 +171,19 @@ CV_LIBGCJCOMMON	:= 1:4.4.6-$(REL_NO_446)
 CV_SPU		:= 4.4.6-$(REL_NO_446)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc46_archs)))
-  CV_CPP		:= 4.6.1-$(REL_NO_461)
-  CV_GCC		:= 4.6.1-$(REL_NO_461)
-  CV_GPP		:= 4.6.1-$(REL_NO_461)
-  CV_GOBJC		:= 4.6.1-$(REL_NO_461)
-  CV_GOBJCXX		:= 4.6.1-$(REL_NO_461)
-  CV_GFORT		:= 4.6.1-$(REL_NO_461)
-  CV_SPU		:= 4.6.1-$(REL_NO_461)
+  CV_CPP		:= 4.6.2-$(REL_NO_462)
+  CV_GCC		:= 4.6.2-$(REL_NO_462)
+  CV_GPP		:= 4.6.2-$(REL_NO_462)
+  CV_GOBJC		:= 4.6.2-$(REL_NO_462)
+  CV_GOBJCXX		:= 4.6.2-$(REL_NO_462)
+  CV_GFORT		:= 4.6.2-$(REL_NO_462)
+  CV_SPU		:= 4.6.2-$(REL_NO_462)
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj46_archs)))
-  CV_GCJ		:= 4.6.1-$(REL_NO_461)
-  CV_GIJ		:= 4.6.1-$(REL_NO_461)
-  CV_LIBGCJBC		:= 4.6.1-$(REL_NO_461)
+  CV_GCJ		:= 4.6.2-$(REL_NO_462)
+  CV_GIJ		:= 4.6.2-$(REL_NO_462)
+  CV_LIBGCJBC		:= 4.6.2-$(REL_NO_462)
 endif
 
 REQV_CHILL	= $(REQV_295)
