@@ -1,13 +1,14 @@
-gcc-defaults (1.108) UNRELEASED; urgency=low
+gcc-defaults (1.108) unstable; urgency=low
 
   [ Matthias Klose ]
   * debian/rules: Remove duplicate code.
   * Fix libgcj.pc symlink for multiarch builds.
+  * Fix upgrade path (/usr/include/asm must be a symlink). Closes: #638418.
   
   [ Aurelien Jarno ]
   * Add support for s390x.
 
- -- Matthias Klose <doko@debian.org>  Wed, 24 Aug 2011 12:23:39 +0200
+ -- Matthias Klose <doko@debian.org>  Sat, 24 Sep 2011 16:55:44 +0200
 
 gcc-defaults (1.107) unstable; urgency=low
 
