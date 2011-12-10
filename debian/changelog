@@ -1,3 +1,10 @@
+gcc-defaults (1.110) unstable; urgency=low
+
+  * Default to 4.6 for alpha (Michael Cree). Closes: #649922.
+  * Default to 4.6 for m68k, except gij/gcj (Thorsten Glaser).
+
+ -- Matthias Klose <doko@debian.org>  Sat, 10 Dec 2011 21:26:12 +0100
+
 gcc-defaults (1.109) unstable; urgency=low
 
   * Bump GCC 4.6 versions to 4.6.2.
