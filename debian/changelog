@@ -2,6 +2,7 @@ gcc-defaults (1.110) unstable; urgency=low
 
   * Default to 4.6 for alpha (Michael Cree). Closes: #649922.
   * Default to 4.6 for m68k, except gij/gcj (Thorsten Glaser).
+  * Build a gdc-v1 package to prepare the D v1 to D v2 transition.
 
  -- Matthias Klose <doko@debian.org>  Sat, 10 Dec 2011 21:26:12 +0100
 
