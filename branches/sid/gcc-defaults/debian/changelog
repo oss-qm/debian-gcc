@@ -1,3 +1,9 @@
+gcc-defaults (1.111) UNRELEASED; urgency=low
+
+  * Default gdc to gdc-4.6, providing D version 2.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 23 Dec 2011 18:10:25 +0100
+
 gcc-defaults (1.110) unstable; urgency=low
 
   * Default to 4.6 for alpha (Michael Cree). Closes: #649922.
