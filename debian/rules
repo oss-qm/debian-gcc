@@ -118,7 +118,7 @@ REL_NO_461	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
 REL_NO_462	:= $(shell expr $(VMINOR) - 108)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
-GDC_VERSION	:= 1.063
+GDC_VERSION	:= 0.29
 GDC1_VERSION	:= 1.063
 
 # minimum required gcc-X.Y versions
@@ -141,6 +141,7 @@ REQV_44		:= (>= 4.4.6-1~)
 REQV_44_GDC	:= (>= $(GDC1_VERSION)-4.4.6-10~)
 REQV_45		:= (>= 4.5.3-1)
 REQV_46		:= (>= 4.6.2-2~)
+REQV_46_GDC	:= (>= $(GDC_VERSION)-4.6.2-4~)
 
 REQV_LIBGCJ_BC	:= (>= 4.4.5-1~)
 
@@ -162,12 +163,12 @@ CV_GPP		:= 4.4.6-$(REL_NO_446)
 CV_GOBJC	:= 4.4.6-$(REL_NO_446)
 CV_GOBJCXX	:= 4.4.6-$(REL_NO_446)
 CV_GFORT	:= 4.4.6-$(REL_NO_446)
-CV_GGO		:= 4.6.1-$(REL_NO_461)
+CV_GGO		:= 4.6.2-$(REL_NO_462)
 CV_GCJ		:= 4.4.6-$(REL_NO_446)
 CV_GIJ		:= 4.4.6-$(REL_NO_446)
 CV_LIBGCJBC	:= 4.4.6-$(REL_NO_446)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
-CV_GDC		:= 4.4.6-$(REL_NO_446)
+CV_GDC		:= 4.6.2-$(REL_NO_462)
 CV_GDC1		:= 4.4.6-$(REL_NO_446)
 CV_LIBGCJCOMMON	:= 1:4.4.6-$(REL_NO_446)
 CV_SPU		:= 4.4.6-$(REL_NO_446)
@@ -201,7 +202,7 @@ REQV_GGO	= $(REQV_46)
 REQV_GCJ	= $(REQV_44)
 REQV_GIJ	= $(REQV_44)
 REQV_GPC	= $(REQV_41_GPC)
-REQV_GDC	= $(REQV_44_GDC)
+REQV_GDC	= $(REQV_46_GDC)
 REQV_GDC1	= $(REQV_44_GDC)
 REQV_SPU	= $(REQV_44)
 
@@ -275,9 +276,14 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gpc_no_archs)))
 endif
 no_packages += gpc gpc-doc
 
-gdc_no_archs := hurd-i386
+gdc_no_archs = alpha armel armhf hppa ia64 m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 hurd-i386
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
-  no_packages += gdc gdc-v1
+  no_packages += gdc
+endif
+
+gdc1_no_archs := hurd-i386
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc1_no_archs)))
+  no_packages += gdc-v1
 endif
 
 ifeq ($(DEB_HOST_ARCH),hurd-i386)
@@ -555,7 +561,9 @@ ifneq (,$(filter gdc, $(packages)))
 		/usr/share/man/man1/gdc-$(PV_GDC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdc.1.gz \
 		/usr/share/man/man1/gdmd-$(PV_GDC).1.gz /usr/share/man/man1/gdmd.1.gz \
 		/usr/share/man/man1/gdmd-$(PV_GDC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdmd.1.gz
+endif
 
+ifneq (,$(filter gdc-v1, $(packages)))
 	: # gdc v1
 	dh_installdirs -pgdc-v1 \
 	  usr/share/doc usr/bin usr/share/man/man1
@@ -956,6 +964,8 @@ endif
   endif
 ifneq (,$(filter gdc, $(packages)))
 	dh_gencontrol -pgdc -u-v$(CV_GDC)
+endif
+ifneq (,$(filter gdc-v1, $(packages)))
 	dh_gencontrol -pgdc-v1 -u-v$(CV_GDC)
 endif
 ifneq (,$(filter g++, $(packages)))

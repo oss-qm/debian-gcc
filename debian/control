@@ -270,13 +270,15 @@ Description: GNU C compiler (multilib files)
 
 Package: gdc
 Priority: optional
-Architecture: any
-Depends: gdc-v1, gdc-${pv:gdc} ${reqv:gdc}, ${misc:Depends}
+Architecture: amd64 i386 kfreebsd-amd64 kfreebsd-i386
+Depends: gdc-${pv:gdc} ${reqv:gdc}, ${misc:Depends}
 Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7), gdc-4.3 (<< 1:1.043-4.3.4-1)
-Description: D compiler, based on the GCC backend
+Description: D compiler (language version 2), based on the GCC backend
  This is a dependency package providing the default D compiler.
  Per policy, all packages that contain D sources must use this package
  in their Build-Depends line.
+ .
+ This compiler supports D language version 2.
 
 Package: gdc-v1
 Priority: optional
