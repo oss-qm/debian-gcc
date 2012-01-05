@@ -1,8 +1,14 @@
-gcc-defaults (1.111) UNRELEASED; urgency=low
+gcc-defaults (1.112) unstable; urgency=low
+
+  * gdc-v1: Fix gdmd-v1 symlinks.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 05 Jan 2012 18:25:16 +0100
+
+gcc-defaults (1.111) unstable; urgency=low
 
   * Default gdc to gdc-4.6, providing D version 2.
 
- -- Matthias Klose <doko@debian.org>  Fri, 23 Dec 2011 18:10:25 +0100
+ -- Matthias Klose <doko@debian.org>  Tue, 03 Jan 2012 07:25:30 +0100
 
 gcc-defaults (1.110) unstable; urgency=low
 

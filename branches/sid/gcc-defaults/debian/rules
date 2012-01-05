@@ -575,14 +575,14 @@ ifneq (,$(filter gdc-v1, $(packages)))
 		/usr/bin/gdc-$(PV_GDC1) /usr/bin/$(DEB_HOST_GNU_TYPE)-gdc-v1
 	# gdmd binaries
 	dh_link -pgdc-v1 \
-		/usr/bin/gdmd-$(PV_GDC) /usr/bin/gdmd-v1 \
-		/usr/bin/gdmd-$(PV_GDC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gdmd-v1
+		/usr/bin/gdmd-$(PV_GDC1) /usr/bin/gdmd-v1 \
+		/usr/bin/gdmd-$(PV_GDC1) /usr/bin/$(DEB_HOST_GNU_TYPE)-gdmd-v1
 	# manpages
 	dh_link -pgdc-v1 \
-		/usr/share/man/man1/gdc-$(PV_GDC).1.gz /usr/share/man/man1/gdc-v1.1.gz \
-		/usr/share/man/man1/gdc-$(PV_GDC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdc-v1.1.gz \
-		/usr/share/man/man1/gdmd-$(PV_GDC).1.gz /usr/share/man/man1/gdmd-v1.1.gz \
-		/usr/share/man/man1/gdmd-$(PV_GDC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdmd-v1.1.gz
+		/usr/share/man/man1/gdc-$(PV_GDC1).1.gz /usr/share/man/man1/gdc-v1.1.gz \
+		/usr/share/man/man1/gdc-$(PV_GDC1).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdc-v1.1.gz \
+		/usr/share/man/man1/gdmd-$(PV_GDC1).1.gz /usr/share/man/man1/gdmd-v1.1.gz \
+		/usr/share/man/man1/gdmd-$(PV_GDC1).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdmd-v1.1.gz
 endif
 
 ifneq (,$(filter gobjc, $(packages)))
