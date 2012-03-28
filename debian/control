@@ -2,8 +2,8 @@ Source: gcc-defaults
 Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
-Uploaders: Matthias Klose <doko@debian.org>, Arthur Loiret <aloiret@debian.org>
-Standards-Version: 3.9.2
+Uploaders: Matthias Klose <doko@debian.org>
+Standards-Version: 3.9.3
 Build-Depends: m4, debhelper (>= 5), dpkg-dev (>= 1.16.0~ubuntu4), gcj-4.6-base (>= 4.6.1~) [!arm !m68k], gcc-4.6-base (>= 4.6.1~) [!m68k], lsb-release
 Build-Depends-Indep: ca-certificates, gcj-jdk, python (>= 2.6.6)
 Vcs-Svn: svn+ssh://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
