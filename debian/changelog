@@ -1,3 +1,9 @@
+gcc-defaults (1.114) unstable; urgency=low
+
+  * Add new architectures for gccgo-multilib.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 28 Mar 2012 15:00:42 +0200
+
 gcc-defaults (1.113) unstable; urgency=low
 
   * Bump GCC 4.6 versions to 4.6.3.
