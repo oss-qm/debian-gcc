@@ -1,3 +1,9 @@
+gcc-defaults (1.115) unstable; urgency=low
+
+  * Don't build gccgo-multilib on kfreebsd-amd64, mips, mipsel.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 28 Mar 2012 16:50:54 +0200
+
 gcc-defaults (1.114) unstable; urgency=low
 
   * Add new architectures for gccgo-multilib.

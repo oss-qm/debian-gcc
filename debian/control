@@ -135,7 +135,7 @@ Description: Go compiler, based on the GCC backend
 
 Package: gccgo-multilib
 Priority: optional
-Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 s390x sparc
+Architecture: amd64 i386 powerpc ppc64 s390 s390x
 Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gccgo (>= ${version:gcc}), gccgo-${pv:ggo}-multilib ${reqv:ggo}, ${misc:Depends}
 Description: Go compiler, based on the GCC backend (multilib files)
  This is the GNU Go compiler, which compiles Go on platforms supported by
