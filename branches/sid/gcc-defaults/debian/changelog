@@ -1,3 +1,13 @@
+gcc-defaults (1.113) unstable; urgency=low
+
+  * Bump GCC 4.6 versions to 4.6.3.
+  * Default gccgo to gccgo-4.7 (Go language version 1).
+  * Default gij/gcj to 4.7 for every architecture except ia64 and the Hurd.
+  * Bump standards version to 3.9.3.
+  * Remove Arthur from uploaders.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 27 Mar 2012 23:10:01 +0200
+
 gcc-defaults (1.112) unstable; urgency=low
 
   * gdc-v1: Fix gdmd-v1 symlinks.

@@ -114,8 +114,13 @@ REL_NO_453	:= $(shell expr $(VMINOR) - 102)$(REL_EXT)
 REL_NO_460	:= $(shell expr $(VMINOR) - 99)$(REL_EXT)
 # gcc-defaults 1.106 is the first version with 4.6.1 support.
 REL_NO_461	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
-# gcc-defaults 1.109 is the first version with 4.6.1 support.
+# gcc-defaults 1.109 is the first version with 4.6.2 support.
 REL_NO_462	:= $(shell expr $(VMINOR) - 108)$(REL_EXT)
+# gcc-defaults 1.113 is the first version with 4.6.3 support.
+REL_NO_463	:= $(shell expr $(VMINOR) - 112)$(REL_EXT)
+
+# gcc-defaults 1.113 is the first version with 4.7.0 support.
+REL_NO_470	:= $(shell expr $(VMINOR) - 112)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.29
@@ -137,56 +142,58 @@ REQV_42		:= (>= 4.2.4-1)
 REQV_42_GCJ	:= (>= 4.2.4-1)
 REQV_43		:= (>= 4.3.5-1)
 REQV_43_GDC	:= (>= $(GDC1_VERSION)-4.3.5-1)
-REQV_44		:= (>= 4.4.6-1~)
-REQV_44_GDC	:= (>= $(GDC1_VERSION)-4.4.6-10~)
+REQV_44		:= (>= 4.4.7-1~)
+REQV_44_GDC	:= (>= $(GDC1_VERSION)-4.4.7-1~)
 REQV_45		:= (>= 4.5.3-1)
-REQV_46		:= (>= 4.6.2-2~)
-REQV_46_GDC	:= (>= $(GDC_VERSION)-4.6.2-4~)
+REQV_46		:= (>= 4.6.3-1~)
+REQV_46_GDC	:= (>= $(GDC_VERSION)-4.6.3-1~)
+REQV_47		:= (>= 4.7.0-1~)
 
-REQV_LIBGCJ_BC	:= (>= 4.4.5-1~)
+REQV_LIBGCJ_BC	:= (>= 4.6.3-1~)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
-gcc46_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj46_archs = alpha amd64 armel armhf hppa i386 ia64 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcc47_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcc47_archs =
+gcj47_archs = alpha amd64 armel armhf hppa i386 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.4.6-$(REL_NO_446)
-CV_GCC		:= 4.4.6-$(REL_NO_446)
-CV_GPP		:= 4.4.6-$(REL_NO_446)
-CV_GOBJC	:= 4.4.6-$(REL_NO_446)
-CV_GOBJCXX	:= 4.4.6-$(REL_NO_446)
-CV_GFORT	:= 4.4.6-$(REL_NO_446)
-CV_GGO		:= 4.6.2-$(REL_NO_462)
-CV_GCJ		:= 4.4.6-$(REL_NO_446)
-CV_GIJ		:= 4.4.6-$(REL_NO_446)
-CV_LIBGCJBC	:= 4.4.6-$(REL_NO_446)
+CV_CPP		:= 4.6.3-$(REL_NO_463)
+CV_GCC		:= 4.6.3-$(REL_NO_463)
+CV_GPP		:= 4.6.3-$(REL_NO_463)
+CV_GOBJC	:= 4.6.3-$(REL_NO_463)
+CV_GOBJCXX	:= 4.6.3-$(REL_NO_463)
+CV_GFORT	:= 4.6.3-$(REL_NO_463)
+CV_GGO		:= 4.7.0-$(REL_NO_470)
+CV_GCJ		:= 4.6.3-$(REL_NO_463)
+CV_GIJ		:= 4.6.3-$(REL_NO_463)
+CV_LIBGCJBC	:= 4.6.3-$(REL_NO_463)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
-CV_GDC		:= 4.6.2-$(REL_NO_462)
-CV_GDC1		:= 4.4.6-$(REL_NO_446)
-CV_LIBGCJCOMMON	:= 1:4.4.6-$(REL_NO_446)
-CV_SPU		:= 4.4.6-$(REL_NO_446)
+CV_GDC		:= 4.6.3-$(REL_NO_463)
+CV_GDC1		:= 4.4.7-$(REL_NO_447)
+CV_LIBGCJCOMMON	:= 1:4.6.3-$(REL_NO_463)
+CV_SPU		:= 4.6.3-$(REL_NO_463)
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc46_archs)))
-  CV_CPP		:= 4.6.2-$(REL_NO_462)
-  CV_GCC		:= 4.6.2-$(REL_NO_462)
-  CV_GPP		:= 4.6.2-$(REL_NO_462)
-  CV_GOBJC		:= 4.6.2-$(REL_NO_462)
-  CV_GOBJCXX		:= 4.6.2-$(REL_NO_462)
-  CV_GFORT		:= 4.6.2-$(REL_NO_462)
-  CV_SPU		:= 4.6.2-$(REL_NO_462)
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
+  CV_CPP		:= 4.7.0-$(REL_NO_470)
+  CV_GCC		:= 4.7.0-$(REL_NO_470)
+  CV_GPP		:= 4.7.0-$(REL_NO_470)
+  CV_GOBJC		:= 4.7.0-$(REL_NO_470)
+  CV_GOBJCXX		:= 4.7.0-$(REL_NO_470)
+  CV_GFORT		:= 4.7.0-$(REL_NO_470)
+  CV_SPU		:= 4.7.0-$(REL_NO_470)
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj46_archs)))
-  CV_GCJ		:= 4.6.2-$(REL_NO_462)
-  CV_GIJ		:= 4.6.2-$(REL_NO_462)
-  CV_LIBGCJBC		:= 4.6.2-$(REL_NO_462)
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj47_archs)))
+  CV_GCJ		:= 4.7.0-$(REL_NO_470)
+  CV_GIJ		:= 4.7.0-$(REL_NO_470)
+  CV_LIBGCJBC		:= 4.7.0-$(REL_NO_470)
 endif
 
 REQV_CHILL	= $(REQV_295)
@@ -198,27 +205,27 @@ REQV_GPP	= $(REQV_44)
 REQV_GOBJC	= $(REQV_44)
 REQV_GOBJCXX	= $(REQV_44)
 REQV_GFORT	= $(REQV_44)
-REQV_GGO	= $(REQV_46)
+REQV_GGO	= $(REQV_47)
 REQV_GCJ	= $(REQV_44)
 REQV_GIJ	= $(REQV_44)
 REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_46_GDC)
 REQV_GDC1	= $(REQV_44_GDC)
-REQV_SPU	= $(REQV_44)
+REQV_SPU	= $(REQV_47)
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc46_archs)))
-  REQV_CPP	= $(REQV_46)
-  REQV_GCC	= $(REQV_46)
-  REQV_GPP	= $(REQV_46)
-  REQV_GOBJC	= $(REQV_46)
-  REQV_GOBJCXX	= $(REQV_46)
-  REQV_GFORT	= $(REQV_46)
-  REQV_SPU	= $(REQV_46)
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc47_archs)))
+  REQV_CPP	= $(REQV_47)
+  REQV_GCC	= $(REQV_47)
+  REQV_GPP	= $(REQV_47)
+  REQV_GOBJC	= $(REQV_47)
+  REQV_GOBJCXX	= $(REQV_47)
+  REQV_GFORT	= $(REQV_47)
+  REQV_SPU	= $(REQV_47)
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj46_archs)))
-  REQV_GCJ	= $(REQV_46)
-  REQV_GIJ	= $(REQV_46)
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj47_archs)))
+  REQV_GCJ	= $(REQV_47)
+  REQV_GIJ	= $(REQV_47)
 endif
 
 EPOCH=4
@@ -260,7 +267,7 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
-go_archs = amd64 i386
+go_archs = amd64 i386 ia64 powerpc s390 s390x
 ifeq (,$(filter $(DEB_HOST_ARCH),$(go_archs)))
   no_packages += gccgo
 endif
