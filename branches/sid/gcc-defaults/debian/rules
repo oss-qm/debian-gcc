@@ -244,14 +244,14 @@ ifeq (,$(filter $(distrelease),lenny etch squeeze dapper hardy jaunty karmic luc
   with_multiarch_lib := yes
 endif
 
-LIBGCJ	= libgcj10
-LIBGCJ_PC	= libgcj10.pc
-LIBGCJ_SONAME	= 10
+LIBGCJ	= libgcj12
+LIBGCJ_PC	= libgcj12.pc
+LIBGCJ_SONAME	= 12
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj46_archs)))
-  LIBGCJ	= libgcj12
-  LIBGCJ_PC	= libgcj12.pc
-  LIBGCJ_SONAME	= 12
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj47_archs)))
+  LIBGCJ	= libgcj13
+  LIBGCJ_PC	= libgcj13.pc
+  LIBGCJ_SONAME	= 13
 endif
 
 gcj_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386

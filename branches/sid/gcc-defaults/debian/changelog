@@ -1,3 +1,9 @@
+gcc-defaults (1.116) unstable; urgency=low
+
+  * Bump libgcj soversion. Closes: #666437.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 02 Apr 2012 08:47:08 +0200
+
 gcc-defaults (1.115) unstable; urgency=low
 
   * Don't build gccgo-multilib on kfreebsd-amd64, mips, mipsel.
