@@ -158,7 +158,7 @@ DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 gcc47_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 gcc47_archs =
-gcj47_archs = alpha amd64 armel armhf hppa i386 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386
+gcj47_archs = alpha amd64 armel armhf hppa i386 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
