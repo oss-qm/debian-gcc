@@ -178,7 +178,7 @@ CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.6.3-$(REL_NO_463)
 CV_GDC1		:= 4.4.7-$(REL_NO_447)
 CV_LIBGCJCOMMON	:= 1:4.6.3-$(REL_NO_463)
-CV_SPU		:= 4.6.3-$(REL_NO_463)
+CV_SPU		:= 4.7.0-$(REL_NO_470)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
   CV_CPP		:= 4.7.0-$(REL_NO_470)
@@ -187,7 +187,6 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
   CV_GOBJC		:= 4.7.0-$(REL_NO_470)
   CV_GOBJCXX		:= 4.7.0-$(REL_NO_470)
   CV_GFORT		:= 4.7.0-$(REL_NO_470)
-  CV_SPU		:= 4.7.0-$(REL_NO_470)
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj47_archs)))
