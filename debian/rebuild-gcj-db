@@ -85,6 +85,10 @@ rebuild_databases()
 
 # still different databases for each gcj-4.x
 
+if which gcj-dbtool-4.7 >/dev/null 2>&1; then
+    rebuild_databases 4.7
+fi
+
 if which gcj-dbtool-4.6 >/dev/null 2>&1; then
     rebuild_databases 4.6
 fi
