@@ -1,3 +1,10 @@
+gcc-defaults (1.118) unstable; urgency=low
+
+  * Default to GCC 4.7 for gcc, g++, gfortran on amd64, i386,
+    kfreebsd-amd64, kfreebsd-i386 and hurd-i386.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 07 May 2012 17:30:36 +0200
+
 gcc-defaults (1.117) unstable; urgency=low
 
   [ Samuel Thibault ]

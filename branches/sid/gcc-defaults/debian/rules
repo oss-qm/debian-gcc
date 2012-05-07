@@ -157,7 +157,7 @@ DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 gcc47_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcc47_archs =
+gcc47_archs = amd64 i386 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 gcj47_archs = alpha amd64 armel armhf hppa i386 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
