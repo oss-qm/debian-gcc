@@ -48,14 +48,14 @@ similar.
 The default compiler versions for Debian GNU/Linux on amd64 are
 (minor version numbers omitted):
 
-	cpp		: cpp-4.6
-	gcc		: gcc-4.6
-	g++		: g++-4.6
-	gfortran	: gfortran-4.6
+	cpp		: cpp-4.7
+	gcc		: gcc-4.7
+	g++		: g++-4.7
+	gfortran	: gfortran-4.7
 	gcj		: gcj-4.7
 	gij		: gij-4.7
-	gobjc		: gobjc-4.6
-	gobjc++		: gobjc++-4.6
+	gobjc		: gobjc-4.7
+	gobjc++		: gobjc++-4.7
 	gdc		: gdc-4.6
 
 Most of the documentation for GCC including the manual pages is
