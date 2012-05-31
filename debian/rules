@@ -509,6 +509,12 @@ install: build substvars
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
+	dh_link -pgcc \
+	  /usr/bin/gcc-ar-$(PV_GCC) /usr/bin/gcc-ar \
+	  /usr/bin/gcc-nm-$(PV_GCC) /usr/bin/gcc-nm \
+	  /usr/bin/gcc-ranlib-$(PV_GCC) /usr/bin/gcc-ranlib
+endif
 	install -m 755 -p c89 debian/gcc/usr/bin/c89-gcc
 	install -m 644 -p c89.1 debian/gcc/usr/share/man/man1/c89-gcc.1
 	install -m 755 -p c99 debian/gcc/usr/bin/c99-gcc

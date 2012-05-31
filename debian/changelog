@@ -1,3 +1,9 @@
+gcc-defaults (1.119) UNRELEASED; urgency=low
+
+  * Provide gcc-{ar,nm,ranlib} for architectures with 4.7 as the default.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 08 May 2012 00:30:00 +0200
+
 gcc-defaults (1.118) unstable; urgency=low
 
   * Default to GCC 4.7 for gcc, g++, gfortran on amd64, i386,
