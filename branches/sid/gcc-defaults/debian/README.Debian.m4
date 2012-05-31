@@ -15,17 +15,24 @@ of GCC to coexist on the same system, and selects the default version
 by means of the gcc-defaults package, which creates symbolic links as
 appropriate.
 
-Versions of GCC present in Debian Squeeze
+Versions of GCC present in Debian Wheezy
 -----------------------------------------
 
-- GCC 4.3 is the default compiler for C, C++, Objective-C, Objective-C++,
-  Ada, Fortran 95, and Java on all architectures. This package also
-  provides libgcc1, libgcc2 (m68k) and libgcc4 (hppa) which contain the
-  GCC intrinsics, and  libstdc++6.
+- GCC 4.7 is the default compiler for Go and Java on all architectures.
+  On x86 architectures it is the default compiler for C, C++, Objective-C,
+  Objective-C++ and Fortran 95.
 
-- GCC 4.1 is the default compiler for D and Pascal.
+- GCC 4.6 is the default compiler for Ada and D (language version 2).
+  On non x86 architectures it is the default compiler for C, C++,
+  Objective-C, Objective-C++ and Fortran 95.
 
-- GCC 3.4 is provided for the C, but is not the default for any language.
+- GCC 4.5 was removed for the release of Wheezy.
+
+- GCC 4.4 is the default compiler for D (language version 1).
+
+- GCC 4.1 was removed for the release of Wheezy (was the default for Pascal).
+
+- GCC 3.4 was removed for the release of Squeeze.
 
 - GCC 3.3 is not provided anymore; it is used to build libstdc++5 on
   the amd64 and i386 architectures. It is expected that libstdc++5 is
@@ -39,15 +46,15 @@ How are the default compilers selected?
 Starting in Debian 3.0, there is now a gcc-defaults package set. This
 creates the actual packages for gcc, gnat, g++, gobjc, chill, gcj, gij,
 gdc and gpc.  These packages will depend on the corresponding default
-compiler for that architecture. For Debian 4.0 for example, "gcc"
-depends on "gcc-4.1", which means that the "gcc-4.1" package will
-install a binary called "gcc-4.1", which is symlinked to in the "gcc"
+compiler for that architecture. For Debian 5.0 for example, "gcc"
+depends on "gcc-4.4", which means that the "gcc-4.4" package will
+install a binary called "gcc-4.4", which is symlinked to in the "gcc"
 package as "gcc".
 
 This may seem confusing, but what it allows you do to is install more
 than one version of the GCC compiler collection at the same time,
 making sure you are always using the one preferred for that
-architecture. To use the other compiler, simply set CC=gcc-4.1, or
+architecture. To use the other compiler, simply set CC=gcc-4.6, or
 similar.
 
 The default compiler versions for Debian GNU/OS_NAME on DEB_ARCH are
@@ -59,6 +66,7 @@ ifenabled(`g++',`	g++		: g++-PV_GPP')
 ifenabled(`gfortran',`	gfortran	: gfortran-PV_GFORT')
 ifenabled(`gcj',`	gcj		: gcj-PV_GCJ')
 ifenabled(`gcj',`	gij		: gij-PV_GIJ')
+ifenabled(`gccgo',`	gccgo		: gccgo-PV_GGO')
 ifenabled(`gobjc',`	gobjc		: gobjc-PV_GOBJC')
 ifenabled(`gobjc++',`	gobjc++		: gobjc++-PV_GOBJCXX')
 ifenabled(`gnat',`	gnat		: gnat-PV_GNAT')
@@ -91,10 +99,10 @@ of object files built with different compilers; If you use the 4.1
 C compiler, you should use the `gcc-4.1' compiler driver for all your
 work.  When configuring sources, use
 
-    CC=gcc-4.1 ./configure <configure options> 	# bash
-    setenv CC gcc-4.1; ./configure <options>	# csh
+    CC=gcc-4.4 ./configure <configure options> 	# bash
+    setenv CC gcc-4.4; ./configure <options>	# csh
 
-When calling make, use `make CC=gcc-4.1'.
+When calling make, use `make CC=gcc-4.4'.
 
 
 C Application Binary Interface
