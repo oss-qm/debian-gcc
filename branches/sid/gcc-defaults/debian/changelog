@@ -1,7 +1,11 @@
 gcc-defaults (1.119) UNRELEASED; urgency=low
 
+  [ Matthias Klose ]
   * Provide gcc-{ar,nm,ranlib} for architectures with 4.7 as the default.
   * Update README.Debian for Wheezy. Closes: #675026.
+
+  [Hiroyuki Yamamoto]
+  * Build gccgo on ppc64. Closes: #668861.
 
  -- Matthias Klose <doko@debian.org>  Tue, 08 May 2012 00:30:00 +0200
 
