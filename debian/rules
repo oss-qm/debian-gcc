@@ -126,6 +126,8 @@ REL_NO_471	:= $(shell expr $(VMINOR) - 118)$(REL_EXT)
 # gcc-defaults 1.120 is the first version with 4.7.2 support.
 REL_NO_472	:= $(shell expr $(VMINOR) - 119)$(REL_EXT)
 
+REL_NO_480	:= $(shell expr $(VMINOR) - 121)$(REL_EXT)
+
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.29
 GDC1_VERSION	:= 1.063
@@ -152,6 +154,7 @@ REQV_45		:= (>= 4.5.3-1)
 REQV_46		:= (>= 4.6.3-1~)
 REQV_46_GDC	:= (>= $(GDC_VERSION)-4.6.3-1~)
 REQV_47		:= (>= 4.7.2-1~)
+REQV_48		:= (>= 4.8-20121114)
 
 REQV_LIBGCJ_BC	:= (>= 4.6.3-1~)
 
@@ -160,75 +163,75 @@ DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
-gcc47_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcc47_archs = amd64 i386 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj47_archs = alpha amd64 armel armhf hppa i386 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+#gcc48_archs = alpha amd64 armel armhf hppa i386 ia64 lpia m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+#gcc48_archs = amd64 i386 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+#gcj48_archs = alpha amd64 armel armhf hppa i386 lpia mips mipsel powerpc powerpcspe ppc64 s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CHILL:= 2.95.4-$(REL_NO_295)
 CV_GPC	:= 3.4.6-$(REL_NO_346)
 
-CV_CPP		:= 4.6.3-$(REL_NO_463)
-CV_GCC		:= 4.6.3-$(REL_NO_463)
-CV_GPP		:= 4.6.3-$(REL_NO_463)
-CV_GOBJC	:= 4.6.3-$(REL_NO_463)
-CV_GOBJCXX	:= 4.6.3-$(REL_NO_463)
-CV_GFORT	:= 4.6.3-$(REL_NO_463)
+CV_CPP		:= 4.7.2-$(REL_NO_472)
+CV_GCC		:= 4.7.2-$(REL_NO_472)
+CV_GPP		:= 4.7.2-$(REL_NO_472)
+CV_GOBJC	:= 4.7.2-$(REL_NO_472)
+CV_GOBJCXX	:= 4.7.2-$(REL_NO_472)
+CV_GFORT	:= 4.7.2-$(REL_NO_472)
 CV_GGO		:= 4.7.2-$(REL_NO_472)
-CV_GCJ		:= 4.6.3-$(REL_NO_463)
-CV_GIJ		:= 4.6.3-$(REL_NO_463)
-CV_LIBGCJBC	:= 4.6.3-$(REL_NO_463)
+CV_GCJ		:= 4.7.2-$(REL_NO_472)
+CV_GIJ		:= 4.7.2-$(REL_NO_472)
+CV_LIBGCJBC	:= 4.7.2-$(REL_NO_472)
 CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.6.3-$(REL_NO_463)
 CV_GDC1		:= 4.4.7-$(REL_NO_447)
-CV_LIBGCJCOMMON	:= 1:4.6.3-$(REL_NO_463)
+CV_LIBGCJCOMMON	:= 1:4.7.2-$(REL_NO_472)
 CV_SPU		:= 4.7.2-$(REL_NO_472)
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
-  CV_CPP		:= 4.7.2-$(REL_NO_472)
-  CV_GCC		:= 4.7.2-$(REL_NO_472)
-  CV_GPP		:= 4.7.2-$(REL_NO_472)
-  CV_GOBJC		:= 4.7.2-$(REL_NO_472)
-  CV_GOBJCXX		:= 4.7.2-$(REL_NO_472)
-  CV_GFORT		:= 4.7.2-$(REL_NO_472)
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc48_archs)))
+  CV_CPP		:= 4.8-$(REL_NO_480)
+  CV_GCC		:= 4.8-$(REL_NO_480)
+  CV_GPP		:= 4.8-$(REL_NO_480)
+  CV_GOBJC		:= 4.8-$(REL_NO_480)
+  CV_GOBJCXX		:= 4.8-$(REL_NO_480)
+  CV_GFORT		:= 4.8-$(REL_NO_480)
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj47_archs)))
-  CV_GCJ		:= 4.7.2-$(REL_NO_472)
-  CV_GIJ		:= 4.7.2-$(REL_NO_472)
-  CV_LIBGCJBC		:= 4.7.2-$(REL_NO_472)
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj48_archs)))
+  CV_GCJ		:= 4.8-$(REL_NO_480)
+  CV_GIJ		:= 4.8-$(REL_NO_480)
+  CV_LIBGCJBC		:= 4.8-$(REL_NO_480)
 endif
 
 REQV_CHILL	= $(REQV_295)
 REQV_GPC	= $(REQV_34)
 
-REQV_CPP	= $(REQV_44)
-REQV_GCC	= $(REQV_44)
-REQV_GPP	= $(REQV_44)
-REQV_GOBJC	= $(REQV_44)
-REQV_GOBJCXX	= $(REQV_44)
-REQV_GFORT	= $(REQV_44)
+REQV_CPP	= $(REQV_47)
+REQV_GCC	= $(REQV_47)
+REQV_GPP	= $(REQV_47)
+REQV_GOBJC	= $(REQV_47)
+REQV_GOBJCXX	= $(REQV_47)
+REQV_GFORT	= $(REQV_47)
 REQV_GGO	= $(REQV_47)
-REQV_GCJ	= $(REQV_44)
-REQV_GIJ	= $(REQV_44)
+REQV_GCJ	= $(REQV_47)
+REQV_GIJ	= $(REQV_47)
 REQV_GPC	= $(REQV_41_GPC)
 REQV_GDC	= $(REQV_46_GDC)
 REQV_GDC1	= $(REQV_44_GDC)
 REQV_SPU	= $(REQV_47)
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc47_archs)))
-  REQV_CPP	= $(REQV_47)
-  REQV_GCC	= $(REQV_47)
-  REQV_GPP	= $(REQV_47)
-  REQV_GOBJC	= $(REQV_47)
-  REQV_GOBJCXX	= $(REQV_47)
-  REQV_GFORT	= $(REQV_47)
-  REQV_SPU	= $(REQV_47)
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc48_archs)))
+  REQV_CPP	= $(REQV_48)
+  REQV_GCC	= $(REQV_48)
+  REQV_GPP	= $(REQV_48)
+  REQV_GOBJC	= $(REQV_48)
+  REQV_GOBJCXX	= $(REQV_48)
+  REQV_GFORT	= $(REQV_48)
+  REQV_SPU	= $(REQV_48)
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj47_archs)))
-  REQV_GCJ	= $(REQV_47)
-  REQV_GIJ	= $(REQV_47)
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj48_archs)))
+  REQV_GCJ	= $(REQV_48)
+  REQV_GIJ	= $(REQV_48)
 endif
 
 EPOCH=4
@@ -435,7 +438,6 @@ ifeq ($(with_multilib),yes)
 	  echo 'pkgmulti:ggo=gccgo-multilib'; \
 	) >> debian/substvars.local
 endif
-#ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	( \
 	  echo 'dep:jrehl=gcj-$${pv:gij}-jre-headless $${reqv:gij}'; \
 	  echo 'dep:jre=gcj-$${pv:gij}-jre $${reqv:gij}'; \
@@ -443,14 +445,6 @@ endif
 	  echo 'pkg:gjdoc=gjdoc'; \
 	  echo 'ver:gcjconflict=4:4.4.0-2'; \
 	) >> debian/substvars.local
-#else
-#	( \
-#	  echo 'dep:jrehl=java-gcj-compat-headless (>= 1.0.80), gij-$${pv:gij} $${reqv:gij}'; \
-#	  echo 'dep:jre=java-gcj-compat (>= 1.0.80)'; \
-#	  echo 'dep:jdk=java-gcj-compat-dev (>= 1.0.80), gcj-$${pv:gcj} $${reqv:gcj}'; \
-#	  echo 'ver:gcjconflict=4:4.3.3-6'; \
-#	) >> debian/substvars.local
-#endif
 
 build: README build-stamp
 build-stamp:
@@ -554,8 +548,8 @@ ifeq ($(with_multiarch_lib),yes)
 	# have separate asm headers installed for our non-default targets.
 	dh_link -pgcc-multilib \
 	  /usr/include/$(DEB_HOST_MULTIARCH)/asm /usr/include/asm
-  endif  
-endif  
+  endif
+endif
 
 ifneq (,$(filter gdc, $(packages)))
 	: # gdc
@@ -761,14 +755,12 @@ endif
 	  /usr/share/info/gcj-$(PV_GCJ).info.gz /usr/share/info/gcj.info.gz
   endif
 
-#  ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	dh_link -pgcj-jdk \
 	  /usr/bin/gjdoc-$(PV_GCJ) /usr/bin/gjdoc \
 	  /usr/share/man/man1/gjdoc-$(PV_GCJ).1.gz /usr/share/man/man1/gjdoc.1.gz
 	cp -p debian/dh_javadoc debian/gcj-jdk/usr/bin/
 	pod2man -c Debhelper -r $(PV_GCJ) \
 		debian/dh_javadoc debian/gcj-jdk/usr/share/man/man1/dh_javadoc.1
-# endif
 
 	: # libgcj-bc
   ifeq ($(with_multiarch_lib),yes)
@@ -791,19 +783,14 @@ endif
 
 	echo "libgcj_bc 1 libgcj-bc $(REQV_LIBGCJ_BC)" \
 		> debian/libgcj-bc.shlibs
-#	echo "libgcj_bc 1 libgcj-bc" > debian/libgcj-bc.shlibs
 
-#  ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj44_archs)))
 	: # gcj-jre-headless
 	dh_installdirs -pgcj-jre-headless \
 		usr/share/doc usr/lib/jvm
-#	ln -sf java-1.5.0-gcj-$(PV_GCJ)-1.5.0.0 \
-#		debian/gcj-jre-headless/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0
 	ln -sf java-1.5.0-gcj-$(PV_GCJ) \
 		debian/gcj-jre-headless/usr/lib/jvm/java-1.5.0-gcj
 	ln -sf java-gcj-$(PV_GCJ) \
 		debian/gcj-jre-headless/usr/lib/jvm/java-gcj
-#  endif
 endif
 
 	: # libgcj-common
