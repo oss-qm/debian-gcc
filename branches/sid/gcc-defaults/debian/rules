@@ -121,6 +121,10 @@ REL_NO_463	:= $(shell expr $(VMINOR) - 112)$(REL_EXT)
 
 # gcc-defaults 1.113 is the first version with 4.7.0 support.
 REL_NO_470	:= $(shell expr $(VMINOR) - 112)$(REL_EXT)
+# gcc-defaults 1.119 is the first version with 4.7.1 support.
+REL_NO_471	:= $(shell expr $(VMINOR) - 118)$(REL_EXT)
+# gcc-defaults 1.120 is the first version with 4.7.2 support.
+REL_NO_472	:= $(shell expr $(VMINOR) - 119)$(REL_EXT)
 
 GPC_VERSION	:= 2.1
 GDC_VERSION	:= 0.29
@@ -147,7 +151,7 @@ REQV_44_GDC	:= (>= $(GDC1_VERSION)-4.4.7-1~)
 REQV_45		:= (>= 4.5.3-1)
 REQV_46		:= (>= 4.6.3-1~)
 REQV_46_GDC	:= (>= $(GDC_VERSION)-4.6.3-1~)
-REQV_47		:= (>= 4.7.0-1~)
+REQV_47		:= (>= 4.7.2-1~)
 
 REQV_LIBGCJ_BC	:= (>= 4.6.3-1~)
 
@@ -170,7 +174,7 @@ CV_GPP		:= 4.6.3-$(REL_NO_463)
 CV_GOBJC	:= 4.6.3-$(REL_NO_463)
 CV_GOBJCXX	:= 4.6.3-$(REL_NO_463)
 CV_GFORT	:= 4.6.3-$(REL_NO_463)
-CV_GGO		:= 4.7.0-$(REL_NO_470)
+CV_GGO		:= 4.7.2-$(REL_NO_472)
 CV_GCJ		:= 4.6.3-$(REL_NO_463)
 CV_GIJ		:= 4.6.3-$(REL_NO_463)
 CV_LIBGCJBC	:= 4.6.3-$(REL_NO_463)
@@ -178,21 +182,21 @@ CV_GPC		:= $(GPC_VERSION)-4.1.2-$(REL_NO_412)
 CV_GDC		:= 4.6.3-$(REL_NO_463)
 CV_GDC1		:= 4.4.7-$(REL_NO_447)
 CV_LIBGCJCOMMON	:= 1:4.6.3-$(REL_NO_463)
-CV_SPU		:= 4.7.0-$(REL_NO_470)
+CV_SPU		:= 4.7.2-$(REL_NO_472)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
-  CV_CPP		:= 4.7.0-$(REL_NO_470)
-  CV_GCC		:= 4.7.0-$(REL_NO_470)
-  CV_GPP		:= 4.7.0-$(REL_NO_470)
-  CV_GOBJC		:= 4.7.0-$(REL_NO_470)
-  CV_GOBJCXX		:= 4.7.0-$(REL_NO_470)
-  CV_GFORT		:= 4.7.0-$(REL_NO_470)
+  CV_CPP		:= 4.7.2-$(REL_NO_472)
+  CV_GCC		:= 4.7.2-$(REL_NO_472)
+  CV_GPP		:= 4.7.2-$(REL_NO_472)
+  CV_GOBJC		:= 4.7.2-$(REL_NO_472)
+  CV_GOBJCXX		:= 4.7.2-$(REL_NO_472)
+  CV_GFORT		:= 4.7.2-$(REL_NO_472)
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj47_archs)))
-  CV_GCJ		:= 4.7.0-$(REL_NO_470)
-  CV_GIJ		:= 4.7.0-$(REL_NO_470)
-  CV_LIBGCJBC		:= 4.7.0-$(REL_NO_470)
+  CV_GCJ		:= 4.7.2-$(REL_NO_472)
+  CV_GIJ		:= 4.7.2-$(REL_NO_472)
+  CV_LIBGCJBC		:= 4.7.2-$(REL_NO_472)
 endif
 
 REQV_CHILL	= $(REQV_295)

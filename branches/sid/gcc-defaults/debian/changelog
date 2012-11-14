@@ -1,13 +1,22 @@
-gcc-defaults (1.119) UNRELEASED; urgency=low
+gcc-defaults (1.120) unstable; urgency=low
+
+  * Bump GCC 4.7 versions to 4.7.2.
+  * Don't try to update the libgcj-db database for 4.5, removed for
+    the wheezy release. Closes: #620582, #626600.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 27 Sep 2012 02:00:03 +0200
+
+gcc-defaults (1.119) unstable; urgency=low
 
   [ Matthias Klose ]
+  * Bump gcc-4.7 version to 4.7.1.
   * Provide gcc-{ar,nm,ranlib} for architectures with 4.7 as the default.
   * Update README.Debian for Wheezy. Closes: #675026.
 
   [Hiroyuki Yamamoto]
   * Build gccgo on ppc64. Closes: #668861.
 
- -- Matthias Klose <doko@debian.org>  Tue, 08 May 2012 00:30:00 +0200
+ -- Matthias Klose <doko@debian.org>  Tue, 26 Jun 2012 03:05:15 +0200
 
 gcc-defaults (1.118) unstable; urgency=low
 
