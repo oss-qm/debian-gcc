@@ -1,3 +1,9 @@
+gcc-defaults (1.122) UNRELEASED; urgency=low
+
+  * Update maintainer list.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 13 Jun 2013 12:38:49 +0200
+
 gcc-defaults (1.121) unstable; urgency=low
 
   * Bump GCC 4.8 versions to 4.8.1.

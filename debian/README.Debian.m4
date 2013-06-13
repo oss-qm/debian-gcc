@@ -177,6 +177,10 @@ Maintainers of these packages
 -----------------------------
 
 Matthias Klose <doko@debian.org>
+
+Former and/or inactive maintainers of these packages
+----------------------------------------------------
+
 Ray Dassen <jdassen@debian.org>
 Philip Blundell <pb@debian.org>			(arm-linux)
 Jeff Bailey <jbailey@nisa.net>			(hurd-i386)
