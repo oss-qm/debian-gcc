@@ -10,6 +10,8 @@ of GCC to coexist on the same system, and selects the default version
 by means of the gcc-defaults package, which creates symbolic links as
 appropriate.
 
+FIXME: Needs update for jessie
+
 Versions of GCC present in Debian Wheezy
 -----------------------------------------
 
@@ -52,19 +54,19 @@ making sure you are always using the one preferred for that
 architecture. To use the other compiler, simply set CC=gcc-4.6, or
 similar.
 
-The default compiler versions for Debian GNU/Linux on amd64 are
+The default compiler versions for Debian GNU/Linux on i386 are
 (minor version numbers omitted):
 
-	cpp		: cpp-4.7
-	gcc		: gcc-4.7
-	g++		: g++-4.7
-	gfortran	: gfortran-4.7
-	gcj		: gcj-4.7
-	gij		: gij-4.7
+	cpp		: cpp-4.8
+	gcc		: gcc-4.8
+	g++		: g++-4.8
+	gfortran	: gfortran-4.8
+	gcj		: gcj-4.8
+	gij		: gij-4.8
 	gccgo		: gccgo-4.7
-	gobjc		: gobjc-4.7
-	gobjc++		: gobjc++-4.7
-	gdc		: gdc-4.6
+	gobjc		: gobjc-4.8
+	gobjc++		: gobjc++-4.8
+	gdc		: gdc-4.8
 
 Most of the documentation for GCC including the manual pages is
 licensed under the GFDL and therefore not included in the main section.
