@@ -1,8 +1,18 @@
-gcc-defaults (1.121) UNRELEASED; urgency=low
+gcc-defaults (1.121) unstable; urgency=low
 
-  * Default to 4.7 for all architectures.
+  * Bump GCC 4.8 versions to 4.8.1.
+  * Bump GCC 4.7 versions to 4.7.3.
+  * Bump GCC 4.6 versions to 4.6.4.
+  * Default to 4.8 for all x86 architectures.
+  * Default to 4.8 for ARM architectures (agreed by the ARM porters).
+  * Default gdc to 4.8 for every architecture.
+  * Default gij/gcj to 4.8 for every architecture.
+  * Stop building the gdc-v1 package.
+  * Add support for x32 (Daniel Schepler). Closes: #692140.
+  * Fix broken symlink in gcj-jre-headless. Closes: #710471.
+  * Fix gcj package descriptions. Closes: #652495.
 
- -- Matthias Klose <doko@debian.org>  Wed, 14 Nov 2012 14:07:41 +0100
+ -- Matthias Klose <doko@debian.org>  Wed, 12 Jun 2013 23:11:47 +0200
 
 gcc-defaults (1.120) unstable; urgency=low
 
