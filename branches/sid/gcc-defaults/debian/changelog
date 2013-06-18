@@ -1,6 +1,10 @@
 gcc-defaults (1.122) UNRELEASED; urgency=low
 
+  [ Matthias Klose ]
   * Update maintainer list.
+
+  [ Aurelien Jarno ]
+  * Default to 4.8 for mips and mipsel architectures.
 
  -- Matthias Klose <doko@debian.org>  Thu, 13 Jun 2013 12:38:49 +0200
 
