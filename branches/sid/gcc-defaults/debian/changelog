@@ -2,11 +2,13 @@ gcc-defaults (1.122) UNRELEASED; urgency=low
 
   [ Matthias Klose ]
   * Update maintainer list.
+  * Default gccgo to 4.8 for every architecture (requiring 4.8.1-4).
+  * Fix gccgo-multilib dependency (closes: #712266).
 
   [ Aurelien Jarno ]
   * Default to 4.8 for mips and mipsel architectures.
 
- -- Matthias Klose <doko@debian.org>  Thu, 13 Jun 2013 12:38:49 +0200
+ -- Matthias Klose <doko@debian.org>  Sun, 23 Jun 2013 14:17:26 +0200
 
 gcc-defaults (1.121) unstable; urgency=low
 
