@@ -4,6 +4,7 @@ gcc-defaults (1.122) UNRELEASED; urgency=low
   * Update maintainer list.
   * Default gccgo to 4.8 for every architecture (requiring 4.8.1-4).
   * Fix gccgo-multilib dependency (closes: #712266).
+  * Default to 4.8 for m68k (Thorsten Glaser, Wouter Verhelst).
 
   [ Aurelien Jarno ]
   * Default to 4.8 for mips and mipsel architectures.
