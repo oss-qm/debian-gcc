@@ -11,6 +11,7 @@ gcc-defaults (1.122) UNRELEASED; urgency=low
   * Default to 4.8 for mips and mipsel architectures.
   * Enable gcc-multilib on sparc64.
   * Default to 4.8 for sparc64 architecture.
+  * Default to 4.8 for s390 and s390x architectures.
 
  -- Matthias Klose <doko@debian.org>  Sun, 23 Jun 2013 14:17:26 +0200
 
