@@ -1,6 +1,15 @@
-gcc-defaults (1.122) UNRELEASED; urgency=low
+gcc-defaults (1.123) UNRELEASED; urgency=low
 
-  [ Matthias Klose ]
+  [ Aurelien Jarno ]
+  * Enable gcc-multilib on sparc64.
+  * Default to 4.8 for sparc64 architecture.
+  * Default to 4.8 for s390 and s390x architectures.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 30 Jun 2013 23:44:05 +0200
+
+gcc-defaults (1.122) unstable; urgency=low
+
+  [ Matthias Klose ]
   * Update maintainer list.
   * Default gccgo to 4.8 for every architecture (requiring 4.8.1-4).
   * Fix gccgo-multilib dependency (closes: #712266).
@@ -9,11 +18,8 @@ gcc-defaults (1.122) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
   * Default to 4.8 for mips and mipsel architectures.
-  * Enable gcc-multilib on sparc64.
-  * Default to 4.8 for sparc64 architecture.
-  * Default to 4.8 for s390 and s390x architectures.
 
- -- Matthias Klose <doko@debian.org>  Sun, 23 Jun 2013 14:17:26 +0200
+ -- Matthias Klose <doko@debian.org>  Sun, 30 Jun 2013 23:33:50 +0200
 
 gcc-defaults (1.121) unstable; urgency=low
 
