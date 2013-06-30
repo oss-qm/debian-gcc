@@ -54,7 +54,7 @@ making sure you are always using the one preferred for that
 architecture. To use the other compiler, simply set CC=gcc-4.6, or
 similar.
 
-The default compiler versions for Debian GNU/Linux on i386 are
+The default compiler versions for Debian GNU/Linux on amd64 are
 (minor version numbers omitted):
 
 	cpp		: cpp-4.8
@@ -63,7 +63,7 @@ The default compiler versions for Debian GNU/Linux on i386 are
 	gfortran	: gfortran-4.8
 	gcj		: gcj-4.8
 	gij		: gij-4.8
-	gccgo		: gccgo-4.7
+	gccgo		: gccgo-4.8
 	gobjc		: gobjc-4.8
 	gobjc++		: gobjc++-4.8
 	gdc		: gdc-4.8
@@ -153,6 +153,10 @@ Maintainers of these packages
 -----------------------------
 
 Matthias Klose <doko@debian.org>
+
+Former and/or inactive maintainers of these packages
+----------------------------------------------------
+
 Ray Dassen <jdassen@debian.org>
 Philip Blundell <pb@debian.org>			(arm-linux)
 Jeff Bailey <jbailey@nisa.net>			(hurd-i386)
