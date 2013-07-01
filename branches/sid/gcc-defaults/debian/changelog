@@ -7,6 +7,7 @@ gcc-defaults (1.123) UNRELEASED; urgency=low
 
   [ Matthias Klose ]
   * Default gcj to 4.8 on ia64 as well.
+  * Stop building the -spu packages on powerpc.
 
  -- Matthias Klose <doko@debian.org>  Sun, 30 Jun 2013 23:44:05 +0200
 

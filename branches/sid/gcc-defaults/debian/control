@@ -258,28 +258,3 @@ Description: D compiler (language version 2), based on the GCC backend
  in their Build-Depends line.
  .
  This compiler supports D language version 2.
-
-Package: gcc-spu
-Architecture: powerpc ppc64
-Section: devel
-Priority: optional
-Depends: cpp (>= ${version:cpp}), gcc-${pv:spu}-spu ${reqv:spu}, ${misc:Depends}
-Description: SPU cross-compiler (preprocessor and C compiler)
- GNU Compiler Collection for the Cell Broadband Engine SPU (preprocessor
- and C compiler).
-
-Package: g++-spu
-Architecture: powerpc ppc64
-Section: devel
-Priority: optional
-Depends: cpp (>= ${version:cpp}), g++-${pv:spu}-spu ${reqv:spu}, ${misc:Depends}
-Description: SPU cross-compiler (C++ compiler)
- GNU Compiler Collection for the Cell Broadband Engine SPU (C++ compiler).
-
-Package: gfortran-spu
-Architecture: powerpc ppc64
-Section: devel
-Priority: optional
-Depends: cpp (>= ${version:cpp}), gfortran-${pv:spu}-spu ${reqv:spu}, ${misc:Depends}
-Description: SPU cross-compiler (Fortran compiler)
- GNU Compiler Collection for the Cell Broadband Engine SPU (Fortran compiler).
