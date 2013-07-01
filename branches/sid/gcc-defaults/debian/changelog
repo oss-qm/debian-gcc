@@ -3,7 +3,6 @@ gcc-defaults (1.123) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * Enable gcc-multilib on sparc64.
   * Default to 4.8 for sparc64 architecture.
-  * Default to 4.8 for s390 and s390x architectures.
 
   [ Matthias Klose ]
   * Default gcj to 4.8 on ia64 as well.
