@@ -152,7 +152,7 @@ REQV_46_GDC	:= $(REQV_46)
 REQV_47		:= (>= 4.7.3-1~)
 REQV_48		:= (>= 4.8.1-4~)
 
-REQV_LIBGCJ_BC	:= (>= 4.6.4-1~)
+REQV_LIBGCJ_BC	:= (>= 4.8.1-1~)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -175,7 +175,7 @@ CV_GCJ		:= 4.6.4-$(REL_NO_464)
 CV_GIJ		:= 4.6.4-$(REL_NO_464)
 CV_LIBGCJBC	:= 4.6.4-$(REL_NO_464)
 CV_GDC		:= 4.8.1-$(REL_NO_481)
-CV_LIBGCJCOMMON	:= 1:4.6.4-$(REL_NO_464)
+CV_LIBGCJCOMMON	:= 1:4.8.1-$(REL_NO_481)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc48_archs)))
   CV_CPP		:= 4.8.1-$(REL_NO_481)
