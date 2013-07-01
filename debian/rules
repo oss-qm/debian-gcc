@@ -176,7 +176,6 @@ CV_GIJ		:= 4.6.4-$(REL_NO_464)
 CV_LIBGCJBC	:= 4.6.4-$(REL_NO_464)
 CV_GDC		:= 4.8.1-$(REL_NO_481)
 CV_LIBGCJCOMMON	:= 1:4.6.4-$(REL_NO_464)
-CV_SPU		:= 4.7.3-$(REL_NO_473)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc48_archs)))
   CV_CPP		:= 4.8.1-$(REL_NO_481)
@@ -203,7 +202,6 @@ REQV_GGO	= $(REQV_48)
 REQV_GCJ	= $(REQV_46)
 REQV_GIJ	= $(REQV_46)
 REQV_GDC	= $(REQV_48)
-REQV_SPU	= $(REQV_47)
 
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc48_archs)))
   REQV_CPP	= $(REQV_48)
@@ -224,7 +222,6 @@ OS_NAME	:= Linux
 distribution := $(shell lsb_release -is)
 distrelease  := $(shell lsb_release -cs)
 all_packages    := g++ gfortran gcj-jdk gobjc gobjc++ gdc gccgo
-all_packages	+= gcc-spu g++-spu gfortran-spu
 no_packages	:=
 
 lib32 = /usr/lib32
@@ -284,10 +281,6 @@ ifeq ($(DEB_HOST_ARCH),netbsd-i386)
     OS_NAME	:= NetBSD
 endif
 
-ifeq (,$(filter $(DEB_HOST_ARCH),powerpc ppc64))
-    no_packages += gcc-spu g++-spu gfortran-spu
-endif
-
 ifneq ($(with_gfdl_docs),yes)
     no_packages := $(sort $(no_packages) cpp-doc gcc-doc gfortran-doc)
 endif
@@ -309,7 +302,6 @@ ifneq (,$(CV_GCJ_HACKED))
   V_GIJ	:= $(shell echo $(CV_GIJ_HACKED)   | sed 's/-[^-]*$$//')
 endif
 V_GDC	:= $(shell echo $(CV_GDC)   | sed 's/-[^-]*$$//')
-V_SPU	:= $(shell echo $(CV_SPU)   | sed 's/-[^-]*$$//')
 
 # number for the package name
 PV_CPP	:= $(shell echo $(V_CPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
@@ -322,7 +314,6 @@ PV_GFORT:= $(shell echo $(V_GFORT) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GGO	:= $(shell echo $(V_GGO)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_SPU	:= $(shell echo $(V_SPU)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 
 README:
 	m4 -DPACKAGES="$(packages)" \
@@ -338,7 +329,6 @@ README:
 	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
 	   -DV_GIJ=$(V_GIJ)     -DPV_GIJ=$(PV_GIJ) \
 	   -DV_GDC=$(V_GDC)     -DPV_GDC=$(PV_GDC) \
-	   -DV_SPU=$(V_SPU)     -DPV_SPU=$(PV_SPU) \
 	   $(if $(filter yes,$(with_gfdl_docs)), -DGFDL) \
 		debian/README.Debian.m4 > debian/README.Debian.tmp2
 	uniq debian/README.Debian.tmp2 > debian/README.Debian.tmp
@@ -369,7 +359,6 @@ substvars:
 	  echo 'pv:gcj=$(PV_GCJ)'; \
 	  echo 'pv:gij=$(PV_GIJ)'; \
 	  echo 'pv:gdc=$(PV_GDC)'; \
-	  echo 'pv:spu=$(PV_SPU)'; \
 	  echo 'reqv:cpp=$(REQV_CPP)'; \
 	  echo 'reqv:gcc=$(REQV_GCC)'; \
 	  echo 'reqv:gpp=$(REQV_GPP)'; \
@@ -380,7 +369,6 @@ substvars:
 	  echo 'reqv:gcj=$(REQV_GCJ)'; \
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
 	  echo 'reqv:gdc=$(REQV_GDC)'; \
-	  echo 'reqv:spu=$(REQV_SPU)'; \
 	  echo 'pkg:libgcj=$(LIBGCJ)'; \
 	  echo 'pkg:libgcjawt=$(LIBGCJ)-awt'; \
 	  echo 'version:libgcjbc=$(CV_LIBGCJBC)'; \
@@ -775,32 +763,6 @@ endif
 	mkdir -p debian/libgcj-common/usr/share/man/man1
 	install -m644 debian/dh_nativejava.1 debian/libgcj-common/usr/share/man/man1/
 
-ifneq (,$(filter gcc-spu, $(packages)))
-	: # gcc-spu
-	dh_installdirs -pgcc-spu \
-	  usr/share/doc usr/bin
-
-	dh_link -pgcc-spu \
-		/usr/bin/spu-cpp-$(PV_SPU) /usr/bin/spu-cpp \
-		/usr/bin/spu-gcc-$(PV_SPU) /usr/bin/spu-gcc
-endif
-ifneq (,$(filter g++-spu, $(packages)))
-	: # g++-spu
-	dh_installdirs -pg++-spu \
-	  usr/share/doc usr/bin
-
-	dh_link -pg++-spu \
-		/usr/bin/spu-g++-$(PV_SPU) /usr/bin/spu-g++
-endif
-ifneq (,$(filter gfortran-spu, $(packages)))
-	: # gfortran-spu
-	dh_installdirs -pgfortran-spu \
-	  usr/share/doc usr/bin
-
-	dh_link -pgfortran-spu \
-		/usr/bin/spu-gfortran-$(PV_SPU) /usr/bin/spu-gfortran
-endif
-
 nopkgs :=-s $(foreach p, $(no_packages),-N$(p))
 
 cacerts-stamp:
@@ -907,15 +869,6 @@ ifneq (,$(filter gcj-jdk, $(packages)))
 	dh_gencontrol -plibgcj-bc   -u-v$(CV_LIBGCJBC)
 	dh_gencontrol -pgcj-jre-headless -pgcj-jre -pgcj-jdk \
 		-u-v$(EPOCH):$(CV_GCJ)
-endif
-ifneq (,$(filter gcc-spu, $(packages)))
-	dh_gencontrol -pgcc-spu -u-v$(CV_SPU)
-endif
-ifneq (,$(filter g++-spu, $(packages)))
-	dh_gencontrol -pg++-spu -u-v$(CV_SPU)
-endif
-ifneq (,$(filter gfortran-spu, $(packages)))
-	dh_gencontrol -pgfortran-spu -u-v$(CV_SPU)
 endif
 	dh_md5sums -s $(nopkgs)
 	dh_builddeb -s $(nopkgs)
