@@ -6,7 +6,7 @@ Uploaders: Matthias Klose <doko@debian.org>
 Standards-Version: 3.9.4
 Build-Depends: m4, debhelper (>= 5),
   dpkg-dev (>= 1.16.0~ubuntu4),
-  gcc-4.8-base (>= 4.8.1-4~),
+  gcc-4.8-base (>= 4.8.1-6~),
   lsb-release
 Build-Depends-Indep: ca-certificates,
   gcj-jdk, python (>= 2.6.6)
@@ -106,7 +106,7 @@ Priority: optional
 Architecture: any
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gfortran-${pv:gfort} ${reqv:gfort}, ${misc:Depends}
 Suggests: ${pkgmulti:gfort}, gfortran-doc
-Provides: fortran-compiler
+Provides: fortran-compiler, ${fortran:mod-version}
 Description: GNU Fortran 95 compiler
  This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler. It uses the gcc backend to generate optimized

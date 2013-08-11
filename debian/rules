@@ -314,6 +314,10 @@ PV_GFORT:= $(shell echo $(V_GFORT) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GGO	:= $(shell echo $(V_GGO)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+ 
+MOD_VER := $(shell apt-cache show gfortran-$(PV_GFORT) \
+		| sed -n '/^Provides/s/.*\(gfortran-mod-[0-9]*\).*/\1/p' \
+		| head -1)
 
 README:
 	m4 -DPACKAGES="$(packages)" \
@@ -390,6 +394,9 @@ endif
 	  echo 'pkg:gjdoc=gjdoc'; \
 	  echo 'ver:gcjconflict=4:4.4.0-2'; \
 	) >> debian/substvars.local
+ifneq (,$(MOD_VER))
+	echo "fortran:mod-version=$(MOD_VER)" >> debian/substvars.local
+endif
 
 build-arch: build
 build-indep: cacerts-stamp build-stamp

@@ -1,4 +1,4 @@
-gcc-defaults (1.123) UNRELEASED; urgency=low
+gcc-defaults (1.123) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * Enable gcc-multilib on sparc64.
@@ -8,8 +8,10 @@ gcc-defaults (1.123) UNRELEASED; urgency=low
   * Default gcj to 4.8 on ia64 as well.
   * Stop building the -spu packages on powerpc.
   * Bump libgcj-common version to 4.8.
+  * Let gfortran provide the gfortran-mod version of the default
+    gfortran compiler. Addresses #714730.
 
- -- Matthias Klose <doko@debian.org>  Sun, 30 Jun 2013 23:44:05 +0200
+ -- Matthias Klose <doko@debian.org>  Sun, 11 Aug 2013 16:54:31 +0200
 
 gcc-defaults (1.122) unstable; urgency=low
 
