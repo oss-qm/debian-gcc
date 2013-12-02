@@ -3,6 +3,7 @@ gcc-defaults (1.124) UNRELEASED; urgency=low
   [ Matthias Klose ]
   * Bump GCC 4.8 versions to 4.8.2.
   * Default to 4.8 for hppa (John David Anglin).
+  * Default to 4.7 for powerpcspe (Roland Stigge).
 
   [ Aurelien Jarno ]
   * Default to 4.8 for s390x architecture.
