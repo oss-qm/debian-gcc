@@ -5,6 +5,9 @@ gcc-defaults (1.124) UNRELEASED; urgency=low
   * Default to 4.8 for hppa (John David Anglin).
   * Default to 4.7 for powerpcspe (Roland Stigge).
   * Default to 4.8 for alpha (Michael Cree).
+  * Default to 4.8 for ppc64. It is a primary release architecture
+    upstream, although there is no support from the Debian ppc64
+    porters.
 
   [ Aurelien Jarno ]
   * Default to 4.8 for s390x architecture.
