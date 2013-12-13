@@ -270,7 +270,7 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
-go_archs = amd64 armel armhf i386 ia64 mips mipsel powerpc ppc64 s390 s390x x32
+go_archs = amd64 arm64 armel armhf i386 ia64 mips mipsel powerpc ppc64 s390 s390x x32
 ifeq (,$(filter $(DEB_HOST_ARCH),$(go_archs)))
   no_packages += gccgo
 endif
@@ -330,7 +330,7 @@ PV_GFORT:= $(shell echo $(V_GFORT) | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GGO	:= $(shell echo $(V_GGO)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
 PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
- 
+
 MOD_VER := $(shell apt-cache show gfortran-$(PV_GFORT) \
 		| sed -n '/^Provides/s/.*\(gfortran-mod-[0-9]*\).*/\1/p' \
 		| head -1)
