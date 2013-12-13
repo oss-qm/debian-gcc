@@ -1,4 +1,4 @@
-gcc-defaults (1.124) UNRELEASED; urgency=low
+gcc-defaults (1.124) unstable; urgency=low
 
   [ Matthias Klose ]
   * Bump GCC 4.8 versions to 4.8.2.
@@ -12,7 +12,7 @@ gcc-defaults (1.124) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * Default to 4.8 for s390x architecture.
 
- -- Matthias Klose <doko@debian.org>  Sat, 23 Nov 2013 10:52:52 +0100
+ -- Matthias Klose <doko@debian.org>  Fri, 13 Dec 2013 02:12:54 +0100
 
 gcc-defaults (1.123) unstable; urgency=low
 
