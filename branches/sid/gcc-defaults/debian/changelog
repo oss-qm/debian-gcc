@@ -1,8 +1,12 @@
-gcc-defaults (1.125) UNRELEASED; urgency=low
+gcc-defaults (1.125) unstable; urgency=low
 
   * Build gccgo for arm64 and ppc64el.
+  * Default to 4.8 for powerpcspe (Roland Stigge). Closes: #734771.
+  * Default to 4.8 for powerpc (based on promises from powerpc porters not
+    showing that much involvement at least in the past).
+  * rebuild-gcj-db: Rebuild databases for 4.9.
 
- -- Matthias Klose <doko@debian.org>  Fri, 13 Dec 2013 09:52:32 +0100
+ -- Matthias Klose <doko@debian.org>  Fri, 17 Jan 2014 10:15:40 +0100
 
 gcc-defaults (1.124) unstable; urgency=low
 

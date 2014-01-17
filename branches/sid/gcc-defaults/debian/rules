@@ -160,9 +160,9 @@ DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
-gcc47_archs = powerpcspe
+gcc47_archs =
 #gcc48_archs = alpha amd64 armel armhf hppa i386 ia64 m68k mips mipsel powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcc48_archs = alpha amd64 armel armhf arm64 hppa i386 m68k mips mipsel ppc64 ppc64el x32 kfreebsd-amd64 kfreebsd-i386 hurd-i386 s390x sparc64
+gcc48_archs = alpha amd64 armel armhf arm64 hppa i386 m68k mips mipsel powerpc powerpcspe ppc64 ppc64el x32 kfreebsd-amd64 kfreebsd-i386 hurd-i386 s390x sparc64
 gcj48_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
