@@ -270,7 +270,7 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
-go_archs = amd64 arm64 armel armhf i386 ia64 mips mipsel powerpc ppc64 s390 s390x x32
+go_archs = amd64 arm64 armel armhf i386 ia64 mips mipsel powerpc ppc64 ppc64el s390 s390x x32
 ifeq (,$(filter $(DEB_HOST_ARCH),$(go_archs)))
   no_packages += gccgo
 endif

@@ -1,6 +1,6 @@
 gcc-defaults (1.125) UNRELEASED; urgency=low
 
-  * Build gccgo for arm64.
+  * Build gccgo for arm64 and ppc64el.
 
  -- Matthias Klose <doko@debian.org>  Fri, 13 Dec 2013 09:52:32 +0100
 
