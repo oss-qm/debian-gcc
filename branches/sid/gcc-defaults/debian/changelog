@@ -1,3 +1,9 @@
+gcc-defaults (1.125exp1) experimental; urgency=medium
+
+  * Default to 4.9 on all architectures for which 4.9 doesn't fail to build.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 17 Jan 2014 10:42:36 +0100
+
 gcc-defaults (1.125) unstable; urgency=low
 
   * Build gccgo for arm64 and ppc64el.
