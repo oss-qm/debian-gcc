@@ -1,3 +1,40 @@
+gcc-defaults (1.128) unstable; urgency=medium
+
+  * Default to GCC 4.9 for all architectures except m68k, or1k, powerpcspe,
+    sh4 and x32.
+  * Bump GCC 4.8 versions to 4.8.3.
+  * Move the gserialver binary and man page into the gcj-jdk package.
+    Closes: #747503.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 10 Jun 2014 15:45:03 +0200
+
+gcc-defaults (1.127exp2) experimental; urgency=medium
+
+  * Provide the gnu triplet prefixed gcov symlink.
+  * Add ppc64el as a native gcj architecture.
+  * Default to 4.9 on mips64 and mips64el (Yunqiang Su). Closes: #744095.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 03 May 2014 19:57:42 +0200
+
+gcc-defaults (1.127) unstable; urgency=medium
+
+  * Default gij/gcj to 4.9 for every architecture with a successful build.
+  * Default gccgo to 4.9 for every architecture (Go 1.2).
+  * Default gdc to 4.9 for every architecture.
+  * Provide the gnu triplet prefixed gcov symlink.
+  * Add ppc64el as a native gcj architecture. Closes: #744937.
+  * On x86 targets provide gnu-type prefixed binaries with the cpu that GCC
+    is configured for.
+  * Default to 4.8 on mips64 and mips64el (Yunqiang Su). Closes: #744095.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 03 May 2014 19:41:43 +0200
+
+gcc-defaults (1.126exp1) experimental; urgency=medium
+
+  * Provide the gcc-{ar,nm,ranlib} symlinks again.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 04 Apr 2014 14:28:44 +0200
+
 gcc-defaults (1.125exp1) experimental; urgency=medium
 
   * Default to 4.9 on all architectures for which 4.9 doesn't fail to build.

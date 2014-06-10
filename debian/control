@@ -180,7 +180,7 @@ Priority: optional
 Depends: libgcj-common (>= ${version:libgcjcommon}), gcj-jre (>= ${version:gcj}), ${dep:jdk}, ${pkg:gjdoc}, ${misc:Depends}
 Provides: java-gcj-compat-dev, java-compiler, java-sdk, java2-sdk, java5-sdk, ${pkg:gjdoc}
 Conflicts: gcj (<< ${ver:gcjconflict}), classpath-common (<= 2:0.97.2-1.1), ${pkg:gjdoc}, java-gcj-compat-dev (<< 1.0.80-2)
-Replaces: ${pkg:gjdoc}, java-gcj-compat-dev (<< 1.0.80-2)
+Replaces: ${pkg:gjdoc}, java-gcj-compat-dev (<< 1.0.80-2), gcj-jre-headless (<< 4:4.9.0-2)
 Description: gcj and Classpath development tools for Java(TM)
  GCJ is a front end to the GCC compiler which can natively compile both
  Java(tm) source and bytecode files. The compiler can also generate class
