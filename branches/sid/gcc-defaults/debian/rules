@@ -132,8 +132,9 @@ REL_NO_473	:= $(shell expr $(VMINOR) - 120)$(REL_EXT)
 
 REL_NO_481	:= $(shell expr $(VMINOR) - 120)$(REL_EXT)
 REL_NO_482	:= $(shell expr $(VMINOR) - 123)$(REL_EXT)
+REL_NO_483	:= $(shell expr $(VMINOR) - 127)$(REL_EXT)
 
-REL_NO_49	:= $(shell expr $(VMINOR) - 124)$(REL_EXT)
+REL_NO_490	:= $(shell expr $(VMINOR) - 125)$(REL_EXT)
 
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
@@ -153,8 +154,8 @@ REQV_45		:= (>= 4.5.3-1)
 REQV_46		:= (>= 4.6.4-1~)
 REQV_46_GDC	:= $(REQV_46)
 REQV_47		:= (>= 4.7.3-1~)
-REQV_48		:= (>= 4.8.2-5~)
-REQV_49		:= (>= 4.9)
+REQV_48		:= (>= 4.8.3-2~)
+REQV_49		:= (>= 4.9.0-1~)
 
 REQV_LIBGCJ_BC	:= (>= 4.8.2-1~)
 
@@ -165,11 +166,11 @@ DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 gcc47_archs =
 
-gcc48_archs = alpha amd64 armel armhf arm64 hppa i386 m68k mips mipsel powerpc powerpcspe ppc64 ppc64el s390x sparc64 x32 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj48_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcc48_archs = m68k or1k powerpcspe sh4 x32
+gcc49_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 mips mipsel mips64 mips64el or1k powerpc ppc64 ppc64el s390 s390x sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
-gcc49_archs = amd64 armhf arm64 i386 ia64 mips mipsel powerpc ppc64 ppc64el s390x kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj49_archs = amd64 armhf arm64 i386 ia64 mips mipsel powerpc ppc64 ppc64el s390x kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj48_archs = m68k or1k powerpcspe sh4 x32
+gcj49_archs = alpha amd64 armel armhf arm64 hppa ia64 i386 mips mipsel mips64 mips64el powerpc ppc64 ppc64el s390 s390x sparc sparc64 kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CPP		:= 4.6.4-$(REL_NO_464)
@@ -178,28 +179,28 @@ CV_GPP		:= 4.6.4-$(REL_NO_464)
 CV_GOBJC	:= 4.6.4-$(REL_NO_464)
 CV_GOBJCXX	:= 4.6.4-$(REL_NO_464)
 CV_GFORT	:= 4.6.4-$(REL_NO_464)
-CV_GGO		:= 4.8.2-$(REL_NO_482)
+CV_GGO		:= 4.9.0-$(REL_NO_490)
 CV_GCJ		:= 4.6.4-$(REL_NO_464)
 CV_GIJ		:= 4.6.4-$(REL_NO_464)
 CV_LIBGCJBC	:= 4.6.4-$(REL_NO_464)
-CV_GDC		:= 4.8.2-$(REL_NO_482)
-CV_LIBGCJCOMMON	:= 1:4.8.2-$(REL_NO_482)
+CV_GDC		:= 4.9.0-$(REL_NO_490)
+CV_LIBGCJCOMMON	:= 1:4.8.3-$(REL_NO_483)
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc49_archs)))
-  CV_CPP		:= 4.9-$(REL_NO_49)
-  CV_GCC		:= 4.9-$(REL_NO_49)
-  CV_GPP		:= 4.9-$(REL_NO_49)
-  CV_GOBJC		:= 4.9-$(REL_NO_49)
-  CV_GOBJCXX		:= 4.9-$(REL_NO_49)
-  CV_GFORT		:= 4.9-$(REL_NO_49)
-  CV_GGO		:= 4.9-$(REL_NO_49)
+  CV_CPP		:= 4.9.0-$(REL_NO_490)
+  CV_GCC		:= 4.9.0-$(REL_NO_490)
+  CV_GPP		:= 4.9.0-$(REL_NO_490)
+  CV_GOBJC		:= 4.9.0-$(REL_NO_490)
+  CV_GOBJCXX		:= 4.9.0-$(REL_NO_490)
+  CV_GFORT		:= 4.9.0-$(REL_NO_490)
+  CV_GGO		:= 4.9.0-$(REL_NO_490)
 else ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc48_archs)))
-  CV_CPP		:= 4.8.2-$(REL_NO_482)
-  CV_GCC		:= 4.8.2-$(REL_NO_482)
-  CV_GPP		:= 4.8.2-$(REL_NO_482)
-  CV_GOBJC		:= 4.8.2-$(REL_NO_482)
-  CV_GOBJCXX		:= 4.8.2-$(REL_NO_482)
-  CV_GFORT		:= 4.8.2-$(REL_NO_482)
+  CV_CPP		:= 4.8.3-$(REL_NO_483)
+  CV_GCC		:= 4.8.3-$(REL_NO_483)
+  CV_GPP		:= 4.8.3-$(REL_NO_483)
+  CV_GOBJC		:= 4.8.3-$(REL_NO_483)
+  CV_GOBJCXX		:= 4.8.3-$(REL_NO_483)
+  CV_GFORT		:= 4.8.3-$(REL_NO_483)
 else ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
   CV_CPP		:= 4.7.3-$(REL_NO_473)
   CV_GCC		:= 4.7.3-$(REL_NO_473)
@@ -210,13 +211,13 @@ else ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj49_archs)))
-  CV_GCJ		:= 4.9-$(REL_NO_49)
-  CV_GIJ		:= 4.9-$(REL_NO_49)
-  CV_LIBGCJBC		:= 4.9-$(REL_NO_49)
+  CV_GCJ		:= 4.9.0-$(REL_NO_490)
+  CV_GIJ		:= 4.9.0-$(REL_NO_490)
+  CV_LIBGCJBC		:= 4.9.0-$(REL_NO_490)
 else ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj48_archs)))
-  CV_GCJ		:= 4.8.2-$(REL_NO_482)
-  CV_GIJ		:= 4.8.2-$(REL_NO_482)
-  CV_LIBGCJBC		:= 4.8.2-$(REL_NO_482)
+  CV_GCJ		:= 4.8.3-$(REL_NO_483)
+  CV_GIJ		:= 4.8.3-$(REL_NO_483)
+  CV_LIBGCJBC		:= 4.8.3-$(REL_NO_483)
 endif
 
 REQV_CPP	= $(REQV_46)
@@ -225,10 +226,10 @@ REQV_GPP	= $(REQV_46)
 REQV_GOBJC	= $(REQV_46)
 REQV_GOBJCXX	= $(REQV_46)
 REQV_GFORT	= $(REQV_46)
-REQV_GGO	= $(REQV_48)
+REQV_GGO	= $(REQV_49)
 REQV_GCJ	= $(REQV_46)
 REQV_GIJ	= $(REQV_46)
-REQV_GDC	= $(REQV_48)
+REQV_GDC	= $(REQV_49)
 
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc49_archs)))
   REQV_CPP	= $(REQV_49)
@@ -509,12 +510,16 @@ install: build substvars
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/gcc \
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
+	  /usr/bin/gcov-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs)))
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs) $(gcc48_archs) $(gcc49_archs)))
 	dh_link -pgcc \
 	  /usr/bin/gcc-ar-$(PV_GCC) /usr/bin/gcc-ar \
 	  /usr/bin/gcc-nm-$(PV_GCC) /usr/bin/gcc-nm \
-	  /usr/bin/gcc-ranlib-$(PV_GCC) /usr/bin/gcc-ranlib
+	  /usr/bin/gcc-ranlib-$(PV_GCC) /usr/bin/gcc-ranlib \
+	  /usr/bin/gcc-ar-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc-ar \
+	  /usr/bin/gcc-nm-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc-nm \
+	  /usr/bin/gcc-ranlib-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc-ranlib
 endif
 	install -m 755 -p c89 debian/gcc/usr/bin/c89-gcc
 	install -m 644 -p c89.1 debian/gcc/usr/share/man/man1/c89-gcc.1
@@ -529,7 +534,8 @@ endif
 	dh_link -pgcc \
 	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/gcc.1.gz \
 	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc.1.gz \
-	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/gcov.1.gz 
+	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/gcov.1.gz \
+	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov.1.gz
 
 	: # gcc-doc
 	dh_installdirs -pgcc-doc \
@@ -675,7 +681,6 @@ ifneq (,$(filter gcj-jdk, $(packages)))
 	  /usr/bin/gorbd-$(PV_GIJ) /usr/bin/gorbd \
 	  /usr/bin/grmid-$(PV_GIJ) /usr/bin/grmid \
 	  /usr/bin/grmiregistry-$(PV_GIJ) /usr/bin/grmiregistry \
-	  /usr/bin/gserialver-$(PV_GIJ) /usr/bin/gserialver \
 
 	: # gcj-jdk
 	dh_installdirs -pgcj-jdk usr/bin /usr/share/man/man1 usr/share/doc
@@ -693,6 +698,7 @@ ifneq (,$(filter gcj-jdk, $(packages)))
 	  /usr/bin/gcj-wrapper-$(PV_GCJ) /usr/bin/gcj-wrapper \
 	  /usr/bin/gtnameserv-$(PV_GCJ) /usr/bin/gtnameserv \
 	  /usr/bin/gappletviewer-$(PV_GCJ) /usr/bin/gappletviewer \
+	  /usr/bin/gserialver-$(PV_GIJ) /usr/bin/gserialver \
 	  /usr/share/java/libgcj-$(PV_GCJ).jar /usr/share/java/libgcj.jar
 ifeq ($(with_multiarch_lib),yes)
 	dh_link -pgcj-jdk \
@@ -707,8 +713,7 @@ endif
 	  /usr/share/man/man1/gkeytool-$(PV_GIJ).1.gz /usr/share/man/man1/gkeytool.1.gz \
 	  /usr/share/man/man1/gorbd-$(PV_GIJ).1.gz /usr/share/man/man1/gorbd.1.gz \
 	  /usr/share/man/man1/grmid-$(PV_GIJ).1.gz /usr/share/man/man1/grmid.1.gz \
-	  /usr/share/man/man1/grmiregistry-$(PV_GIJ).1.gz /usr/share/man/man1/grmiregistry.1.gz \
-	  /usr/share/man/man1/gserialver-$(PV_GIJ).1.gz /usr/share/man/man1/gserialver.1.gz
+	  /usr/share/man/man1/grmiregistry-$(PV_GIJ).1.gz /usr/share/man/man1/grmiregistry.1.gz
 
 	dh_link -pgcj-jdk \
 	  /usr/share/man/man1/gjar-$(PV_GCJ).1.gz /usr/share/man/man1/gjar.1.gz \
@@ -716,7 +721,8 @@ endif
 	  /usr/share/man/man1/gjavah-$(PV_GCJ).1.gz /usr/share/man/man1/gjavah.1.gz \
 	  /usr/share/man/man1/gnative2ascii-$(PV_GIJ).1.gz /usr/share/man/man1/gnative2ascii.1.gz \
 	  /usr/share/man/man1/gtnameserv-$(PV_GCJ).1.gz /usr/share/man/man1/gtnameserv.1.gz \
-	  /usr/share/man/man1/gappletviewer-$(PV_GCJ).1.gz /usr/share/man/man1/gappletviewer.1.gz
+	  /usr/share/man/man1/gappletviewer-$(PV_GCJ).1.gz /usr/share/man/man1/gappletviewer.1.gz \
+	  /usr/share/man/man1/gserialver-$(PV_GIJ).1.gz /usr/share/man/man1/gserialver.1.gz
 
   ifeq ($(with_gfdl_docs),yes)
 	dh_link -pgcj-jre-headless \
@@ -874,6 +880,16 @@ ifeq ($(with_gfdl_docs),yes)
 	dh_installchangelogs -pcpp-doc -pgcc-doc -pgfortran-doc
 endif
 	dh_compress -s $(nopkgs) -XREADME.Debian
+
+ifneq (,$(filter $(DEB_HOST_ARCH),i386 kfreebsd-i386 hurd-i386))
+  ifneq ($(DEB_HOST_GNU_CPU)),i586)
+	gnutype=$(subst i486,i586,$(DEB_HOST_GNU_TYPE)); \
+	for i in $$(find debian -name 'i486-linux-gnu-*'); do \
+	  cp -a $$i $$(echo $$i | sed "s,$(DEB_HOST_GNU_TYPE),$$gnutype,"); \
+	done
+  endif
+endif
+
 	dh_fixperms -s $(nopkgs)
 	dh_installdeb -s $(nopkgs)
 	dh_gencontrol -pcpp     -u-v$(EPOCH):$(CV_CPP)
