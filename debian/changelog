@@ -3,6 +3,7 @@ gcc-defaults (1.129) UNRELEASED; urgency=medium
   * Default to 4.9 for m68k (Thorsten Glaser).
   * Provide gcc-{ar,nm,ranlib} man pages.
   * Build a gccgo-doc package when building the documentation packages.
+  * Build-depend on gcc-4.9-base instead of gcc-4.8-base.
 
  -- Matthias Klose <doko@debian.org>  Wed, 11 Jun 2014 12:31:52 +0200
 
