@@ -519,7 +519,13 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs) $(gcc48_archs) $(gcc49_archs))
 	  /usr/bin/gcc-ranlib-$(PV_GCC) /usr/bin/gcc-ranlib \
 	  /usr/bin/gcc-ar-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc-ar \
 	  /usr/bin/gcc-nm-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc-nm \
-	  /usr/bin/gcc-ranlib-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc-ranlib
+	  /usr/bin/gcc-ranlib-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc-ranlib \
+	  /usr/share/man/man1/gcc-ar-$(PV_GCC).1.gz /usr/share/man/man1/gcc-ar.1.gz \
+	  /usr/share/man/man1/gcc-ar-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc-ar.1.gz \
+	  /usr/share/man/man1/gcc-nm-$(PV_GCC).1.gz /usr/share/man/man1/gcc-nm.1.gz \
+	  /usr/share/man/man1/gcc-nm-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc-nm.1.gz \
+	  /usr/share/man/man1/gcc-ranlib-$(PV_GCC).1.gz /usr/share/man/man1/gcc-ranlib.1.gz \
+	  /usr/share/man/man1/gcc-ranlib-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc-ranlib.1.gz
 endif
 	install -m 755 -p c89 debian/gcc/usr/bin/c89-gcc
 	install -m 644 -p c89.1 debian/gcc/usr/share/man/man1/c89-gcc.1
@@ -667,6 +673,13 @@ ifneq (,$(filter gccgo, $(packages)))
 	dh_link -pgccgo \
 	  /usr/share/man/man1/gccgo-$(PV_GGO).1.gz /usr/share/man/man1/gccgo.1.gz \
 	  /usr/share/man/man1/gccgo-$(PV_GGO).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gccgo.1.gz
+
+	: # gccgo-doc
+	dh_installdirs -pgccgo-doc \
+		usr/share/doc usr/share/info
+	dh_link -pgccgo-doc \
+	  /usr/share/doc/gcc-$(PV_GGO)-base/gccgo.html /usr/share/doc/gccgo-doc/gccgo.html \
+	  /usr/share/info/gccgo-$(PV_GGO).info.gz /usr/share/info/gccgo.info.gz
   endif
 endif
 
@@ -862,7 +875,7 @@ binary-arch: build-arch install
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp
-	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngfortran-doc -Nlibgcj-common -Ngdc`; do \
+	for p in `dh_listpackages $(nopkgs) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngfortran-doc -Ngccgo-doc -Nlibgcj-common -Ngdc`; do \
 	  case "$$p" in gij|gcj-*) t=libgcj-common;; *) t=cpp; esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
@@ -876,8 +889,12 @@ binary-arch: build-arch install
 	mv debian/gdc/usr/share/doc/gdc/changelog \
 		debian/gdc/usr/share/doc/gdc/changelog.Debian
 ifeq ($(with_gfdl_docs),yes)
-	dh_installdocs -pcpp-doc -pgcc-doc -pgfortran-doc
-	dh_installchangelogs -pcpp-doc -pgcc-doc -pgfortran-doc
+	dh_installdocs -pcpp-doc -pgcc-doc -pgfortran-doc -pgccgo-doc
+	dh_installchangelogs -pcpp-doc -pgcc-doc -pgfortran-doc -pgccgo-doc
+	for i in cpp-doc gcc-doc gfortran-doc gccgo-doc; do \
+	  mv debian/$$i/usr/share/doc/$$i/changelog \
+		debian/$$i/usr/share/doc/$$i/changelog.Debian; \
+	done
 endif
 	dh_compress -s $(nopkgs) -XREADME.Debian
 
@@ -935,6 +952,9 @@ ifneq (,$(filter gccgo, $(packages)))
 	dh_gencontrol -pgccgo     -u-v$(EPOCH):$(CV_GGO)
   ifeq ($(with_multilib),yes)
 	dh_gencontrol -pgccgo-multilib -u-v$(EPOCH):$(CV_GGO)
+  endif
+  ifeq ($(with_gfdl_docs),yes)
+	dh_gencontrol -pgccgo-doc -u-v$(EPOCH):$(CV_GGO)
   endif
 endif
 ifneq (,$(filter gcj-jdk, $(packages)))

@@ -25,3 +25,12 @@ Depends: gcc-${pv:gcc}-doc ${reqv:gcc}, ${misc:Depends}
 Suggests: gcc (>= ${version:gcc})
 Description: Documentation for the GNU C compilers (gcc, gobjc, g++)
  Documentation for the GNU compilers in info format (dependency package).
+
+Package: gccgo-doc
+Section: doc
+Architecture: any
+Priority: optional
+Depends: gccgo-${pv:ggo}-doc ${reqv:ggo}, ${misc:Depends}
+Suggests: gccgo (>= ${version:ggo})
+Description: Documentation for the GNU Go compiler
+ Documentation for the GNU Go compiler in info format (dependency package).

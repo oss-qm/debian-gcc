@@ -3,14 +3,14 @@ Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Build-Depends: m4, debhelper (>= 5),
   dpkg-dev (>= 1.16.0~ubuntu4),
   gcc-4.8-base (>= 4.8.1-6~),
   lsb-release
 Build-Depends-Indep: ca-certificates,
   gcj-jdk, python (>= 2.6.6)
-Vcs-Svn: svn+ssh://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
+Vcs-Svn: svn://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
 Vcs-Browser: http://svn.debian.org/viewsvn/gcccvs/branches/sid/gcc-defaults
 XS-Python-Version: all
 
@@ -49,8 +49,8 @@ Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), g++ (>= ${ve
 Description: GNU C++ compiler (multilib files)
  This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
  .
- On architectures with multilib support, the package contains dependencies
- for the non-default multilib architecture(s).
+ Dependency package on architectures with multilib support, the package contains
+ dependencies for the non-default multilib architecture(s).
 
 Package: gobjc
 Priority: optional
@@ -73,8 +73,8 @@ Description: GNU Objective-C compiler (multilib files)
  This is the GNU Objective-C compiler, which compiles Objective-C on
  platforms supported by the gcc compiler.
  .
- On architectures with multilib support, the package contains dependencies
- for the non-default multilib architecture(s).
+ Dependency package on architectures with multilib support, the package contains
+ dependencies for the non-default multilib architecture(s).
 
 Package: gobjc++
 Priority: optional
@@ -98,8 +98,8 @@ Description: GNU Objective-C++ compiler (multilib files)
  This is the GNU Objective-C++ compiler, which compiles Objective-C++ on
  platforms supported by the gcc compiler.
  .
- On architectures with multilib support, the package contains dependencies
- for the non-default multilib architecture(s).
+ Dependency package on architectures with multilib support, the package contains
+ dependencies for the non-default multilib architecture(s).
 
 Package: gfortran
 Priority: optional
@@ -122,8 +122,8 @@ Description: GNU Fortran 95 compiler (multilib files)
  This is the GNU Fortran compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler.
  .
- On architectures with multilib support, the package contains dependencies
- for the non-default multilib architecture(s).
+ Dependency package on architectures with multilib support, the package contains
+ dependencies for the non-default multilib architecture(s).
 
 Package: gccgo
 Priority: optional
@@ -145,8 +145,8 @@ Description: Go compiler, based on the GCC backend (multilib files)
  This is the GNU Go compiler, which compiles Go on platforms supported by
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
- On architectures with multilib support, the package contains dependencies
- for the non-default multilib architecture(s).
+ Dependency package on architectures with multilib support, the package contains
+ dependencies for the non-default multilib architecture(s).
 
 Package: libgcj-common
 Section: java
@@ -229,7 +229,7 @@ Priority: optional
 Architecture: any
 Depends: cpp (>= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
 Recommends: libc6-dev | libc-dev
-Suggests: gcc-multilib, make, manpages-dev, autoconf, automake1.9, libtool, flex, bison, gdb, gcc-doc
+Suggests: gcc-multilib, make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb, gcc-doc
 Provides: c-compiler
 Conflicts: gcc-doc (<< 1:2.95.3)
 Description: GNU C compiler
