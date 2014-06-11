@@ -1,3 +1,9 @@
+gcc-defaults (1.129) UNRELEASED; urgency=medium
+
+  * Default to 4.9 for m68k (Thorsten Glaser).
+
+ -- Matthias Klose <doko@debian.org>  Wed, 11 Jun 2014 12:31:52 +0200
+
 gcc-defaults (1.128) unstable; urgency=medium
 
   * Default to GCC 4.9 for all architectures except m68k, or1k, powerpcspe,
