@@ -1,7 +1,13 @@
+gcc-defaults (1.130) UNRELEASED; urgency=medium
+
+  * gfortran: Install alternatives for f77. Closes: #545461.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 01 Jul 2014 16:14:39 +0200
+
 gcc-defaults (1.129) unstable; urgency=medium
 
   * Default to 4.9 for m68k (Thorsten Glaser).
-  * Default to 4.9 for all remaining architectures (Ãpowerpcspe, sh4, x32).
+  * Default to 4.9 for all remaining architectures (powerpcspe, sh4, x32).
   * Provide gcc-{ar,nm,ranlib} man pages.
   * Build a gccgo-doc package when building the documentation packages.
   * Build-depend on gcc-4.9-base instead of gcc-4.8-base.
