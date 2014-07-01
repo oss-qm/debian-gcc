@@ -2,6 +2,8 @@
 
 if [ $1 != "upgrade" ]; then
     update-alternatives --remove f95 /usr/bin/gfortran
+
+    update-alternatives --remove f77 /usr/bin/gfortran
 fi
 
 #DEBHELPER#
