@@ -1,8 +1,9 @@
-gcc-defaults (1.130) UNRELEASED; urgency=medium
+gcc-defaults (1.130) unstable; urgency=medium
 
+  * Bump GCC 4.9 versions to 4.9.1.
   * gfortran: Install alternatives for f77. Closes: #545461.
 
- -- Matthias Klose <doko@debian.org>  Tue, 01 Jul 2014 16:14:39 +0200
+ -- Matthias Klose <doko@debian.org>  Thu, 17 Jul 2014 21:52:39 +0200
 
 gcc-defaults (1.129) unstable; urgency=medium
 
