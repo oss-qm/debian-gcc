@@ -5,8 +5,8 @@ Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>
 Standards-Version: 3.9.5
 Build-Depends: m4, debhelper (>= 5),
-  dpkg-dev (>= 1.16.0~ubuntu4),
-  gcc-4.9-base (>= 4.9.1-1~),
+  dpkg-dev (>= 1.17.11),
+  gcc-4.9-base (>= 4.9.1-7~),
   lsb-release
 Build-Depends-Indep: ca-certificates,
   gcj-jdk, python (>= 2.6.6)
@@ -244,13 +244,13 @@ Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multili
 Description: GNU C compiler (multilib files)
  This is the GNU C compiler, a fairly portable optimizing compiler for C.
  .
- On architectures with multilib support, the package contains dependencies
- for the non-default multilib architecture(s).
+ Dependency package on architectures with multilib support, the package contains
+ dependencies for the non-default multilib architecture(s).
 
 Package: gdc
 Priority: optional
 Architecture: any
-Depends: gdc-${pv:gdc} ${reqv:gdc}, ${misc:Depends}
+Depends: gdc-${pv:gdc} ${reqv:gdc}, ${dep:libphobos}, ${misc:Depends}
 Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7), gdc-4.3 (<< 1:1.043-4.3.4-1)
 Description: D compiler (language version 2), based on the GCC backend
  This is a dependency package providing the default D compiler.
@@ -258,3 +258,11 @@ Description: D compiler (language version 2), based on the GCC backend
  in their Build-Depends line.
  .
  This compiler supports D language version 2.
+
+Package: libphobos-dev
+Section: libdevel
+Priority: optional
+Architecture: any
+Depends: libphobos-${pv:gdc}-dev ${reqv:gdc}, ${misc:Depends}
+Description: Phobos D standard library
+ This is a dependency package providing the default D standard library.
