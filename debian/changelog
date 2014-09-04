@@ -1,3 +1,23 @@
+gcc-defaults (1.133) unstable; urgency=medium
+
+  * Build a libphobos-dev package (more than one package is providing
+    libphobos-dev).
+  * Build the gdc package on arm64 and sh4.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 04 Sep 2014 22:43:26 +0200
+
+gcc-defaults (1.132) unstable; urgency=medium
+
+  * Provide i586-* compat symlinks for kfreebsd-i386 and hurd-i386.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 19 Aug 2014 19:00:20 +0200
+
+gcc-defaults (1.131) unstable; urgency=medium
+
+  * Build-depend on dpkg-dev (>= 1.17.11).
+
+ -- Matthias Klose <doko@debian.org>  Sun, 17 Aug 2014 15:34:11 +0200
+
 gcc-defaults (1.130) unstable; urgency=medium
 
   * Bump GCC 4.9 versions to 4.9.1.
