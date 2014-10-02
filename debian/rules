@@ -264,7 +264,7 @@ multilib_archs = amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 \
 go_archs = amd64 arm64 armel armhf i386 ia64 mips mipsel \
 	powerpc ppc64 ppc64el s390 s390x x32
 
-phobos_archs = amd64 armel armhf i386 x32 kfreebsd-amd64 kfreebsd-i386
+phobos_archs = amd64 armel armhf i386 x32
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
   with_multilib = yes
