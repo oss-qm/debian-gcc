@@ -2,8 +2,10 @@ gcc-defaults (1.134) UNRELEASED; urgency=medium
 
   [ Aurelien Jarno ]
   * Don't build libphobos-dev on kfreebsd-amd64 and kfreebsd-i386 as 
-    libphobos-4.9-dev is not built on these architectures. Closes:
-    #761277.
+    libphobos-4.9-dev is not built on these architectures. Closes: #761277.
+
+  [ Matthias Klose ]
+  * Build libphobos-dev on hppa. Closes: #763103.
 
  -- Matthias Klose <doko@debian.org>  Thu, 02 Oct 2014 20:35:19 +0200
 
