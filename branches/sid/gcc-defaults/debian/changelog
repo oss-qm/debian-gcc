@@ -1,4 +1,4 @@
-gcc-defaults (1.134) UNRELEASED; urgency=medium
+gcc-defaults (1.134) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * Don't build libphobos-dev on kfreebsd-amd64 and kfreebsd-i386 as 
@@ -7,7 +7,7 @@ gcc-defaults (1.134) UNRELEASED; urgency=medium
   [ Matthias Klose ]
   * Build libphobos-dev on hppa. Closes: #763103.
 
- -- Matthias Klose <doko@debian.org>  Thu, 02 Oct 2014 20:35:19 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 18 Oct 2014 10:57:13 +0200
 
 gcc-defaults (1.133) unstable; urgency=medium
 
