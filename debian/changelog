@@ -1,3 +1,10 @@
+gcc-defaults (1.135) unstable; urgency=medium
+
+  * Bump GCC 4.9 version to 4.9.2.
+  * gcc-multilib: Add breaks to the gcc-4.9 cross compilers.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 04 Nov 2014 16:35:11 +0100
+
 gcc-defaults (1.134) unstable; urgency=medium
 
   [ Aurelien Jarno ]

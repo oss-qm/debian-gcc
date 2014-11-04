@@ -3,10 +3,10 @@ Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 Uploaders: Matthias Klose <doko@debian.org>
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Build-Depends: m4, debhelper (>= 5),
   dpkg-dev (>= 1.17.11),
-  gcc-4.9-base (>= 4.9.1-7~),
+  gcc-4.9-base (>= 4.9.2-1~),
   lsb-release
 Build-Depends-Indep: ca-certificates,
   gcj-jdk, python (>= 2.6.6)
@@ -241,6 +241,7 @@ Package: gcc-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 s390x s390x sparc sparc64 x32
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}, linux-libc-dev (>= 3.0.0-2) [linux-any]
+Breaks: gcc-4.9-arm-linux-gnueabihf, gcc-4.9-arm-linux-gnueabi, gcc-4.9-powerpc-linux-gnu, gcc-4.9-powerpc64el-linux-gnu, gcc-4.9-mipsel-linux-gnu
 Description: GNU C compiler (multilib files)
  This is the GNU C compiler, a fairly portable optimizing compiler for C.
  .
