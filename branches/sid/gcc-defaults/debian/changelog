@@ -1,3 +1,13 @@
+gcc-defaults (1.136) unstable; urgency=medium
+
+  * Bump GCC 4.8 version to 4.8.4.
+  * Build multilib and gccgo packages for mips64* (James Cowgill).
+    Closes: #773177.
+  * gcc-multilib: Break gcc-4.9-mips-linux-gnu.
+  * gcj-jdk: Fix libgcj.pc symlink (Victor Seva). Closes: #778376.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 25 Feb 2015 13:07:51 +0100
+
 gcc-defaults (1.135) unstable; urgency=medium
 
   * Bump GCC 4.9 version to 4.9.2.
