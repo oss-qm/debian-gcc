@@ -11,124 +11,124 @@ VMINOR	:= $(shell echo $(VDEF) | awk -F. '{print $$2}' | sed -e 's/\([0-9]*\).*/
 REL_EXT	:= $(shell echo $(VDEF) | sed -e 's/^$(VMAJOR)\.$(VMINOR)//')
 
 # gcc-defaults 0.8 is the first version for 2.95.4.
-REL_NO_295	:= $(shell expr $(VMINOR) + 15)$(REL_EXT)
+#REL_NO_295	:= $(shell expr $(VMINOR) + 15)$(REL_EXT)
 # gcc-defaults 0.6 is the first version with 2.96 support.
-REL_NO_296	:= $(shell expr $(VMINOR) + 17)$(REL_EXT)
+#REL_NO_296	:= $(shell expr $(VMINOR) + 17)$(REL_EXT)
 # gcc-defaults 0.17 is the first version with 3.0.4 support.
-REL_NO_30	:= $(shell expr $(VMINOR) + 6)$(REL_EXT)
+#REL_NO_30	:= $(shell expr $(VMINOR) + 6)$(REL_EXT)
 # gcc-defaults 1.0 is the first version with 3.1 support.
-REL_NO_31	:= $(shell expr $(VMINOR) + 1)$(REL_EXT)
+#REL_NO_31	:= $(shell expr $(VMINOR) + 1)$(REL_EXT)
 # gcc-defaults 1.2 is the first version with 3.2 support.
-REL_NO_32	:= $(shell expr $(VMINOR) - 1)$(REL_EXT)
+#REL_NO_32	:= $(shell expr $(VMINOR) - 1)$(REL_EXT)
 # gcc-defaults 1.3 is the first version with 3.2.2 support.
-REL_NO_322	:= $(shell expr $(VMINOR) - 3)$(REL_EXT)
+#REL_NO_322	:= $(shell expr $(VMINOR) - 3)$(REL_EXT)
 # gcc-defaults 1.4 is the first version with 3.2.3 support.
-REL_NO_323	:= $(shell expr $(VMINOR) - 4)$(REL_EXT)
+#REL_NO_323	:= $(shell expr $(VMINOR) - 4)$(REL_EXT)
 # gcc-defaults 1.5 is the first version with 3.3 support.
-REL_NO_33	:= $(shell expr $(VMINOR) - 5)$(REL_EXT)
+#REL_NO_33	:= $(shell expr $(VMINOR) - 5)$(REL_EXT)
 # gcc-defaults 1.7 is the first version with 3.3.1 support.
-REL_NO_331	:= $(shell expr $(VMINOR) - 7)$(REL_EXT)
+#REL_NO_331	:= $(shell expr $(VMINOR) - 7)$(REL_EXT)
 # gcc-defaults 1.10 is the first version with 3.3.2 support.
-REL_NO_332	:= $(shell expr $(VMINOR) - 9)$(REL_EXT)
+#REL_NO_332	:= $(shell expr $(VMINOR) - 9)$(REL_EXT)
 # gcc-defaults 1.13 is the first version with 3.3.3 support.
-REL_NO_333	:= $(shell expr $(VMINOR) - 12)$(REL_EXT)
+#REL_NO_333	:= $(shell expr $(VMINOR) - 12)$(REL_EXT)
 # gcc-defaults 1.16 is the first version with 3.3.4 support.
-REL_NO_334	:= $(shell expr $(VMINOR) - 15)$(REL_EXT)
+#REL_NO_334	:= $(shell expr $(VMINOR) - 15)$(REL_EXT)
 # gcc-defaults 1.19 is the first version with 3.3.5 support.
-REL_NO_335	:= $(shell expr $(VMINOR) - 18)$(REL_EXT)
+#REL_NO_335	:= $(shell expr $(VMINOR) - 18)$(REL_EXT)
 # gcc-defaults 1.22 is the first version with 3.3.6 support.
-REL_NO_336     := $(shell expr $(VMINOR) - 21)$(REL_EXT)
+#REL_NO_336     := $(shell expr $(VMINOR) - 21)$(REL_EXT)
 
 # gcc-defaults 1.22 is the first version with 3.4.3 support.
-REL_NO_343	:= $(shell expr $(VMINOR) - 21)$(REL_EXT)
+#REL_NO_343	:= $(shell expr $(VMINOR) - 21)$(REL_EXT)
 # gcc-defaults 1.23 is the first version with 3.4.4 support.
-REL_NO_344	:= $(shell expr $(VMINOR) - 23)$(REL_EXT)
+#REL_NO_344	:= $(shell expr $(VMINOR) - 23)$(REL_EXT)
 # gcc-defaults 1.30 is the first version with 3.4.5 support.
-REL_NO_345	:= $(shell expr $(VMINOR) - 29)$(REL_EXT)
+#REL_NO_345	:= $(shell expr $(VMINOR) - 29)$(REL_EXT)
 # gcc-defaults 1.32 is the first version with 3.4.5 support.
-REL_NO_346	:= $(shell expr $(VMINOR) - 31)$(REL_EXT)
+#REL_NO_346	:= $(shell expr $(VMINOR) - 31)$(REL_EXT)
 
 # gcc-defaults 1.23 is the first version with 4.0.0 support.
-REL_NO_400	:= $(shell expr $(VMINOR) - 22)$(REL_EXT)
+#REL_NO_400	:= $(shell expr $(VMINOR) - 22)$(REL_EXT)
 # gcc-defaults 1.26 is the first version with 4.0.1 support.
-REL_NO_401	:= $(shell expr $(VMINOR) - 25)$(REL_EXT)
+#REL_NO_401	:= $(shell expr $(VMINOR) - 25)$(REL_EXT)
 # gcc-defaults 1.29 is the first version with 4.0.2 support.
-REL_NO_402	:= $(shell expr $(VMINOR) - 28)$(REL_EXT)
+#REL_NO_402	:= $(shell expr $(VMINOR) - 28)$(REL_EXT)
 # gcc-defaults 1.32 is the first version with 4.0.3 support.
-REL_NO_403	:= $(shell expr $(VMINOR) - 31)$(REL_EXT)
+#REL_NO_403	:= $(shell expr $(VMINOR) - 31)$(REL_EXT)
 
 # gcc-defaults 1.33 is the first version with 4.1.0 support.
-REL_NO_410	:= $(shell expr $(VMINOR) - 33)$(REL_EXT)
+#REL_NO_410	:= $(shell expr $(VMINOR) - 33)$(REL_EXT)
 # gcc-defaults 1.36 is the first version with 4.1.1 support.
-REL_NO_411	:= $(shell expr $(VMINOR) - 35)$(REL_EXT)
+#REL_NO_411	:= $(shell expr $(VMINOR) - 35)$(REL_EXT)
 # gcc-defaults 1.51 is the first version with 4.1.2 support.
-REL_NO_412	:= $(shell expr $(VMINOR) - 50)$(REL_EXT)
+#REL_NO_412	:= $(shell expr $(VMINOR) - 50)$(REL_EXT)
 
 # gcc-defaults 1.54 is the first version with 4.2.0 support.
-REL_NO_420	:= $(shell expr $(VMINOR) - 54)$(REL_EXT)
+#REL_NO_420	:= $(shell expr $(VMINOR) - 54)$(REL_EXT)
 # gcc-defaults 1.56 is the first version with 4.2.1 support.
-REL_NO_421	:= $(shell expr $(VMINOR) - 55)$(REL_EXT)
+#REL_NO_421	:= $(shell expr $(VMINOR) - 55)$(REL_EXT)
 # gcc-defaults 1.62 is the first version with 4.2.2 support.
-REL_NO_422	:= $(shell expr $(VMINOR) - 61)$(REL_EXT)
+#REL_NO_422	:= $(shell expr $(VMINOR) - 61)$(REL_EXT)
 # gcc-defaults 1.63 is the first version with 4.2.3 support.
-REL_NO_423	:= $(shell expr $(VMINOR) - 62)$(REL_EXT)
+#REL_NO_423	:= $(shell expr $(VMINOR) - 62)$(REL_EXT)
 # gcc-defaults 1.73 is the first version with 4.2.4 support.
-REL_NO_424	:= $(shell expr $(VMINOR) - 72)$(REL_EXT)
+#REL_NO_424	:= $(shell expr $(VMINOR) - 72)$(REL_EXT)
 
 # gcc-defaults 1.63 is the first version with 4.3 support.
-REL_NO_43	:= $(shell expr $(VMINOR) - 62)$(REL_EXT)
+#REL_NO_43	:= $(shell expr $(VMINOR) - 62)$(REL_EXT)
 # gcc-defaults 1.66 is the first version with 4.3 support.
-REL_NO_430	:= $(shell expr $(VMINOR) - 65)$(REL_EXT)
+#REL_NO_430	:= $(shell expr $(VMINOR) - 65)$(REL_EXT)
 # gcc-defaults 1.74 is the first version with 4.3.1 support.
-REL_NO_431	:= $(shell expr $(VMINOR) - 73)$(REL_EXT)
+#REL_NO_431	:= $(shell expr $(VMINOR) - 73)$(REL_EXT)
 # gcc-defaults 1.76 is the first version with 4.3.2 support.
-REL_NO_432	:= $(shell expr $(VMINOR) - 75)$(REL_EXT)
+#REL_NO_432	:= $(shell expr $(VMINOR) - 75)$(REL_EXT)
 # gcc-defaults 1.79 is the first version with 4.3.3 support.
-REL_NO_433	:= $(shell expr $(VMINOR) - 78)$(REL_EXT)
+#REL_NO_433	:= $(shell expr $(VMINOR) - 78)$(REL_EXT)
 # gcc-defaults 1.88 is the first version with 4.3.4 support.
-REL_NO_434	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
+#REL_NO_434	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
 # gcc-defaults 1.94 is the first version with 4.3.5 support.
-REL_NO_435	:= $(shell expr $(VMINOR) - 93)$(REL_EXT)
+#REL_NO_435	:= $(shell expr $(VMINOR) - 93)$(REL_EXT)
 
 # gcc-defaults 1.81 is the first version with 4.4.0 support.
-REL_NO_440	:= $(shell expr $(VMINOR) - 80)$(REL_EXT)
+#REL_NO_440	:= $(shell expr $(VMINOR) - 80)$(REL_EXT)
 # gcc-defaults 1.88 is the first version with 4.4.1 support.
-REL_NO_441	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
+#REL_NO_441	:= $(shell expr $(VMINOR) - 87)$(REL_EXT)
 # gcc-defaults 1.90 is the first version with 4.4.2 support.
-REL_NO_442	:= $(shell expr $(VMINOR) - 89)$(REL_EXT)
+#REL_NO_442	:= $(shell expr $(VMINOR) - 89)$(REL_EXT)
 # gcc-defaults 1.93 is the first version with 4.4.3 support.
-REL_NO_443	:= $(shell expr $(VMINOR) - 92)$(REL_EXT)
+#REL_NO_443	:= $(shell expr $(VMINOR) - 92)$(REL_EXT)
 # gcc-defaults 1.94 is the first version with 4.4.4 support.
-REL_NO_444	:= $(shell expr $(VMINOR) - 93)$(REL_EXT)
+#REL_NO_444	:= $(shell expr $(VMINOR) - 93)$(REL_EXT)
 # gcc-defaults 1.96 is the first version with 4.4.5 support.
-REL_NO_445	:= $(shell expr $(VMINOR) - 95)$(REL_EXT)
+#REL_NO_445	:= $(shell expr $(VMINOR) - 95)$(REL_EXT)
 # gcc-defaults 1.106 is the first version with 4.4.6 support.
-REL_NO_446	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
+#REL_NO_446	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
 
 # gcc-defaults 1.98 is the first version with 4.5.2 support.
-REL_NO_452	:= $(shell expr $(VMINOR) - 97)$(REL_EXT)
+#REL_NO_452	:= $(shell expr $(VMINOR) - 97)$(REL_EXT)
 # gcc-defaults 1.103 is the first version with 4.5.3 support.
-REL_NO_453	:= $(shell expr $(VMINOR) - 102)$(REL_EXT)
+#REL_NO_453	:= $(shell expr $(VMINOR) - 102)$(REL_EXT)
 
 # gcc-defaults 1.100 is the first version with 4.6.0 support.
-REL_NO_460	:= $(shell expr $(VMINOR) - 99)$(REL_EXT)
+#REL_NO_460	:= $(shell expr $(VMINOR) - 99)$(REL_EXT)
 # gcc-defaults 1.106 is the first version with 4.6.1 support.
-REL_NO_461	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
+#REL_NO_461	:= $(shell expr $(VMINOR) - 105)$(REL_EXT)
 # gcc-defaults 1.109 is the first version with 4.6.2 support.
-REL_NO_462	:= $(shell expr $(VMINOR) - 108)$(REL_EXT)
+#REL_NO_462	:= $(shell expr $(VMINOR) - 108)$(REL_EXT)
 # gcc-defaults 1.113 is the first version with 4.6.3 support.
-REL_NO_463	:= $(shell expr $(VMINOR) - 112)$(REL_EXT)
+#REL_NO_463	:= $(shell expr $(VMINOR) - 112)$(REL_EXT)
 # gcc-defaults 1.121 is the first version with 4.6.4 support.
-REL_NO_464	:= $(shell expr $(VMINOR) - 120)$(REL_EXT)
+#REL_NO_464	:= $(shell expr $(VMINOR) - 120)$(REL_EXT)
 
 # gcc-defaults 1.113 is the first version with 4.7.0 support.
-REL_NO_470	:= $(shell expr $(VMINOR) - 112)$(REL_EXT)
+#REL_NO_470	:= $(shell expr $(VMINOR) - 112)$(REL_EXT)
 # gcc-defaults 1.119 is the first version with 4.7.1 support.
-REL_NO_471	:= $(shell expr $(VMINOR) - 118)$(REL_EXT)
+#REL_NO_471	:= $(shell expr $(VMINOR) - 118)$(REL_EXT)
 # gcc-defaults 1.120 is the first version with 4.7.2 support.
-REL_NO_472	:= $(shell expr $(VMINOR) - 119)$(REL_EXT)
+#REL_NO_472	:= $(shell expr $(VMINOR) - 119)$(REL_EXT)
 # gcc-defaults 1.121 is the first version with 4.7.3 support.
-REL_NO_473	:= $(shell expr $(VMINOR) - 120)$(REL_EXT)
+#REL_NO_473	:= $(shell expr $(VMINOR) - 120)$(REL_EXT)
 
 REL_NO_481	:= $(shell expr $(VMINOR) - 120)$(REL_EXT)
 REL_NO_482	:= $(shell expr $(VMINOR) - 123)$(REL_EXT)
@@ -138,6 +138,10 @@ REL_NO_484	:= $(shell expr $(VMINOR) - 135)$(REL_EXT)
 REL_NO_490	:= $(shell expr $(VMINOR) - 125)$(REL_EXT)
 REL_NO_491	:= $(shell expr $(VMINOR) - 129)$(REL_EXT)
 REL_NO_492	:= $(shell expr $(VMINOR) - 134)$(REL_EXT)
+REL_NO_493	:= $(shell expr $(VMINOR) - 141)$(REL_EXT)
+
+REL_NO_50	:= $(shell expr $(VMINOR) - 138)$(REL_EXT)
+REL_NO_52	:= $(shell expr $(VMINOR) - 141)$(REL_EXT)
 
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
@@ -158,75 +162,76 @@ REQV_46		:= (>= 4.6.4-1~)
 REQV_46_GDC	:= $(REQV_46)
 REQV_47		:= (>= 4.7.3-1~)
 REQV_48		:= (>= 4.8.4-1~)
-REQV_49		:= (>= 4.9.2-1~)
+REQV_49		:= (>= 4.9.3-1~)
+REQV_5		:= (>= 5.2.1-13~)
 
-REQV_LIBGCJ_BC	:= (>= 4.9.2-1~)
+REQV_LIBGCJ_BC	:= (>= 4.9.3-1~)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
-gcc47_archs =
+gcc49_archs =
+gcc5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
 
-gcc48_archs =
-gcc49_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 kfreebsd-amd64 kfreebsd-i386 hurd-i386
-
-gcj48_archs =
-gcj49_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 kfreebsd-amd64 kfreebsd-i386 hurd-i386
+gcj49_archs =
+gcj5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
 
 # CV_XXX is the complete version number, including the release, without epoch
-CV_CPP		:= 4.9.2-$(REL_NO_492)
-CV_GCC		:= 4.9.2-$(REL_NO_492)
-CV_GPP		:= 4.9.2-$(REL_NO_492)
-CV_GOBJC	:= 4.9.2-$(REL_NO_492)
-CV_GOBJCXX	:= 4.9.2-$(REL_NO_492)
-CV_GFORT	:= 4.9.2-$(REL_NO_492)
-CV_GGO		:= 4.9.2-$(REL_NO_492)
-CV_GCJ		:= 4.9.2-$(REL_NO_492)
-CV_GIJ		:= 4.9.2-$(REL_NO_492)
-CV_LIBGCJBC	:= 4.9.2-$(REL_NO_492)
-CV_GDC		:= 4.9.2-$(REL_NO_492)
-CV_LIBGCJCOMMON	:= 1:4.9.1-$(REL_NO_491)
+CV_CPP		:= 5.2.1-$(REL_NO_52)
+CV_GCC		:= 5.2.1-$(REL_NO_52)
+CV_GPP		:= 5.2.1-$(REL_NO_52)
+CV_GOBJC	:= 5.2.1-$(REL_NO_52)
+CV_GOBJCXX	:= 5.2.1-$(REL_NO_52)
+CV_GFORT	:= 5.2.1-$(REL_NO_52)
+CV_GGO		:= 5.2.1-$(REL_NO_52)
+CV_GCJ		:= 5.2.1-$(REL_NO_52)
+CV_GIJ		:= 5.2.1-$(REL_NO_52)
+CV_LIBGCJBC	:= 5.2.1-$(REL_NO_52)
+CV_GDC		:= 5.2.1-$(REL_NO_52)
+CV_LIBGCJCOMMON	:= 1:4.9.3-$(REL_NO_493)
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc48_archs)))
-  CV_CPP		:= 4.8.4-$(REL_NO_484)
-  CV_GCC		:= 4.8.4-$(REL_NO_484)
-  CV_GPP		:= 4.8.4-$(REL_NO_484)
-  CV_GOBJC		:= 4.8.4-$(REL_NO_484)
-  CV_GOBJCXX		:= 4.8.4-$(REL_NO_484)
-  CV_GFORT		:= 4.8.4-$(REL_NO_484)
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc49_archs)))
+  CV_CPP		:= 4.9.3-$(REL_NO_493)
+  CV_GCC		:= 4.9.3-$(REL_NO_493)
+  CV_GPP		:= 4.9.3-$(REL_NO_493)
+  CV_GOBJC		:= 4.9.3-$(REL_NO_493)
+  CV_GOBJCXX		:= 4.9.3-$(REL_NO_493)
+  CV_GFORT		:= 4.9.3-$(REL_NO_493)
+  CV_GDC		:= 4.9.3-$(REL_NO_493)
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj48_archs)))
-  CV_GCJ		:= 4.8.4-$(REL_NO_484)
-  CV_GIJ		:= 4.8.4-$(REL_NO_484)
-  CV_LIBGCJBC		:= 4.8.4-$(REL_NO_484)
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj49_archs)))
+  CV_GCJ		:= 4.9.3-$(REL_NO_493)
+  CV_GIJ		:= 4.9.3-$(REL_NO_493)
+  CV_LIBGCJBC		:= 4.9.3-$(REL_NO_493)
 endif
 
-REQV_CPP	= $(REQV_49)
-REQV_GCC	= $(REQV_49)
-REQV_GPP	= $(REQV_46)
-REQV_GOBJC	= $(REQV_49)
-REQV_GOBJCXX	= $(REQV_49)
-REQV_GFORT	= $(REQV_49)
-REQV_GGO	= $(REQV_49)
-REQV_GCJ	= $(REQV_49)
-REQV_GIJ	= $(REQV_49)
-REQV_GDC	= $(REQV_49)
+REQV_CPP	= $(REQV_5)
+REQV_GCC	= $(REQV_5)
+REQV_GPP	= $(REQV_5)
+REQV_GOBJC	= $(REQV_5)
+REQV_GOBJCXX	= $(REQV_5)
+REQV_GFORT	= $(REQV_5)
+REQV_GGO	= $(REQV_5)
+REQV_GCJ	= $(REQV_5)
+REQV_GIJ	= $(REQV_5)
+REQV_GDC	= $(REQV_5)
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc48_archs)))
-  REQV_CPP	= $(REQV_48)
-  REQV_GCC	= $(REQV_48)
-  REQV_GPP	= $(REQV_48)
-  REQV_GOBJC	= $(REQV_48)
-  REQV_GOBJCXX	= $(REQV_48)
-  REQV_GFORT	= $(REQV_48)
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc49_archs)))
+  REQV_CPP	= $(REQV_49)
+  REQV_GCC	= $(REQV_49)
+  REQV_GPP	= $(REQV_49)
+  REQV_GOBJC	= $(REQV_49)
+  REQV_GOBJCXX	= $(REQV_49)
+  REQV_GFORT	= $(REQV_49)
+  REQV_GDC	= $(REQV_49)
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj48_archs)))
-  REQV_GCJ	= $(REQV_48)
-  REQV_GIJ	= $(REQV_48)
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj49_archs)))
+  REQV_GCJ	= $(REQV_49)
+  REQV_GIJ	= $(REQV_49)
 endif
 
 EPOCH=4
@@ -243,14 +248,14 @@ ifeq (,$(filter $(distrelease),lenny etch squeeze dapper hardy jaunty karmic luc
   with_multiarch_lib := yes
 endif
 
-LIBGCJ		= libgcj15
-LIBGCJ_PC	= libgcj15.pc
-LIBGCJ_SONAME	= 15
+LIBGCJ		= libgcj16
+LIBGCJ_PC	= libgcj16.pc
+LIBGCJ_SONAME	= 16
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj48_archs)))
-  LIBGCJ	= libgcj14
-  LIBGCJ_PC	= libgcj14.pc
-  LIBGCJ_SONAME	= 14
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj49_archs)))
+  LIBGCJ	= libgcj15
+  LIBGCJ_PC	= libgcj15.pc
+  LIBGCJ_SONAME	= 15
 endif
 
 gcj_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel \
@@ -330,16 +335,32 @@ endif
 V_GDC	:= $(shell echo $(CV_GDC)   | sed 's/-[^-]*$$//')
 
 # number for the package name
-PV_CPP	:= $(shell echo $(V_CPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GCC	:= $(shell echo $(V_GCC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GDC	:= $(shell echo $(V_GDC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GPP	:= $(shell echo $(V_GPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GOBJC:= $(shell echo $(V_GOBJC) | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GOBJCXX:= $(shell echo $(V_GOBJCXX) | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GFORT:= $(shell echo $(V_GFORT) | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GGO	:= $(shell echo $(V_GGO)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
-PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+PV_CPP	:= $(shell echo $(V_CPP)   | awk -F. '{printf "%d", $$1}')
+PV_GCC	:= $(shell echo $(V_GCC)   | awk -F. '{printf "%d", $$1}')
+PV_GDC	:= $(shell echo $(V_GDC)   | awk -F. '{printf "%d", $$1}')
+PV_GPP	:= $(shell echo $(V_GPP)   | awk -F. '{printf "%d", $$1}')
+PV_GOBJC:= $(shell echo $(V_GOBJC) | awk -F. '{printf "%d", $$1}')
+PV_GOBJCXX:= $(shell echo $(V_GOBJCXX) | awk -F. '{printf "%d", $$1}')
+PV_GFORT:= $(shell echo $(V_GFORT) | awk -F. '{printf "%d", $$1}')
+PV_GGO	:= $(shell echo $(V_GGO)   | awk -F. '{printf "%d", $$1}')
+PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d", $$1}')
+PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d", $$1}')
+
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc49_archs)))
+  PV_CPP	:= $(shell echo $(V_CPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+  PV_GCC	:= $(shell echo $(V_GCC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+  PV_GDC	:= $(shell echo $(V_GDC)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+  PV_GPP	:= $(shell echo $(V_GPP)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+  PV_GOBJC:= $(shell echo $(V_GOBJC) | awk -F. '{printf "%d.%d", $$1, $$2}')
+  PV_GOBJCXX:= $(shell echo $(V_GOBJCXX) | awk -F. '{printf "%d.%d", $$1, $$2}')
+  PV_GFORT:= $(shell echo $(V_GFORT) | awk -F. '{printf "%d.%d", $$1, $$2}')
+  PV_GGO	:= $(shell echo $(V_GGO)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+endif
+
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj49_archs)))
+  PV_GCJ	:= $(shell echo $(V_GCJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+  PV_GIJ	:= $(shell echo $(V_GIJ)   | awk -F. '{printf "%d.%d", $$1, $$2}')
+endif
 
 MOD_VER := $(shell apt-cache show gfortran-$(PV_GFORT) \
 		| sed -n '/^Provides/s/.*\(gfortran-mod-[0-9]*\).*/\1/p' \
@@ -412,6 +433,7 @@ ifeq ($(with_multilib),yes)
 	  echo 'pkgmulti:gobjcxx=gobjc++-multilib'; \
 	  echo 'pkgmulti:gfort=gfortran-multilib'; \
 	  echo 'pkgmulti:ggo=gccgo-multilib'; \
+	  echo 'pkgmulti:gdc=gdc-multilib'; \
 	) >> debian/substvars.local
 endif
 	( \
@@ -492,7 +514,11 @@ install: build substvars
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs) $(gcc48_archs) $(gcc49_archs)))
+ifeq (,$(filter $(DEB_HOST_ARCH), $(gcj49_archs)))
+	dh_link -pgcc \
+	  /usr/bin/gcov-tool-$(PV_GCC) /usr/bin/gcov-tool \
+	  /usr/bin/gcov-tool-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov-tool
+endif
 	dh_link -pgcc \
 	  /usr/bin/gcc-ar-$(PV_GCC) /usr/bin/gcc-ar \
 	  /usr/bin/gcc-nm-$(PV_GCC) /usr/bin/gcc-nm \
@@ -506,7 +532,6 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc47_archs) $(gcc48_archs) $(gcc49_archs))
 	  /usr/share/man/man1/gcc-nm-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc-nm.1.gz \
 	  /usr/share/man/man1/gcc-ranlib-$(PV_GCC).1.gz /usr/share/man/man1/gcc-ranlib.1.gz \
 	  /usr/share/man/man1/gcc-ranlib-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc-ranlib.1.gz
-endif
 	install -m 755 -p c89 debian/gcc/usr/bin/c89-gcc
 	install -m 644 -p c89.1 debian/gcc/usr/share/man/man1/c89-gcc.1
 	install -m 755 -p c99 debian/gcc/usr/bin/c99-gcc
@@ -523,6 +548,11 @@ endif
 	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/gcov.1.gz \
 	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov.1.gz
 
+    ifeq (,$(filter $(DEB_HOST_ARCH), $(gcc49_archs)))
+	dh_link -pgcc \
+	  /usr/share/man/man1/gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/gcov-tool.1.gz \
+	  /usr/share/man/man1/gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov-tool.1.gz
+    endif
 	: # gcc-doc
 	dh_installdirs -pgcc-doc \
 		usr/share/doc usr/share/info
@@ -904,6 +934,18 @@ ifneq (,$(filter $(DEB_HOST_ARCH),i386 kfreebsd-i386 hurd-i386))
   endif
 endif
 
+ifneq ($(with_gfdl_docs),yes)
+	for p in $$(dh_listpackages -s); do \
+	  case $$p in \
+	    cpp|g++|gcc|gccgo|gcj-jdk|gcj-jre-headless|gfortran) ;; \
+	    *) continue ;; \
+	  esac; \
+	  mkdir -p -m 755 debian/$$p/usr/share/lintian/overrides; \
+	  echo "$$p binary: binary-without-manpage" \
+	    >> debian/$$p/usr/share/lintian/overrides/$$p; \
+	done
+endif
+
 	dh_fixperms -s $(nopkgs)
 	dh_installdeb -s $(nopkgs)
 	dh_gencontrol -pcpp     -u-v$(EPOCH):$(CV_CPP)
@@ -916,7 +958,10 @@ endif
 	dh_gencontrol -pgcc-doc -u-v$(EPOCH):$(CV_GCC)
   endif
 ifneq (,$(filter gdc, $(packages)))
-	dh_gencontrol -pgdc -u-v$(CV_GDC)
+	dh_gencontrol -pgdc -u-v$(EPOCH):$(CV_GDC)
+  ifeq ($(with_multilib),yes)
+	dh_gencontrol -pgdc-multilib -u-v$(EPOCH):$(CV_GDC)
+  endif
 endif
 ifneq (,$(filter libphobos-dev, $(packages)))
 	dh_gencontrol -plibphobos-dev -u-v$(CV_GDC)

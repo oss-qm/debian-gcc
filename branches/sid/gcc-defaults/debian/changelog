@@ -1,12 +1,54 @@
-gcc-defaults (1.136) unstable; urgency=medium
+gcc-defaults (1.144) unstable; urgency=medium
 
-  * Bump GCC 4.8 version to 4.8.4.
+  * Build gdc with an epoch. Closes: #794329.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 01 Aug 2015 20:45:36 +0200
+
+gcc-defaults (1.143) unstable; urgency=high
+
+  * Upload to unstable.
+  * Bump required GCC 5 version to 5.2.1-13.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 30 Jul 2015 22:47:44 +0200
+
+gcc-defaults (1.142) experimental; urgency=medium
+
+  * Bump GCC 5 version to 5.2.1.
+  * Bump GCC 4.9 version to 4.9.3.
+  * Default to GCC 5 on sparc and hurd-i386.
+  * Change the long description of the multilib packages, because lintian
+    and ftp-master reject the capitalized version of "Dependency package".
+
+ -- Matthias Klose <doko@debian.org>  Sun, 19 Jul 2015 12:31:21 +0200
+
+gcc-defaults (1.141) experimental; urgency=medium
+
   * Build multilib and gccgo packages for mips64* (James Cowgill).
-    Closes: #773177.
-  * gcc-multilib: Break gcc-4.9-mips-linux-gnu.
-  * gcj-jdk: Fix libgcj.pc symlink (Victor Seva). Closes: #778376.
+    Addresses: #773177.
+  * gcc-multilib: Break gcc-4.9-mips-linux-gnu. Add breaks for gcc-5
+    cross compilers.
+  * gcj-jdk: Fix libgcj.pc symlink (Victor Seva). Addresses: #778376.
 
- -- Matthias Klose <doko@debian.org>  Wed, 25 Feb 2015 13:07:51 +0100
+ -- Matthias Klose <doko@debian.org>  Wed, 25 Feb 2015 13:34:24 +0100
+
+gcc-defaults (1.140) experimental; urgency=medium
+
+  * Provide the gcc-ar, gcc-nm and gcc-ranlib symlinks again.
+  * Provide a gcov-tool symlink.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 13 Feb 2015 02:57:53 +0100
+
+gcc-defaults (1.139) experimental; urgency=medium
+
+  * Build a gdc-multilib package.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 28 Jan 2015 23:50:29 +0100
+
+gcc-defaults (1.138) experimental; urgency=medium
+
+  * Bump GCC version to 5.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 27 Jan 2015 21:18:46 +0100
 
 gcc-defaults (1.135) unstable; urgency=medium
 
