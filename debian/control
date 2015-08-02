@@ -267,7 +267,7 @@ Description: D compiler (language version 2), based on the GCC backend
 
 Package: gdc-multilib
 Priority: optional
-Architecture: amd64 i386 kfreebsd-amd64 mips mipsel powerpc ppc64 s390 s390x sparc sparc64 x32
+Architecture: amd64 i386 kfreebsd-amd64 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x sparc sparc64 x32
 Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gdc (>= ${version:gcc}), gdc-${pv:gdc}-multilib ${reqv:gdc}, ${misc:Depends}
 Description: D compiler (language version 2) (multilib files)
  This compiler supports D language version 2.
