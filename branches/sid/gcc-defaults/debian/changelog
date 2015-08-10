@@ -1,9 +1,9 @@
-gcc-defaults (1.145) UNRELEASED; urgency=medium
+gcc-defaults (1.145) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * Build gdc-multilib on mips64 and mips64el.
 
- -- Matthias Klose <doko@debian.org>  Sat, 01 Aug 2015 20:45:36 +0200
+ -- Matthias Klose <doko@debian.org>  Mon, 03 Aug 2015 10:33:23 +0200
 
 gcc-defaults (1.144) unstable; urgency=medium
 
