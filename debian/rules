@@ -312,11 +312,13 @@ else
 endif
 with_cross  = yes
 
-ifeq ($(HOST_ARCH),arm64)
+ifneq (, $(filter $(DEB_HOST_ARCH),amd64 i386 x32))
+  # just use the default from above
+else ifeq ($(DEB_HOST_ARCH),arm64)
   CROSS_ARCHS = armel armhf
-else ifeq ($(HOST_ARCH),ppc64)
+else ifeq ($(DEB_HOST_ARCH),ppc64)
   CROSS_ARCHS = ppc64el
-else ifeq ($(HOST_ARCH),ppc64el)
+else ifeq ($(DEB_HOST_ARCH),ppc64el)
   CROSS_ARCHS = powerpc
 else
   CROSS_ARCHS =
