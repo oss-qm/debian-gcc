@@ -318,6 +318,8 @@ else ifeq ($(HOST_ARCH),ppc64)
   CROSS_ARCHS = ppc64el
 else ifeq ($(HOST_ARCH),ppc64el)
   CROSS_ARCHS = powerpc
+else
+  CROSS_ARCHS =
 endif
 
 CROSS_ARCH	= $(subst .,,$(suffix $@))
