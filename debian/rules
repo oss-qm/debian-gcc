@@ -361,6 +361,9 @@ endif
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
   with_multilib = yes
 endif
+ifneq (,$(filter $(DEB_HOST_ARCH), $(go_multilib_archs)))
+  with_go_multilib = yes
+endif
 
 with_gfdl_docs := no
 ifeq ($(distribution),Ubuntu)
@@ -1257,7 +1260,7 @@ ifneq (,$(filter gfortran, $(packages)))
 endif
 ifneq (,$(filter gccgo, $(packages)))
 	dh_gencontrol -pgccgo \
-	  $(if $(filter yes,$(with_multilib)),-pgccgo-multilib) \
+	  $(if $(filter yes,$(with_go_multilib)),-pgccgo-multilib) \
 	  $(if $(filter yes, $(with_gfdl_docs)),-pgccgo-doc) \
 	  -u-v$(EPOCH):$(CV_GGO)
 endif
