@@ -3,6 +3,7 @@ Package: gcc-multilib-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
+  gcc-CROSS_GNU_TYPE (>= ${version:gcc}),
   gcc-${pv:gcc}-multilib-CROSS_GNU_TYPE ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-CROSS_ARCH-cross | libc-dev-CROSS_ARCH-cross
@@ -17,7 +18,8 @@ Package: g++-multilib-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
-  gcc-multilib-CROSS_GNU_TYPE (>= ${version:cpp}),
+  g++-CROSS_GNU_TYPE (>= ${version:gpp}),
+  gcc-multilib-CROSS_GNU_TYPE (>= ${version:gcc}),
   g++-${pv:gpp}-multilib-CROSS_GNU_TYPE ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the CROSS_ARCH architecture
@@ -30,6 +32,7 @@ Package: gobjc-multilib-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
+  gobjc-CROSS_GNU_TYPE (>= ${version:gobjc}),
   gcc-multilib-CROSS_GNU_TYPE (>= ${version:cpp}),
   gobjc-${pv:gobjc}-multilib-CROSS_GNU_TYPE ${reqv:gobjc},
   ${misc:Depends}
@@ -46,6 +49,7 @@ Priority: optional
 Architecture: @host_archs@
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gcc-multilib-CROSS_GNU_TYPE (>= ${version:cpp}),
+  gobjc++-CROSS_GNU_TYPE (>= ${version:gobjcxx}),
   gobjc++-${pv:gobjcxx}-multilib-CROSS_GNU_TYPE ${reqv:gobjcxx},
   ${misc:Depends}
 Recommends: g++-CROSS_GNU_TYPE (>= ${version:cpp}),
@@ -63,6 +67,7 @@ Priority: optional
 Architecture: @host_archs@
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gcc-multilib-CROSS_GNU_TYPE (>= ${version:gcc}),
+  gfortran-CROSS_GNU_TYPE (>= ${version:gfort}),
   gfortran-${pv:gfort}-multilib-CROSS_GNU_TYPE ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -79,6 +84,7 @@ Priority: optional
 Architecture: @host_archs@
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   g++-multilib-CROSS_GNU_TYPE (>= ${version:gcc}),
+  gccgo-CROSS_GNU_TYPE (>= ${version:ggo}),
   gccgo-${pv:ggo}-multilib-CROSS_GNU_TYPE ${reqv:ggo},
   ${misc:Depends}
 Suggests: gccgo-doc
@@ -94,6 +100,7 @@ Priority: optional
 Architecture: @host_archs@
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gdc-multilib-${pv:gdc}-CROSS_GNU_TYPE ${reqv:gdc},
+  gdc-CROSS_GNU_TYPE (>= ${version:gdc}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the CROSS_ARCH architecture
  This is the GNU D compiler, which compiles D on platforms supported by

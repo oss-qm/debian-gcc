@@ -469,6 +469,7 @@ substvars-native:
 	  echo 'version:gcc=$(EPOCH):$(CV_GCC)'; \
 	  echo 'version:gpp=$(EPOCH):$(CV_GPP)'; \
 	  echo 'version:gobjc=$(EPOCH):$(CV_GOBJC)'; \
+	  echo 'version:gobjcxx=$(EPOCH):$(CV_GOBJCXX)'; \
 	  echo 'version:gij=$(EPOCH):$(CV_GIJ)'; \
 	  echo 'version:gcj=$(EPOCH):$(CV_GCJ)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
@@ -530,6 +531,7 @@ substvars.%:
 	  echo 'version:gcc=$(EPOCH):$(CV_GCC_$(CROSS_ARCH))'; \
 	  echo 'version:gpp=$(EPOCH):$(CV_GPP_$(CROSS_ARCH))'; \
 	  echo 'version:gobjc=$(EPOCH):$(CV_GOBJC_$(CROSS_ARCH))'; \
+	  echo 'version:gobjcxx=$(EPOCH):$(CV_GOBJCXX_$(CROSS_ARCH))'; \
 	  echo 'version:gcj=$(EPOCH):$(CV_GCJ_$(CROSS_ARCH))'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT_$(CROSS_ARCH))'; \
 	  echo 'version:ggo=$(EPOCH):$(CV_GGO_$(CROSS_ARCH))'; \
