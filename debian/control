@@ -30,6 +30,77 @@ Description: GNU C preprocessor (cpp)
  .
  This is a dependency package providing the default GNU C preprocessor.
 
+Package: gcc
+Priority: optional
+Architecture: any
+Depends: cpp (>= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
+Recommends: libc6-dev | libc-dev
+Suggests: gcc-multilib, make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb, gcc-doc
+Provides: c-compiler
+Conflicts: gcc-doc (<< 1:2.95.3)
+Description: GNU C compiler
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ This is a dependency package providing the default GNU C compiler.
+
+Package: gcc-multilib
+Priority: optional
+Architecture: amd64 i386 kfreebsd-amd64 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x sparc sparc64 x32
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}, linux-libc-dev (>= 3.0.0-2) [linux-any]
+Conflicts: gcc-4.9-alpha-linux-gnu,
+  gcc-4.9-arm-linux-gnueabi,
+  gcc-4.9-arm-linux-gnueabihf,
+  gcc-4.9-hppa-linux-gnu,
+  gcc-4.9-m68k-linux-gnu,
+  gcc-4.9-powerpc-linux-gnu,
+  gcc-4.9-powerpc-linux-gnuspe,
+  gcc-4.9-powerpc64-linux-gnu,
+  gcc-4.9-powerpc64el-linux-gnu,
+  gcc-4.9-mips-linux-gnu,
+  gcc-4.9-mipsel-linux-gnu,
+  gcc-4.9-mips64-linux-gnuabi64,
+  gcc-4.9-mips64el-linux-gnuabi64,
+  gcc-4.9-s390x-linux-gnu,
+  gcc-4.9-sh4-linux-gnu,
+  gcc-4.9-sparc64-linux-gnu,
+  gcc-5-alpha-linux-gnu,
+  gcc-5-arm-linux-gnueabi,
+  gcc-5-arm-linux-gnueabihf,
+  gcc-5-hppa-linux-gnu,
+  gcc-5-m68k-linux-gnu,
+  gcc-5-powerpc-linux-gnu,
+  gcc-5-powerpc-linux-gnuspe,
+  gcc-5-powerpc64-linux-gnu,
+  gcc-5-powerpc64el-linux-gnu,
+  gcc-5-mips-linux-gnu,
+  gcc-5-mipsel-linux-gnu,
+  gcc-5-mips64-linux-gnuabi64,
+  gcc-5-mips64el-linux-gnuabi64,
+  gcc-5-s390x-linux-gnu,
+  gcc-5-sh4-linux-gnu,
+  gcc-5-sparc64-linux-gnu,
+  gcc-6-alpha-linux-gnu,
+  gcc-6-arm-linux-gnueabi,
+  gcc-6-arm-linux-gnueabihf,
+  gcc-6-hppa-linux-gnu,
+  gcc-6-m68k-linux-gnu,
+  gcc-6-powerpc-linux-gnu,
+  gcc-6-powerpc-linux-gnuspe,
+  gcc-6-powerpc64-linux-gnu,
+  gcc-6-powerpc64el-linux-gnu,
+  gcc-6-mips-linux-gnu,
+  gcc-6-mipsel-linux-gnu,
+  gcc-6-mips64-linux-gnuabi64,
+  gcc-6-mips64el-linux-gnuabi64,
+  gcc-6-s390x-linux-gnu,
+  gcc-6-sh4-linux-gnu,
+  gcc-6-sparc64-linux-gnu,
+Description: GNU C compiler (multilib files)
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ A dependency package on architectures with multilib support; the package
+ contains dependencies for the non-default multilib architecture(s).
+
 Package: g++
 Priority: optional
 Architecture: any
@@ -91,7 +162,7 @@ Description: GNU Objective-C++ compiler
 
 Package: gobjc++-multilib
 Priority: optional
-Architecture: amd64 i386 kfreebsd-amd64 mips mipsel mips64 mips64el powerpc ppc64 s390 s390x sparc sparc64 x32
+Architecture: amd64 i386 kfreebsd-amd64 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x sparc sparc64 x32
 Depends: cpp (>= ${version:cpp}), gobjc-multilib (>= ${version:cpp}), gobjc++ (>= ${version:gcc}), gobjc++-${pv:gobjcxx}-multilib ${reqv:gobjcxx}, ${misc:Depends}
 Description: GNU Objective-C++ compiler (multilib files)
  This is the GNU Objective-C++ compiler, which compiles Objective-C++ on
@@ -222,77 +293,6 @@ Description: Java runtime environment using GIJ/Classpath
  .
  This is currently an empty package.
  It is meant to provide a Java-RTE-like interface to the GIJ/GCJ tool set.
-
-Package: gcc
-Priority: optional
-Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
-Recommends: libc6-dev | libc-dev
-Suggests: gcc-multilib, make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb, gcc-doc
-Provides: c-compiler
-Conflicts: gcc-doc (<< 1:2.95.3)
-Description: GNU C compiler
- This is the GNU C compiler, a fairly portable optimizing compiler for C.
- .
- This is a dependency package providing the default GNU C compiler.
-
-Package: gcc-multilib
-Priority: optional
-Architecture: amd64 i386 kfreebsd-amd64 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x s390x sparc sparc64 x32
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}, linux-libc-dev (>= 3.0.0-2) [linux-any]
-Conflicts: gcc-4.9-alpha-linux-gnu,
-  gcc-4.9-arm-linux-gnueabi,
-  gcc-4.9-arm-linux-gnueabihf,
-  gcc-4.9-hppa-linux-gnu,
-  gcc-4.9-m68k-linux-gnu,
-  gcc-4.9-powerpc-linux-gnu,
-  gcc-4.9-powerpc-linux-gnuspe,
-  gcc-4.9-powerpc64-linux-gnu,
-  gcc-4.9-powerpc64el-linux-gnu,
-  gcc-4.9-mips-linux-gnu,
-  gcc-4.9-mipsel-linux-gnu,
-  gcc-4.9-mips64-linux-gnuabi64,
-  gcc-4.9-mips64el-linux-gnuabi64,
-  gcc-4.9-s390x-linux-gnu,
-  gcc-4.9-sh4-linux-gnu,
-  gcc-4.9-sparc64-linux-gnu,
-  gcc-5-alpha-linux-gnu,
-  gcc-5-arm-linux-gnueabi,
-  gcc-5-arm-linux-gnueabihf,
-  gcc-5-hppa-linux-gnu,
-  gcc-5-m68k-linux-gnu,
-  gcc-5-powerpc-linux-gnu,
-  gcc-5-powerpc-linux-gnuspe,
-  gcc-5-powerpc64-linux-gnu,
-  gcc-5-powerpc64el-linux-gnu,
-  gcc-5-mips-linux-gnu,
-  gcc-5-mipsel-linux-gnu,
-  gcc-5-mips64-linux-gnuabi64,
-  gcc-5-mips64el-linux-gnuabi64,
-  gcc-5-s390x-linux-gnu,
-  gcc-5-sh4-linux-gnu,
-  gcc-5-sparc64-linux-gnu,
-  gcc-6-alpha-linux-gnu,
-  gcc-6-arm-linux-gnueabi,
-  gcc-6-arm-linux-gnueabihf,
-  gcc-6-hppa-linux-gnu,
-  gcc-6-m68k-linux-gnu,
-  gcc-6-powerpc-linux-gnu,
-  gcc-6-powerpc-linux-gnuspe,
-  gcc-6-powerpc64-linux-gnu,
-  gcc-6-powerpc64el-linux-gnu,
-  gcc-6-mips-linux-gnu,
-  gcc-6-mipsel-linux-gnu,
-  gcc-6-mips64-linux-gnuabi64,
-  gcc-6-mips64el-linux-gnuabi64,
-  gcc-6-s390x-linux-gnu,
-  gcc-6-sh4-linux-gnu,
-  gcc-6-sparc64-linux-gnu,
-Description: GNU C compiler (multilib files)
- This is the GNU C compiler, a fairly portable optimizing compiler for C.
- .
- A dependency package on architectures with multilib support; the package
- contains dependencies for the non-default multilib architecture(s).
 
 Package: gdc
 Priority: optional
