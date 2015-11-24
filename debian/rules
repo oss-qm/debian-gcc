@@ -358,22 +358,29 @@ ifeq ($(distribution),Ubuntu)
   with_gfdl_docs := yes
 endif
 
-ifeq (,$(filter $(DEB_HOST_ARCH),$(go_archs)))
-  no_packages += gccgo
-endif
+ifeq ($(with_native),yes)
+  ifeq (,$(filter $(DEB_HOST_ARCH),$(go_archs)))
+    no_packages += gccgo
+  endif
 
-java_no_archs := arm
-ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
-  no_packages += libgcj-bc gcj-jre-headless gcj-jre gcj-jdk
-endif
+  java_no_archs := arm
+  ifneq (,$(filter $(DEB_HOST_ARCH),$(java_no_archs)))
+    no_packages += libgcj-bc gcj-jre-headless gcj-jre gcj-jdk
+  endif
 
-gdc_no_archs = s390
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
-  no_packages += gdc
-endif
+  gdc_no_archs = s390
+  ifneq (,$(filter $(DEB_HOST_ARCH),$(gdc_no_archs)))
+    no_packages += gdc
+  endif
 
-ifeq (,$(filter $(DEB_HOST_ARCH),$(phobos_archs)))
-  no_packages += libphobos-dev
+  ifeq (,$(filter $(DEB_HOST_ARCH),$(phobos_archs)))
+    no_packages += libphobos-dev
+  endif
+
+  ifneq ($(with_gfdl_docs),yes)
+    no_packages := $(sort $(no_packages) cpp-doc gcc-doc gfortran-doc)
+  endif
+
 endif
 
 ifeq ($(DEB_HOST_ARCH),hurd-i386)
@@ -386,10 +393,6 @@ endif
 
 ifeq ($(DEB_HOST_ARCH),netbsd-i386)
     OS_NAME	:= NetBSD
-endif
-
-ifneq ($(with_gfdl_docs),yes)
-    no_packages := $(sort $(no_packages) cpp-doc gcc-doc gfortran-doc)
 endif
 
 ifeq ($(with_cross),yes)
@@ -578,9 +581,16 @@ endif
 	)
 
 control:
-	cat debian/control.source > debian/control
 ifeq ($(with_native),yes)
+	  sed \
+	    -e "s/@SOURCE@/$(SOURCE)/g" debian/control.source \
+	    > debian/control
 	cat debian/control.native >> debian/control
+else
+	  sed \
+	    -e "s/@SOURCE@/$(SOURCE)/g" debian/control.source \
+	    | grep -v '^Build-Depends-Indep:' \
+	    > debian/control
 endif
 ifeq ($(with_cross),yes)
 	$(foreach a,$(CROSS_ARCHS), \
@@ -623,9 +633,10 @@ pre-install: build substvars
 	dh_testroot
 	dh_prep
 
-install: pre-install install.native $(foreach a,$(CROSS_ARCHS),install.$(a))
+install: pre-install install-native $(foreach a,$(CROSS_ARCHS),install.$(a))
 
-install.native: pre-install
+install-native: pre-install
+ifeq ($(with_native),yes)
 	for p in $(filter-out $(cross_packages), $(shell dh_listpackages)); do \
 	  cp -l debian/substvars.native debian/$$p.substvars; \
 	done
@@ -973,6 +984,7 @@ endif
 	pod2man -c Debhelper debian/dh_nativejava debian/dh_nativejava.1
 	mkdir -p debian/libgcj-common/usr/share/man/man1
 	install -m644 debian/dh_nativejava.1 debian/libgcj-common/usr/share/man/man1/
+endif # with_native
 
 install.%: pre-install
 	for p in $(filter %-$(CROSS_GNU_TYPE), $(all_packages)); do \
@@ -1096,8 +1108,8 @@ install.%: pre-install
 	    ); \
 	)
 
-
 cacerts-stamp:
+ifeq ($(with_native),yes)
 	dh_testdir
 	rm -rf build
 	mkdir -p build
@@ -1105,11 +1117,13 @@ cacerts-stamp:
 		> debian/generate-cacerts.pl
 	cd build && perl ../debian/generate-cacerts.pl \
 		/etc/ssl/certs/ca-certificates.crt
+endif
 	touch $@
 
 nopkgs_native :=-s $(foreach p, $(no_packages) $(cross_packages),-N$(p))
 
 binary-indep: build-indep install
+ifeq ($(with_native),yes)
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs -i
@@ -1128,9 +1142,11 @@ binary-indep: build-indep install
 	dh_gencontrol -plibgcj-common -u-v$(CV_LIBGCJCOMMON)
 	dh_md5sums -i
 	dh_builddeb -i
+endif
 
 binary-arch: binary-native $(foreach a,$(CROSS_ARCHS),binary.$(a))
 binary-native: build-arch install
+ifeq ($(with_native),yes)
 	dh_testdir
 	dh_testroot
 #	dh_installdebconf
@@ -1239,7 +1255,7 @@ ifneq (,$(filter gcj-jdk, $(packages)))
 endif
 	dh_md5sums -s $(nopkgs_native)
 	dh_builddeb -s $(nopkgs_native)
-
+endif # with_native
 
 binary.%: build-arch install
 	dh_testdir

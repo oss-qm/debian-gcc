@@ -1,4 +1,4 @@
-Source: gcc-defaults
+Source: @SOURCE@
 Section: devel
 Priority: standard
 Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
@@ -8,8 +8,7 @@ Build-Depends: m4, debhelper (>= 5),
   dpkg-dev (>= 1.17.11),
   gcc-5-base (>= 5.2.1-13),
   lsb-release
-Build-Depends-Indep: ca-certificates,
-  gcj-jdk, python (>= 2.6.6)
+Build-Depends-Indep: ca-certificates, gcj-jdk, python (>= 2.6.6)
 Vcs-Svn: svn://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
 Vcs-Browser: http://svn.debian.org/viewsvn/gcccvs/branches/sid/gcc-defaults
 XS-Python-Version: all
