@@ -99,7 +99,7 @@ Package: gdc-multilib-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
-  gdc-multilib-${pv:gdc}-CROSS_GNU_TYPE ${reqv:gdc},
+  gdc-${pv:gdc}-multilib-CROSS_GNU_TYPE ${reqv:gdc},
   gdc-CROSS_GNU_TYPE (>= ${version:gdc}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the CROSS_ARCH architecture

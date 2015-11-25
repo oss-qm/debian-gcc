@@ -1325,7 +1325,7 @@ binary.%: build-arch install
 
 	$(if $(filter gdc-$(CROSS_GNU_TYPE), $(packages)), \
 	  dh_gencontrol -pgdc-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgdc-multilib-$(CROSS_GNU_TYPE)) \
+	    $(if $(filter $(CROSS_ARCH),$(d_multilib_archs)),-pgdc-multilib-$(CROSS_GNU_TYPE)) \
 	    -u-v$(EPOCH):$(CV_GDC_$(CROSS_ARCH)) \
 	)
 
@@ -1355,7 +1355,7 @@ binary.%: build-arch install
 
 	$(if $(filter gccgo-$(CROSS_GNU_TYPE), $(packages)), \
 	  dh_gencontrol -pgccgo-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgccgo-multilib-$(CROSS_GNU_TYPE)) \
+	    $(if $(filter $(CROSS_ARCH),$(go_multilib_archs)),-pgccgo-multilib-$(CROSS_GNU_TYPE)) \
 	    -u-v$(EPOCH):$(CV_GGO_$(CROSS_ARCH)) \
 	)
 
