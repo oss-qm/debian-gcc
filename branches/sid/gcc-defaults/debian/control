@@ -555,7 +555,7 @@ Package: gdc-multilib-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
-  gdc-multilib-${pv:gdc}-s390x-linux-gnu ${reqv:gdc},
+  gdc-${pv:gdc}-multilib-s390x-linux-gnu ${reqv:gdc},
   gdc-s390x-linux-gnu (>= ${version:gdc}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the s390x architecture
@@ -927,7 +927,7 @@ Package: gdc-multilib-powerpc-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64el
 Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gdc-multilib-${pv:gdc}-powerpc-linux-gnu ${reqv:gdc},
+  gdc-${pv:gdc}-multilib-powerpc-linux-gnu ${reqv:gdc},
   gdc-powerpc-linux-gnu (>= ${version:gdc}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the powerpc architecture
@@ -1561,7 +1561,7 @@ Package: gdc-multilib-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
-  gdc-multilib-${pv:gdc}-mips-linux-gnu ${reqv:gdc},
+  gdc-${pv:gdc}-multilib-mips-linux-gnu ${reqv:gdc},
   gdc-mips-linux-gnu (>= ${version:gdc}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the mips architecture
@@ -1802,7 +1802,7 @@ Package: gdc-multilib-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
-  gdc-multilib-${pv:gdc}-mipsel-linux-gnu ${reqv:gdc},
+  gdc-${pv:gdc}-multilib-mipsel-linux-gnu ${reqv:gdc},
   gdc-mipsel-linux-gnu (>= ${version:gdc}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the mipsel architecture
