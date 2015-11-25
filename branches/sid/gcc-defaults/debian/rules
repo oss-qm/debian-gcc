@@ -285,6 +285,7 @@ go_multilib_archs = $(filter $(go_archs), $(filter-out armel armhf, $(multilib_a
 
 d_multilib_archs = $(filter-out armel, $(multilib_archs))
 
+hppa64_archs = amd64 hppa i386 x32
 phobos_archs = amd64 armel armhf i386 x32 hppa
 
 HOST_ARCHS_alpha = amd64 i386 x32
@@ -337,6 +338,9 @@ all_packages    :=
 ifeq ($(with_native),yes)
   # FIXME: not all packages ...
   all_packages	:= g++ gfortran gcj-jdk gobjc gobjc++ gdc gccgo libphobos-dev
+  ifneq (,$(filter $(DEB_HOST_ARCH), $(hppa64_archs)))
+    all_packages += gcc-hppa64-linux-gnu
+  endif
 endif
 no_packages	:=
 
@@ -389,6 +393,10 @@ ifeq ($(with_native),yes)
     no_packages += libphobos-dev
   endif
 
+  ifeq (,$(filter $(DEB_HOST_ARCH),$(hppa64_archs)))
+    no_packages += gcc-hppa64-linux-gnu
+  endif
+
   ifneq ($(with_gfdl_docs),yes)
     no_packages := $(sort $(no_packages) cpp-doc gcc-doc gfortran-doc)
   endif
@@ -408,7 +416,7 @@ ifeq ($(DEB_HOST_ARCH),netbsd-i386)
 endif
 
 ifeq ($(with_cross),yes)
-  cross_packages := $(shell dh_listpackages -s | egrep -- '-gnu|-kfreebsd')
+  cross_packages := $(filter-out gcc-hppa64-linux-gnu, $(shell dh_listpackages -s | egrep -- '-gnu|-kfreebsd'))
   all_packages := $(all_packages) $(cross_packages)
 endif
 packages := $(filter-out $(no_packages), $(all_packages))
@@ -608,6 +616,9 @@ else
 	    | grep -v '^Build-Depends-Indep:' \
 	    > debian/control
 endif
+	sed \
+	  -e "s/@hppa64_archs@/$(hppa64_archs)/g" \
+	  debian/control.hppa64.in  >> debian/control
 ifeq ($(with_cross),yes)
 	: # FIXME: filter-out some gdc and gccgo multilib configs
 	$(foreach a,$(CROSS_ARCHS), \
@@ -692,8 +703,8 @@ ifeq ($(with_native),yes)
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov \
-	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs
-	  $(if $(filter $(DEB_HOST_ARCH), $(gcj49_archs)), \
+	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs \
+	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
 	    /usr/bin/gcov-tool-$(PV_GCC) /usr/bin/gcov-tool \
 	    /usr/bin/gcov-tool-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov-tool \
 	  )
@@ -725,7 +736,7 @@ ifeq ($(with_native),yes)
 	  /usr/share/man/man1/gcc-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcc.1.gz \
 	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/gcov.1.gz \
 	  /usr/share/man/man1/gcov-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov.1.gz \
-	  $(if $(filter $(DEB_HOST_ARCH), $(gcj49_archs)), \
+	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
 	    /usr/share/man/man1/gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/gcov-tool.1.gz \
 	    /usr/share/man/man1/gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov-tool.1.gz \
 	  )
@@ -1001,6 +1012,33 @@ endif
 	pod2man -c Debhelper debian/dh_nativejava debian/dh_nativejava.1
 	mkdir -p debian/libgcj-common/usr/share/man/man1
 	install -m644 debian/dh_nativejava.1 debian/libgcj-common/usr/share/man/man1/
+
+ifneq (,$(filter gcc-hppa64-linux-gnu, $(packages)))
+	: # gcc-hppa64-linux-gnu
+	dh_installdirs -pgcc-hppa64-linux-gnu
+	dh_link -pgcc-hppa64-linux-gnu \
+	  /usr/bin/hppa64-linux-gnu-gcc-gcc-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc \
+	  /usr/bin/hppa64-linux-gnu-gcov-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcov \
+	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
+	    /usr/bin/hppa64-linux-gnu-gcov-tool-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcov-tool \
+	  )
+	dh_link -pgcc-hppa64-linux-gnu \
+	  /usr/bin/hppa64-linux-gnu-gcc-ar-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc-ar \
+	  /usr/bin/hppa64-linux-gnu-gcc-nm-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc-nm \
+	  /usr/bin/hppa64-linux-gnu-gcc-ranlib-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc-ranlib \
+	  /usr/share/man/man1/hppa64-linux-gnu-gcc-ar-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc-ar.1.gz \
+	  /usr/share/man/man1/hppa64-linux-gnu-gcc-nm-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc-nm.1.gz \
+	  /usr/share/man/man1/hppa64-linux-gnu-gcc-ranlib-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc-ranlib.1.gz
+  ifeq ($(with_gfdl_docs),yes)
+	dh_link -pgcc-hppa64-linux-gnu \
+	  /usr/share/man/man1/hppa64-linux-gnu-gcc-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc.1.gz \
+	  /usr/share/man/man1/hppa64-linux-gnu-gcov-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcov.1.gz \
+	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
+	    /usr/share/man/man1/hppa64-linux-gnu-gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcov-tool.1.gz \
+	  )
+  endif
+endif
+
 endif # with_native
 
 install.%: pre-install
@@ -1025,7 +1063,7 @@ install.%: pre-install
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcc-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcc \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov \
 	  /usr/share/doc/gcc-$(PV_GCC_$(CROSS_ARCH))/README.Bugs /usr/share/doc/cpp-$(CROSS_GNU_TYPE)/README.Bugs \
-	  $(if $(filter $(CROSS_ARCH), $(gcc49_archs)), \
+	  $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool \
 	  )
 	dh_link -pgcc-$(CROSS_GNU_TYPE) \
@@ -1048,7 +1086,7 @@ install.%: pre-install
 	  dh_link -pgcc-$(CROSS_GNU_TYPE) \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcc-$(PV_GCC_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcc.1.gz \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov.1.gz \
-	    $(if $(filter $(CROSS_ARCH), $(gcc49_archs)), \
+	    $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
 	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-tool-$(PV_GCC_$(CROSS_ARCH)).1.gz \
 	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-tool.1.gz) \
 	)
@@ -1170,7 +1208,7 @@ ifeq ($(with_native),yes)
 	dh_installdocs -pcpp
 	for p in `dh_listpackages $(nopkgs_native) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngfortran-doc -Ngccgo-doc -Nlibgcj-common -Ngdc -Nlibphobos-dev`; do \
 	  case "$$p" in \
-	    *-gnu*|*-kfreebsd*) continue;; \
+	    *-gnu*|*-kfreebsd*|gcc-hppa64-linux-gnu) continue;; \
 	    gij|gcj-*) t=libgcj-common;; \
 	    *) t=cpp; \
 	  esac; \
@@ -1183,16 +1221,23 @@ ifeq ($(with_native),yes)
 	dh_installchangelogs -pcpp -pgdc -plibphobos-dev
 	for i in cpp gdc libphobos-dev; do \
 	  mv debian/$$i/usr/share/doc/$$i/changelog \
-		debian/$$i/usr/share/doc/$$i/changelog.Debian; \
+	    debian/$$i/usr/share/doc/$$i/changelog.Debian; \
 	done
 ifeq ($(with_gfdl_docs),yes)
 	dh_installdocs -pcpp-doc -pgcc-doc -pgfortran-doc -pgccgo-doc
 	dh_installchangelogs -pcpp-doc -pgcc-doc -pgfortran-doc -pgccgo-doc
 	for i in cpp-doc gcc-doc gfortran-doc gccgo-doc; do \
 	  mv debian/$$i/usr/share/doc/$$i/changelog \
-		debian/$$i/usr/share/doc/$$i/changelog.Debian; \
+	    debian/$$i/usr/share/doc/$$i/changelog.Debian; \
 	done
 endif
+ifneq (,$(filter gcc-hppa64-linux-gnu, $(packages)))
+	dh_installdocs -pgcc-hppa64-linux-gnu
+	dh_installchangelogs -pgcc-hppa64-linux-gnu
+	mv debian/gcc-hppa64-linux-gnu/usr/share/doc/gcc-hppa64-linux-gnu/changelog \
+	  debian/gcc-hppa64-linux-gnu/usr/share/doc/gcc-hppa64-linux-gnu/changelog.Debian
+endif
+
 	dh_compress -s $(nopkgs_native) -XREADME.Debian
 
 ifneq (,$(filter $(DEB_HOST_ARCH),i386 kfreebsd-i386 hurd-i386))
@@ -1214,7 +1259,7 @@ endif
 
 	for p in $$(dh_listpackages -s); do \
 	  case $$p in \
-	    cpp|g++|gcc|gccgo|gcj-jdk|gcj-jre-headless|gfortran) \
+	    cpp|g++|gcc|gccgo|gcj-jdk|gcj-jre-headless|gfortran|gcc-hppa64-linux-gnu) \
 	      [ "$(with_gfdl_docs)" = yes ] && continue; \
 	      mkdir -p -m 755 debian/$$p/usr/share/lintian/overrides; \
 	      echo "$$p binary: binary-without-manpage" \
@@ -1269,6 +1314,10 @@ ifneq (,$(filter gcj-jdk, $(packages)))
 	dh_gencontrol -plibgcj-bc   -u-v$(CV_LIBGCJBC)
 	dh_gencontrol -pgcj-jre-headless -pgcj-jre -pgcj-jdk \
 		-u-v$(EPOCH):$(CV_GCJ)
+endif
+ifneq (,$(filter gcc-hppa64-linux-gnu, $(packages)))
+	dh_gencontrol -pgcc-hppa64-linux-gnu \
+	  -u-v$(EPOCH):$(CV_GCC)
 endif
 	dh_md5sums -s $(nopkgs_native)
 	dh_builddeb -s $(nopkgs_native)

@@ -1,8 +1,18 @@
-gcc-defaults (1.146) UNRELEASED; urgency=medium
+gcc-defaults (1.147) unstable; urgency=medium
 
-  * Build defaults packages for Debian cross architectures.
+  * Fix some fall-out building cross gcc packages.
+  * Build a gcc-hppa64-linux-gnu package.
+  * gcc: Provide an unversioned gcov-tool binary.
+  * Update README.Debian.
 
- -- Matthias Klose <doko@debian.org>  Mon, 23 Nov 2015 22:40:32 +0100
+ -- Matthias Klose <doko@debian.org>  Wed, 25 Nov 2015 20:46:31 +0100
+
+gcc-defaults (1.146) unstable; urgency=medium
+
+  * Build defaults packages for Debian cross architectures, including
+    all frontends and multilib packages.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 24 Nov 2015 13:22:50 +0100
 
 gcc-defaults (1.145) unstable; urgency=medium
 
