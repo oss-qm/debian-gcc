@@ -279,7 +279,7 @@ multilib_archs = $(sort \
 	$(if $(filter $(vendor), Ubuntu), armel armhf))
 
 go_archs = amd64 arm64 armel armhf i386 ia64 mips mips64 mips64el mipsel \
-	powerpc ppc64 ppc64el s390 s390x x32
+	powerpc ppc64 ppc64el s390 s390x sparc sparc64 x32
 
 go_multilib_archs = $(filter $(go_archs), $(filter-out armel armhf, $(multilib_archs)))
 
