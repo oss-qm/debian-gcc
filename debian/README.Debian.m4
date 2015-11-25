@@ -15,26 +15,19 @@ of GCC to coexist on the same system, and selects the default version
 by means of the gcc-defaults package, which creates symbolic links as
 appropriate.
 
-FIXME: Needs update for jessie
+FIXME: Needs update for stretch
 
-Versions of GCC present in Debian Wheezy
+Versions of GCC present in Debian Stretch
 -----------------------------------------
 
-- GCC 4.7 is the default compiler for Go and Java on all architectures.
-  On x86 architectures it is the default compiler for C, C++, Objective-C,
-  Objective-C++ and Fortran 95.
+- GCC 5 is the default compiler for for all frontends on all architectures
+  except for Ada.
 
-- GCC 4.6 is the default compiler for Ada and D (language version 2).
-  On non x86 architectures it is the default compiler for C, C++,
-  Objective-C, Objective-C++ and Fortran 95.
+- GCC 4.9 is the default compiler for Ada.
 
-- GCC 4.5 was removed for the release of Wheezy.
+- GCC 4.8 was removed for the release of Stretch.
 
-- GCC 4.4 is the default compiler for D (language version 1).
-
-- GCC 4.1 was removed for the release of Wheezy (was the default for Pascal).
-
-- GCC 3.4 was removed for the release of Squeeze.
+- GCC 4.7 was removed for the release of Jessie.
 
 - GCC 3.3 is not provided anymore; it is used to build libstdc++5 on
   the amd64 and i386 architectures. It is expected that libstdc++5 is
@@ -49,14 +42,14 @@ Starting in Debian 3.0, there is now a gcc-defaults package set. This
 creates the actual packages for gcc, gnat, g++, gobjc, chill, gcj, gij,
 gdc and gpc.  These packages will depend on the corresponding default
 compiler for that architecture. For Debian 5.0 for example, "gcc"
-depends on "gcc-4.4", which means that the "gcc-4.4" package will
-install a binary called "gcc-4.4", which is symlinked to in the "gcc"
+depends on "gcc-5", which means that the "gcc-5" package will
+install a binary called "gcc-5", which is symlinked to in the "gcc"
 package as "gcc".
 
 This may seem confusing, but what it allows you do to is install more
 than one version of the GCC compiler collection at the same time,
 making sure you are always using the one preferred for that
-architecture. To use the other compiler, simply set CC=gcc-4.6, or
+architecture. To use the other compiler, simply set CC=gcc-5, or
 similar.
 
 The default compiler versions for Debian GNU/OS_NAME on DEB_ARCH are
@@ -74,9 +67,6 @@ ifenabled(`gobjc++',`	gobjc++		: gobjc++-PV_GOBJCXX')
 ifenabled(`gnat',`	gnat		: gnat-PV_GNAT')
 ifenabled(`gpc',`	gpc		: gpc-PV_GPC')
 ifenabled(`gdc',`	gdc		: gdc-PV_GDC')
-ifenabled(`gcc-spu',`	gcc-spu		: gcc-PV_SPU-spu')
-ifenabled(`g++-spu',`	g++-spu		: g++-PV_SPU-spu')
-ifenabled(`gfortran-spu',`	gfortran-spu	: gfortran-PV_SPU-spu')
 
 ifdef(`GFDL',`dnl
 Documentation for the default compilers can be found in
@@ -97,14 +87,26 @@ Practical implications
 ----------------------
 
 The most important practical implications are in the merging/linking
-of object files built with different compilers; If you use the 4.1
-C compiler, you should use the `gcc-4.1' compiler driver for all your
+of object files built with different compilers; If you use the 4.9
+C compiler, you should use the `gcc-4.9' compiler driver for all your
 work.  When configuring sources, use
 
-    CC=gcc-4.4 ./configure <configure options> 	# bash
-    setenv CC gcc-4.4; ./configure <options>	# csh
+    CC=gcc-4.9 ./configure <configure options> 	# bash
+    setenv CC gcc-4.9; ./configure <options>	# csh
 
-When calling make, use `make CC=gcc-4.4'.
+When calling make, use `make CC=gcc-4.9'.
+
+
+libstdc++ ABI
+-------------
+
+Starting with Debian 8.0 (stretch), gcc-5 and newer compiler versions
+now provides a stable libcxx11 ABI, and stable support for C++11 (GCC
+version before 5 called this supported experimental).  This required
+some changes in the libstdc++ ABI, and now libstdc++6 provides a dual
+ABI, the classic libcxx98 ABI, and the new libcxx11.  Many C++ using
+packages were rebuilt; it is likely that third party applications will
+need rebuilds too. See https://wiki.debian.org/GCC5.
 
 
 C Application Binary Interface
@@ -157,6 +159,7 @@ provides libstdc++5. It is only supported as a runtime library.
 Version 6 of the ABI is common to GCC 3.4 and later; GCC 4.3 provides
 libstdc++6.
 
+libstdc++6 in GCC 5 provides a dual ABI, see https://wiki.debian.org/GCC5.
 
 Bugs
 ----
@@ -172,28 +175,31 @@ wishlist bug against Package: gcc . For general discussions and
 questions, subscribe and/or email the debian-gcc@lists.debian.org mailing
 list.
 
-
 Maintainers of these packages
 -----------------------------
 
 Matthias Klose <doko@debian.org>
+Ludovic Brenta <ludovic@ludovic-brenta.org>     (gnat)
+Iain Buclaw <ibuclaw@ubuntu.com>                (gdc)
+Aurelien Jarno <aurel32@debian.org>             (mips*-linux)
+Aurelien Jarno <aurel32@debian.org>             (s390X*-linux)
 
 Former and/or inactive maintainers of these packages
 ----------------------------------------------------
 
+Falk Hueffner <falk@debian.org>                 (alpha-linux)
 Ray Dassen <jdassen@debian.org>
-Philip Blundell <pb@debian.org>			(arm-linux)
-Jeff Bailey <jbailey@nisa.net>			(hurd-i386)
-Joel Baker <fenton@debian.org>			(netbsd-i386)
-Ben Collins <bcollins@debian.org>		(sparc-linux)
-Falk Hueffner <falk@debian.org>			(alpha-linux)
-Randolph Chung <tausq@debian.org>		(ia64-linux, hppa-linux)
-Thiemo Seufer <ths@networkno.de>		(mips*-linux)
-Dan Jacobowitz <dan@debian.org>			(powerpc-linux)
-Gerhard Tonn <GerhardTonn@swol.de>		(s390-linux)
-Roman Zippel <zippel@linux-m68k.org>		(m68k-linux)
-Ludovic Brenta <ludovic.brenta@insalien.org>	(gnat)
-Arthur Loiret <arthur.loiret@gmail.com>		(gdc)
+Jeff Bailey <jbailey@nisa.net>                  (hurd-i386)
+Joel Baker <fenton@debian.org>                  (netbsd-i386)
+Randolph Chung <tausq@debian.org>               (ia64-linux)
+Philip Blundell <pb@debian.org>                 (arm-linux)
+Ben Collins <bcollins@debian.org>               (sparc-linux)
+Dan Jacobowitz <dan@debian.org>                 (powerpc-linux)
+Thiemo Seufer <ths@networkno.de>                (mips*-linux)
+Matt Taggart <taggart@carmen.fc.hp.com>         (hppa-linux)
+Gerhard Tonn <GerhardTonn@swol.de>              (s390-linux)
+Roman Zippel <zippel@linux-m68k.org>            (m68k-linux)
+Arthur Loiret <arthur.loiret@gmail.com>         (gdc)
 
 ===============================================================================
 
