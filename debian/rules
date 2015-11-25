@@ -1370,8 +1370,8 @@ binary.%: build-arch install
 		-u-v$(EPOCH):$(CV_GCC_$(CROSS_ARCH)) \
 	)
 
-	dh_md5sums $(foreach p,$(filter-out gccgo-multilib-arm-linux-gnueabi%, $(filter %-$(CROSS_GNU_TYPE),$(cross_packages))),-p$(p))
-	dh_builddeb $(foreach p,$(filter-out gccgo-multilib-arm-linux-gnueabi%, $(filter %-$(CROSS_GNU_TYPE),$(cross_packages))),-p$(p))
+	dh_md5sums $(foreach p,$(filter-out gdc-multilib-arm-linux-gnueabi gccgo-multilib-arm-linux-gnueabi%, $(filter %-$(CROSS_GNU_TYPE),$(cross_packages))),-p$(p))
+	dh_builddeb $(foreach p,$(filter-out gdc-multilib-arm-linux-gnueabi gccgo-multilib-arm-linux-gnueabi%, $(filter %-$(CROSS_GNU_TYPE),$(cross_packages))),-p$(p))
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install substvars
