@@ -283,7 +283,7 @@ go_archs = amd64 arm64 armel armhf i386 ia64 mips mips64 mips64el mipsel \
 
 go_multilib_archs = $(filter $(go_archs), $(filter-out armel armhf, $(multilib_archs)))
 
-d_multilib_archs = $(multilib_archs)
+d_multilib_archs = $(filter-out armel, $(multilib_archs))
 
 phobos_archs = amd64 armel armhf i386 x32 hppa
 
