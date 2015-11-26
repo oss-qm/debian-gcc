@@ -1,8 +1,8 @@
 gcc-defaults (1.148) UNRELEASED; urgency=medium
 
-  * sparc and sparc64 are go architectures.
-  * Build gnat and gnat-sjlj cross packages.
+  * Enable gccgo on sparc and sparc64.
   * Enable package builds for mips64, mips64el and sh4.
+  * Enable the gnat cross build on sh4.
 
  -- Matthias Klose <doko@debian.org>  Thu, 26 Nov 2015 19:12:20 +0100
 
