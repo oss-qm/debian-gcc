@@ -182,6 +182,8 @@ gcc5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips
 gcj49_archs =
 gcj5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
 
+gnat5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
+
 # CV_XXX is the complete version number, including the release, without epoch
 CV_CPP		:= 5.2.1-$(REL_NO_52)
 CV_GCC		:= 5.2.1-$(REL_NO_52)
@@ -190,13 +192,14 @@ CV_GOBJC	:= 5.2.1-$(REL_NO_52)
 CV_GOBJCXX	:= 5.2.1-$(REL_NO_52)
 CV_GFORT	:= 5.2.1-$(REL_NO_52)
 CV_GGO		:= 5.2.1-$(REL_NO_52)
+CV_GNAT		:= 5.2.1-$(REL_NO_52)
 CV_GCJ		:= 5.2.1-$(REL_NO_52)
 CV_GIJ		:= 5.2.1-$(REL_NO_52)
 CV_LIBGCJBC	:= 5.2.1-$(REL_NO_52)
 CV_GDC		:= 5.2.1-$(REL_NO_52)
 CV_LIBGCJCOMMON	:= 1:4.9.3-$(REL_NO_493)
 $(foreach a, $(all_archs), \
-  $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GCJ CV_GDC, \
+  $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GNAT CV_GCJ CV_GDC, \
     $(eval $(v)_$(a) = $(call $(v)))))
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc49_archs)))
@@ -222,6 +225,13 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj49_archs)))
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gnat49_archs)))
+  CV_GNAT		:= 4.9.3-$(REL_NO_493)
+  $(foreach a, $(gnat49_archs), \
+    $(foreach v, CV_GNAT, \
+      $(eval $(v)_$(a) = $(call $(v)))))
+endif
+
 REQV_CPP	= $(REQV_5)
 REQV_GCC	= $(REQV_5)
 REQV_GPP	= $(REQV_5)
@@ -229,11 +239,12 @@ REQV_GOBJC	= $(REQV_5)
 REQV_GOBJCXX	= $(REQV_5)
 REQV_GFORT	= $(REQV_5)
 REQV_GGO	= $(REQV_5)
+REQV_GNAT	= $(REQV_5)
 REQV_GCJ	= $(REQV_5)
 REQV_GIJ	= $(REQV_5)
 REQV_GDC	= $(REQV_5)
 $(foreach a, $(all_archs), \
-  $(foreach v, REQV_CPP REQV_GCC REQV_GPP REQV_GOBJC REQV_GOBJCXX REQV_GFORT REQV_GGO REQV_GCJ REQV_GDC, \
+  $(foreach v, REQV_CPP REQV_GCC REQV_GPP REQV_GOBJC REQV_GOBJCXX REQV_GFORT REQV_GGO REQV_GNAT REQV_GCJ REQV_GDC, \
     $(eval $(v)_$(a) = $(call $(v)))))
 
 ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc49_archs)))
@@ -244,6 +255,7 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc49_archs)))
   REQV_GOBJCXX	= $(REQV_49)
   REQV_GFORT	= $(REQV_49)
   REQV_GGO	= $(REQV_49)
+  REQV_GNAT	= $(REQV_49)
   REQV_GDC	= $(REQV_49)
   $(foreach a, $(gcc49_archs), \
     $(foreach v, REQV_CPP REQV_GCC REQV_GPP REQV_GOBJC REQV_GOBJCXX REQV_GFORT REQV_GGO REQV_GCJ REQV_GDC, \
@@ -255,6 +267,13 @@ ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj49_archs)))
   REQV_GIJ	= $(REQV_49)
   $(foreach a, $(gcj49_archs), \
     $(foreach v, REQV_GCJ, \
+      $(eval $(v)_$(a) = $(call $(v)))))
+endif
+
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat49_archs)))
+  REQV_GNAT	= $(REQV_49)
+  $(foreach a, $(gnat49_archs), \
+    $(foreach v, REQV_GNAT, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
@@ -278,12 +297,16 @@ multilib_archs = $(sort \
 	powerpc ppc64 s390 s390x sparc sparc64 x32 \
 	$(if $(filter $(vendor), Ubuntu), armel armhf))
 
-go_archs = amd64 arm64 armel armhf i386 ia64 mips mips64 mips64el mipsel \
+go_archs = alpha amd64 arm64 armel armhf i386 ia64 mips mips64 mips64el mipsel \
 	powerpc ppc64 ppc64el s390 s390x sparc sparc64 x32
 
 go_multilib_archs = $(filter $(go_archs), $(filter-out armel armhf, $(multilib_archs)))
 
 d_multilib_archs = $(filter-out armel, $(multilib_archs))
+
+ada_archs = alpha amd64 arm64 armel armhf hppa i386 ia64 mips mips64el mipsel \
+	powerpc ppc64 ppc64el s390 s390x sh4 sparc sparc64 \
+	kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
 hppa64_archs = amd64 hppa i386 x32
 phobos_archs = amd64 armel armhf i386 x32 hppa
@@ -310,11 +333,9 @@ ifeq ($(SOURCE),gcc-defaults)
   CROSS_ARCHS  ?= s390x ppc64el powerpc arm64 armhf armel \
 			$(if $(filter $(vendor), Ubuntu),, mips mipsel)
 else
-  CROSS_ARCHS  ?= alpha hppa m68k ppc64 sparc64 \
+  CROSS_ARCHS  ?= alpha hppa m68k mips64 mips64el ppc64 sh4 sparc64 \
 			$(if $(filter $(vendor), Ubuntu), mips mipsel)
-			# powerpcspe, outdated, ftbfs
-			# sh4, ftbfs, tries to build nofpu multilib
-			# mips64 mips64el, ftbfs, gnat ICE
+  # powerpcspe, outdated, ftbfs
 endif
 with_cross  = yes
 
@@ -397,6 +418,10 @@ ifeq ($(with_native),yes)
     no_packages += gcc-hppa64-linux-gnu
   endif
 
+  ifeq (,$(filter $(DEB_HOST_ARCH),$(ada_archs)))
+    no_packages += gnat gnat-sjlj
+  endif
+
   ifneq ($(with_gfdl_docs),yes)
     no_packages := $(sort $(no_packages) cpp-doc gcc-doc gfortran-doc)
   endif
@@ -422,20 +447,20 @@ endif
 packages := $(filter-out $(no_packages), $(all_packages))
 
 # derived version number (without release, e.g. 4.9.3, 5.2.1)
-$(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GCJ V_GIJ V_GDC, \
+$(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GNAT V_GCJ V_GIJ V_GDC, \
   $(eval $(v) = $(patsubst %-$(lastword $(subst -, ,$(call C$(v)))),%,$(call C$(v)))) \
 )
 $(foreach a, $(all_archs), \
-  $(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GCJ V_GIJ V_GDC, \
+  $(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GNAT V_GCJ V_GIJ V_GDC, \
     $(eval $(v)_$(a) = $(patsubst %-$(lastword $(subst -, ,$(call C$(v)_$(a)))),%,$(call C$(v)_$(a)))) \
 ))
 
 # number for the package name (e.g. 4.9, 5, 6)
-$(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GCJ V_GIJ V_GDC, \
+$(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GNAT V_GCJ V_GIJ V_GDC, \
   $(eval P$(v) = $(firstword $(subst ., ,$(call $(v))))) \
 )
 $(foreach a, $(all_archs), \
-  $(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GCJ V_GIJ V_GDC, \
+  $(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GNAT V_GCJ V_GIJ V_GDC, \
     $(eval P$(v)_$(a) = $(firstword $(subst ., ,$(call $(v)_$(a))))) \
 ))
 
@@ -459,6 +484,16 @@ ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj49_archs)))
   ))
 endif
 
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gnat49_archs)))
+  $(foreach v, V_GNAT, \
+    $(eval P$(v) = $(subst $(SPACE),.,$(wordlist 1,2,$(subst ., ,$(call $(v)))))) \
+  )
+  $(foreach a, $(gnat49_archs), \
+    $(foreach v, V_GNAT, \
+      $(eval P$(v)_$(a) = $(subst $(SPACE),.,$(wordlist 1,2,$(subst ., ,$(call $(v)_$(a)))))) \
+  ))
+endif
+
 MOD_VER := $(shell apt-cache show gfortran-$(PV_GFORT) \
 		| sed -n '/^Provides/s/.*\(gfortran-mod-[0-9]*\).*/\1/p' \
 		| head -1)
@@ -474,6 +509,7 @@ README:
 	   -DV_GOBJCXX=$(V_GOBJCXX) -DPV_GOBJCXX=$(PV_GOBJCXX) \
 	   -DV_GFORT=$(V_GFORT) -DPV_GFORT=$(PV_GFORT) \
 	   -DV_GGO=$(V_GGO)     -DPV_GGO=$(PV_GGO) \
+	   -DV_GNAT=$(V_GNAT)   -DPV_GNAT=$(PV_GNAT) \
 	   -DV_GCJ=$(V_GCJ)     -DPV_GCJ=$(PV_GCJ) \
 	   -DV_GIJ=$(V_GIJ)     -DPV_GIJ=$(PV_GIJ) \
 	   -DV_GDC=$(V_GDC)     -DPV_GDC=$(PV_GDC) \
@@ -498,6 +534,7 @@ substvars-native:
 	  echo 'version:gcj=$(EPOCH):$(CV_GCJ)'; \
 	  echo 'version:gfort=$(EPOCH):$(CV_GFORT)'; \
 	  echo 'version:ggo=$(EPOCH):$(CV_GGO)'; \
+	  echo 'version:gnat=$(EPOCH):$(CV_GNAT)'; \
 	  echo 'version:gdc=$(CV_GDC)'; \
 	  echo 'version:libgcjcommon=$(CV_LIBGCJCOMMON)'; \
 	  echo 'pv:cpp=$(PV_CPP)'; \
@@ -507,6 +544,7 @@ substvars-native:
 	  echo 'pv:gobjcxx=$(PV_GOBJCXX)'; \
 	  echo 'pv:gfort=$(PV_GFORT)'; \
 	  echo 'pv:ggo=$(PV_GGO)'; \
+	  echo 'pv:gnat=$(PV_GNAT)'; \
 	  echo 'pv:gcj=$(PV_GCJ)'; \
 	  echo 'pv:gij=$(PV_GIJ)'; \
 	  echo 'pv:gdc=$(PV_GDC)'; \
@@ -517,6 +555,7 @@ substvars-native:
 	  echo 'reqv:gobjcxx=$(REQV_GOBJCXX)'; \
 	  echo 'reqv:gfort=$(REQV_GFORT)'; \
 	  echo 'reqv:ggo=$(REQV_GGO)'; \
+	  echo 'reqv:gnat=$(REQV_GNAT)'; \
 	  echo 'reqv:gcj=$(REQV_GCJ)'; \
 	  echo 'reqv:gij=$(REQV_GIJ)'; \
 	  echo 'reqv:gdc=$(REQV_GDC)'; \
@@ -616,9 +655,11 @@ else
 	    | grep -v '^Build-Depends-Indep:' \
 	    > debian/control
 endif
+ifeq ($(SOURCE),gcc-defaults)
 	sed \
 	  -e "s/@hppa64_archs@/$(hppa64_archs)/g" \
 	  debian/control.hppa64.in  >> debian/control
+endif
 ifeq ($(with_cross),yes)
 	: # FIXME: filter-out some gdc and gccgo multilib configs
 	$(foreach a,$(CROSS_ARCHS), \
@@ -1163,6 +1204,40 @@ install.%: pre-install
 	    ); \
 	)
 
+	: # gnat-$(CROSS_GNU_TYPE)
+	$(if $(filter gnat-$(CROSS_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pgnat-$(CROSS_GNU_TYPE); \
+	  dh_link -pgnat-$(CROSS_GNU_TYPE) \
+	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gnat-$(CROSS_GNU_TYPE) \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnat-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnat \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatbind-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatbind \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatchop-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatchop \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatclean-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatclean \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatfind-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatfind \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatkr-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatkr \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatlink-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatlink \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatls-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatls \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatmake-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatmake \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatprep-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatprep \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnatxref-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatxref \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gnathtml-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnathtml \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnat-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnat.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatbind-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatbind.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatchop-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatchop.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatclean-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatclean.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatfind-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatfind.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatkr-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatkr.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatlink-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatlink.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatls-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatls.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatmake-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatmake.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatprep-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatprep.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatxref-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatxref.1.gz \
+	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnathtml-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnathtml.1.gz; \
+	  dh_installdirs -pgnat-sjlj-$(CROSS_GNU_TYPE); \
+	  dh_link -pgnat-sjlj-$(CROSS_GNU_TYPE) \
+	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gnat-sjlj-$(CROSS_GNU_TYPE); \
+	)
+
 cacerts-stamp:
 ifeq ($(with_native),yes)
 	dh_testdir
@@ -1412,6 +1487,11 @@ binary.%: build-arch install
 	$(if $(filter gcj-$(CROSS_GNU_TYPE), $(packages)), \
 	  dh_gencontrol -pgcj-$(CROSS_GNU_TYPE) \
 		-u-v$(EPOCH):$(CV_GCJ_$(CROSS_ARCH)) \
+	)
+
+	$(if $(filter gnat-$(CROSS_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pgnat-$(CROSS_GNU_TYPE) -pgnat-sjlj-$(CROSS_GNU_TYPE) \
+		-u-v$(EPOCH):$(CV_GNAT_$(CROSS_ARCH)) \
 	)
 
 	$(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)), \

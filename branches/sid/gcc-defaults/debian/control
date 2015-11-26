@@ -209,7 +209,7 @@ Description: Go compiler, based on the GCC backend
 
 Package: gccgo-multilib
 Priority: optional
-Architecture: amd64 i386 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x x32
+Architecture: amd64 i386 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x sparc sparc64 x32
 Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gccgo (>= ${version:ggo}), gccgo-${pv:ggo}-multilib ${reqv:ggo}, ${misc:Depends}
 Description: Go compiler, based on the GCC backend (multilib files)
  This is the GNU Go compiler, which compiles Go on platforms supported by
@@ -470,6 +470,32 @@ Description: GNU D compiler (based on GCC) for the s390x architecture
  This is a dependency package providing the default GNU D cross-compiler
  cross-compiler for the s390x architecture.
 
+Package: gnat-s390x-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-s390x-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the s390x architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the s390x architecture.
+
+Package: gnat-sjlj-s390x-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-sjlj-s390x-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the s390x architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the s390x architecture.
+
 Package: gcc-multilib-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
@@ -711,6 +737,32 @@ Description: GNU D compiler (based on GCC) for the ppc64el architecture
  This is a dependency package providing the default GNU D cross-compiler
  cross-compiler for the ppc64el architecture.
 
+Package: gnat-powerpc64le-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32 ppc64
+Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-powerpc64le-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the ppc64el architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the ppc64el architecture.
+
+Package: gnat-sjlj-powerpc64le-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32 ppc64
+Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-sjlj-powerpc64le-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the ppc64el architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the ppc64el architecture.
+
 Package: cpp-powerpc-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64el
@@ -837,6 +889,32 @@ Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the powerpc architecture
  This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the powerpc architecture.
+
+Package: gnat-powerpc-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32 ppc64el
+Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-powerpc-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the powerpc architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the powerpc architecture.
+
+Package: gnat-sjlj-powerpc-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32 ppc64el
+Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-sjlj-powerpc-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the powerpc architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
@@ -1083,6 +1161,32 @@ Description: GNU D compiler (based on GCC) for the arm64 architecture
  This is a dependency package providing the default GNU D cross-compiler
  cross-compiler for the arm64 architecture.
 
+Package: gnat-aarch64-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-aarch64-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the arm64 architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the arm64 architecture.
+
+Package: gnat-sjlj-aarch64-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-sjlj-aarch64-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the arm64 architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the arm64 architecture.
+
 Package: cpp-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
@@ -1209,6 +1313,32 @@ Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the armhf architecture
  This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the armhf architecture.
+
+Package: gnat-arm-linux-gnueabihf
+Priority: optional
+Architecture: amd64 i386 x32 arm64
+Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
+  gnat-${pv:gnat}-arm-linux-gnueabihf ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the armhf architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the armhf architecture.
+
+Package: gnat-sjlj-arm-linux-gnueabihf
+Priority: optional
+Architecture: amd64 i386 x32 arm64
+Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
+  gnat-${pv:gnat}-sjlj-arm-linux-gnueabihf ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the armhf architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
@@ -1345,6 +1475,32 @@ Description: GNU D compiler (based on GCC) for the armel architecture
  This is a dependency package providing the default GNU D cross-compiler
  cross-compiler for the armel architecture.
 
+Package: gnat-arm-linux-gnueabi
+Priority: optional
+Architecture: amd64 i386 x32 arm64
+Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
+  gnat-${pv:gnat}-arm-linux-gnueabi ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the armel architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the armel architecture.
+
+Package: gnat-sjlj-arm-linux-gnueabi
+Priority: optional
+Architecture: amd64 i386 x32 arm64
+Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
+  gnat-${pv:gnat}-sjlj-arm-linux-gnueabi ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the armel architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the armel architecture.
+
 Package: cpp-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
@@ -1471,6 +1627,32 @@ Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the mips architecture
  This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the mips architecture.
+
+Package: gnat-mips-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-mips-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the mips architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the mips architecture.
+
+Package: gnat-sjlj-mips-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-sjlj-mips-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the mips architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
@@ -1712,6 +1894,32 @@ Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   ${misc:Depends}
 Description: GNU D compiler (based on GCC) for the mipsel architecture
  This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the mipsel architecture.
+
+Package: gnat-mipsel-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-mipsel-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the mipsel architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the mipsel architecture.
+
+Package: gnat-sjlj-mipsel-linux-gnu
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
+  gnat-${pv:gnat}-sjlj-mipsel-linux-gnu ${reqv:gnat},
+  ${misc:Depends}
+Description: GNU Ada compiler (based on GCC) for the mipsel architecture
+ This is the GNU Ada compiler, which compiles Ada on platforms supported by
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler

@@ -59,6 +59,7 @@ The default compiler versions for Debian GNU/Linux on amd64 are
 	gccgo		: gccgo-5
 	gobjc		: gobjc-5
 	gobjc++		: gobjc++-5
+	gnat		: gnat-5
 	gdc		: gdc-5
 
 Most of the documentation for GCC including the manual pages is
