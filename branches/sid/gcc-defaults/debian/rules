@@ -441,7 +441,12 @@ ifeq ($(DEB_HOST_ARCH),netbsd-i386)
 endif
 
 ifeq ($(with_cross),yes)
-  cross_packages := $(filter-out gcc-hppa64-linux-gnu, $(shell dh_listpackages -s | egrep -- '-gnu|-kfreebsd'))
+  cross_packages := $(filter-out \
+	gcc-hppa64-linux-gnu \
+	gdc-multilib-arm-linux-gnueabi \
+	gccgo-multilib-arm-linux-gnueabi% \
+	gccgo-hppa-linux-gnu gccgo-m68k-linux-gnu \
+		, $(shell dh_listpackages -s | egrep -- '-gnu|-kfreebsd'))
   all_packages := $(all_packages) $(cross_packages)
 endif
 packages := $(filter-out $(no_packages), $(all_packages))
@@ -1491,8 +1496,8 @@ binary.%: build-arch install
 		-u-v$(EPOCH):$(CV_GCC_$(CROSS_ARCH)) \
 	)
 
-	dh_md5sums $(foreach p,$(filter-out gdc-multilib-arm-linux-gnueabi gccgo-multilib-arm-linux-gnueabi%, $(filter %-$(CROSS_GNU_TYPE),$(cross_packages))),-p$(p))
-	dh_builddeb $(foreach p,$(filter-out gdc-multilib-arm-linux-gnueabi gccgo-multilib-arm-linux-gnueabi%, $(filter %-$(CROSS_GNU_TYPE),$(cross_packages))),-p$(p))
+	dh_md5sums $(foreach p,$(filter %-$(CROSS_GNU_TYPE),$(cross_packages)),-p$(p))
+	dh_builddeb $(foreach p,$(filter %-$(CROSS_GNU_TYPE),$(cross_packages)),-p$(p))
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install substvars
