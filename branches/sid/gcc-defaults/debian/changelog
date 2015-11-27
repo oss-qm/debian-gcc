@@ -3,6 +3,8 @@ gcc-defaults (1.148) UNRELEASED; urgency=medium
   * Enable gccgo on sparc and sparc64.
   * Enable package builds for mips64, mips64el and sh4.
   * Enable the gnat cross build on sh4.
+  * gcc-hppa64-linux-gnu: Fix gcc symlink, don't ship gcov and gcov-tool.
+    Closes: #806423.
 
  -- Matthias Klose <doko@debian.org>  Thu, 26 Nov 2015 19:12:20 +0100
 
