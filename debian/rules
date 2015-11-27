@@ -1058,12 +1058,7 @@ ifneq (,$(filter gcc-hppa64-linux-gnu, $(packages)))
 	: # gcc-hppa64-linux-gnu
 	dh_installdirs -pgcc-hppa64-linux-gnu
 	dh_link -pgcc-hppa64-linux-gnu \
-	  /usr/bin/hppa64-linux-gnu-gcc-gcc-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc \
-	  /usr/bin/hppa64-linux-gnu-gcov-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcov \
-	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
-	    /usr/bin/hppa64-linux-gnu-gcov-tool-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcov-tool \
-	  )
-	dh_link -pgcc-hppa64-linux-gnu \
+	  /usr/bin/hppa64-linux-gnu-gcc-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc \
 	  /usr/bin/hppa64-linux-gnu-gcc-ar-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc-ar \
 	  /usr/bin/hppa64-linux-gnu-gcc-nm-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc-nm \
 	  /usr/bin/hppa64-linux-gnu-gcc-ranlib-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc-ranlib \
@@ -1072,11 +1067,8 @@ ifneq (,$(filter gcc-hppa64-linux-gnu, $(packages)))
 	  /usr/share/man/man1/hppa64-linux-gnu-gcc-ranlib-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc-ranlib.1.gz
   ifeq ($(with_gfdl_docs),yes)
 	dh_link -pgcc-hppa64-linux-gnu \
-	  /usr/share/man/man1/hppa64-linux-gnu-gcc-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc.1.gz \
-	  /usr/share/man/man1/hppa64-linux-gnu-gcov-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcov.1.gz \
-	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
-	    /usr/share/man/man1/hppa64-linux-gnu-gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcov-tool.1.gz \
-	  )
+	  /usr/share/man/man1/hppa64-linux-gnu-gcc-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc.1.gz
+	)
   endif
 endif
 
