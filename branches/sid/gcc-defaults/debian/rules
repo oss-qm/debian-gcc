@@ -1251,7 +1251,7 @@ ifeq ($(with_native),yes)
 endif
 	touch $@
 
-nopkgs_native :=-s $(foreach p, $(no_packages) $(cross_packages),-N$(p))
+nopkgs_native := $(foreach p, $(sort $(invalid_packages) $(no_packages) $(cross_packages)),-N$(p))
 
 binary-indep: build-indep install
 ifeq ($(with_native),yes)
