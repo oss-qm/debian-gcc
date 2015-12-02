@@ -684,7 +684,7 @@ ifeq ($(with_cross),yes)
 	    >> debian/control; \
 	)
 endif
-ifeq ($(with_gfdl_docs),yes)
+ifeq ($(SOURCE)-$(with_gfdl_docs),gcc-defaults-yes)
 	cat debian/control.doc >> debian/control
 endif
 
