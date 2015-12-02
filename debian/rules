@@ -440,17 +440,19 @@ ifeq ($(DEB_HOST_ARCH),netbsd-i386)
     OS_NAME	:= NetBSD
 endif
 
-ifeq ($(with_cross),yes)
-  cross_packages := $(filter-out \
-	gcc-hppa64-linux-gnu \
+# packages which are in the control file, but never built ...
+invalid_packages = \
 	gdc-sh4-linux-gnu \
-	gdc-multilib-arm-linux-gnueabi \
 	gccgo-hppa-linux-gnu \
 	gccgo-m68k-linux-gnu \
 	gccgo-sh4-linux-gnu \
-	gccgo-multilib-arm-linux-gnueabi% \
-	  , \
-	$(shell dh_listpackages -s | egrep -- '-gnu|-kfreebsd'))
+	gccgo-multilib-arm-linux-gnueabi \
+	gccgo-multilib-arm-linux-gnueabihf \
+	gdc-multilib-arm-linux-gnueabi
+
+ifeq ($(with_cross),yes)
+  cross_packages := $(filter-out $(invalid_packages) gcc-hppa64-linux-gnu, \
+			$(shell dh_listpackages -s | egrep -- '-gnu|-kfreebsd'))
   all_packages := $(all_packages) $(cross_packages)
 endif
 packages := $(filter-out $(no_packages), $(all_packages))
@@ -1073,12 +1075,10 @@ ifneq (,$(filter gcc-hppa64-linux-gnu, $(packages)))
 	  /usr/bin/hppa64-linux-gnu-gcc-ranlib-$(PV_GCC) /usr/bin/hppa64-linux-gnu-gcc-ranlib \
 	  /usr/share/man/man1/hppa64-linux-gnu-gcc-ar-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc-ar.1.gz \
 	  /usr/share/man/man1/hppa64-linux-gnu-gcc-nm-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc-nm.1.gz \
-	  /usr/share/man/man1/hppa64-linux-gnu-gcc-ranlib-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc-ranlib.1.gz
-  ifeq ($(with_gfdl_docs),yes)
-	dh_link -pgcc-hppa64-linux-gnu \
-	  /usr/share/man/man1/hppa64-linux-gnu-gcc-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc.1.gz
-	)
-  endif
+	  /usr/share/man/man1/hppa64-linux-gnu-gcc-ranlib-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc-ranlib.1.gz \
+	  $(if $(filter yes, $(with_gfdl_docs)), \
+	    /usr/share/man/man1/hppa64-linux-gnu-gcc-$(PV_GCC).1.gz /usr/share/man/man1/hppa64-linux-gnu-gcc.1.gz \
+	  )
 endif
 
 endif # with_native
