@@ -1,6 +1,7 @@
 gcc-defaults (1.150) UNRELEASED; urgency=medium
 
   * Bump GCC 5 version to 5.3.1.
+  * Fix package descriptions (Daniele Forsi). Closes: #807276.
 
  -- Matthias Klose <doko@debian.org>  Tue, 08 Dec 2015 15:27:13 +0100
 
