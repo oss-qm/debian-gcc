@@ -102,7 +102,7 @@ Description: Go compiler (based on GCC) for the CROSS_ARCH architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the CROSS_ARCH architecture.
+ for the CROSS_ARCH architecture.
 
 Package: gcj-CROSS_GNU_TYPE
 Priority: optional
@@ -115,7 +115,7 @@ Description: GNU Java compiler (based on GCC) for the CROSS_ARCH architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the CROSS_ARCH architecture.
+ for the CROSS_ARCH architecture.
 
 Package: gdc-CROSS_GNU_TYPE
 Priority: optional
@@ -128,4 +128,4 @@ Description: GNU D compiler (based on GCC) for the CROSS_ARCH architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the CROSS_ARCH architecture.
+ for the CROSS_ARCH architecture.

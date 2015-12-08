@@ -442,7 +442,7 @@ Description: Go compiler (based on GCC) for the s390x architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the s390x architecture.
+ for the s390x architecture.
 
 Package: gcj-s390x-linux-gnu
 Priority: optional
@@ -455,7 +455,7 @@ Description: GNU Java compiler (based on GCC) for the s390x architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the s390x architecture.
+ for the s390x architecture.
 
 Package: gdc-s390x-linux-gnu
 Priority: optional
@@ -468,7 +468,7 @@ Description: GNU D compiler (based on GCC) for the s390x architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the s390x architecture.
+ for the s390x architecture.
 
 Package: gcc-multilib-s390x-linux-gnu
 Priority: optional
@@ -683,7 +683,7 @@ Description: Go compiler (based on GCC) for the ppc64el architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the ppc64el architecture.
+ for the ppc64el architecture.
 
 Package: gcj-powerpc64le-linux-gnu
 Priority: optional
@@ -696,7 +696,7 @@ Description: GNU Java compiler (based on GCC) for the ppc64el architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the ppc64el architecture.
+ for the ppc64el architecture.
 
 Package: gdc-powerpc64le-linux-gnu
 Priority: optional
@@ -709,7 +709,7 @@ Description: GNU D compiler (based on GCC) for the ppc64el architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the ppc64el architecture.
+ for the ppc64el architecture.
 
 Package: cpp-powerpc-linux-gnu
 Priority: optional
@@ -814,7 +814,7 @@ Description: Go compiler (based on GCC) for the powerpc architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the powerpc architecture.
+ for the powerpc architecture.
 
 Package: gcj-powerpc-linux-gnu
 Priority: optional
@@ -827,7 +827,7 @@ Description: GNU Java compiler (based on GCC) for the powerpc architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the powerpc architecture.
+ for the powerpc architecture.
 
 Package: gdc-powerpc-linux-gnu
 Priority: optional
@@ -840,7 +840,7 @@ Description: GNU D compiler (based on GCC) for the powerpc architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the powerpc architecture.
+ for the powerpc architecture.
 
 Package: gcc-multilib-powerpc-linux-gnu
 Priority: optional
@@ -1055,7 +1055,7 @@ Description: Go compiler (based on GCC) for the arm64 architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the arm64 architecture.
+ for the arm64 architecture.
 
 Package: gcj-aarch64-linux-gnu
 Priority: optional
@@ -1068,7 +1068,7 @@ Description: GNU Java compiler (based on GCC) for the arm64 architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the arm64 architecture.
+ for the arm64 architecture.
 
 Package: gdc-aarch64-linux-gnu
 Priority: optional
@@ -1081,7 +1081,7 @@ Description: GNU D compiler (based on GCC) for the arm64 architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the arm64 architecture.
+ for the arm64 architecture.
 
 Package: cpp-arm-linux-gnueabihf
 Priority: optional
@@ -1186,7 +1186,7 @@ Description: Go compiler (based on GCC) for the armhf architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the armhf architecture.
+ for the armhf architecture.
 
 Package: gcj-arm-linux-gnueabihf
 Priority: optional
@@ -1199,7 +1199,7 @@ Description: GNU Java compiler (based on GCC) for the armhf architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the armhf architecture.
+ for the armhf architecture.
 
 Package: gdc-arm-linux-gnueabihf
 Priority: optional
@@ -1212,7 +1212,7 @@ Description: GNU D compiler (based on GCC) for the armhf architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the armhf architecture.
+ for the armhf architecture.
 
 Package: cpp-arm-linux-gnueabi
 Priority: optional
@@ -1317,7 +1317,7 @@ Description: Go compiler (based on GCC) for the armel architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the armel architecture.
+ for the armel architecture.
 
 Package: gcj-arm-linux-gnueabi
 Priority: optional
@@ -1330,7 +1330,7 @@ Description: GNU Java compiler (based on GCC) for the armel architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the armel architecture.
+ for the armel architecture.
 
 Package: gdc-arm-linux-gnueabi
 Priority: optional
@@ -1343,7 +1343,7 @@ Description: GNU D compiler (based on GCC) for the armel architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the armel architecture.
+ for the armel architecture.
 
 Package: cpp-mips-linux-gnu
 Priority: optional
@@ -1448,7 +1448,7 @@ Description: Go compiler (based on GCC) for the mips architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the mips architecture.
+ for the mips architecture.
 
 Package: gcj-mips-linux-gnu
 Priority: optional
@@ -1461,7 +1461,7 @@ Description: GNU Java compiler (based on GCC) for the mips architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the mips architecture.
+ for the mips architecture.
 
 Package: gdc-mips-linux-gnu
 Priority: optional
@@ -1474,7 +1474,7 @@ Description: GNU D compiler (based on GCC) for the mips architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the mips architecture.
+ for the mips architecture.
 
 Package: gcc-multilib-mips-linux-gnu
 Priority: optional
@@ -1689,7 +1689,7 @@ Description: Go compiler (based on GCC) for the mipsel architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the mipsel architecture.
+ for the mipsel architecture.
 
 Package: gcj-mipsel-linux-gnu
 Priority: optional
@@ -1702,7 +1702,7 @@ Description: GNU Java compiler (based on GCC) for the mipsel architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU Java cross-compiler
- cross-compiler for the mipsel architecture.
+ for the mipsel architecture.
 
 Package: gdc-mipsel-linux-gnu
 Priority: optional
@@ -1715,7 +1715,7 @@ Description: GNU D compiler (based on GCC) for the mipsel architecture
  the gcc compiler. It uses the gcc backend to generate optimized code.
  .
  This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the mipsel architecture.
+ for the mipsel architecture.
 
 Package: gcc-multilib-mipsel-linux-gnu
 Priority: optional
