@@ -1,10 +1,10 @@
-gcc-defaults (1.150) UNRELEASED; urgency=medium
+gcc-defaults (1.150) unstable; urgency=medium
 
   * Bump GCC 5 version to 5.3.1.
   * Fix package descriptions (Daniele Forsi). Closes: #807276.
   * Update gcc-multilib's conflict list.
 
- -- Matthias Klose <doko@debian.org>  Tue, 08 Dec 2015 15:27:13 +0100
+ -- Matthias Klose <doko@debian.org>  Sun, 13 Dec 2015 16:14:05 +0100
 
 gcc-defaults (1.149) unstable; urgency=medium
 
