@@ -443,7 +443,6 @@ endif
 
 # packages which are in the control file, but never built ...
 invalid_packages = \
-	gdc-sh4-linux-gnu \
 	gccgo-hppa-linux-gnu \
 	gccgo-m68k-linux-gnu \
 	gccgo-sh4-linux-gnu \
