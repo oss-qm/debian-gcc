@@ -1,8 +1,9 @@
 gcc-defaults (1.151) UNRELEASED; urgency=medium
 
   * Build gdc-sh4-linux-gnu.
+  * Default the 32bit x86 architectures to i686, keep i585 symlinks.
 
- -- Matthias Klose <doko@debian.org>  Sat, 02 Jan 2016 12:10:25 +0100
+ -- Matthias Klose <doko@debian.org>  Sat, 30 Apr 2016 23:17:56 +0200
 
 gcc-defaults (1.150) unstable; urgency=medium
 

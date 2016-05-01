@@ -20,7 +20,7 @@ FIXME: Needs update for stretch
 Versions of GCC present in Debian Stretch
 -----------------------------------------
 
-- GCC 5 is the default compiler for for all frontends on all architectures
+- GCC 5 is the default compiler for all frontends on all architectures
   except for Ada.
 
 - GCC 4.9 is the default compiler for Ada.
