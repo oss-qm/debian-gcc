@@ -145,6 +145,7 @@ REL_NO_493	:= $(shell expr $(VMINOR) - 141)$(REL_EXT)
 REL_NO_50	:= $(shell expr $(VMINOR) - 138)$(REL_EXT)
 REL_NO_52	:= $(shell expr $(VMINOR) - 141)$(REL_EXT)
 REL_NO_53	:= $(shell expr $(VMINOR) - 149)$(REL_EXT)
+REL_NO_54	:= $(shell expr $(VMINOR) - 162)$(REL_EXT)
 
 REL_NO_60	:= $(shell expr $(VMINOR) - 159)$(REL_EXT)
 REL_NO_61	:= $(shell expr $(VMINOR) - 162)$(REL_EXT)
@@ -169,10 +170,10 @@ REQV_46_GDC	:= $(REQV_46)
 REQV_47		:= (>= 4.7.3-1~)
 REQV_48		:= (>= 4.8.4-1~)
 REQV_49		:= (>= 4.9.3-10~)
-REQV_5		:= (>= 5.3.1-17~)
-REQV_6		:= (>= 6.1.1-1~)
+REQV_5		:= (>= 5.4.0-6~)
+REQV_6		:= (>= 6.1.1-9~)
 
-REQV_LIBGCJ_BC	:= (>= 5.3.1-2~)
+REQV_LIBGCJ_BC	:= (>= 5.4.0-6~)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -207,36 +208,36 @@ CV_GCJ		:= 6.1.1-$(REL_NO_61)
 CV_GIJ		:= 6.1.1-$(REL_NO_61)
 CV_LIBGCJBC	:= 6.1.1-$(REL_NO_61)
 CV_GDC		:= 6.1.1-$(REL_NO_61)
-CV_LIBGCJCOMMON	:= 1:5.3-$(REL_NO_53)
+CV_LIBGCJCOMMON	:= 1:5.3-$(REL_NO_54)
 $(foreach a, $(all_archs), \
   $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GNAT CV_GCJ CV_GDC, \
     $(eval $(v)_$(a) = $(call $(v)))))
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc5_archs)))
-  CV_CPP		:= 5.3-$(REL_NO_53)
-  CV_GCC		:= 5.3-$(REL_NO_53)
-  CV_GPP		:= 5.3-$(REL_NO_53)
-  CV_GOBJC		:= 5.3-$(REL_NO_53)
-  CV_GOBJCXX		:= 5.3-$(REL_NO_53)
-  CV_GFORT		:= 5.3-$(REL_NO_53)
-  CV_GGO		:= 5.3-$(REL_NO_53)
-  CV_GDC		:= 5.3-$(REL_NO_53)
+  CV_CPP		:= 5.3-$(REL_NO_54)
+  CV_GCC		:= 5.3-$(REL_NO_54)
+  CV_GPP		:= 5.3-$(REL_NO_54)
+  CV_GOBJC		:= 5.3-$(REL_NO_54)
+  CV_GOBJCXX		:= 5.3-$(REL_NO_54)
+  CV_GFORT		:= 5.3-$(REL_NO_54)
+  CV_GGO		:= 5.3-$(REL_NO_54)
+  CV_GDC		:= 5.3-$(REL_NO_54)
   $(foreach a, $(gcc5_archs), \
     $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GDC, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj5_archs)))
-  CV_GCJ		:= 5.3-$(REL_NO_53)
-  CV_GIJ		:= 5.3-$(REL_NO_53)
-  CV_LIBGCJBC		:= 5.3-$(REL_NO_53)
+  CV_GCJ		:= 5.3-$(REL_NO_54)
+  CV_GIJ		:= 5.3-$(REL_NO_54)
+  CV_LIBGCJBC		:= 5.3-$(REL_NO_54)
   $(foreach a, $(gcc5_archs), \
     $(foreach v, CV_GCJ, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gnat5_archs)))
-  CV_GNAT		:= 5.3-$(REL_NO_53)
+  CV_GNAT		:= 5.3-$(REL_NO_54)
   $(foreach a, $(gnat5_archs), \
     $(foreach v, CV_GNAT, \
       $(eval $(v)_$(a) = $(call $(v)))))
