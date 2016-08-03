@@ -168,7 +168,7 @@ REQV_48		:= (>= 4.8.4-1~)
 REQV_49		:= (>= 4.9.3-10~)
 REQV_5		:= (>= 5.3.1-17~)
 
-REQV_LIBGCJ_BC	:= (>= 5.3.1-17~)
+REQV_LIBGCJ_BC	:= (>= 5.3.1-2~)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
