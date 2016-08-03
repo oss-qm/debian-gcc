@@ -1,3 +1,9 @@
+gcc-defaults (1.152) unstable; urgency=medium
+
+  * Fix version in the libgcj-bc shlibs file. Closes: #825361.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 27 May 2016 03:37:44 +0200
+
 gcc-defaults (1.151) unstable; urgency=medium
 
   * Default the 32bit x86 architectures to i686, keep i585 symlinks.
