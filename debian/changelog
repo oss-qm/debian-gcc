@@ -1,3 +1,28 @@
+gcc-defaults (1.163) UNRELEASED; urgency=medium
+
+  * Default to GCC 6, upload to unstable.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 03 Aug 2016 13:56:07 +0200
+
+gcc-defaults (1.162) experimental; urgency=medium
+
+  * Default the 32bit x86 architectures to i686, keep i585 symlinks.
+    See https://lists.debian.org/debian-devel/2015/09/msg00589.html
+
+ -- Matthias Klose <doko@debian.org>  Tue, 10 May 2016 21:00:28 +0200
+
+gcc-defaults (1.161) experimental; urgency=medium
+
+  * Bump libgcj soname to 17.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 09 Jan 2016 12:35:14 +0100
+
+gcc-defaults (1.160) experimental; urgency=medium
+
+  * Default to GCC 6.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 02 Jan 2016 13:37:49 +0100
+
 gcc-defaults (1.152) unstable; urgency=medium
 
   * Fix version in the libgcj-bc shlibs file. Closes: #825361.

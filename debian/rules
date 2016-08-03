@@ -146,6 +146,9 @@ REL_NO_50	:= $(shell expr $(VMINOR) - 138)$(REL_EXT)
 REL_NO_52	:= $(shell expr $(VMINOR) - 141)$(REL_EXT)
 REL_NO_53	:= $(shell expr $(VMINOR) - 149)$(REL_EXT)
 
+REL_NO_60	:= $(shell expr $(VMINOR) - 159)$(REL_EXT)
+REL_NO_61	:= $(shell expr $(VMINOR) - 162)$(REL_EXT)
+
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
 REQV_296	:= 
@@ -167,6 +170,7 @@ REQV_47		:= (>= 4.7.3-1~)
 REQV_48		:= (>= 4.8.4-1~)
 REQV_49		:= (>= 4.9.3-10~)
 REQV_5		:= (>= 5.3.1-17~)
+REQV_6		:= (>= 6.1.1-1~)
 
 REQV_LIBGCJ_BC	:= (>= 5.3.1-2~)
 
@@ -181,103 +185,104 @@ DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 all_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
 
-gcc49_archs =
-gcc5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
+gcc5_archs =
+gcc6_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
 
-gcj49_archs =
-gcj5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
+gcj5_archs =
+gcj6_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
 
 gnat5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64 mips64el or1k powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 hurd-i386 kfreebsd-amd64 kfreebsd-i386
+gnat6_archs  =
 
 # CV_XXX is the complete version number, including the release, without epoch
-CV_CPP		:= 5.3.1-$(REL_NO_53)
-CV_GCC		:= 5.3.1-$(REL_NO_53)
-CV_GPP		:= 5.3.1-$(REL_NO_53)
-CV_GOBJC	:= 5.3.1-$(REL_NO_53)
-CV_GOBJCXX	:= 5.3.1-$(REL_NO_53)
-CV_GFORT	:= 5.3.1-$(REL_NO_53)
-CV_GGO		:= 5.3.1-$(REL_NO_53)
-CV_GNAT		:= 5.3.1-$(REL_NO_53)
-CV_GCJ		:= 5.3.1-$(REL_NO_53)
-CV_GIJ		:= 5.3.1-$(REL_NO_53)
-CV_LIBGCJBC	:= 5.3.1-$(REL_NO_53)
-CV_GDC		:= 5.3.1-$(REL_NO_53)
-CV_LIBGCJCOMMON	:= 1:4.9.3-$(REL_NO_493)
+CV_CPP		:= 6.1.1-$(REL_NO_61)
+CV_GCC		:= 6.1.1-$(REL_NO_61)
+CV_GPP		:= 6.1.1-$(REL_NO_61)
+CV_GOBJC	:= 6.1.1-$(REL_NO_61)
+CV_GOBJCXX	:= 6.1.1-$(REL_NO_61)
+CV_GFORT	:= 6.1.1-$(REL_NO_61)
+CV_GGO		:= 6.1.1-$(REL_NO_61)
+CV_GNAT		:= 6.1.1-$(REL_NO_61)
+CV_GCJ		:= 6.1.1-$(REL_NO_61)
+CV_GIJ		:= 6.1.1-$(REL_NO_61)
+CV_LIBGCJBC	:= 6.1.1-$(REL_NO_61)
+CV_GDC		:= 6.1.1-$(REL_NO_61)
+CV_LIBGCJCOMMON	:= 1:5.3-$(REL_NO_53)
 $(foreach a, $(all_archs), \
   $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GNAT CV_GCJ CV_GDC, \
     $(eval $(v)_$(a) = $(call $(v)))))
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc49_archs)))
-  CV_CPP		:= 4.9.3-$(REL_NO_493)
-  CV_GCC		:= 4.9.3-$(REL_NO_493)
-  CV_GPP		:= 4.9.3-$(REL_NO_493)
-  CV_GOBJC		:= 4.9.3-$(REL_NO_493)
-  CV_GOBJCXX		:= 4.9.3-$(REL_NO_493)
-  CV_GFORT		:= 4.9.3-$(REL_NO_493)
-  CV_GGO		:= 4.9.3-$(REL_NO_493)
-  CV_GDC		:= 4.9.3-$(REL_NO_493)
-  $(foreach a, $(gcc49_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc5_archs)))
+  CV_CPP		:= 5.3-$(REL_NO_53)
+  CV_GCC		:= 5.3-$(REL_NO_53)
+  CV_GPP		:= 5.3-$(REL_NO_53)
+  CV_GOBJC		:= 5.3-$(REL_NO_53)
+  CV_GOBJCXX		:= 5.3-$(REL_NO_53)
+  CV_GFORT		:= 5.3-$(REL_NO_53)
+  CV_GGO		:= 5.3-$(REL_NO_53)
+  CV_GDC		:= 5.3-$(REL_NO_53)
+  $(foreach a, $(gcc5_archs), \
     $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GDC, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj49_archs)))
-  CV_GCJ		:= 4.9.3-$(REL_NO_493)
-  CV_GIJ		:= 4.9.3-$(REL_NO_493)
-  CV_LIBGCJBC		:= 4.9.3-$(REL_NO_493)
-  $(foreach a, $(gcc49_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj5_archs)))
+  CV_GCJ		:= 5.3-$(REL_NO_53)
+  CV_GIJ		:= 5.3-$(REL_NO_53)
+  CV_LIBGCJBC		:= 5.3-$(REL_NO_53)
+  $(foreach a, $(gcc5_archs), \
     $(foreach v, CV_GCJ, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH), $(gnat49_archs)))
-  CV_GNAT		:= 4.9.3-$(REL_NO_493)
-  $(foreach a, $(gnat49_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH), $(gnat5_archs)))
+  CV_GNAT		:= 5.3-$(REL_NO_53)
+  $(foreach a, $(gnat5_archs), \
     $(foreach v, CV_GNAT, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
-REQV_CPP	= $(REQV_5)
-REQV_GCC	= $(REQV_5)
-REQV_GPP	= $(REQV_5)
-REQV_GOBJC	= $(REQV_5)
-REQV_GOBJCXX	= $(REQV_5)
-REQV_GFORT	= $(REQV_5)
-REQV_GGO	= $(REQV_5)
-REQV_GNAT	= $(REQV_5)
-REQV_GCJ	= $(REQV_5)
-REQV_GIJ	= $(REQV_5)
-REQV_GDC	= $(REQV_5)
+REQV_CPP	= $(REQV_6)
+REQV_GCC	= $(REQV_6)
+REQV_GPP	= $(REQV_6)
+REQV_GOBJC	= $(REQV_6)
+REQV_GOBJCXX	= $(REQV_6)
+REQV_GFORT	= $(REQV_6)
+REQV_GGO	= $(REQV_6)
+REQV_GNAT	= $(REQV_6)
+REQV_GCJ	= $(REQV_6)
+REQV_GIJ	= $(REQV_6)
+REQV_GDC	= $(REQV_6)
 $(foreach a, $(all_archs), \
   $(foreach v, REQV_CPP REQV_GCC REQV_GPP REQV_GOBJC REQV_GOBJCXX REQV_GFORT REQV_GGO REQV_GNAT REQV_GCJ REQV_GDC, \
     $(eval $(v)_$(a) = $(call $(v)))))
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc49_archs)))
-  REQV_CPP	= $(REQV_49)
-  REQV_GCC	= $(REQV_49)
-  REQV_GPP	= $(REQV_49)
-  REQV_GOBJC	= $(REQV_49)
-  REQV_GOBJCXX	= $(REQV_49)
-  REQV_GFORT	= $(REQV_49)
-  REQV_GGO	= $(REQV_49)
-  REQV_GNAT	= $(REQV_49)
-  REQV_GDC	= $(REQV_49)
-  $(foreach a, $(gcc49_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcc5_archs)))
+  REQV_CPP	= $(REQV_5)
+  REQV_GCC	= $(REQV_5)
+  REQV_GPP	= $(REQV_5)
+  REQV_GOBJC	= $(REQV_5)
+  REQV_GOBJCXX	= $(REQV_5)
+  REQV_GFORT	= $(REQV_5)
+  REQV_GGO	= $(REQV_5)
+  REQV_GNAT	= $(REQV_5)
+  REQV_GDC	= $(REQV_5)
+  $(foreach a, $(gcc5_archs), \
     $(foreach v, REQV_CPP REQV_GCC REQV_GPP REQV_GOBJC REQV_GOBJCXX REQV_GFORT REQV_GGO REQV_GCJ REQV_GDC, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj49_archs)))
-  REQV_GCJ	= $(REQV_49)
-  REQV_GIJ	= $(REQV_49)
-  $(foreach a, $(gcj49_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj5_archs)))
+  REQV_GCJ	= $(REQV_5)
+  REQV_GIJ	= $(REQV_5)
+  $(foreach a, $(gcj5_archs), \
     $(foreach v, REQV_GCJ, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat49_archs)))
-  REQV_GNAT	= $(REQV_49)
-  $(foreach a, $(gnat49_archs), \
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gnat5_archs)))
+  REQV_GNAT	= $(REQV_5)
+  $(foreach a, $(gnat5_archs), \
     $(foreach v, REQV_GNAT, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
@@ -378,14 +383,14 @@ ifeq (,$(filter $(distrelease),lenny etch squeeze dapper hardy jaunty karmic luc
   with_multiarch_lib := yes
 endif
 
-LIBGCJ		= libgcj16
-LIBGCJ_PC	= libgcj16.pc
-LIBGCJ_SONAME	= 16
+LIBGCJ		= libgcj17
+LIBGCJ_PC	= libgcj17.pc
+LIBGCJ_SONAME	= 17
 
-ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj49_archs)))
-  LIBGCJ	= libgcj15
-  LIBGCJ_PC	= libgcj15.pc
-  LIBGCJ_SONAME	= 15
+ifneq (,$(filter $(DEB_HOST_ARCH),$(gcj5_archs)))
+  LIBGCJ	= libgcj16
+  LIBGCJ_PC	= libgcj16.pc
+  LIBGCJ_SONAME	= 16
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(multilib_archs)))
@@ -472,11 +477,11 @@ $(foreach a, $(all_archs), \
 
 # number for the package name (e.g. 4.9, 5, 6)
 $(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GNAT V_GCJ V_GIJ V_GDC, \
-  $(eval P$(v) = $(firstword $(subst ., ,$(call $(v))))) \
+  $(eval P$(v) = $(firstword $(subst -, ,$(subst ., ,$(call $(v)))))) \
 )
 $(foreach a, $(all_archs), \
   $(foreach v, V_CPP V_GCC V_GPP V_GOBJC V_GOBJCXX V_GFORT V_GGO V_GNAT V_GCJ V_GIJ V_GDC, \
-    $(eval P$(v)_$(a) = $(firstword $(subst ., ,$(call $(v)_$(a))))) \
+    $(eval P$(v)_$(a) = $(firstword $(subst -,  ,$(subst ., ,$(call $(v)_$(a)))))) \
 ))
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc49_archs)))
