@@ -1,4 +1,13 @@
-gcc-defaults (1.163) UNRELEASED; urgency=medium
+gcc-defaults (1.164) unstable; urgency=medium
+
+  * Bump GCC 6 version to 6.2.1.
+  * Bump GCC 5 version to 5.4.1.
+  * Rename libphobos-dev to libgphobos-dev.
+  * Mark libgphobos-dev as Multi-Arch: same.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 18 Nov 2016 14:33:45 +0100
+
+gcc-defaults (1.163) unstable; urgency=medium
 
   * Default to GCC 6, upload to unstable.
 
