@@ -145,10 +145,11 @@ REL_NO_493	:= $(shell expr $(VMINOR) - 141)$(REL_EXT)
 REL_NO_50	:= $(shell expr $(VMINOR) - 138)$(REL_EXT)
 REL_NO_52	:= $(shell expr $(VMINOR) - 141)$(REL_EXT)
 REL_NO_53	:= $(shell expr $(VMINOR) - 149)$(REL_EXT)
-REL_NO_54	:= $(shell expr $(VMINOR) - 162)$(REL_EXT)
+REL_NO_54	:= $(shell expr $(VMINOR) - 163)$(REL_EXT)
 
 REL_NO_60	:= $(shell expr $(VMINOR) - 159)$(REL_EXT)
 REL_NO_61	:= $(shell expr $(VMINOR) - 162)$(REL_EXT)
+REL_NO_62	:= $(shell expr $(VMINOR) - 163)$(REL_EXT)
 
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
@@ -170,10 +171,10 @@ REQV_46_GDC	:= $(REQV_46)
 REQV_47		:= (>= 4.7.3-1~)
 REQV_48		:= (>= 4.8.4-1~)
 REQV_49		:= (>= 4.9.3-10~)
-REQV_5		:= (>= 5.4.0-6~)
-REQV_6		:= (>= 6.1.1-9~)
+REQV_5		:= (>= 5.4.1-2~)
+REQV_6		:= (>= 6.2.1-3~)
 
-REQV_LIBGCJ_BC	:= (>= 5.4.0-6~)
+REQV_LIBGCJ_BC	:= (>= 6.2.1-3~)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -196,48 +197,48 @@ gnat5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mip
 gnat6_archs  =
 
 # CV_XXX is the complete version number, including the release, without epoch
-CV_CPP		:= 6.1.1-$(REL_NO_61)
-CV_GCC		:= 6.1.1-$(REL_NO_61)
-CV_GPP		:= 6.1.1-$(REL_NO_61)
-CV_GOBJC	:= 6.1.1-$(REL_NO_61)
-CV_GOBJCXX	:= 6.1.1-$(REL_NO_61)
-CV_GFORT	:= 6.1.1-$(REL_NO_61)
-CV_GGO		:= 6.1.1-$(REL_NO_61)
-CV_GNAT		:= 6.1.1-$(REL_NO_61)
-CV_GCJ		:= 6.1.1-$(REL_NO_61)
-CV_GIJ		:= 6.1.1-$(REL_NO_61)
-CV_LIBGCJBC	:= 6.1.1-$(REL_NO_61)
-CV_GDC		:= 6.1.1-$(REL_NO_61)
-CV_LIBGCJCOMMON	:= 1:5.3-$(REL_NO_54)
+CV_CPP		:= 6.2.1-$(REL_NO_62)
+CV_GCC		:= 6.2.1-$(REL_NO_62)
+CV_GPP		:= 6.2.1-$(REL_NO_62)
+CV_GOBJC	:= 6.2.1-$(REL_NO_62)
+CV_GOBJCXX	:= 6.2.1-$(REL_NO_62)
+CV_GFORT	:= 6.2.1-$(REL_NO_62)
+CV_GGO		:= 6.2.1-$(REL_NO_62)
+CV_GNAT		:= 6.2.1-$(REL_NO_62)
+CV_GCJ		:= 6.2.1-$(REL_NO_62)
+CV_GIJ		:= 6.2.1-$(REL_NO_62)
+CV_LIBGCJBC	:= 6.2.1-$(REL_NO_62)
+CV_GDC		:= 6.2.1-$(REL_NO_62)
+CV_LIBGCJCOMMON	:= 1:6.2-$(REL_NO_62)
 $(foreach a, $(all_archs), \
   $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GNAT CV_GCJ CV_GDC, \
     $(eval $(v)_$(a) = $(call $(v)))))
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcc5_archs)))
-  CV_CPP		:= 5.3-$(REL_NO_54)
-  CV_GCC		:= 5.3-$(REL_NO_54)
-  CV_GPP		:= 5.3-$(REL_NO_54)
-  CV_GOBJC		:= 5.3-$(REL_NO_54)
-  CV_GOBJCXX		:= 5.3-$(REL_NO_54)
-  CV_GFORT		:= 5.3-$(REL_NO_54)
-  CV_GGO		:= 5.3-$(REL_NO_54)
-  CV_GDC		:= 5.3-$(REL_NO_54)
+  CV_CPP		:= 5.4-$(REL_NO_54)
+  CV_GCC		:= 5.4-$(REL_NO_54)
+  CV_GPP		:= 5.4-$(REL_NO_54)
+  CV_GOBJC		:= 5.4-$(REL_NO_54)
+  CV_GOBJCXX		:= 5.4-$(REL_NO_54)
+  CV_GFORT		:= 5.4-$(REL_NO_54)
+  CV_GGO		:= 5.4-$(REL_NO_54)
+  CV_GDC		:= 5.4-$(REL_NO_54)
   $(foreach a, $(gcc5_archs), \
     $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GDC, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gcj5_archs)))
-  CV_GCJ		:= 5.3-$(REL_NO_54)
-  CV_GIJ		:= 5.3-$(REL_NO_54)
-  CV_LIBGCJBC		:= 5.3-$(REL_NO_54)
+  CV_GCJ		:= 5.4-$(REL_NO_54)
+  CV_GIJ		:= 5.4-$(REL_NO_54)
+  CV_LIBGCJBC		:= 5.4-$(REL_NO_54)
   $(foreach a, $(gcc5_archs), \
     $(foreach v, CV_GCJ, \
       $(eval $(v)_$(a) = $(call $(v)))))
 endif
 
 ifneq (,$(filter $(DEB_HOST_ARCH), $(gnat5_archs)))
-  CV_GNAT		:= 5.3-$(REL_NO_54)
+  CV_GNAT		:= 5.4-$(REL_NO_54)
   $(foreach a, $(gnat5_archs), \
     $(foreach v, CV_GNAT, \
       $(eval $(v)_$(a) = $(call $(v)))))
@@ -369,7 +370,7 @@ CROSS_GNU_TYPE	= $(call _gnu_type,${CROSS_ARCH})
 all_packages    :=
 ifeq ($(with_native),yes)
   # FIXME: not all packages ...
-  all_packages	:= cpp gcc g++ gfortran gcj-jdk gobjc gobjc++ gdc gccgo libphobos-dev
+  all_packages	:= cpp gcc g++ gfortran gcj-jdk gobjc gobjc++ gdc gccgo libgphobos-dev
   ifneq (,$(filter $(DEB_HOST_ARCH), $(hppa64_archs)))
     all_packages += gcc-hppa64-linux-gnu
   endif
@@ -422,7 +423,7 @@ ifeq ($(with_native),yes)
   endif
 
   ifeq (,$(filter $(DEB_HOST_ARCH),$(phobos_archs)))
-    no_packages += libphobos-dev
+    no_packages += libgphobos-dev
   endif
 
   ifeq (,$(filter $(DEB_HOST_ARCH),$(hppa64_archs)))
@@ -606,7 +607,7 @@ ifneq (,$(MOD_VER))
 	echo 'fortran:mod-version=$(MOD_VER)' >> debian/substvars.native
 endif
 ifneq (,$(filter $(DEB_HOST_ARCH),$(phobos_archs)))
-	echo 'dep:libphobos=libphobos-dev (= $${version:gdc})' >> debian/substvars.native
+	echo 'dep:libgphobos=libgphobos-dev (= $${version:gdc})' >> debian/substvars.native
 endif
 
 substvars.%:
@@ -657,7 +658,7 @@ ifneq (,$(MOD_VER))
 	echo 'fortran:mod-version=$(MOD_VER)' >> debian/substvars.$*
 endif
 	$(if $(filter $(CROSS_ARCH),$(phobos_archs)), \
-	  echo 'dep:libphobos=libphobos-dev (= $${version:gdc})' >> debian/substvars.$* \
+	  echo 'dep:libgphobos=libgphobos-dev (= $${version:gdc})' >> debian/substvars.$* \
 	)
 
 control:
@@ -837,10 +838,10 @@ ifneq (,$(filter gdc, $(packages)))
 	  /usr/share/man/man1/gdc-$(PV_GDC).1.gz /usr/share/man/man1/gdc.1.gz \
 	  /usr/share/man/man1/gdc-$(PV_GDC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gdc.1.gz
 
-  ifneq (,$(filter libphobos-dev, $(packages)))
+  ifneq (,$(filter libgphobos-dev, $(packages)))
 	: # gdc
-	dh_installdirs -plibphobos-dev
-	dh_installdocs -plibphobos-dev
+	dh_installdirs -plibgphobos-dev
+	dh_installdocs -plibgphobos-dev
   endif
 endif
 
@@ -1301,7 +1302,7 @@ ifeq ($(with_native),yes)
 	dh_testroot
 #	dh_installdebconf
 	dh_installdocs -pcpp
-	for p in `dh_listpackages $(nopkgs_native) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngfortran-doc -Ngccgo-doc -Nlibgcj-common -Ngdc -Nlibphobos-dev`; do \
+	for p in `dh_listpackages $(nopkgs_native) -Ncpp -Nlibgcj-bc -Ncpp-doc -Ngcc-doc -Ngfortran-doc -Ngccgo-doc -Nlibgcj-common -Ngdc -Nlibgphobos-dev`; do \
 	  case "$$p" in \
 	    *-gnu*|*-kfreebsd*|gcc-hppa64-linux-gnu) continue;; \
 	    gij|gcj-*) t=libgcj-common;; \
@@ -1313,8 +1314,8 @@ ifeq ($(with_native),yes)
 	  ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	done
 
-	dh_installchangelogs -pcpp -pgdc -plibphobos-dev
-	for i in cpp gdc libphobos-dev; do \
+	dh_installchangelogs -pcpp -pgdc -plibgphobos-dev
+	for i in cpp gdc libgphobos-dev; do \
 	  mv debian/$$i/usr/share/doc/$$i/changelog \
 	    debian/$$i/usr/share/doc/$$i/changelog.Debian; \
 	done
@@ -1379,8 +1380,8 @@ ifneq (,$(filter gdc, $(packages)))
 	dh_gencontrol -pgdc $(if $(filter yes,$(with_multilib)),-pgdc-multilib) \
 	  -u-v$(EPOCH):$(CV_GDC)
 endif
-ifneq (,$(filter libphobos-dev, $(packages)))
-	dh_gencontrol -plibphobos-dev -u-v$(CV_GDC)
+ifneq (,$(filter libgphobos-dev, $(packages)))
+	dh_gencontrol -plibgphobos-dev -u-v$(CV_GDC)
 endif
 ifneq (,$(filter g++, $(packages)))
 	dh_gencontrol -pg++ $(if $(filter yes,$(with_multilib)),-pg++-multilib) \

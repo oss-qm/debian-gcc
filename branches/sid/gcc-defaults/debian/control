@@ -6,7 +6,7 @@ Uploaders: Matthias Klose <doko@debian.org>
 Standards-Version: 3.9.8
 Build-Depends: m4, debhelper (>= 9),
   dpkg-dev (>= 1.17.11),
-  gcc-6-base (>= 6.1.1-9),
+  gcc-6-base (>= 6.2.1-2),
   lsb-release
 Build-Depends-Indep: ca-certificates, gcj-jdk, python
 Vcs-Svn: svn://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
@@ -303,7 +303,7 @@ Description: Java runtime environment using GIJ/Classpath
 Package: gdc
 Priority: optional
 Architecture: any
-Depends: gdc-${pv:gdc} ${reqv:gdc}, ${dep:libphobos}, ${misc:Depends}
+Depends: gdc-${pv:gdc} ${reqv:gdc}, ${dep:libgphobos}, ${misc:Depends}
 Replaces: gdc-4.1 (<< 0.25-4.1.2-18), gdc-4.2 (<< 0.25-4.2.2-7), gdc-4.3 (<< 1:1.043-4.3.4-1)
 Description: D compiler (language version 2), based on the GCC backend
  This is a dependency package providing the default D compiler.
@@ -322,11 +322,12 @@ Description: D compiler (language version 2) (multilib files)
  A dependency package on architectures with multilib support; the package
  contains dependencies for the non-default multilib architecture(s).
 
-Package: libphobos-dev
+Package: libgphobos-dev
 Section: libdevel
 Priority: optional
 Architecture: any
-Depends: libphobos-${pv:gdc}-dev ${reqv:gdc}, ${misc:Depends}
+Depends: libgphobos-${pv:gdc}-dev ${reqv:gdc}, ${misc:Depends}
+Provides: libphobos-dev
 Description: Phobos D standard library
  This is a dependency package providing the default D standard library.
 
