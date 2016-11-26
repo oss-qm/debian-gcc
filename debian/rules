@@ -342,11 +342,11 @@ HOST_ARCHS_sparc64 = amd64 i386 x32
 
 ifeq ($(SOURCE),gcc-defaults)
   with_native = yes
-  CROSS_ARCHS  ?= s390x ppc64el powerpc arm64 armhf armel \
-			$(if $(filter $(vendor), Ubuntu),, mips mipsel)
+  CROSS_ARCHS  ?= s390x ppc64el arm64 armhf armel \
+			$(if $(filter $(vendor), Ubuntu),, mips mipsel mips64el)
 else
-  CROSS_ARCHS  ?= alpha hppa m68k mips64 mips64el ppc64 sh4 sparc64 \
-			$(if $(filter $(vendor), Ubuntu), mips mipsel)
+  CROSS_ARCHS  ?= alpha hppa m68k mips64 powerpc ppc64 sh4 sparc64 \
+			$(if $(filter $(vendor), Ubuntu), mips mipsel mips64el)
   # powerpcspe, outdated, ftbfs
 endif
 with_cross  = yes
