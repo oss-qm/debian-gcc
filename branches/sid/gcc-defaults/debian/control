@@ -6,7 +6,7 @@ Uploaders: Matthias Klose <doko@debian.org>
 Standards-Version: 3.9.8
 Build-Depends: m4, debhelper (>= 9),
   dpkg-dev (>= 1.17.11),
-  gcc-6-base (>= 6.2.1-2),
+  gcc-6-base (>= 6.2.1-3),
   lsb-release
 Build-Depends-Indep: ca-certificates, gcj-jdk, python
 Vcs-Svn: svn://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
@@ -326,6 +326,7 @@ Package: libgphobos-dev
 Section: libdevel
 Priority: optional
 Architecture: any
+Multi-Arch: same
 Depends: libgphobos-${pv:gdc}-dev ${reqv:gdc}, ${misc:Depends}
 Provides: libphobos-dev
 Description: Phobos D standard library
@@ -717,247 +718,6 @@ Description: GNU D compiler (based on GCC) for the ppc64el architecture
  .
  This is a dependency package providing the default GNU D cross-compiler
  for the ppc64el architecture.
-
-Package: cpp-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Section: interpreters
-Depends: cpp-${pv:cpp}-powerpc-linux-gnu ${reqv:cpp}, ${misc:Depends}
-Suggests: cpp-doc
-Description: GNU C preprocessor (cpp) for the powerpc architecture
- The GNU C preprocessor is a macro processor that is used automatically
- by the GNU C compiler to transform programs before actual compilation.
- .
- This package has been separated from gcc for the benefit of those who
- require the preprocessor but not the cross-compiler for powerpc architecture.
- .
- This is a dependency package providing the default GNU C preprocessor
- for the powerpc architecture.
-
-Package: gcc-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcc-${pv:gcc}-powerpc-linux-gnu ${reqv:gcc},
-  ${misc:Depends}
-Recommends: libc6-dev-powerpc-cross | libc-dev-powerpc-cross
-Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-powerpc-linux-gnu, gcc-doc
-Description: GNU C compiler for the powerpc architecture
- This is the GNU C compiler, a fairly portable optimizing compiler for C.
- .
- This is a dependency package providing the default GNU C cross-compiler
- for the powerpc architecture.
-
-Package: g++-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcc-powerpc-linux-gnu (>= ${version:cpp}),
-  g++-${pv:gpp}-powerpc-linux-gnu ${reqv:gpp},
-  ${misc:Depends}
-Description: GNU C++ compiler for the powerpc architecture
- This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
- .
- This is a dependency package providing the default GNU C++ cross-compiler
- for the powerpc architecture.
-
-Package: gobjc-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcc-powerpc-linux-gnu (>= ${version:cpp}),
-  gobjc-${pv:gobjc}-powerpc-linux-gnu ${reqv:gobjc},
-  ${misc:Depends}
-Description: GNU Objective-C compiler for the powerpc architecture
- This is the GNU Objective-C compiler, which compiles Objective-C on platforms
- supported by the gcc compiler. It uses the gcc backend to generate optimized
- code.
- .
- This is a dependency package providing the default GNU Objective-C
- cross-compiler for the powerpc architecture.
-
-Package: gobjc++-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcc-powerpc-linux-gnu (>= ${version:cpp}),
-  gobjc++-${pv:gobjcxx}-powerpc-linux-gnu ${reqv:gobjcxx},
-  ${misc:Depends}
-Recommends: g++-powerpc-linux-gnu (>= ${version:cpp}), gobjc-powerpc-linux-gnu (>= ${version:cpp})
-Description: GNU Objective-C++ compiler for the powerpc architecture
- This is the GNU Objective-C++ compiler, which compiles
- Objective-C++ on platforms supported by the gcc compiler. It uses the
- gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU Objective-C++
- cross-compiler for the powerpc architecture.
-
-Package: gfortran-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcc-powerpc-linux-gnu (>= ${version:gcc}),
-  gfortran-${pv:gfort}-powerpc-linux-gnu ${reqv:gfort},
-  ${misc:Depends}
-Suggests: gfortran-doc
-Description: GNU Fortran 95 compiler for the powerpc architecture
- This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
- supported by the gcc compiler. It uses the gcc backend to generate optimized
- code.
- .
- This is a dependency package providing the default GNU Fortran 95
- cross-compiler for the powerpc architecture.
-
-Package: gccgo-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  g++-powerpc-linux-gnu (>= ${version:gcc}),
-  gccgo-${pv:ggo}-powerpc-linux-gnu ${reqv:ggo},
-  ${misc:Depends}
-Suggests: gccgo-doc
-Description: Go compiler (based on GCC) for the powerpc architecture
- This is the GNU Go compiler, which compiles Go on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU Go cross-compiler
- for the powerpc architecture.
-
-Package: gcj-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcj-${pv:gcj}-powerpc-linux-gnu ${reqv:gcj},
-  ${misc:Depends}
-Description: GNU Java compiler (based on GCC) for the powerpc architecture
- This is the GNU Java compiler, which compiles java on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU Java cross-compiler
- for the powerpc architecture.
-
-Package: gdc-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gdc-${pv:gdc}-powerpc-linux-gnu ${reqv:gdc},
-  ${misc:Depends}
-Description: GNU D compiler (based on GCC) for the powerpc architecture
- This is the GNU D compiler, which compiles D on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU D cross-compiler
- for the powerpc architecture.
-
-Package: gcc-multilib-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcc-powerpc-linux-gnu (>= ${version:gcc}),
-  gcc-${pv:gcc}-multilib-powerpc-linux-gnu ${reqv:gcc},
-  ${misc:Depends}
-Recommends: libc6-dev-powerpc-cross | libc-dev-powerpc-cross
-Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-powerpc-linux-gnu, gcc-doc
-Description: GNU C compiler for the powerpc architecture
- This is the GNU C compiler, a fairly portable optimizing compiler for C.
- .
- This is a dependency package providing the default GNU C cross-compiler
- for the powerpc architecture.
-
-Package: g++-multilib-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  g++-powerpc-linux-gnu (>= ${version:gpp}),
-  gcc-multilib-powerpc-linux-gnu (>= ${version:gcc}),
-  g++-${pv:gpp}-multilib-powerpc-linux-gnu ${reqv:gpp},
-  ${misc:Depends}
-Description: GNU C++ compiler for the powerpc architecture
- This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
- .
- This is a dependency package providing the default GNU C++
- cross-compiler for the powerpc architecture.
-
-Package: gobjc-multilib-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gobjc-powerpc-linux-gnu (>= ${version:gobjc}),
-  gcc-multilib-powerpc-linux-gnu (>= ${version:cpp}),
-  gobjc-${pv:gobjc}-multilib-powerpc-linux-gnu ${reqv:gobjc},
-  ${misc:Depends}
-Description: GNU Objective-C compiler for the powerpc architecture
- This is the GNU Objective-C compiler, which compiles Objective-C on platforms
- supported by the gcc compiler. It uses the gcc backend to generate optimized
- code.
- .
- This is a dependency package providing the default GNU Objective-C
- cross-compiler for the powerpc architecture.
-
-Package: gobjc++-multilib-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcc-multilib-powerpc-linux-gnu (>= ${version:cpp}),
-  gobjc++-powerpc-linux-gnu (>= ${version:gobjcxx}),
-  gobjc++-${pv:gobjcxx}-multilib-powerpc-linux-gnu ${reqv:gobjcxx},
-  ${misc:Depends}
-Recommends: g++-powerpc-linux-gnu (>= ${version:cpp}),
-  gobjc-powerpc-linux-gnu (>= ${version:cpp})
-Description: GNU Objective-C++ compiler for the powerpc architecture
- This is the GNU Objective-C++ compiler, which compiles
- Objective-C++ on platforms supported by the gcc compiler. It uses the
- gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU Objective-C++
- cross-compiler for the powerpc architecture.
-
-Package: gfortran-multilib-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gcc-multilib-powerpc-linux-gnu (>= ${version:gcc}),
-  gfortran-powerpc-linux-gnu (>= ${version:gfort}),
-  gfortran-${pv:gfort}-multilib-powerpc-linux-gnu ${reqv:gfort},
-  ${misc:Depends}
-Suggests: gfortran-doc
-Description: GNU Fortran 95 compiler for the powerpc architecture
- This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
- supported by the gcc compiler. It uses the gcc backend to generate optimized
- code.
- .
- This is a dependency package providing the default GNU Fortran 95
- cross-compiler for the powerpc architecture.
-
-Package: gccgo-multilib-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  g++-multilib-powerpc-linux-gnu (>= ${version:gcc}),
-  gccgo-powerpc-linux-gnu (>= ${version:ggo}),
-  gccgo-${pv:ggo}-multilib-powerpc-linux-gnu ${reqv:ggo},
-  ${misc:Depends}
-Suggests: gccgo-doc
-Description: Go compiler (based on GCC) for the powerpc architecture
- This is the GNU Go compiler, which compiles Go on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU Go cross-compiler
- cross-compiler for the powerpc architecture.
-
-Package: gdc-multilib-powerpc-linux-gnu
-Priority: optional
-Architecture: amd64 i386 x32 ppc64el
-Depends: cpp-powerpc-linux-gnu (>= ${version:cpp}),
-  gdc-${pv:gdc}-multilib-powerpc-linux-gnu ${reqv:gdc},
-  gdc-powerpc-linux-gnu (>= ${version:gdc}),
-  ${misc:Depends}
-Description: GNU D compiler (based on GCC) for the powerpc architecture
- This is the GNU D compiler, which compiles D on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU D cross-compiler
- cross-compiler for the powerpc architecture.
 
 Package: cpp-aarch64-linux-gnu
 Priority: optional
@@ -1833,3 +1593,244 @@ Description: GNU D compiler (based on GCC) for the mipsel architecture
  .
  This is a dependency package providing the default GNU D cross-compiler
  cross-compiler for the mipsel architecture.
+
+Package: cpp-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Section: interpreters
+Depends: cpp-${pv:cpp}-mips64el-linux-gnuabi64 ${reqv:cpp}, ${misc:Depends}
+Suggests: cpp-doc
+Description: GNU C preprocessor (cpp) for the mips64el architecture
+ The GNU C preprocessor is a macro processor that is used automatically
+ by the GNU C compiler to transform programs before actual compilation.
+ .
+ This package has been separated from gcc for the benefit of those who
+ require the preprocessor but not the cross-compiler for mips64el architecture.
+ .
+ This is a dependency package providing the default GNU C preprocessor
+ for the mips64el architecture.
+
+Package: gcc-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcc-${pv:gcc}-mips64el-linux-gnuabi64 ${reqv:gcc},
+  ${misc:Depends}
+Recommends: libc6-dev-mips64el-cross | libc-dev-mips64el-cross
+Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-mips64el-linux-gnuabi64, gcc-doc
+Description: GNU C compiler for the mips64el architecture
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ This is a dependency package providing the default GNU C cross-compiler
+ for the mips64el architecture.
+
+Package: g++-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcc-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  g++-${pv:gpp}-mips64el-linux-gnuabi64 ${reqv:gpp},
+  ${misc:Depends}
+Description: GNU C++ compiler for the mips64el architecture
+ This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
+ .
+ This is a dependency package providing the default GNU C++ cross-compiler
+ for the mips64el architecture.
+
+Package: gobjc-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcc-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gobjc-${pv:gobjc}-mips64el-linux-gnuabi64 ${reqv:gobjc},
+  ${misc:Depends}
+Description: GNU Objective-C compiler for the mips64el architecture
+ This is the GNU Objective-C compiler, which compiles Objective-C on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Objective-C
+ cross-compiler for the mips64el architecture.
+
+Package: gobjc++-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcc-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gobjc++-${pv:gobjcxx}-mips64el-linux-gnuabi64 ${reqv:gobjcxx},
+  ${misc:Depends}
+Recommends: g++-mips64el-linux-gnuabi64 (>= ${version:cpp}), gobjc-mips64el-linux-gnuabi64 (>= ${version:cpp})
+Description: GNU Objective-C++ compiler for the mips64el architecture
+ This is the GNU Objective-C++ compiler, which compiles
+ Objective-C++ on platforms supported by the gcc compiler. It uses the
+ gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Objective-C++
+ cross-compiler for the mips64el architecture.
+
+Package: gfortran-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcc-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+  gfortran-${pv:gfort}-mips64el-linux-gnuabi64 ${reqv:gfort},
+  ${misc:Depends}
+Suggests: gfortran-doc
+Description: GNU Fortran 95 compiler for the mips64el architecture
+ This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Fortran 95
+ cross-compiler for the mips64el architecture.
+
+Package: gccgo-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  g++-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+  gccgo-${pv:ggo}-mips64el-linux-gnuabi64 ${reqv:ggo},
+  ${misc:Depends}
+Suggests: gccgo-doc
+Description: Go compiler (based on GCC) for the mips64el architecture
+ This is the GNU Go compiler, which compiles Go on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Go cross-compiler
+ for the mips64el architecture.
+
+Package: gcj-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcj-${pv:gcj}-mips64el-linux-gnuabi64 ${reqv:gcj},
+  ${misc:Depends}
+Description: GNU Java compiler (based on GCC) for the mips64el architecture
+ This is the GNU Java compiler, which compiles java on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Java cross-compiler
+ for the mips64el architecture.
+
+Package: gdc-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gdc-${pv:gdc}-mips64el-linux-gnuabi64 ${reqv:gdc},
+  ${misc:Depends}
+Description: GNU D compiler (based on GCC) for the mips64el architecture
+ This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ for the mips64el architecture.
+
+Package: gcc-multilib-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcc-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+  gcc-${pv:gcc}-multilib-mips64el-linux-gnuabi64 ${reqv:gcc},
+  ${misc:Depends}
+Recommends: libc6-dev-mips64el-cross | libc-dev-mips64el-cross
+Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-mips64el-linux-gnuabi64, gcc-doc
+Description: GNU C compiler for the mips64el architecture
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ This is a dependency package providing the default GNU C cross-compiler
+ for the mips64el architecture.
+
+Package: g++-multilib-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  g++-mips64el-linux-gnuabi64 (>= ${version:gpp}),
+  gcc-multilib-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+  g++-${pv:gpp}-multilib-mips64el-linux-gnuabi64 ${reqv:gpp},
+  ${misc:Depends}
+Description: GNU C++ compiler for the mips64el architecture
+ This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
+ .
+ This is a dependency package providing the default GNU C++
+ cross-compiler for the mips64el architecture.
+
+Package: gobjc-multilib-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gobjc-mips64el-linux-gnuabi64 (>= ${version:gobjc}),
+  gcc-multilib-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gobjc-${pv:gobjc}-multilib-mips64el-linux-gnuabi64 ${reqv:gobjc},
+  ${misc:Depends}
+Description: GNU Objective-C compiler for the mips64el architecture
+ This is the GNU Objective-C compiler, which compiles Objective-C on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Objective-C
+ cross-compiler for the mips64el architecture.
+
+Package: gobjc++-multilib-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcc-multilib-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gobjc++-mips64el-linux-gnuabi64 (>= ${version:gobjcxx}),
+  gobjc++-${pv:gobjcxx}-multilib-mips64el-linux-gnuabi64 ${reqv:gobjcxx},
+  ${misc:Depends}
+Recommends: g++-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gobjc-mips64el-linux-gnuabi64 (>= ${version:cpp})
+Description: GNU Objective-C++ compiler for the mips64el architecture
+ This is the GNU Objective-C++ compiler, which compiles
+ Objective-C++ on platforms supported by the gcc compiler. It uses the
+ gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Objective-C++
+ cross-compiler for the mips64el architecture.
+
+Package: gfortran-multilib-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gcc-multilib-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+  gfortran-mips64el-linux-gnuabi64 (>= ${version:gfort}),
+  gfortran-${pv:gfort}-multilib-mips64el-linux-gnuabi64 ${reqv:gfort},
+  ${misc:Depends}
+Suggests: gfortran-doc
+Description: GNU Fortran 95 compiler for the mips64el architecture
+ This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Fortran 95
+ cross-compiler for the mips64el architecture.
+
+Package: gccgo-multilib-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  g++-multilib-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+  gccgo-mips64el-linux-gnuabi64 (>= ${version:ggo}),
+  gccgo-${pv:ggo}-multilib-mips64el-linux-gnuabi64 ${reqv:ggo},
+  ${misc:Depends}
+Suggests: gccgo-doc
+Description: Go compiler (based on GCC) for the mips64el architecture
+ This is the GNU Go compiler, which compiles Go on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Go cross-compiler
+ cross-compiler for the mips64el architecture.
+
+Package: gdc-multilib-mips64el-linux-gnuabi64
+Priority: optional
+Architecture: amd64 i386 x32
+Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+  gdc-${pv:gdc}-multilib-mips64el-linux-gnuabi64 ${reqv:gdc},
+  gdc-mips64el-linux-gnuabi64 (>= ${version:gdc}),
+  ${misc:Depends}
+Description: GNU D compiler (based on GCC) for the mips64el architecture
+ This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the mips64el architecture.

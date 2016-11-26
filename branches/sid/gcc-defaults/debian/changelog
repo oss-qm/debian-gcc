@@ -1,3 +1,10 @@
+gcc-defaults (1.165) UNRELEASED; urgency=medium
+
+  * Stop building powerpc cross packages from this source.
+  * Build mips64el packages from this source.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 26 Nov 2016 17:51:15 +0100
+
 gcc-defaults (1.164) unstable; urgency=medium
 
   * Bump GCC 6 version to 6.2.1.
