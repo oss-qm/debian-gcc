@@ -2,6 +2,7 @@
 Package: cpp-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-CROSS_GNU_TYPE ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -18,6 +19,7 @@ Description: GNU C preprocessor (cpp) for the CROSS_ARCH architecture
 Package: gcc-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gcc-${pv:gcc}-CROSS_GNU_TYPE ${reqv:gcc},
   ${misc:Depends}
@@ -32,6 +34,7 @@ Description: GNU C compiler for the CROSS_ARCH architecture
 Package: g++-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gcc-CROSS_GNU_TYPE (>= ${version:cpp}),
   g++-${pv:gpp}-CROSS_GNU_TYPE ${reqv:gpp},
@@ -45,6 +48,7 @@ Description: GNU C++ compiler for the CROSS_ARCH architecture
 Package: gobjc-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gcc-CROSS_GNU_TYPE (>= ${version:cpp}),
   gobjc-${pv:gobjc}-CROSS_GNU_TYPE ${reqv:gobjc},
@@ -60,6 +64,7 @@ Description: GNU Objective-C compiler for the CROSS_ARCH architecture
 Package: gobjc++-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gcc-CROSS_GNU_TYPE (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-CROSS_GNU_TYPE ${reqv:gobjcxx},
@@ -76,6 +81,7 @@ Description: GNU Objective-C++ compiler for the CROSS_ARCH architecture
 Package: gfortran-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gcc-CROSS_GNU_TYPE (>= ${version:gcc}),
   gfortran-${pv:gfort}-CROSS_GNU_TYPE ${reqv:gfort},
@@ -92,6 +98,7 @@ Description: GNU Fortran 95 compiler for the CROSS_ARCH architecture
 Package: gccgo-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   g++-CROSS_GNU_TYPE (>= ${version:gcc}),
   gccgo-${pv:ggo}-CROSS_GNU_TYPE ${reqv:ggo},
@@ -107,6 +114,7 @@ Description: Go compiler (based on GCC) for the CROSS_ARCH architecture
 Package: gcj-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gcj-${pv:gcj}-CROSS_GNU_TYPE ${reqv:gcj},
   ${misc:Depends}
@@ -120,6 +128,7 @@ Description: GNU Java compiler (based on GCC) for the CROSS_ARCH architecture
 Package: gdc-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
+Multi-Arch: foreign
 Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
   gdc-${pv:gdc}-CROSS_GNU_TYPE ${reqv:gdc},
   ${misc:Depends}

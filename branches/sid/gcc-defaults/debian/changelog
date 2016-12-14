@@ -3,6 +3,8 @@ gcc-defaults (1.165) UNRELEASED; urgency=medium
   * Stop building powerpc cross packages from this source.
   * Build mips64el packages from this source.
   * gcc-multilib: Add conflicts with GCC 7 cross compiler packages.
+  * Mark all cross compiler packages excluding the -multilib packages
+    as M-A: foreign.
 
  -- Matthias Klose <doko@debian.org>  Sat, 26 Nov 2016 17:51:15 +0100
 
