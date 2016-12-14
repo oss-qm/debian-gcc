@@ -386,6 +386,7 @@ Description: GNU C compiler (cross compiler for hppa64-linux-gnu)
 Package: cpp-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-s390x-linux-gnu ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -402,6 +403,7 @@ Description: GNU C preprocessor (cpp) for the s390x architecture
 Package: gcc-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
   gcc-${pv:gcc}-s390x-linux-gnu ${reqv:gcc},
   ${misc:Depends}
@@ -416,6 +418,7 @@ Description: GNU C compiler for the s390x architecture
 Package: g++-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
   gcc-s390x-linux-gnu (>= ${version:cpp}),
   g++-${pv:gpp}-s390x-linux-gnu ${reqv:gpp},
@@ -429,6 +432,7 @@ Description: GNU C++ compiler for the s390x architecture
 Package: gobjc-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
   gcc-s390x-linux-gnu (>= ${version:cpp}),
   gobjc-${pv:gobjc}-s390x-linux-gnu ${reqv:gobjc},
@@ -444,6 +448,7 @@ Description: GNU Objective-C compiler for the s390x architecture
 Package: gobjc++-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
   gcc-s390x-linux-gnu (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-s390x-linux-gnu ${reqv:gobjcxx},
@@ -460,6 +465,7 @@ Description: GNU Objective-C++ compiler for the s390x architecture
 Package: gfortran-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
   gcc-s390x-linux-gnu (>= ${version:gcc}),
   gfortran-${pv:gfort}-s390x-linux-gnu ${reqv:gfort},
@@ -476,6 +482,7 @@ Description: GNU Fortran 95 compiler for the s390x architecture
 Package: gccgo-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
   g++-s390x-linux-gnu (>= ${version:gcc}),
   gccgo-${pv:ggo}-s390x-linux-gnu ${reqv:ggo},
@@ -491,6 +498,7 @@ Description: Go compiler (based on GCC) for the s390x architecture
 Package: gcj-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
   gcj-${pv:gcj}-s390x-linux-gnu ${reqv:gcj},
   ${misc:Depends}
@@ -504,6 +512,7 @@ Description: GNU Java compiler (based on GCC) for the s390x architecture
 Package: gdc-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
   gdc-${pv:gdc}-s390x-linux-gnu ${reqv:gdc},
   ${misc:Depends}
@@ -627,6 +636,7 @@ Description: GNU D compiler (based on GCC) for the s390x architecture
 Package: cpp-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-powerpc64le-linux-gnu ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -643,6 +653,7 @@ Description: GNU C preprocessor (cpp) for the ppc64el architecture
 Package: gcc-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
   gcc-${pv:gcc}-powerpc64le-linux-gnu ${reqv:gcc},
   ${misc:Depends}
@@ -657,6 +668,7 @@ Description: GNU C compiler for the ppc64el architecture
 Package: g++-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
   gcc-powerpc64le-linux-gnu (>= ${version:cpp}),
   g++-${pv:gpp}-powerpc64le-linux-gnu ${reqv:gpp},
@@ -670,6 +682,7 @@ Description: GNU C++ compiler for the ppc64el architecture
 Package: gobjc-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
   gcc-powerpc64le-linux-gnu (>= ${version:cpp}),
   gobjc-${pv:gobjc}-powerpc64le-linux-gnu ${reqv:gobjc},
@@ -685,6 +698,7 @@ Description: GNU Objective-C compiler for the ppc64el architecture
 Package: gobjc++-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
   gcc-powerpc64le-linux-gnu (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-powerpc64le-linux-gnu ${reqv:gobjcxx},
@@ -701,6 +715,7 @@ Description: GNU Objective-C++ compiler for the ppc64el architecture
 Package: gfortran-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
   gcc-powerpc64le-linux-gnu (>= ${version:gcc}),
   gfortran-${pv:gfort}-powerpc64le-linux-gnu ${reqv:gfort},
@@ -717,6 +732,7 @@ Description: GNU Fortran 95 compiler for the ppc64el architecture
 Package: gccgo-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
   g++-powerpc64le-linux-gnu (>= ${version:gcc}),
   gccgo-${pv:ggo}-powerpc64le-linux-gnu ${reqv:ggo},
@@ -732,6 +748,7 @@ Description: Go compiler (based on GCC) for the ppc64el architecture
 Package: gcj-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
   gcj-${pv:gcj}-powerpc64le-linux-gnu ${reqv:gcj},
   ${misc:Depends}
@@ -745,6 +762,7 @@ Description: GNU Java compiler (based on GCC) for the ppc64el architecture
 Package: gdc-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
+Multi-Arch: foreign
 Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
   gdc-${pv:gdc}-powerpc64le-linux-gnu ${reqv:gdc},
   ${misc:Depends}
@@ -758,6 +776,7 @@ Description: GNU D compiler (based on GCC) for the ppc64el architecture
 Package: cpp-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-aarch64-linux-gnu ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -774,6 +793,7 @@ Description: GNU C preprocessor (cpp) for the arm64 architecture
 Package: gcc-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
   gcc-${pv:gcc}-aarch64-linux-gnu ${reqv:gcc},
   ${misc:Depends}
@@ -788,6 +808,7 @@ Description: GNU C compiler for the arm64 architecture
 Package: g++-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
   gcc-aarch64-linux-gnu (>= ${version:cpp}),
   g++-${pv:gpp}-aarch64-linux-gnu ${reqv:gpp},
@@ -801,6 +822,7 @@ Description: GNU C++ compiler for the arm64 architecture
 Package: gobjc-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
   gcc-aarch64-linux-gnu (>= ${version:cpp}),
   gobjc-${pv:gobjc}-aarch64-linux-gnu ${reqv:gobjc},
@@ -816,6 +838,7 @@ Description: GNU Objective-C compiler for the arm64 architecture
 Package: gobjc++-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
   gcc-aarch64-linux-gnu (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-aarch64-linux-gnu ${reqv:gobjcxx},
@@ -832,6 +855,7 @@ Description: GNU Objective-C++ compiler for the arm64 architecture
 Package: gfortran-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
   gcc-aarch64-linux-gnu (>= ${version:gcc}),
   gfortran-${pv:gfort}-aarch64-linux-gnu ${reqv:gfort},
@@ -848,6 +872,7 @@ Description: GNU Fortran 95 compiler for the arm64 architecture
 Package: gccgo-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
   g++-aarch64-linux-gnu (>= ${version:gcc}),
   gccgo-${pv:ggo}-aarch64-linux-gnu ${reqv:ggo},
@@ -863,6 +888,7 @@ Description: Go compiler (based on GCC) for the arm64 architecture
 Package: gcj-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
   gcj-${pv:gcj}-aarch64-linux-gnu ${reqv:gcj},
   ${misc:Depends}
@@ -876,6 +902,7 @@ Description: GNU Java compiler (based on GCC) for the arm64 architecture
 Package: gdc-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
   gdc-${pv:gdc}-aarch64-linux-gnu ${reqv:gdc},
   ${misc:Depends}
@@ -889,6 +916,7 @@ Description: GNU D compiler (based on GCC) for the arm64 architecture
 Package: cpp-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-arm-linux-gnueabihf ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -905,6 +933,7 @@ Description: GNU C preprocessor (cpp) for the armhf architecture
 Package: gcc-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   gcc-${pv:gcc}-arm-linux-gnueabihf ${reqv:gcc},
   ${misc:Depends}
@@ -919,6 +948,7 @@ Description: GNU C compiler for the armhf architecture
 Package: g++-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   gcc-arm-linux-gnueabihf (>= ${version:cpp}),
   g++-${pv:gpp}-arm-linux-gnueabihf ${reqv:gpp},
@@ -932,6 +962,7 @@ Description: GNU C++ compiler for the armhf architecture
 Package: gobjc-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   gcc-arm-linux-gnueabihf (>= ${version:cpp}),
   gobjc-${pv:gobjc}-arm-linux-gnueabihf ${reqv:gobjc},
@@ -947,6 +978,7 @@ Description: GNU Objective-C compiler for the armhf architecture
 Package: gobjc++-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   gcc-arm-linux-gnueabihf (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-arm-linux-gnueabihf ${reqv:gobjcxx},
@@ -963,6 +995,7 @@ Description: GNU Objective-C++ compiler for the armhf architecture
 Package: gfortran-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   gcc-arm-linux-gnueabihf (>= ${version:gcc}),
   gfortran-${pv:gfort}-arm-linux-gnueabihf ${reqv:gfort},
@@ -979,6 +1012,7 @@ Description: GNU Fortran 95 compiler for the armhf architecture
 Package: gccgo-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   g++-arm-linux-gnueabihf (>= ${version:gcc}),
   gccgo-${pv:ggo}-arm-linux-gnueabihf ${reqv:ggo},
@@ -994,6 +1028,7 @@ Description: Go compiler (based on GCC) for the armhf architecture
 Package: gcj-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   gcj-${pv:gcj}-arm-linux-gnueabihf ${reqv:gcj},
   ${misc:Depends}
@@ -1007,6 +1042,7 @@ Description: GNU Java compiler (based on GCC) for the armhf architecture
 Package: gdc-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
   gdc-${pv:gdc}-arm-linux-gnueabihf ${reqv:gdc},
   ${misc:Depends}
@@ -1020,6 +1056,7 @@ Description: GNU D compiler (based on GCC) for the armhf architecture
 Package: cpp-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-arm-linux-gnueabi ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -1036,6 +1073,7 @@ Description: GNU C preprocessor (cpp) for the armel architecture
 Package: gcc-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
   gcc-${pv:gcc}-arm-linux-gnueabi ${reqv:gcc},
   ${misc:Depends}
@@ -1050,6 +1088,7 @@ Description: GNU C compiler for the armel architecture
 Package: g++-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
   gcc-arm-linux-gnueabi (>= ${version:cpp}),
   g++-${pv:gpp}-arm-linux-gnueabi ${reqv:gpp},
@@ -1063,6 +1102,7 @@ Description: GNU C++ compiler for the armel architecture
 Package: gobjc-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
   gcc-arm-linux-gnueabi (>= ${version:cpp}),
   gobjc-${pv:gobjc}-arm-linux-gnueabi ${reqv:gobjc},
@@ -1078,6 +1118,7 @@ Description: GNU Objective-C compiler for the armel architecture
 Package: gobjc++-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
   gcc-arm-linux-gnueabi (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-arm-linux-gnueabi ${reqv:gobjcxx},
@@ -1094,6 +1135,7 @@ Description: GNU Objective-C++ compiler for the armel architecture
 Package: gfortran-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
   gcc-arm-linux-gnueabi (>= ${version:gcc}),
   gfortran-${pv:gfort}-arm-linux-gnueabi ${reqv:gfort},
@@ -1110,6 +1152,7 @@ Description: GNU Fortran 95 compiler for the armel architecture
 Package: gccgo-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
   g++-arm-linux-gnueabi (>= ${version:gcc}),
   gccgo-${pv:ggo}-arm-linux-gnueabi ${reqv:ggo},
@@ -1125,6 +1168,7 @@ Description: Go compiler (based on GCC) for the armel architecture
 Package: gcj-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
   gcj-${pv:gcj}-arm-linux-gnueabi ${reqv:gcj},
   ${misc:Depends}
@@ -1138,6 +1182,7 @@ Description: GNU Java compiler (based on GCC) for the armel architecture
 Package: gdc-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
+Multi-Arch: foreign
 Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
   gdc-${pv:gdc}-arm-linux-gnueabi ${reqv:gdc},
   ${misc:Depends}
@@ -1151,6 +1196,7 @@ Description: GNU D compiler (based on GCC) for the armel architecture
 Package: cpp-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-mips-linux-gnu ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -1167,6 +1213,7 @@ Description: GNU C preprocessor (cpp) for the mips architecture
 Package: gcc-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   gcc-${pv:gcc}-mips-linux-gnu ${reqv:gcc},
   ${misc:Depends}
@@ -1181,6 +1228,7 @@ Description: GNU C compiler for the mips architecture
 Package: g++-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   gcc-mips-linux-gnu (>= ${version:cpp}),
   g++-${pv:gpp}-mips-linux-gnu ${reqv:gpp},
@@ -1194,6 +1242,7 @@ Description: GNU C++ compiler for the mips architecture
 Package: gobjc-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   gcc-mips-linux-gnu (>= ${version:cpp}),
   gobjc-${pv:gobjc}-mips-linux-gnu ${reqv:gobjc},
@@ -1209,6 +1258,7 @@ Description: GNU Objective-C compiler for the mips architecture
 Package: gobjc++-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   gcc-mips-linux-gnu (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-mips-linux-gnu ${reqv:gobjcxx},
@@ -1225,6 +1275,7 @@ Description: GNU Objective-C++ compiler for the mips architecture
 Package: gfortran-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   gcc-mips-linux-gnu (>= ${version:gcc}),
   gfortran-${pv:gfort}-mips-linux-gnu ${reqv:gfort},
@@ -1241,6 +1292,7 @@ Description: GNU Fortran 95 compiler for the mips architecture
 Package: gccgo-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   g++-mips-linux-gnu (>= ${version:gcc}),
   gccgo-${pv:ggo}-mips-linux-gnu ${reqv:ggo},
@@ -1256,6 +1308,7 @@ Description: Go compiler (based on GCC) for the mips architecture
 Package: gcj-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   gcj-${pv:gcj}-mips-linux-gnu ${reqv:gcj},
   ${misc:Depends}
@@ -1269,6 +1322,7 @@ Description: GNU Java compiler (based on GCC) for the mips architecture
 Package: gdc-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
   gdc-${pv:gdc}-mips-linux-gnu ${reqv:gdc},
   ${misc:Depends}
@@ -1392,6 +1446,7 @@ Description: GNU D compiler (based on GCC) for the mips architecture
 Package: cpp-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-mipsel-linux-gnu ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -1408,6 +1463,7 @@ Description: GNU C preprocessor (cpp) for the mipsel architecture
 Package: gcc-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   gcc-${pv:gcc}-mipsel-linux-gnu ${reqv:gcc},
   ${misc:Depends}
@@ -1422,6 +1478,7 @@ Description: GNU C compiler for the mipsel architecture
 Package: g++-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   gcc-mipsel-linux-gnu (>= ${version:cpp}),
   g++-${pv:gpp}-mipsel-linux-gnu ${reqv:gpp},
@@ -1435,6 +1492,7 @@ Description: GNU C++ compiler for the mipsel architecture
 Package: gobjc-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   gcc-mipsel-linux-gnu (>= ${version:cpp}),
   gobjc-${pv:gobjc}-mipsel-linux-gnu ${reqv:gobjc},
@@ -1450,6 +1508,7 @@ Description: GNU Objective-C compiler for the mipsel architecture
 Package: gobjc++-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   gcc-mipsel-linux-gnu (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-mipsel-linux-gnu ${reqv:gobjcxx},
@@ -1466,6 +1525,7 @@ Description: GNU Objective-C++ compiler for the mipsel architecture
 Package: gfortran-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   gcc-mipsel-linux-gnu (>= ${version:gcc}),
   gfortran-${pv:gfort}-mipsel-linux-gnu ${reqv:gfort},
@@ -1482,6 +1542,7 @@ Description: GNU Fortran 95 compiler for the mipsel architecture
 Package: gccgo-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   g++-mipsel-linux-gnu (>= ${version:gcc}),
   gccgo-${pv:ggo}-mipsel-linux-gnu ${reqv:ggo},
@@ -1497,6 +1558,7 @@ Description: Go compiler (based on GCC) for the mipsel architecture
 Package: gcj-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   gcj-${pv:gcj}-mipsel-linux-gnu ${reqv:gcj},
   ${misc:Depends}
@@ -1510,6 +1572,7 @@ Description: GNU Java compiler (based on GCC) for the mipsel architecture
 Package: gdc-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
   gdc-${pv:gdc}-mipsel-linux-gnu ${reqv:gdc},
   ${misc:Depends}
@@ -1633,6 +1696,7 @@ Description: GNU D compiler (based on GCC) for the mipsel architecture
 Package: cpp-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Section: interpreters
 Depends: cpp-${pv:cpp}-mips64el-linux-gnuabi64 ${reqv:cpp}, ${misc:Depends}
 Suggests: cpp-doc
@@ -1649,6 +1713,7 @@ Description: GNU C preprocessor (cpp) for the mips64el architecture
 Package: gcc-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gcc-${pv:gcc}-mips64el-linux-gnuabi64 ${reqv:gcc},
   ${misc:Depends}
@@ -1663,6 +1728,7 @@ Description: GNU C compiler for the mips64el architecture
 Package: g++-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gcc-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   g++-${pv:gpp}-mips64el-linux-gnuabi64 ${reqv:gpp},
@@ -1676,6 +1742,7 @@ Description: GNU C++ compiler for the mips64el architecture
 Package: gobjc-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gcc-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gobjc-${pv:gobjc}-mips64el-linux-gnuabi64 ${reqv:gobjc},
@@ -1691,6 +1758,7 @@ Description: GNU Objective-C compiler for the mips64el architecture
 Package: gobjc++-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gcc-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gobjc++-${pv:gobjcxx}-mips64el-linux-gnuabi64 ${reqv:gobjcxx},
@@ -1707,6 +1775,7 @@ Description: GNU Objective-C++ compiler for the mips64el architecture
 Package: gfortran-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gcc-mips64el-linux-gnuabi64 (>= ${version:gcc}),
   gfortran-${pv:gfort}-mips64el-linux-gnuabi64 ${reqv:gfort},
@@ -1723,6 +1792,7 @@ Description: GNU Fortran 95 compiler for the mips64el architecture
 Package: gccgo-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   g++-mips64el-linux-gnuabi64 (>= ${version:gcc}),
   gccgo-${pv:ggo}-mips64el-linux-gnuabi64 ${reqv:ggo},
@@ -1738,6 +1808,7 @@ Description: Go compiler (based on GCC) for the mips64el architecture
 Package: gcj-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gcj-${pv:gcj}-mips64el-linux-gnuabi64 ${reqv:gcj},
   ${misc:Depends}
@@ -1751,6 +1822,7 @@ Description: GNU Java compiler (based on GCC) for the mips64el architecture
 Package: gdc-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
+Multi-Arch: foreign
 Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
   gdc-${pv:gdc}-mips64el-linux-gnuabi64 ${reqv:gdc},
   ${misc:Depends}
