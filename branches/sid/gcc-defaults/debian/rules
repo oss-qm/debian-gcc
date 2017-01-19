@@ -150,6 +150,7 @@ REL_NO_54	:= $(shell expr $(VMINOR) - 163)$(REL_EXT)
 REL_NO_60	:= $(shell expr $(VMINOR) - 159)$(REL_EXT)
 REL_NO_61	:= $(shell expr $(VMINOR) - 162)$(REL_EXT)
 REL_NO_62	:= $(shell expr $(VMINOR) - 163)$(REL_EXT)
+REL_NO_63	:= $(shell expr $(VMINOR) - 164)$(REL_EXT)
 
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
@@ -172,9 +173,9 @@ REQV_47		:= (>= 4.7.3-1~)
 REQV_48		:= (>= 4.8.4-1~)
 REQV_49		:= (>= 4.9.3-10~)
 REQV_5		:= (>= 5.4.1-2~)
-REQV_6		:= (>= 6.2.1-3~)
+REQV_6		:= (>= 6.3.0-3~)
 
-REQV_LIBGCJ_BC	:= (>= 6.2.1-3~)
+REQV_LIBGCJ_BC	:= (>= 6.3.0-1~)
 
 # architecture dependent variables
 DEB_HOST_ARCH		:= $(shell dpkg-architecture -qDEB_HOST_ARCH)
@@ -197,19 +198,19 @@ gnat5_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mip
 gnat6_archs  =
 
 # CV_XXX is the complete version number, including the release, without epoch
-CV_CPP		:= 6.2.1-$(REL_NO_62)
-CV_GCC		:= 6.2.1-$(REL_NO_62)
-CV_GPP		:= 6.2.1-$(REL_NO_62)
-CV_GOBJC	:= 6.2.1-$(REL_NO_62)
-CV_GOBJCXX	:= 6.2.1-$(REL_NO_62)
-CV_GFORT	:= 6.2.1-$(REL_NO_62)
-CV_GGO		:= 6.2.1-$(REL_NO_62)
-CV_GNAT		:= 6.2.1-$(REL_NO_62)
-CV_GCJ		:= 6.2.1-$(REL_NO_62)
-CV_GIJ		:= 6.2.1-$(REL_NO_62)
-CV_LIBGCJBC	:= 6.2.1-$(REL_NO_62)
-CV_GDC		:= 6.2.1-$(REL_NO_62)
-CV_LIBGCJCOMMON	:= 1:6.2-$(REL_NO_62)
+CV_CPP		:= 6.3.0-$(REL_NO_63)
+CV_GCC		:= 6.3.0-$(REL_NO_63)
+CV_GPP		:= 6.3.0-$(REL_NO_63)
+CV_GOBJC	:= 6.3.0-$(REL_NO_63)
+CV_GOBJCXX	:= 6.3.0-$(REL_NO_63)
+CV_GFORT	:= 6.3.0-$(REL_NO_63)
+CV_GGO		:= 6.3.0-$(REL_NO_63)
+CV_GNAT		:= 6.3.0-$(REL_NO_63)
+CV_GCJ		:= 6.3.0-$(REL_NO_63)
+CV_GIJ		:= 6.3.0-$(REL_NO_63)
+CV_LIBGCJBC	:= 6.3.0-$(REL_NO_63)
+CV_GDC		:= 6.3.0-$(REL_NO_63)
+CV_LIBGCJCOMMON	:= 1:6.3-$(REL_NO_63)
 $(foreach a, $(all_archs), \
   $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GNAT CV_GCJ CV_GDC, \
     $(eval $(v)_$(a) = $(call $(v)))))
@@ -297,10 +298,10 @@ vendor := $(shell if dpkg-vendor --derives-from Ubuntu; then echo Ubuntu; else e
 
 lib32 = /usr/lib32
 
-gcj_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel \
+gcj_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips64el \
 	powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 \
 	kfreebsd-amd64 kfreebsd-i386 hurd-i386
-gcj_native_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 mips mipsel \
+gcj_native_archs = alpha amd64 armel armhf arm64 hppa i386 ia64 mips mipsel mips64el \
 	powerpc powerpcspe ppc64 ppc64el s390 s390x sh4 sparc sparc64 x32 \
 	kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
@@ -463,7 +464,7 @@ invalid_packages = \
 
 ifeq ($(with_cross),yes)
   cross_packages := $(filter-out $(invalid_packages) gcc-hppa64-linux-gnu, \
-			$(shell dh_listpackages -s | egrep -- '-gnu|-kfreebsd'))
+			$(shell dh_listpackages -a | egrep -- '-gnu|-kfreebsd'))
   all_packages := $(all_packages) $(cross_packages)
 endif
 packages := $(filter-out $(no_packages), $(all_packages))
@@ -1353,7 +1354,7 @@ ifneq (,$(filter $(DEB_HOST_ARCH),i386 kfreebsd-i386 hurd-i386))
   endif
 endif
 
-	for p in $$(dh_listpackages -s); do \
+	for p in $$(dh_listpackages -a); do \
 	  case $$p in \
 	    cpp|g++|gcc|gccgo|gcj-jdk|gcj-jre-headless|gfortran|gcc-hppa64-linux-gnu) \
 	      [ "$(with_gfdl_docs)" = yes ] && continue; \
