@@ -1,12 +1,15 @@
-gcc-defaults (1.165) UNRELEASED; urgency=medium
+gcc-defaults (1.165) unstable; urgency=medium
 
+  * Bump GCC 6 version to 6.3.0.
   * Stop building powerpc cross packages from this source.
   * Build mips64el packages from this source.
   * gcc-multilib: Add conflicts with GCC 7 cross compiler packages.
   * Mark all cross compiler packages excluding the -multilib packages
     as M-A: foreign.
+  * Re-add mips64el as a gcj architecture. Closes: #851391.
+  * Bump libgcj-bc version number. Closes: #851775.
 
- -- Matthias Klose <doko@debian.org>  Sat, 26 Nov 2016 17:51:15 +0100
+ -- Matthias Klose <doko@debian.org>  Wed, 18 Jan 2017 17:11:46 +0100
 
 gcc-defaults (1.164) unstable; urgency=medium
 
