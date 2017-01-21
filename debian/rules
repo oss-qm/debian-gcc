@@ -310,14 +310,16 @@ multilib_archs = $(sort \
 	powerpc ppc64 s390 s390x sparc sparc64 x32 \
 	$(if $(filter $(vendor), Ubuntu), armel armhf))
 
-go_archs = alpha amd64 arm64 armel armhf i386 ia64 mips mips64 mips64el mipsel \
+go_archs = alpha amd64 arm64 armel armhf i386 ia64 m68k \
+	mips mips64 mips64el mipsel \
 	powerpc ppc64 ppc64el s390 s390x sparc sparc64 x32
 
 go_multilib_archs = $(filter $(go_archs), $(filter-out armel armhf, $(multilib_archs)))
 
 d_multilib_archs = $(filter-out armel, $(multilib_archs))
 
-ada_archs = alpha amd64 arm64 armel armhf hppa i386 ia64 m68k mips mips64el mipsel \
+ada_archs = alpha amd64 arm64 armel armhf hppa i386 ia64 m68k \
+	mips mips64el mipsel \
 	powerpc ppc64 ppc64el s390 s390x sh4 sparc sparc64 \
 	kfreebsd-amd64 kfreebsd-i386 hurd-i386
 
@@ -456,7 +458,6 @@ endif
 # packages which are in the control file, but never built ...
 invalid_packages = \
 	gccgo-hppa-linux-gnu \
-	gccgo-m68k-linux-gnu \
 	gccgo-sh4-linux-gnu \
 	gccgo-multilib-arm-linux-gnueabi \
 	gccgo-multilib-arm-linux-gnueabihf \
@@ -693,6 +694,7 @@ ifeq ($(with_cross),yes)
 	    debian/control.cross.in \
 	    $(if $(filter $(a),$(multilib_archs)), debian/control.cross-ml.in) \
 	    $(if $(filter $(vendor),Ubuntu), debian/control.pkg-config.in) \
+	    | awk '/^Package: gccgo-(hppa|sh)/ {skip=1} skip == 0 {print } /^$$/ && skip == 1 {skip=0}' \
 	    >> debian/control; \
 	)
 endif
