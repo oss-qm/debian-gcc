@@ -337,6 +337,7 @@ HOST_ARCHS_mipsel = amd64 i386 x32
 HOST_ARCHS_mips64 = amd64 i386 x32
 HOST_ARCHS_mips64el = amd64 i386 x32
 HOST_ARCHS_powerpc = amd64 i386 x32 ppc64el
+HOST_ARCHS_powerpcspe = amd64 i386 x32
 HOST_ARCHS_ppc64 = amd64 i386 x32
 HOST_ARCHS_ppc64el = amd64 i386 x32 ppc64
 HOST_ARCHS_s390x = amd64 i386 x32
