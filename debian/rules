@@ -173,7 +173,7 @@ REQV_47		:= (>= 4.7.3-1~)
 REQV_48		:= (>= 4.8.4-1~)
 REQV_49		:= (>= 4.9.3-10~)
 REQV_5		:= (>= 5.4.1-2~)
-REQV_6		:= (>= 6.3.0-3~)
+REQV_6		:= (>= 6.3.0-9~)
 
 REQV_LIBGCJ_BC	:= (>= 6.3.0-1~)
 
@@ -771,6 +771,8 @@ ifeq ($(with_native),yes)
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs \
 	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
+	    /usr/bin/gcov-dump-$(PV_GCC) /usr/bin/gcov-dump \
+	    /usr/bin/gcov-dump-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov-dump \
 	    /usr/bin/gcov-tool-$(PV_GCC) /usr/bin/gcov-tool \
 	    /usr/bin/gcov-tool-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov-tool \
 	  )
@@ -1129,6 +1131,7 @@ install.%: pre-install
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov \
 	  /usr/share/doc/gcc-$(PV_GCC_$(CROSS_ARCH))/README.Bugs /usr/share/doc/cpp-$(CROSS_GNU_TYPE)/README.Bugs \
 	  $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
+	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool \
 	  )
 	dh_link -pgcc-$(CROSS_GNU_TYPE) \
