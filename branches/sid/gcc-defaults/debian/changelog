@@ -1,8 +1,8 @@
-gcc-defaults (1.166) UNRELEASED; urgency=medium
+gcc-defaults (1.166) unstable; urgency=medium
 
   * gcc: Install gcov-dump symlinks.
 
- -- Matthias Klose <doko@debian.org>  Thu, 16 Mar 2017 12:09:21 +0100
+ -- Matthias Klose <doko@debian.org>  Thu, 16 Mar 2017 15:08:32 +0100
 
 gcc-defaults (1.165) unstable; urgency=medium
 
