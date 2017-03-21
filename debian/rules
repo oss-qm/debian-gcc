@@ -1129,7 +1129,7 @@ install.%: pre-install
 	  /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gcc-$(CROSS_GNU_TYPE) \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcc-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcc \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov \
-	  /usr/share/doc/gcc-$(PV_GCC_$(CROSS_ARCH))/README.Bugs /usr/share/doc/cpp-$(CROSS_GNU_TYPE)/README.Bugs \
+	  /usr/share/doc/gcc-$(PV_GCC_$(CROSS_ARCH))-base/README.Bugs /usr/share/doc/cpp-$(CROSS_GNU_TYPE)/README.Bugs \
 	  $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool \
@@ -1316,7 +1316,7 @@ ifeq ($(with_native),yes)
 	  esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
-	  rm -f debian/$$p/usr/share/doc/$$p; \
+	  rm -rf debian/$$p/usr/share/doc/$$p; \
 	  ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	done
 
@@ -1429,7 +1429,6 @@ binary.%: build-arch install
 	dh_testdir
 	dh_testroot
 	dh_installdocs -pcpp-$(CROSS_GNU_TYPE) \
-	  $(if $(filter gdc-$(CROSS_GNU_TYPE), $(packages)),-pgdc-$(CROSS_GNU_TYPE)) \
 	  $(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)),-ppkg-config-$(CROSS_GNU_TYPE))
 
 	for p in $(filter %-$(CROSS_GNU_TYPE),$(cross_packages)); do \
@@ -1440,14 +1439,13 @@ binary.%: build-arch install
 	  esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	  mkdir -p debian/$$p/usr/share/doc; \
-	  rm -f debian/$$p/usr/share/doc/$$p; \
+	  rm -rf debian/$$p/usr/share/doc/$$p; \
 	  ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	done
 
 	dh_installchangelogs -pcpp-$(CROSS_GNU_TYPE) \
-	  $(if $(filter gdc-$(CROSS_GNU_TYPE), $(packages)),-pgdc-$(CROSS_GNU_TYPE)) \
 	  $(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)),-ppkg-config-$(CROSS_GNU_TYPE))
-	for i in cpp-$(CROSS_GNU_TYPE) $(if $(filter gdc-$(CROSS_GNU_TYPE), $(packages)),gdc-$(CROSS_GNU_TYPE)) $(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)),pkg-config-$(CROSS_GNU_TYPE)); do \
+	for i in cpp-$(CROSS_GNU_TYPE) $(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)),pkg-config-$(CROSS_GNU_TYPE)); do \
 	  mv debian/$$i/usr/share/doc/$$i/changelog \
 		debian/$$i/usr/share/doc/$$i/changelog.Debian; \
 	done
