@@ -1,8 +1,9 @@
 gcc-defaults (1.167) UNRELEASED; urgency=medium
 
   * Fix README.Bugs and gdc docdir symlinks. Closes: #858112.
+  * Install gcov-dump man pages.
 
- -- Matthias Klose <doko@debian.org>  Thu, 16 Mar 2017 15:08:32 +0100
+ -- Matthias Klose <doko@debian.org>  Fri, 07 Apr 2017 16:30:56 +0200
 
 gcc-defaults (1.166) unstable; urgency=medium
 

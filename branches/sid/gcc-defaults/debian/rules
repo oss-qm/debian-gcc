@@ -807,6 +807,8 @@ ifeq ($(with_native),yes)
 	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
 	    /usr/share/man/man1/gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/gcov-tool.1.gz \
 	    /usr/share/man/man1/gcov-tool-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov-tool.1.gz \
+	    /usr/share/man/man1/gcov-dump-$(PV_GCC).1.gz /usr/share/man/man1/gcov-dump.1.gz \
+	    /usr/share/man/man1/gcov-dump-$(PV_GCC).1.gz /usr/share/man/man1/$(DEB_HOST_GNU_TYPE)-gcov-dump.1.gz \
 	  )
 	: # gcc-doc
 	dh_installdirs -pgcc-doc \
@@ -1157,6 +1159,8 @@ install.%: pre-install
 	    $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
 	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-tool-$(PV_GCC_$(CROSS_ARCH)).1.gz \
 	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-tool.1.gz) \
+	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-dump-$(PV_GCC_$(CROSS_ARCH)).1.gz \
+	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-dump.1.gz) \
 	)
 
 	: # gdc-$(CROSS_GNU_TYPE)
