@@ -1,4 +1,10 @@
-gcc-defaults (1.167) UNRELEASED; urgency=medium
+gcc-defaults (1.168) unstable; urgency=medium
+
+  * Fix building the cross packages.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 08 Apr 2017 21:18:51 +0200
+
+gcc-defaults (1.167) unstable; urgency=medium
 
   * Fix README.Bugs and gdc docdir symlinks. Closes: #858112.
   * Install gcov-dump man pages.
