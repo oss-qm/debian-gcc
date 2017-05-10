@@ -6,7 +6,7 @@ Uploaders: Matthias Klose <doko@debian.org>
 Standards-Version: 3.9.8
 Build-Depends: m4, debhelper (>= 9),
   dpkg-dev (>= 1.17.11),
-  gcc-6-base (>= 6.3.0-9),
+  gcc-7-base (>= 7),
   lsb-release
 Build-Depends-Indep: ca-certificates, gcj-jdk, python
 Vcs-Svn: svn://svn.debian.org/svn/gcccvs/branches/sid/gcc-defaults
@@ -367,6 +367,30 @@ Depends: libgphobos-${pv:gdc}-dev ${reqv:gdc}, ${misc:Depends}
 Provides: libphobos-dev
 Description: Phobos D standard library
  This is a dependency package providing the default D standard library.
+
+Package: gccbrig
+Priority: optional
+Architecture: any
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}),
+  gccbrig-${pv:brig} ${reqv:brig}, ${misc:Depends}
+Description: GNU BRIG (HSA IL) frontend
+ This is the GNU BRIG (HSA IL) frontend.  The consumed format is a binary
+ representation. The textual HSAIL can be compiled to it with a separate
+ assembler.
+ .
+ This is a dependency package providing the default GNU Objective-C compiler.
+
+Package: gcc-offload-nvptx
+Priority: optional
+Architecture: amd64
+Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}),
+  gcc-${pv:offl}-offload-nvptx ${reqv:offl}, ${misc:Depends}
+Description: GCC offloading compiler to NVPTX
+ This package contains libgomp plugin for offloading to NVidia
+ PTX. The plugin needs libcuda.so.1 shared library that has to be
+ installed separately.
+ .
+ This is a dependency package providing the default GNU Objective-C compiler.
 
 Package: gcc-hppa64-linux-gnu
 Priority: optional
