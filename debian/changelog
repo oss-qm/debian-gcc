@@ -1,15 +1,33 @@
-gcc-defaults (1.168) unstable; urgency=medium
+gcc-defaults (1.170) UNRELEASED; urgency=medium
 
-  * Fix building the cross packages.
+  * Bump GCC 6 version to 6.3.0.
+  * Bump GCC 7 version to 7.1.0.
+  * Build gccbrig and gcc-offload-nvptx packages.
 
- -- Matthias Klose <doko@debian.org>  Sat, 08 Apr 2017 21:18:51 +0200
+ -- Matthias Klose <doko@debian.org>  Tue, 21 Mar 2017 11:39:31 +0100
 
-gcc-defaults (1.167) unstable; urgency=medium
+gcc-defaults (1.169) experimental; urgency=medium
 
-  * Fix README.Bugs and gdc docdir symlinks. Closes: #858112.
-  * Install gcov-dump man pages.
+  * gcc-multilib: Add conflicts with GCC 7 cross compiler packages.
+  * Stop building powerpc cross packages from this source.
+  * Build mips64el packages from this source.
 
- -- Matthias Klose <doko@debian.org>  Fri, 07 Apr 2017 16:30:56 +0200
+ -- Matthias Klose <doko@debian.org>  Sun, 27 Nov 2016 16:37:59 +0100
+
+gcc-defaults (1.168) experimental; urgency=medium
+
+  * Default to GCC 7, except for gij/gcj.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 26 Nov 2016 17:14:56 +0100
+
+gcc-defaults (1.164) unstable; urgency=medium
+
+  * Bump GCC 6 version to 6.2.1.
+  * Bump GCC 5 version to 5.4.1.
+  * Rename libphobos-dev to libgphobos-dev.
+  * Mark libgphobos-dev as Multi-Arch: same.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 18 Nov 2016 14:33:45 +0100
 
 gcc-defaults (1.166) unstable; urgency=medium
 
@@ -29,15 +47,6 @@ gcc-defaults (1.165) unstable; urgency=medium
   * Bump libgcj-bc version number. Closes: #851775.
 
  -- Matthias Klose <doko@debian.org>  Wed, 18 Jan 2017 17:11:46 +0100
-
-gcc-defaults (1.164) unstable; urgency=medium
-
-  * Bump GCC 6 version to 6.2.1.
-  * Bump GCC 5 version to 5.4.1.
-  * Rename libphobos-dev to libgphobos-dev.
-  * Mark libgphobos-dev as Multi-Arch: same.
-
- -- Matthias Klose <doko@debian.org>  Fri, 18 Nov 2016 14:33:45 +0100
 
 gcc-defaults (1.163) unstable; urgency=medium
 
