@@ -154,6 +154,7 @@ REL_NO_63	:= $(shell expr $(VMINOR) - 164)$(REL_EXT)
 
 REL_NO_70	:= $(shell expr $(VMINOR) - 167)$(REL_EXT)
 REL_NO_71	:= $(shell expr $(VMINOR) - 169)$(REL_EXT)
+REL_NO_71	:= $(shell expr $(VMINOR) - 170)$(REL_EXT)
 
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
@@ -777,6 +778,7 @@ ifeq ($(with_native),yes)
 	  /usr/bin/gcc-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcc \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/gcov \
 	  /usr/bin/gcov-$(PV_GCC) /usr/bin/$(DEB_HOST_GNU_TYPE)-gcov \
+	  /usr/lib/gcc/$(DEB_HOST_GNU_TYPE)/$(PV_GCC)/liblto_plugin.so /usr/lib/bfd-plugins/liblto_plugin.so \
 	  /usr/share/doc/gcc-$(PV_GCC)/README.Bugs /usr/share/doc/cpp/README.Bugs \
 	  $(if $(filter $(DEB_HOST_ARCH), $(gcc49_archs)),, \
 	    /usr/bin/gcov-dump-$(PV_GCC) /usr/bin/gcov-dump \

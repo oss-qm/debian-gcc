@@ -1,4 +1,10 @@
-gcc-defaults (1.170) UNRELEASED; urgency=medium
+gcc-defaults (1.171) UNRELEASED; urgency=medium
+
+  * Provide liblto_plugin.so symlink in /usr/lib/bfd-plugins. Closes: #865690.
+
+ -- Matthias Klose <doko@x250>  Tue, 27 Jun 2017 12:20:18 +0000
+
+gcc-defaults (1.170) experimental; urgency=medium
 
   * Bump GCC 6 version to 6.3.0.
   * Bump GCC 7 version to 7.1.0.
