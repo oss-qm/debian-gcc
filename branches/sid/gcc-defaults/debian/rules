@@ -1167,7 +1167,7 @@ install.%: pre-install
 	  /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gcc-$(CROSS_GNU_TYPE) \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcc-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcc \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov \
-	  /usr/share/doc/gcc-$(PV_GCC_$(CROSS_ARCH))-base/README.Bugs /usr/share/doc/cpp-$(CROSS_GNU_TYPE)/README.Bugs \
+	  /usr/share/doc/gcc-$(PV_GCC)-$(CROSS_GNU_TYPE)-base/README.Bugs /usr/share/doc/cpp-$(CROSS_GNU_TYPE)/README.Bugs \
 	  $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool \
