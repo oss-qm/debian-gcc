@@ -1,6 +1,7 @@
 gcc-defaults (1.171) UNRELEASED; urgency=medium
 
   * Provide liblto_plugin.so symlink in /usr/lib/bfd-plugins. Closes: #865690.
+  * dh_nativejava: Don't use deprecated POSIX::tmpnam(). Closes: #866315.
 
  -- Matthias Klose <doko@x250>  Tue, 27 Jun 2017 12:20:18 +0000
 

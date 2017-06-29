@@ -9,7 +9,7 @@ dh_nativejava - compile jar files to native code and register them
 use strict;
 use Debian::Debhelper::Dh_Lib;
 use IO::File;
-use POSIX qw(tmpnam);
+use File::Temp qw(tempfile tempdir);
 use Cwd;
 
 =head1 SYNOPSIS
@@ -62,10 +62,9 @@ if (! $dh{DESTDIR}) {
 }
 
 my $pwd = getcwd;
-my $sourcelist;
-do {
-  $sourcelist = tmpnam();
-} until my $fh = IO::File->new($sourcelist, O_RDWR|O_CREAT|O_EXCL);
+my ($tdir, $fh, $sourcelist);
+$tdir = tempdir(CLEANUP => 1);
+($fh, $sourcelist) = tempfile("sourcesXXXXX", DIR => $tdir);
 
 foreach my $package (@{$dh{DOPACKAGES}}) {
 	my $tmp=tmpdir($package);
