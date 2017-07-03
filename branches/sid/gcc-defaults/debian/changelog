@@ -22,6 +22,14 @@ gcc-defaults (1.169) experimental; urgency=medium
 
  -- Matthias Klose <doko@debian.org>  Sun, 27 Nov 2016 16:37:59 +0100
 
+gcc-defaults (1.168d1) unstable; urgency=medium
+
+  * Provide liblto_plugin.so symlink in /usr/lib/bfd-plugins. Closes: #865690.
+  * dh_nativejava: Don't use deprecated POSIX::tmpnam(). Closes: #866315.
+  * Fix README.Bugs symlinks for cross compilers. Closes: #858112.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 03 Jul 2017 17:21:10 +0200
+
 gcc-defaults (1.168) experimental; urgency=medium
 
   * Default to GCC 7, except for gij/gcj.
