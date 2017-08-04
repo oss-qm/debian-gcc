@@ -1,4 +1,4 @@
-gcc-defaults (1.171) UNRELEASED; urgency=medium
+gcc-defaults (1.171) unstable; urgency=medium
 
   * Provide liblto_plugin.so symlink in /usr/lib/bfd-plugins. Closes: #865690.
   * dh_nativejava: Don't use deprecated POSIX::tmpnam(). Closes: #866315.
