@@ -370,7 +370,7 @@ Description: Phobos D standard library
 
 Package: gccbrig
 Priority: optional
-Architecture: any
+Architecture: amd64 i386 x32
 Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}),
   gccbrig-${pv:brig} ${reqv:brig}, ${misc:Depends}
 Description: GNU BRIG (HSA IL) frontend
