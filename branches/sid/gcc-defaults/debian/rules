@@ -373,7 +373,7 @@ CROSS_GNU_TYPE	= $(call _gnu_type,${CROSS_ARCH})
 all_packages    :=
 ifeq ($(with_native),yes)
   # FIXME: not all packages ...
-  all_packages	:= cpp gcc g++ gfortran gcj-jdk gobjc gobjc++ gdc gccgo libgphobos-dev gccbrig
+  all_packages	:= cpp gcc g++ gfortran gcj-jdk gobjc gobjc++ gdc gccgo libgphobos-dev
   ifneq (,$(filter $(DEB_HOST_ARCH), $(hppa64_archs)))
     all_packages += gcc-hppa64-linux-gnu
   endif
