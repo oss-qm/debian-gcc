@@ -2,8 +2,9 @@ gcc-defaults (1.172) UNRELEASED; urgency=medium
 
   * Build gccbrig on x86 linux architectures only.
   * Remove obsolete docdir symlink update (Sven Joachim). Closes: #867425.
+  * Don't build gccgo packages on m68k.
 
- -- Matthias Klose <doko@debian.org>  Sat, 05 Aug 2017 06:29:25 -0400
+ -- Matthias Klose <doko@debian.org>  Tue, 08 Aug 2017 11:56:36 -0400
 
 gcc-defaults (1.171) unstable; urgency=medium
 
