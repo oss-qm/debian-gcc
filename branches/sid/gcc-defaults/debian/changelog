@@ -1,4 +1,4 @@
-gcc-defaults (1.172) UNRELEASED; urgency=medium
+gcc-defaults (1.172) unstable; urgency=medium
 
   * Build gccbrig on x86 linux architectures only.
   * Remove obsolete docdir symlink update (Sven Joachim). Closes: #867425.
