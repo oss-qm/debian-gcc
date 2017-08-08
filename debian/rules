@@ -307,7 +307,7 @@ multilib_archs = $(sort \
 	powerpc ppc64 s390 s390x sparc sparc64 x32 \
 	$(if $(filter $(vendor), Ubuntu), armel armhf))
 
-go_archs = alpha amd64 arm64 armel armhf i386 ia64 m68k \
+go_archs = alpha amd64 arm64 armel armhf i386 ia64 \
 	mips mips64 mips64el mipsel \
 	powerpc powerpcspe ppc64 ppc64el s390 s390x sparc sparc64 x32
 
@@ -464,6 +464,7 @@ endif
 # packages which are in the control file, but never built ...
 invalid_packages = \
 	gccgo-hppa-linux-gnu \
+	gccgo-m68k-linux-gnu \
 	gccgo-sh4-linux-gnu \
 	gccgo-multilib-arm-linux-gnueabi \
 	gccgo-multilib-arm-linux-gnueabihf \
