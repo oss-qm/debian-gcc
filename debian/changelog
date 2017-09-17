@@ -1,3 +1,9 @@
+gcc-defaults (1.173) UNRELEASED; urgency=medium
+
+  * Bump GCC 7 version to 7.2.0.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 17 Sep 2017 12:36:40 +0200
+
 gcc-defaults (1.172) unstable; urgency=medium
 
   * Build gccbrig on x86 linux architectures only.

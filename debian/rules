@@ -156,6 +156,7 @@ REL_NO_64	:= $(shell expr $(VMINOR) - 170)$(REL_EXT)
 REL_NO_70	:= $(shell expr $(VMINOR) - 167)$(REL_EXT)
 REL_NO_71	:= $(shell expr $(VMINOR) - 169)$(REL_EXT)
 REL_NO_71	:= $(shell expr $(VMINOR) - 170)$(REL_EXT)
+REL_NO_72	:= $(shell expr $(VMINOR) - 172)$(REL_EXT)
 
 # minimum required gcc-X.Y versions
 REQV_295	:= (>= 1:2.95.4-16)
@@ -179,7 +180,7 @@ REQV_48		:= (>= 4.8.4-1~)
 REQV_49		:= (>= 4.9.3-10~)
 REQV_5		:= (>= 5.4.1-2~)
 REQV_6		:= (>= 6.4.0-1~)
-REQV_7		:= (>= 7.1.0-11~)
+REQV_7		:= (>= 7.2.0-5~)
 
 REQV_LIBGCJ_BC	:= (>= 6.4.0-1~)
 
@@ -203,21 +204,21 @@ gnat6_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mip
 gnat7_archs  =
 
 # CV_XXX is the complete version number, including the release, without epoch
-CV_CPP		:= 7.1.0-$(REL_NO_71)
-CV_GCC		:= 7.1.0-$(REL_NO_71)
-CV_GPP		:= 7.1.0-$(REL_NO_71)
-CV_GOBJC	:= 7.1.0-$(REL_NO_71)
-CV_GOBJCXX	:= 7.1.0-$(REL_NO_71)
-CV_GFORT	:= 7.1.0-$(REL_NO_71)
-CV_GGO		:= 7.1.0-$(REL_NO_71)
+CV_CPP		:= 7.2.0-$(REL_NO_72)
+CV_GCC		:= 7.2.0-$(REL_NO_72)
+CV_GPP		:= 7.2.0-$(REL_NO_72)
+CV_GOBJC	:= 7.2.0-$(REL_NO_72)
+CV_GOBJCXX	:= 7.2.0-$(REL_NO_72)
+CV_GFORT	:= 7.2.0-$(REL_NO_72)
+CV_GGO		:= 7.2.0-$(REL_NO_72)
 CV_GNAT		:= 6.4.0-$(REL_NO_64)
 CV_GCJ		:= 6.4.0-$(REL_NO_64)
 CV_GIJ		:= 6.4.0-$(REL_NO_64)
 CV_LIBGCJBC	:= 6.4.0-$(REL_NO_64)
-CV_GDC		:= 7.1.0-$(REL_NO_71)
+CV_GDC		:= 7.2.0-$(REL_NO_72)
 CV_LIBGCJCOMMON	:= 1:6.4-$(REL_NO_64)
-CV_BRIG		:= 7.1.0-$(REL_NO_71)
-CV_OFFL		:= 7.1.0-$(REL_NO_71)
+CV_BRIG		:= 7.2.0-$(REL_NO_72)
+CV_OFFL		:= 7.2.0-$(REL_NO_72)
 
 $(foreach a, $(all_archs), \
   $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GNAT CV_GCJ CV_GDC CV_BRIG CV_OFFL, \
