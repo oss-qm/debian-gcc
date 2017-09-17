@@ -1,6 +1,7 @@
 gcc-defaults (1.173) UNRELEASED; urgency=medium
 
   * Bump GCC 7 version to 7.2.0.
+  * Build powerpc64le cross packages on ppc64.
 
  -- Matthias Klose <doko@debian.org>  Sun, 17 Sep 2017 12:36:40 +0200
 
