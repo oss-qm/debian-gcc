@@ -360,7 +360,7 @@ ifneq (, $(filter $(DEB_HOST_ARCH),amd64 i386 x32))
 else ifeq ($(DEB_HOST_ARCH),arm64)
   CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)),, armel armhf)
 else ifeq ($(DEB_HOST_ARCH),ppc64)
-  CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)), ppc64el)
+  CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)),, ppc64el)
 else ifeq ($(DEB_HOST_ARCH),ppc64el)
   CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)), powerpc)
 else
