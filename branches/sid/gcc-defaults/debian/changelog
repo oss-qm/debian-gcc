@@ -1,3 +1,10 @@
+gcc-defaults (1.175) UNRELEASED; urgency=medium
+
+  * Default to GCC 8, except for gij/gcj (GCC 6) and gdc (GCC 7).
+  * Fix build with recent debhelper. Closes: #878338.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 19 Dec 2017 15:47:54 +0100
+
 gcc-defaults (1.173d1) unstable; urgency=medium
 
   * Really build powerpc64le cross packages on ppc64.
