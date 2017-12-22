@@ -1,6 +1,6 @@
 gcc-defaults (1.175) UNRELEASED; urgency=medium
 
-  * Default to GCC 8, except for gij/gcj (GCC 6) and gdc (GCC 7).
+  * Default to GCC 8, except for gij/gcj (GCC 6).
   * Fix build with recent debhelper. Closes: #878338.
 
  -- Matthias Klose <doko@debian.org>  Tue, 19 Dec 2017 15:47:54 +0100
