@@ -111,19 +111,19 @@ Description: Go compiler (based on GCC) for the CROSS_ARCH architecture
  This is a dependency package providing the default GNU Go cross-compiler
  for the CROSS_ARCH architecture.
 
-Package: gcj-CROSS_GNU_TYPE
-Priority: optional
-Architecture: @host_archs@
-Multi-Arch: foreign
-Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
-  gcj-${pv:gcj}-CROSS_GNU_TYPE ${reqv:gcj},
-  ${misc:Depends}
-Description: GNU Java compiler (based on GCC) for the CROSS_ARCH architecture
- This is the GNU Java compiler, which compiles java on platforms supported by
- the gcc compiler. It uses the gcc backend to generate optimized code.
- .
- This is a dependency package providing the default GNU Java cross-compiler
- for the CROSS_ARCH architecture.
+#Package: gcj-CROSS_GNU_TYPE
+#Priority: optional
+#Architecture: @host_archs@
+#Multi-Arch: foreign
+#Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
+#  gcj-${pv:gcj}-CROSS_GNU_TYPE ${reqv:gcj},
+#  ${misc:Depends}
+#Description: GNU Java compiler (based on GCC) for the CROSS_ARCH architecture
+# This is the GNU Java compiler, which compiles java on platforms supported by
+# the gcc compiler. It uses the gcc backend to generate optimized code.
+# .
+# This is a dependency package providing the default GNU Java cross-compiler
+# for the CROSS_ARCH architecture.
 
 Package: gdc-CROSS_GNU_TYPE
 Priority: optional

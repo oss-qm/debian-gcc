@@ -1,9 +1,17 @@
-gcc-defaults (1.175) UNRELEASED; urgency=medium
+gcc-defaults (1.176) UNRELEASED; urgency=medium
 
   * Default to GCC 8, except for gij/gcj (GCC 6).
   * Fix build with recent debhelper. Closes: #878338.
 
  -- Matthias Klose <doko@debian.org>  Tue, 19 Dec 2017 15:47:54 +0100
+
+gcc-defaults (1.174) unstable; urgency=medium
+
+  * Bump GCC 7 version to 7.3.0.
+  * Stop building the gcj packages. Closes: #892536.
+  * Fix build with recent debhelper. Closes: #878338.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 15 Mar 2018 15:22:14 +0100
 
 gcc-defaults (1.173d1) unstable; urgency=medium
 
