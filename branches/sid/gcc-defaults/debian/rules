@@ -346,7 +346,7 @@ HOST_ARCHS_mips64 = amd64 i386 x32
 HOST_ARCHS_mips64el = amd64 i386 x32
 HOST_ARCHS_powerpc = amd64 i386 x32 ppc64el
 HOST_ARCHS_powerpcspe = amd64 i386 x32
-HOST_ARCHS_ppc64 = amd64 i386 x32 ppc64el
+HOST_ARCHS_ppc64 = amd64 i386 x32
 HOST_ARCHS_ppc64el = amd64 i386 x32 ppc64
 HOST_ARCHS_s390x = amd64 i386 x32
 HOST_ARCHS_sh4 = amd64 i386 x32
@@ -369,7 +369,11 @@ else ifeq ($(DEB_HOST_ARCH),arm64)
 else ifeq ($(DEB_HOST_ARCH),ppc64)
   CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)),, ppc64el)
 else ifeq ($(DEB_HOST_ARCH),ppc64el)
-  CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)), powerpc)
+  ifeq ($(SOURCE),gcc-defaults)
+    CROSS_ARCHS = $(if $(filter $(vendor), Ubuntu), powerpc)
+  else
+    CROSS_ARCHS = $(if $(filter $(vendor), Ubuntu),, powerpc)
+  endif
 else
   CROSS_ARCHS =
 endif
