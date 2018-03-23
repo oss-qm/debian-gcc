@@ -6,6 +6,14 @@ gcc-defaults (1.176) UNRELEASED; urgency=medium
 
  -- Matthias Klose <doko@debian.org>  Tue, 19 Dec 2017 15:47:54 +0100
 
+gcc-defaults-ports (1.175) unstable; urgency=medium
+
+  * Build defaults packages for riscv64 cross compilers.
+  * Default gccgo to GCC 8.
+  * Default gdc to GCC 8 (dh-dlang already makes this assumption).
+
+ -- Matthias Klose <doko@debian.org>  Fri, 23 Mar 2018 11:50:22 +0800
+
 gcc-defaults (1.174) unstable; urgency=medium
 
   * Bump GCC 7 version to 7.3.0.
