@@ -1,18 +1,24 @@
-gcc-defaults (1.176) UNRELEASED; urgency=medium
+gcc-defaults (1.177) UNRELEASED; urgency=medium
 
   * Default to GCC 8, except for gij/gcj (GCC 6).
   * Fix build with recent debhelper. Closes: #878338.
   * Build defaults packages for riscv64 cross compilers.
 
- -- Matthias Klose <doko@debian.org>  Tue, 19 Dec 2017 15:47:54 +0100
+ -- Matthias Klose <doko@debian.org>  Wed, 04 Apr 2018 12:59:48 +0200
 
-gcc-defaults-ports (1.175) unstable; urgency=medium
+gcc-defaults (1.176) unstable; urgency=medium
+
+  * Build defaults packages for amd64 and i386.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 04 Apr 2018 12:16:13 +0200
+
+gcc-defaults (1.175) unstable; urgency=medium
 
   * Build defaults packages for riscv64 cross compilers.
   * Default gccgo to GCC 8.
   * Default gdc to GCC 8 (dh-dlang already makes this assumption).
 
- -- Matthias Klose <doko@debian.org>  Fri, 23 Mar 2018 11:50:22 +0800
+ -- Matthias Klose <doko@debian.org>  Fri, 23 Mar 2018 11:44:07 +0800
 
 gcc-defaults (1.174) unstable; urgency=medium
 

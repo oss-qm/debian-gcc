@@ -106,6 +106,7 @@ Conflicts: gcc-4.9-alpha-linux-gnu,
   gcc-7-arm-linux-gnueabi,
   gcc-7-arm-linux-gnueabihf,
   gcc-7-hppa-linux-gnu,
+  gcc-7-i686-linux-gnu,
   gcc-7-m68k-linux-gnu,
   gcc-7-powerpc-linux-gnu,
   gcc-7-powerpc-linux-gnuspe,
@@ -115,15 +116,18 @@ Conflicts: gcc-4.9-alpha-linux-gnu,
   gcc-7-mipsel-linux-gnu,
   gcc-7-mips64-linux-gnuabi64,
   gcc-7-mips64el-linux-gnuabi64,
+  gcc-7-riscv64-linux-gnu,
   gcc-7-s390x-linux-gnu,
   gcc-7-sh4-linux-gnu,
   gcc-7-sparc-linux-gnu,
-  gcc-7-sparc64-linux-gnu,
+  gcc-7-x86-64-linux-gnu,
+  gcc-7-x86-64-linux-gnux32,
   gcc-8-aarch64-linux-gnu,
   gcc-8-alpha-linux-gnu,
   gcc-8-arm-linux-gnueabi,
   gcc-8-arm-linux-gnueabihf,
   gcc-8-hppa-linux-gnu,
+  gcc-8-i686-linux-gnu,
   gcc-8-m68k-linux-gnu,
   gcc-8-powerpc-linux-gnu,
   gcc-8-powerpc-linux-gnuspe,
@@ -133,15 +137,19 @@ Conflicts: gcc-4.9-alpha-linux-gnu,
   gcc-8-mipsel-linux-gnu,
   gcc-8-mips64-linux-gnuabi64,
   gcc-8-mips64el-linux-gnuabi64,
+  gcc-8-riscv64-linux-gnu,
   gcc-8-s390x-linux-gnu,
   gcc-8-sh4-linux-gnu,
   gcc-8-sparc-linux-gnu,
   gcc-8-sparc64-linux-gnu,
+  gcc-8-x86-64-linux-gnu,
+  gcc-8-x86-64-linux-gnux32,
   gcc-9-aarch64-linux-gnu,
   gcc-9-alpha-linux-gnu,
   gcc-9-arm-linux-gnueabi,
   gcc-9-arm-linux-gnueabihf,
   gcc-9-hppa-linux-gnu,
+  gcc-9-i686-linux-gnu,
   gcc-9-m68k-linux-gnu,
   gcc-9-powerpc-linux-gnu,
   gcc-9-powerpc-linux-gnuspe,
@@ -151,10 +159,13 @@ Conflicts: gcc-4.9-alpha-linux-gnu,
   gcc-9-mipsel-linux-gnu,
   gcc-9-mips64-linux-gnuabi64,
   gcc-9-mips64el-linux-gnuabi64,
+  gcc-9-riscv64-linux-gnu,
   gcc-9-s390x-linux-gnu,
   gcc-9-sh4-linux-gnu,
   gcc-9-sparc-linux-gnu,
   gcc-9-sparc64-linux-gnu,
+  gcc-9-x86-64-linux-gnu,
+  gcc-9-x86-64-linux-gnux32,
 Description: GNU C compiler (multilib files)
  This is the GNU C compiler, a fairly portable optimizing compiler for C.
  .
@@ -1984,3 +1995,503 @@ Description: GNU D compiler (based on GCC) for the mips64el architecture
  .
  This is a dependency package providing the default GNU D cross-compiler
  cross-compiler for the mips64el architecture.
+
+Package: cpp-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Multi-Arch: foreign
+Section: interpreters
+Depends: cpp-${pv:cpp}-i686-linux-gnu ${reqv:cpp}, ${misc:Depends}
+Suggests: cpp-doc
+Description: GNU C preprocessor (cpp) for the i386 architecture
+ The GNU C preprocessor is a macro processor that is used automatically
+ by the GNU C compiler to transform programs before actual compilation.
+ .
+ This package has been separated from gcc for the benefit of those who
+ require the preprocessor but not the cross-compiler for i386 architecture.
+ .
+ This is a dependency package providing the default GNU C preprocessor
+ for the i386 architecture.
+
+Package: gcc-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gcc-${pv:gcc}-i686-linux-gnu ${reqv:gcc},
+  ${misc:Depends}
+Recommends: libc6-dev-i386-cross | libc-dev-i386-cross
+Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-i686-linux-gnu, gcc-doc
+Description: GNU C compiler for the i386 architecture
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ This is a dependency package providing the default GNU C cross-compiler
+ for the i386 architecture.
+
+Package: g++-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gcc-i686-linux-gnu (>= ${version:cpp}),
+  g++-${pv:gpp}-i686-linux-gnu ${reqv:gpp},
+  ${misc:Depends}
+Description: GNU C++ compiler for the i386 architecture
+ This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
+ .
+ This is a dependency package providing the default GNU C++ cross-compiler
+ for the i386 architecture.
+
+Package: gobjc-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gcc-i686-linux-gnu (>= ${version:cpp}),
+  gobjc-${pv:gobjc}-i686-linux-gnu ${reqv:gobjc},
+  ${misc:Depends}
+Description: GNU Objective-C compiler for the i386 architecture
+ This is the GNU Objective-C compiler, which compiles Objective-C on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Objective-C
+ cross-compiler for the i386 architecture.
+
+Package: gobjc++-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gcc-i686-linux-gnu (>= ${version:cpp}),
+  gobjc++-${pv:gobjcxx}-i686-linux-gnu ${reqv:gobjcxx},
+  ${misc:Depends}
+Recommends: g++-i686-linux-gnu (>= ${version:cpp}), gobjc-i686-linux-gnu (>= ${version:cpp})
+Description: GNU Objective-C++ compiler for the i386 architecture
+ This is the GNU Objective-C++ compiler, which compiles
+ Objective-C++ on platforms supported by the gcc compiler. It uses the
+ gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Objective-C++
+ cross-compiler for the i386 architecture.
+
+Package: gfortran-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gcc-i686-linux-gnu (>= ${version:gcc}),
+  gfortran-${pv:gfort}-i686-linux-gnu ${reqv:gfort},
+  ${misc:Depends}
+Suggests: gfortran-doc
+Description: GNU Fortran 95 compiler for the i386 architecture
+ This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Fortran 95
+ cross-compiler for the i386 architecture.
+
+Package: gccgo-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  g++-i686-linux-gnu (>= ${version:gcc}),
+  gccgo-${pv:ggo}-i686-linux-gnu ${reqv:ggo},
+  ${misc:Depends}
+Suggests: gccgo-doc
+Description: Go compiler (based on GCC) for the i386 architecture
+ This is the GNU Go compiler, which compiles Go on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Go cross-compiler
+ for the i386 architecture.
+
+#Package: gcj-i686-linux-gnu
+#Priority: optional
+#Architecture: amd64 arm64 ppc64el x32
+#Multi-Arch: foreign
+#Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+#  gcj-${pv:gcj}-i686-linux-gnu ${reqv:gcj},
+#  ${misc:Depends}
+#Description: GNU Java compiler (based on GCC) for the i386 architecture
+# This is the GNU Java compiler, which compiles java on platforms supported by
+# the gcc compiler. It uses the gcc backend to generate optimized code.
+# .
+# This is a dependency package providing the default GNU Java cross-compiler
+# for the i386 architecture.
+
+Package: gdc-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Multi-Arch: foreign
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gdc-${pv:gdc}-i686-linux-gnu ${reqv:gdc},
+  ${misc:Depends}
+Description: GNU D compiler (based on GCC) for the i386 architecture
+ This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ for the i386 architecture.
+
+Package: gcc-multilib-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gcc-i686-linux-gnu (>= ${version:gcc}),
+  gcc-${pv:gcc}-multilib-i686-linux-gnu ${reqv:gcc},
+  ${misc:Depends}
+Recommends: libc6-dev-i386-cross | libc-dev-i386-cross
+Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-i686-linux-gnu, gcc-doc
+Description: GNU C compiler for the i386 architecture
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ This is a dependency package providing the default GNU C cross-compiler
+ for the i386 architecture.
+
+Package: g++-multilib-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  g++-i686-linux-gnu (>= ${version:gpp}),
+  gcc-multilib-i686-linux-gnu (>= ${version:gcc}),
+  g++-${pv:gpp}-multilib-i686-linux-gnu ${reqv:gpp},
+  ${misc:Depends}
+Description: GNU C++ compiler for the i386 architecture
+ This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
+ .
+ This is a dependency package providing the default GNU C++
+ cross-compiler for the i386 architecture.
+
+Package: gobjc-multilib-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gobjc-i686-linux-gnu (>= ${version:gobjc}),
+  gcc-multilib-i686-linux-gnu (>= ${version:cpp}),
+  gobjc-${pv:gobjc}-multilib-i686-linux-gnu ${reqv:gobjc},
+  ${misc:Depends}
+Description: GNU Objective-C compiler for the i386 architecture
+ This is the GNU Objective-C compiler, which compiles Objective-C on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Objective-C
+ cross-compiler for the i386 architecture.
+
+Package: gobjc++-multilib-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gcc-multilib-i686-linux-gnu (>= ${version:cpp}),
+  gobjc++-i686-linux-gnu (>= ${version:gobjcxx}),
+  gobjc++-${pv:gobjcxx}-multilib-i686-linux-gnu ${reqv:gobjcxx},
+  ${misc:Depends}
+Recommends: g++-i686-linux-gnu (>= ${version:cpp}),
+  gobjc-i686-linux-gnu (>= ${version:cpp})
+Description: GNU Objective-C++ compiler for the i386 architecture
+ This is the GNU Objective-C++ compiler, which compiles
+ Objective-C++ on platforms supported by the gcc compiler. It uses the
+ gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Objective-C++
+ cross-compiler for the i386 architecture.
+
+Package: gfortran-multilib-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gcc-multilib-i686-linux-gnu (>= ${version:gcc}),
+  gfortran-i686-linux-gnu (>= ${version:gfort}),
+  gfortran-${pv:gfort}-multilib-i686-linux-gnu ${reqv:gfort},
+  ${misc:Depends}
+Suggests: gfortran-doc
+Description: GNU Fortran 95 compiler for the i386 architecture
+ This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Fortran 95
+ cross-compiler for the i386 architecture.
+
+Package: gccgo-multilib-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  g++-multilib-i686-linux-gnu (>= ${version:gcc}),
+  gccgo-i686-linux-gnu (>= ${version:ggo}),
+  gccgo-${pv:ggo}-multilib-i686-linux-gnu ${reqv:ggo},
+  ${misc:Depends}
+Suggests: gccgo-doc
+Description: Go compiler (based on GCC) for the i386 architecture
+ This is the GNU Go compiler, which compiles Go on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Go cross-compiler
+ cross-compiler for the i386 architecture.
+
+Package: gdc-multilib-i686-linux-gnu
+Priority: optional
+Architecture: amd64 arm64 ppc64el x32
+Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+  gdc-${pv:gdc}-multilib-i686-linux-gnu ${reqv:gdc},
+  gdc-i686-linux-gnu (>= ${version:gdc}),
+  ${misc:Depends}
+Description: GNU D compiler (based on GCC) for the i386 architecture
+ This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the i386 architecture.
+
+Package: cpp-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Multi-Arch: foreign
+Section: interpreters
+Depends: cpp-${pv:cpp}-x86-64-linux-gnux32 ${reqv:cpp}, ${misc:Depends}
+Suggests: cpp-doc
+Description: GNU C preprocessor (cpp) for the x32 architecture
+ The GNU C preprocessor is a macro processor that is used automatically
+ by the GNU C compiler to transform programs before actual compilation.
+ .
+ This package has been separated from gcc for the benefit of those who
+ require the preprocessor but not the cross-compiler for x32 architecture.
+ .
+ This is a dependency package providing the default GNU C preprocessor
+ for the x32 architecture.
+
+Package: gcc-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Multi-Arch: foreign
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gcc-${pv:gcc}-x86-64-linux-gnux32 ${reqv:gcc},
+  ${misc:Depends}
+Recommends: libc6-dev-x32-cross | libc-dev-x32-cross
+Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-x86-64-linux-gnux32, gcc-doc
+Description: GNU C compiler for the x32 architecture
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ This is a dependency package providing the default GNU C cross-compiler
+ for the x32 architecture.
+
+Package: g++-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Multi-Arch: foreign
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gcc-x86-64-linux-gnux32 (>= ${version:cpp}),
+  g++-${pv:gpp}-x86-64-linux-gnux32 ${reqv:gpp},
+  ${misc:Depends}
+Description: GNU C++ compiler for the x32 architecture
+ This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
+ .
+ This is a dependency package providing the default GNU C++ cross-compiler
+ for the x32 architecture.
+
+Package: gobjc-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Multi-Arch: foreign
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gcc-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gobjc-${pv:gobjc}-x86-64-linux-gnux32 ${reqv:gobjc},
+  ${misc:Depends}
+Description: GNU Objective-C compiler for the x32 architecture
+ This is the GNU Objective-C compiler, which compiles Objective-C on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Objective-C
+ cross-compiler for the x32 architecture.
+
+Package: gobjc++-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Multi-Arch: foreign
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gcc-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gobjc++-${pv:gobjcxx}-x86-64-linux-gnux32 ${reqv:gobjcxx},
+  ${misc:Depends}
+Recommends: g++-x86-64-linux-gnux32 (>= ${version:cpp}), gobjc-x86-64-linux-gnux32 (>= ${version:cpp})
+Description: GNU Objective-C++ compiler for the x32 architecture
+ This is the GNU Objective-C++ compiler, which compiles
+ Objective-C++ on platforms supported by the gcc compiler. It uses the
+ gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Objective-C++
+ cross-compiler for the x32 architecture.
+
+Package: gfortran-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Multi-Arch: foreign
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gcc-x86-64-linux-gnux32 (>= ${version:gcc}),
+  gfortran-${pv:gfort}-x86-64-linux-gnux32 ${reqv:gfort},
+  ${misc:Depends}
+Suggests: gfortran-doc
+Description: GNU Fortran 95 compiler for the x32 architecture
+ This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Fortran 95
+ cross-compiler for the x32 architecture.
+
+Package: gccgo-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Multi-Arch: foreign
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  g++-x86-64-linux-gnux32 (>= ${version:gcc}),
+  gccgo-${pv:ggo}-x86-64-linux-gnux32 ${reqv:ggo},
+  ${misc:Depends}
+Suggests: gccgo-doc
+Description: Go compiler (based on GCC) for the x32 architecture
+ This is the GNU Go compiler, which compiles Go on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Go cross-compiler
+ for the x32 architecture.
+
+#Package: gcj-x86-64-linux-gnux32
+#Priority: optional
+#Architecture: amd64 arm64 i386 ppc64el
+#Multi-Arch: foreign
+#Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+#  gcj-${pv:gcj}-x86-64-linux-gnux32 ${reqv:gcj},
+#  ${misc:Depends}
+#Description: GNU Java compiler (based on GCC) for the x32 architecture
+# This is the GNU Java compiler, which compiles java on platforms supported by
+# the gcc compiler. It uses the gcc backend to generate optimized code.
+# .
+# This is a dependency package providing the default GNU Java cross-compiler
+# for the x32 architecture.
+
+Package: gdc-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Multi-Arch: foreign
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gdc-${pv:gdc}-x86-64-linux-gnux32 ${reqv:gdc},
+  ${misc:Depends}
+Description: GNU D compiler (based on GCC) for the x32 architecture
+ This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ for the x32 architecture.
+
+Package: gcc-multilib-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gcc-x86-64-linux-gnux32 (>= ${version:gcc}),
+  gcc-${pv:gcc}-multilib-x86-64-linux-gnux32 ${reqv:gcc},
+  ${misc:Depends}
+Recommends: libc6-dev-x32-cross | libc-dev-x32-cross
+Suggests: make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb-x86-64-linux-gnux32, gcc-doc
+Description: GNU C compiler for the x32 architecture
+ This is the GNU C compiler, a fairly portable optimizing compiler for C.
+ .
+ This is a dependency package providing the default GNU C cross-compiler
+ for the x32 architecture.
+
+Package: g++-multilib-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  g++-x86-64-linux-gnux32 (>= ${version:gpp}),
+  gcc-multilib-x86-64-linux-gnux32 (>= ${version:gcc}),
+  g++-${pv:gpp}-multilib-x86-64-linux-gnux32 ${reqv:gpp},
+  ${misc:Depends}
+Description: GNU C++ compiler for the x32 architecture
+ This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
+ .
+ This is a dependency package providing the default GNU C++
+ cross-compiler for the x32 architecture.
+
+Package: gobjc-multilib-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gobjc-x86-64-linux-gnux32 (>= ${version:gobjc}),
+  gcc-multilib-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gobjc-${pv:gobjc}-multilib-x86-64-linux-gnux32 ${reqv:gobjc},
+  ${misc:Depends}
+Description: GNU Objective-C compiler for the x32 architecture
+ This is the GNU Objective-C compiler, which compiles Objective-C on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Objective-C
+ cross-compiler for the x32 architecture.
+
+Package: gobjc++-multilib-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gcc-multilib-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gobjc++-x86-64-linux-gnux32 (>= ${version:gobjcxx}),
+  gobjc++-${pv:gobjcxx}-multilib-x86-64-linux-gnux32 ${reqv:gobjcxx},
+  ${misc:Depends}
+Recommends: g++-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gobjc-x86-64-linux-gnux32 (>= ${version:cpp})
+Description: GNU Objective-C++ compiler for the x32 architecture
+ This is the GNU Objective-C++ compiler, which compiles
+ Objective-C++ on platforms supported by the gcc compiler. It uses the
+ gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Objective-C++
+ cross-compiler for the x32 architecture.
+
+Package: gfortran-multilib-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gcc-multilib-x86-64-linux-gnux32 (>= ${version:gcc}),
+  gfortran-x86-64-linux-gnux32 (>= ${version:gfort}),
+  gfortran-${pv:gfort}-multilib-x86-64-linux-gnux32 ${reqv:gfort},
+  ${misc:Depends}
+Suggests: gfortran-doc
+Description: GNU Fortran 95 compiler for the x32 architecture
+ This is the GNU Fortran 95 compiler, which compiles Fortran 95 on platforms
+ supported by the gcc compiler. It uses the gcc backend to generate optimized
+ code.
+ .
+ This is a dependency package providing the default GNU Fortran 95
+ cross-compiler for the x32 architecture.
+
+Package: gccgo-multilib-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  g++-multilib-x86-64-linux-gnux32 (>= ${version:gcc}),
+  gccgo-x86-64-linux-gnux32 (>= ${version:ggo}),
+  gccgo-${pv:ggo}-multilib-x86-64-linux-gnux32 ${reqv:ggo},
+  ${misc:Depends}
+Suggests: gccgo-doc
+Description: Go compiler (based on GCC) for the x32 architecture
+ This is the GNU Go compiler, which compiles Go on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU Go cross-compiler
+ cross-compiler for the x32 architecture.
+
+Package: gdc-multilib-x86-64-linux-gnux32
+Priority: optional
+Architecture: amd64 arm64 i386 ppc64el
+Depends: cpp-x86-64-linux-gnux32 (>= ${version:cpp}),
+  gdc-${pv:gdc}-multilib-x86-64-linux-gnux32 ${reqv:gdc},
+  gdc-x86-64-linux-gnux32 (>= ${version:gdc}),
+  ${misc:Depends}
+Description: GNU D compiler (based on GCC) for the x32 architecture
+ This is the GNU D compiler, which compiles D on platforms supported by
+ the gcc compiler. It uses the gcc backend to generate optimized code.
+ .
+ This is a dependency package providing the default GNU D cross-compiler
+ cross-compiler for the x32 architecture.

@@ -335,10 +335,12 @@ hppa64_archs = amd64 hppa i386 x32
 phobos_archs = amd64 armel armhf i386 x32 hppa
 
 HOST_ARCHS_alpha = amd64 i386 x32
+HOST_ARCHS_amd64 = arm64 i386 ppc64el x32
 HOST_ARCHS_armhf = amd64 i386 x32 arm64
 HOST_ARCHS_armel = amd64 i386 x32 arm64
 HOST_ARCHS_arm64 = amd64 i386 x32
 HOST_ARCHS_hppa = amd64 i386 x32
+HOST_ARCHS_i386 = amd64 arm64 ppc64el x32
 HOST_ARCHS_m68k = amd64 i386 x32
 HOST_ARCHS_mips = amd64 i386 x32
 HOST_ARCHS_mipsel = amd64 i386 x32
@@ -352,28 +354,34 @@ HOST_ARCHS_riscv64 = amd64 i386 x32
 HOST_ARCHS_s390x = amd64 i386 x32
 HOST_ARCHS_sh4 = amd64 i386 x32
 HOST_ARCHS_sparc64 = amd64 i386 x32
+HOST_ARCHS_x32 = amd64 arm64 i386 ppc64el
 
 ifeq ($(SOURCE),gcc-defaults)
   with_native = yes
-  CROSS_ARCHS  ?= s390x ppc64el arm64 armhf armel \
-			$(if $(filter $(vendor), Ubuntu), powerpc, mips mipsel mips64el)
+  ifeq (,$(CROSS_ARCHS))
+    CROSS_ARCHS  = s390x ppc64el arm64 armhf armel \
+	$(if $(filter $(vendor), Ubuntu), powerpc, mips mipsel mips64el) \
+        $(if $(filter $(DEB_HOST_ARCH), i386 x32), amd64) \
+        $(if $(filter $(DEB_HOST_ARCH), amd64 x32), i386) \
+        $(if $(filter $(DEB_HOST_ARCH), amd64 i386), x32)
+  endif
 else
   CROSS_ARCHS  ?= alpha hppa m68k mips64 powerpcspe ppc64 riscv64 sh4 sparc64 \
-			$(if $(filter $(vendor), Ubuntu), mips mipsel mips64el, powerpc)
+		$(if $(filter $(vendor), Ubuntu), mips mipsel mips64el, powerpc)
 endif
 with_cross  = yes
 
 ifneq (, $(filter $(DEB_HOST_ARCH),amd64 i386 x32))
   # just use the default from above
 else ifeq ($(DEB_HOST_ARCH),arm64)
-  CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)),, armel armhf)
+  CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)), x32, amd64 armel armhf i386)
 else ifeq ($(DEB_HOST_ARCH),ppc64)
   CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)),, ppc64el)
 else ifeq ($(DEB_HOST_ARCH),ppc64el)
   ifeq ($(SOURCE),gcc-defaults)
-    CROSS_ARCHS = $(if $(filter $(vendor), Ubuntu), powerpc)
+    CROSS_ARCHS = amd64 i386 $(if $(filter $(vendor), Ubuntu), powerpc)
   else
-    CROSS_ARCHS = $(if $(filter $(vendor), Ubuntu),, powerpc)
+    CROSS_ARCHS = x32 $(if $(filter $(vendor), Ubuntu),, powerpc)
   endif
 else
   CROSS_ARCHS =
@@ -382,6 +390,7 @@ endif
 CROSS_ARCH	= $(subst .,,$(suffix $@))
 _gnu_type	= $(shell dpkg-architecture -a$(1) -qDEB_HOST_GNU_TYPE -f)
 CROSS_GNU_TYPE	= $(call _gnu_type,${CROSS_ARCH})
+CROSS_PKG_GNU_TYPE = $(subst _,-,$(call _gnu_type,${CROSS_ARCH}))
 
 all_packages    :=
 ifeq ($(with_native),yes)
@@ -718,7 +727,7 @@ ifeq ($(with_cross),yes)
 	$(foreach a,$(CROSS_ARCHS), \
 	  sed \
 	    -e "s/CROSS_ARCH/$(a)/g" \
-	    -e 's/CROSS_GNU_TYPE/$(call _gnu_type,$(a))/g' \
+	    -e 's/CROSS_GNU_TYPE/$(subst _,-,$(call _gnu_type,$(a)))/g' \
 	    -e 's/@host_archs@/$(HOST_ARCHS_$(a))/g' \
 	    debian/control.cross.in \
 	    $(if $(filter $(a),$(multilib_archs)), debian/control.cross-ml.in) \
@@ -1169,23 +1178,23 @@ endif
 endif # with_native
 
 install.%: pre-install
-	for p in $(filter %-$(CROSS_GNU_TYPE), $(all_packages)); do \
+	for p in $(filter %-$(CROSS_PKG_GNU_TYPE), $(all_packages)); do \
 	  cp -l debian/substvars.$(CROSS_ARCH) debian/$$p.substvars; \
 	done
 
-	: # cpp-$(CROSS_GNU_TYPE)
-	dh_installdirs -pcpp-$(CROSS_GNU_TYPE)
-	dh_link -pcpp-$(CROSS_GNU_TYPE) \
+	: # cpp-$(CROSS_PKG_GNU_TYPE)
+	dh_installdirs -pcpp-$(CROSS_PKG_GNU_TYPE)
+	dh_link -pcpp-$(CROSS_PKG_GNU_TYPE) \
 	  /usr/bin/$(CROSS_GNU_TYPE)-cpp-$(PV_CPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-cpp
 
 	$(if $(filter yes, $(with_gfdl_docs)), \
-	  dh_link -pcpp-$(CROSS_GNU_TYPE) \
+	  dh_link -pcpp-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-cpp-$(PV_CPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-cpp.1.gz \
 	)
 
-	: # gcc-$(CROSS_GNU_TYPE)
-	dh_installdirs -pgcc-$(CROSS_GNU_TYPE)
-	dh_link -pgcc-$(CROSS_GNU_TYPE) \
+	: # gcc-$(CROSS_PKG_GNU_TYPE)
+	dh_installdirs -pgcc-$(CROSS_PKG_GNU_TYPE)
+	dh_link -pgcc-$(CROSS_PKG_GNU_TYPE) \
 	  /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gcc-$(CROSS_GNU_TYPE) \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcc-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcc \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov \
@@ -1194,7 +1203,7 @@ install.%: pre-install
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-dump \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcov-tool \
 	  )
-	dh_link -pgcc-$(CROSS_GNU_TYPE) \
+	dh_link -pgcc-$(CROSS_PKG_GNU_TYPE) \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcc-ar-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcc-ar \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcc-nm-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcc-nm \
 	  /usr/bin/$(CROSS_GNU_TYPE)-gcc-ranlib-$(PV_GCC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcc-ranlib \
@@ -1211,7 +1220,7 @@ install.%: pre-install
 	: #	debian/gcc.postinst.in > debian/gcc.postinst
 
 	$(if $(filter yes, $(with_gfdl_docs)), \
-	  dh_link -pgcc-$(CROSS_GNU_TYPE) \
+	  dh_link -pgcc-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcc-$(PV_GCC_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcc.1.gz \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-$(PV_GCC_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov.1.gz \
 	    $(if $(filter $(CROSS_ARCH), $(gcc49_archs)),, \
@@ -1221,34 +1230,34 @@ install.%: pre-install
 	      /usr/share/man/man1/$(CROSS_GNU_TYPE)-gcov-dump.1.gz) \
 	)
 
-	: # gdc-$(CROSS_GNU_TYPE)
-	$(if $(filter gdc-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_installdirs -pgdc-$(CROSS_GNU_TYPE); \
-	  dh_installdocs -pgdc-$(CROSS_GNU_TYPE) \
+	: # gdc-$(CROSS_PKG_GNU_TYPE)
+	$(if $(filter gdc-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pgdc-$(CROSS_PKG_GNU_TYPE); \
+	  dh_installdocs -pgdc-$(CROSS_PKG_GNU_TYPE) \
 	    debian/README.Debian; \
-	  dh_link -pgdc-$(CROSS_GNU_TYPE) \
+	  dh_link -pgdc-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gdc-$(PV_GDC_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gdc \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gdc-$(PV_GDC_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gdc.1.gz; \
 	)
 
-	: # gobjc-$(CROSS_GNU_TYPE)
-	$(if $(filter gobjc-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_installdirs -pgobjc-$(CROSS_GNU_TYPE); \
-	  dh_link -pgobjc-$(CROSS_GNU_TYPE) \
+	: # gobjc-$(CROSS_PKG_GNU_TYPE)
+	$(if $(filter gobjc-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pgobjc-$(CROSS_PKG_GNU_TYPE); \
+	  dh_link -pgobjc-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gobjc-$(CROSS_GNU_TYPE); \
 	)
 
-	: # gobjc++-$(CROSS_GNU_TYPE)
-	$(if $(filter gobjc++-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_installdirs -pgobjc++-$(CROSS_GNU_TYPE); \
-	  dh_link -pgobjc++-$(CROSS_GNU_TYPE) \
+	: # gobjc++-$(CROSS_PKG_GNU_TYPE)
+	$(if $(filter gobjc++-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pgobjc++-$(CROSS_PKG_GNU_TYPE); \
+	  dh_link -pgobjc++-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gobjc++-$(CROSS_GNU_TYPE); \
 	)
 
-	: # g++-$(CROSS_GNU_TYPE)
-	$(if $(filter g++-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_installdirs -pg++-$(CROSS_GNU_TYPE); \
-	  dh_link -pg++-$(CROSS_GNU_TYPE) \
+	: # g++-$(CROSS_PKG_GNU_TYPE)
+	$(if $(filter g++-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pg++-$(CROSS_PKG_GNU_TYPE); \
+	  dh_link -pg++-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/g++-$(CROSS_GNU_TYPE) \
 	    /usr/bin/$(CROSS_GNU_TYPE)-g++-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-g++ \
 	    $(if $(filter yes, $(with_gfdl_docs)), \
@@ -1258,10 +1267,10 @@ install.%: pre-install
 	  : #	debian/g++.postinst.in > debian/g++.postinst; \
 	)
 
-	: # gfortran-$(CROSS_GNU_TYPE)
-	$(if $(filter gfortran-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_installdirs -pgfortran-$(CROSS_GNU_TYPE); \
-	  dh_link -pgfortran-$(CROSS_GNU_TYPE) \
+	: # gfortran-$(CROSS_PKG_GNU_TYPE)
+	$(if $(filter gfortran-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pgfortran-$(CROSS_PKG_GNU_TYPE); \
+	  dh_link -pgfortran-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gfortran-$(CROSS_GNU_TYPE) \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gfortran-$(PV_GFORT_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gfortran \
 	    $(if $(filter yes, $(with_gfdl_docs)), \
@@ -1271,10 +1280,10 @@ install.%: pre-install
 	  : #	debian/gfortran.postinst.in > debian/gfortran.postinst; \
 	)
 
-	: # gccgo-$(CROSS_GNU_TYPE)
-	$(if $(filter gccgo-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_installdirs -pgccgo-$(CROSS_GNU_TYPE); \
-	  dh_link -pgccgo-$(CROSS_GNU_TYPE) \
+	: # gccgo-$(CROSS_PKG_GNU_TYPE)
+	$(if $(filter gccgo-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pgccgo-$(CROSS_PKG_GNU_TYPE); \
+	  dh_link -pgccgo-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gccgo-$(CROSS_GNU_TYPE) \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gccgo-$(PV_GGO_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gccgo \
 	    $(if $(filter yes, $(with_gfdl_docs)), \
@@ -1283,10 +1292,10 @@ install.%: pre-install
 	)
 
 ifneq (,$(gcj_archs))
-	: # gcj-$(CROSS_GNU_TYPE)
-	$(if $(filter gcj-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_installdirs -pgcj-$(CROSS_GNU_TYPE); \
-	  dh_link -pgcj-$(CROSS_GNU_TYPE) \
+	: # gcj-$(CROSS_PKG_GNU_TYPE)
+	$(if $(filter gcj-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pgcj-$(CROSS_PKG_GNU_TYPE); \
+	  dh_link -pgcj-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gcj-$(CROSS_GNU_TYPE) \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gcj-$(PV_GCJ_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gcj \
 	    $(if $(filter yes, $(with_gfdl_docs)), \
@@ -1295,10 +1304,10 @@ ifneq (,$(gcj_archs))
 	)
 endif
 
-	: # gnat-$(CROSS_GNU_TYPE)
-	$(if $(filter gnat-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_installdirs -pgnat-$(CROSS_GNU_TYPE); \
-	  dh_link -pgnat-$(CROSS_GNU_TYPE) \
+	: # gnat-$(CROSS_PKG_GNU_TYPE)
+	$(if $(filter gnat-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_installdirs -pgnat-$(CROSS_PKG_GNU_TYPE); \
+	  dh_link -pgnat-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gnat-$(CROSS_GNU_TYPE) \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gnat-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnat \
 	    /usr/bin/$(CROSS_GNU_TYPE)-gnatbind-$(PV_GPP_$(CROSS_ARCH)) /usr/bin/$(CROSS_GNU_TYPE)-gnatbind \
@@ -1324,8 +1333,8 @@ endif
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatprep-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatprep.1.gz \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatxref-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnatxref.1.gz \
 	    /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnathtml-$(PV_GPP_$(CROSS_ARCH)).1.gz /usr/share/man/man1/$(CROSS_GNU_TYPE)-gnathtml.1.gz; \
-	  dh_installdirs -pgnat-sjlj-$(CROSS_GNU_TYPE); \
-	  dh_link -pgnat-sjlj-$(CROSS_GNU_TYPE) \
+	  dh_installdirs -pgnat-sjlj-$(CROSS_PKG_GNU_TYPE); \
+	  dh_link -pgnat-sjlj-$(CROSS_PKG_GNU_TYPE) \
 	    /usr/share/doc/cpp-$(CROSS_GNU_TYPE) /usr/share/doc/gnat-sjlj-$(CROSS_GNU_TYPE); \
 	)
 
@@ -1502,13 +1511,13 @@ endif # with_native
 binary.%: build-arch install
 	dh_testdir
 	dh_testroot
-	dh_installdocs -pcpp-$(CROSS_GNU_TYPE) \
-	  $(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)),-ppkg-config-$(CROSS_GNU_TYPE))
+	dh_installdocs -pcpp-$(CROSS_PKG_GNU_TYPE) \
+	  $(if $(filter pkg-config-$(CROSS_PKG_GNU_TYPE), $(packages)),-ppkg-config-$(CROSS_PKG_GNU_TYPE))
 
-	for p in $(filter %-$(CROSS_GNU_TYPE),$(cross_packages)); do \
+	for p in $(filter %-$(CROSS_PKG_GNU_TYPE),$(cross_packages)); do \
 	  case "$$p" in \
 	    cpp-*|pkg-config-*) continue;; \
-	    *-gnu*|*-kfreebsd*) t=cpp-$(CROSS_GNU_TYPE);; \
+	    *-gnu*|*-kfreebsd*) t=cpp-$(CROSS_PKG_GNU_TYPE);; \
 	    *) continue;; \
 	  esac; \
 	  echo ln -sf $$t debian/$$p/usr/share/doc/$$p; \
@@ -1517,22 +1526,22 @@ binary.%: build-arch install
 	  ln -sf $$t debian/$$p/usr/share/doc/$$p; \
 	done
 
-	dh_installchangelogs -pcpp-$(CROSS_GNU_TYPE) \
-	  $(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)),-ppkg-config-$(CROSS_GNU_TYPE))
-	for i in cpp-$(CROSS_GNU_TYPE) $(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)),pkg-config-$(CROSS_GNU_TYPE)); do \
+	dh_installchangelogs -pcpp-$(CROSS_PKG_GNU_TYPE) \
+	  $(if $(filter pkg-config-$(CROSS_PKG_GNU_TYPE), $(packages)),-ppkg-config-$(CROSS_PKG_GNU_TYPE))
+	for i in cpp-$(CROSS_PKG_GNU_TYPE) $(if $(filter pkg-config-$(CROSS_PKG_GNU_TYPE), $(packages)),pkg-config-$(CROSS_PKG_GNU_TYPE)); do \
 	  mv debian/$$i/usr/share/doc/$$i/changelog \
 		debian/$$i/usr/share/doc/$$i/changelog.Debian; \
 	done
-	dh_compress $(foreach p,$(filter %-$(CROSS_GNU_TYPE),$(cross_packages)),-p$(p)) \
+	dh_compress $(foreach p,$(filter %-$(CROSS_PKG_GNU_TYPE),$(cross_packages)),-p$(p)) \
 	  -XREADME.Debian
-	$(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_link -ppkg-config-$(CROSS_GNU_TYPE) \
+	$(if $(filter pkg-config-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_link -ppkg-config-$(CROSS_PKG_GNU_TYPE) \
 	  /usr/share/pkg-config-crosswrapper /usr/bin/${CROSS_GNU_TYPE}-pkg-config \
 	)
 
-	for p in $(filter %-$(CROSS_GNU_TYPE),$(cross_packages)); do \
+	for p in $(filter %-$(CROSS_PKG_GNU_TYPE),$(cross_packages)); do \
 	  case $$p in \
-	    cpp-$(CROSS_GNU_TYPE)|g++-$(CROSS_GNU_TYPE)|gcc-$(CROSS_GNU_TYPE)|gccgo-$(CROSS_GNU_TYPE)|gcj-$(CROSS_GNU_TYPE)|gfortran-$(CROSS_GNU_TYPE)) \
+	    cpp-$(CROSS_PKG_GNU_TYPE)|g++-$(CROSS_PKG_GNU_TYPE)|gcc-$(CROSS_PKG_GNU_TYPE)|gccgo-$(CROSS_PKG_GNU_TYPE)|gcj-$(CROSS_PKG_GNU_TYPE)|gfortran-$(CROSS_PKG_GNU_TYPE)) \
 	      [ "$(with_gfdl_docs)" = yes ] && continue; \
 	      mkdir -p -m 755 debian/$$p/usr/share/lintian/overrides; \
 	      echo "$$p binary: binary-without-manpage" \
@@ -1540,66 +1549,66 @@ binary.%: build-arch install
 	  esac; \
 	done
 
-	dh_fixperms $(foreach p,$(filter %-$(CROSS_GNU_TYPE),$(cross_packages)),-p$(p))
-	dh_installdeb $(foreach p,$(filter %-$(CROSS_GNU_TYPE),$(cross_packages)),-p$(p))
-	dh_gencontrol -pcpp-$(CROSS_GNU_TYPE) '-u-v$(EPOCH):$(CV_CPP_$(CROSS_ARCH))'
-	dh_gencontrol -pgcc-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgcc-multilib-$(CROSS_GNU_TYPE)) \
+	dh_fixperms $(foreach p,$(filter %-$(CROSS_PKG_GNU_TYPE),$(cross_packages)),-p$(p))
+	dh_installdeb $(foreach p,$(filter %-$(CROSS_PKG_GNU_TYPE),$(cross_packages)),-p$(p))
+	dh_gencontrol -pcpp-$(CROSS_PKG_GNU_TYPE) '-u-v$(EPOCH):$(CV_CPP_$(CROSS_ARCH))'
+	dh_gencontrol -pgcc-$(CROSS_PKG_GNU_TYPE) \
+	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgcc-multilib-$(CROSS_PKG_GNU_TYPE)) \
 	  '-u-v$(EPOCH):$(CV_GCC_$(CROSS_ARCH))'
 
-	$(if $(filter gdc-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -pgdc-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(d_multilib_archs)),-pgdc-multilib-$(CROSS_GNU_TYPE)) \
+	$(if $(filter gdc-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pgdc-$(CROSS_PKG_GNU_TYPE) \
+	    $(if $(filter $(CROSS_ARCH),$(d_multilib_archs)),-pgdc-multilib-$(CROSS_PKG_GNU_TYPE)) \
 	    -u-v$(EPOCH):$(CV_GDC_$(CROSS_ARCH)) \
 	)
 
-	$(if $(filter g++-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -pg++-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pg++-multilib-$(CROSS_GNU_TYPE)) \
+	$(if $(filter g++-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pg++-$(CROSS_PKG_GNU_TYPE) \
+	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pg++-multilib-$(CROSS_PKG_GNU_TYPE)) \
 	    -u-v$(EPOCH):$(CV_GPP_$(CROSS_ARCH)) \
 	)
 
-	$(if $(filter gobjc++-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -pgobjc-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgobjc-multilib-$(CROSS_GNU_TYPE)) \
+	$(if $(filter gobjc++-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pgobjc-$(CROSS_PKG_GNU_TYPE) \
+	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgobjc-multilib-$(CROSS_PKG_GNU_TYPE)) \
 	    -u-v$(EPOCH):$(CV_GOBJC_$(CROSS_ARCH)) \
 	)
 
-	$(if $(filter gobjc++-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -pgobjc++-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgobjc++-multilib-$(CROSS_GNU_TYPE)) \
+	$(if $(filter gobjc++-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pgobjc++-$(CROSS_PKG_GNU_TYPE) \
+	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgobjc++-multilib-$(CROSS_PKG_GNU_TYPE)) \
 	    -u-v$(EPOCH):$(CV_GOBJCXX_$(CROSS_ARCH)) \
 	)
 
-	$(if $(filter gfortran-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -pgfortran-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgfortran-multilib-$(CROSS_GNU_TYPE)) \
+	$(if $(filter gfortran-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pgfortran-$(CROSS_PKG_GNU_TYPE) \
+	    $(if $(filter $(CROSS_ARCH),$(multilib_archs)),-pgfortran-multilib-$(CROSS_PKG_GNU_TYPE)) \
 	    -u-v$(EPOCH):$(CV_GFORT_$(CROSS_ARCH)) \
 	)
 
-	$(if $(filter gccgo-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -pgccgo-$(CROSS_GNU_TYPE) \
-	    $(if $(filter $(CROSS_ARCH),$(go_multilib_archs)),-pgccgo-multilib-$(CROSS_GNU_TYPE)) \
+	$(if $(filter gccgo-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pgccgo-$(CROSS_PKG_GNU_TYPE) \
+	    $(if $(filter $(CROSS_ARCH),$(go_multilib_archs)),-pgccgo-multilib-$(CROSS_PKG_GNU_TYPE)) \
 	    -u-v$(EPOCH):$(CV_GGO_$(CROSS_ARCH)) \
 	)
 
-	$(if $(filter gcj-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -pgcj-$(CROSS_GNU_TYPE) \
+	$(if $(filter gcj-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pgcj-$(CROSS_PKG_GNU_TYPE) \
 		-u-v$(EPOCH):$(CV_GCJ_$(CROSS_ARCH)) \
 	)
 
-	$(if $(filter gnat-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -pgnat-$(CROSS_GNU_TYPE) -pgnat-sjlj-$(CROSS_GNU_TYPE) \
+	$(if $(filter gnat-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -pgnat-$(CROSS_PKG_GNU_TYPE) -pgnat-sjlj-$(CROSS_PKG_GNU_TYPE) \
 		-u-v$(EPOCH):$(CV_GNAT_$(CROSS_ARCH)) \
 	)
 
-	$(if $(filter pkg-config-$(CROSS_GNU_TYPE), $(packages)), \
-	  dh_gencontrol -ppkg-config-$(CROSS_GNU_TYPE) \
+	$(if $(filter pkg-config-$(CROSS_PKG_GNU_TYPE), $(packages)), \
+	  dh_gencontrol -ppkg-config-$(CROSS_PKG_GNU_TYPE) \
 		-u-v$(EPOCH):$(CV_GCC_$(CROSS_ARCH)) \
 	)
 
-	dh_md5sums $(foreach p,$(filter %-$(CROSS_GNU_TYPE),$(cross_packages)),-p$(p))
-	dh_builddeb $(foreach p,$(filter %-$(CROSS_GNU_TYPE),$(cross_packages)),-p$(p))
+	dh_md5sums $(foreach p,$(filter %-$(CROSS_PKG_GNU_TYPE),$(cross_packages)),-p$(p))
+	dh_builddeb $(foreach p,$(filter %-$(CROSS_PKG_GNU_TYPE),$(cross_packages)),-p$(p))
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install substvars
