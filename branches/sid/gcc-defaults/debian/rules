@@ -356,35 +356,42 @@ HOST_ARCHS_sh4 = amd64 i386 x32
 HOST_ARCHS_sparc64 = amd64 i386 x32
 HOST_ARCHS_x32 = amd64 arm64 i386 ppc64el
 
-ifeq ($(SOURCE),gcc-defaults)
-  with_native = yes
-  ifeq (,$(CROSS_ARCHS))
-    CROSS_ARCHS  = s390x ppc64el arm64 armhf armel \
+ifeq (,$(CROSS_ARCHS))
+  ifeq ($(SOURCE),gcc-defaults)
+    ifneq (,$(filter $(DEB_HOST_ARCH),amd64 i386 x32))
+      CROSS_ARCHS  = s390x ppc64el arm64 armhf armel \
 	$(if $(filter $(vendor), Ubuntu), powerpc, mips mipsel mips64el) \
         $(if $(filter $(DEB_HOST_ARCH), i386 x32), amd64) \
-        $(if $(filter $(DEB_HOST_ARCH), amd64 x32), i386) \
-        $(if $(filter $(DEB_HOST_ARCH), amd64 i386), x32)
+        $(if $(filter $(DEB_HOST_ARCH), amd64 x32), i386)
+    else ifeq ($(DEB_HOST_ARCH),arm64)
+      CROSS_ARCHS = amd64 armel armhf i386
+    else ifeq ($(DEB_HOST_ARCH),ppc64)
+      CROSS_ARCHS = ppc64el
+    else ifeq ($(DEB_HOST_ARCH),ppc64el)
+      CROSS_ARCHS = amd64 i386 $(if $(filter $(vendor), Ubuntu), powerpc)
+    else
+      CROSS_ARCHS =
+    endif
+  else # -ports package
+    ifneq (,$(filter $(DEB_HOST_ARCH),amd64 i386 x32))
+      CROSS_ARCHS  ?= alpha hppa m68k mips64 powerpcspe ppc64 riscv64 sh4 sparc64 \
+		$(if $(filter $(vendor), Ubuntu), mips mipsel mips64el, powerpc) \
+		$(if $(filter $(DEB_HOST_ARCH), amd64 i386), x32)
+    else ifeq ($(DEB_HOST_ARCH),arm64)
+      CROSS_ARCHS = x32
+    else ifeq ($(DEB_HOST_ARCH),ppc64el)
+      CROSS_ARCHS = x32 $(if $(filter $(vendor), Ubuntu),, powerpc)
+    else
+      CROSS_ARCHS =
+    endif
   endif
-else
-  CROSS_ARCHS  ?= alpha hppa m68k mips64 powerpcspe ppc64 riscv64 sh4 sparc64 \
-		$(if $(filter $(vendor), Ubuntu), mips mipsel mips64el, powerpc)
 endif
-with_cross  = yes
 
-ifneq (, $(filter $(DEB_HOST_ARCH),amd64 i386 x32))
-  # just use the default from above
-else ifeq ($(DEB_HOST_ARCH),arm64)
-  CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)), x32, amd64 armel armhf i386)
-else ifeq ($(DEB_HOST_ARCH),ppc64)
-  CROSS_ARCHS = $(if $(findstring ports,$(SOURCE)),, ppc64el)
-else ifeq ($(DEB_HOST_ARCH),ppc64el)
-  ifeq ($(SOURCE),gcc-defaults)
-    CROSS_ARCHS = amd64 i386 $(if $(filter $(vendor), Ubuntu), powerpc)
-  else
-    CROSS_ARCHS = x32 $(if $(filter $(vendor), Ubuntu),, powerpc)
-  endif
-else
-  CROSS_ARCHS =
+ifeq ($(SOURCE),gcc-defaults)
+  with_native = yes
+endif
+ifneq (,$(CROSS_ARCHS))
+  with_cross  = yes
 endif
 
 CROSS_ARCH	= $(subst .,,$(suffix $@))
@@ -724,7 +731,7 @@ ifeq ($(SOURCE),gcc-defaults)
 endif
 ifeq ($(with_cross),yes)
 	: # FIXME: filter-out some gdc and gccgo multilib configs
-	$(foreach a,$(CROSS_ARCHS), \
+	$(foreach a,amd64 $(CROSS_ARCHS), \
 	  sed \
 	    -e "s/CROSS_ARCH/$(a)/g" \
 	    -e 's/CROSS_GNU_TYPE/$(subst _,-,$(call _gnu_type,$(a)))/g' \
