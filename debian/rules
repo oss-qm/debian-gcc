@@ -184,7 +184,7 @@ REQV_49		:= (>= 4.9.3-10~)
 REQV_5		:= (>= 5.4.1-2~)
 REQV_6		:= (>= 6.4.0-1~)
 REQV_7		:= (>= 7.3.0-11~)
-REQV_8		:= (>= 8-20180321-1~)
+REQV_8		:= (>= 8-20180425-1~)
 
 REQV_LIBGCJ_BC	:= (>= 6.4.0-1~)
 
@@ -209,21 +209,21 @@ gnat_archs  = alpha amd64 armel armhf arm64 hppa i386 ia64 m68k mips mipsel mips
 gnat7_archs  =
 
 # CV_XXX is the complete version number, including the release, without epoch
-CV_CPP		:= 8-20180321-$(REL_NO_80)
-CV_GCC		:= 8-20180321-$(REL_NO_80)
-CV_GPP		:= 8-20180321-$(REL_NO_80)
-CV_GOBJC	:= 8-20180321-$(REL_NO_80)
-CV_GOBJCXX	:= 8-20180321-$(REL_NO_80)
-CV_GFORT	:= 8-20180321-$(REL_NO_80)
-CV_GGO		:= 8-20180321-$(REL_NO_80)
-CV_GNAT		:= 8-20180321-$(REL_NO_80)
+CV_CPP		:= 8-20180425-$(REL_NO_80)
+CV_GCC		:= 8-20180425-$(REL_NO_80)
+CV_GPP		:= 8-20180425-$(REL_NO_80)
+CV_GOBJC	:= 8-20180425-$(REL_NO_80)
+CV_GOBJCXX	:= 8-20180425-$(REL_NO_80)
+CV_GFORT	:= 8-20180425-$(REL_NO_80)
+CV_GGO		:= 8-20180425-$(REL_NO_80)
+CV_GNAT		:= 8-20180425-$(REL_NO_80)
 CV_GCJ		:= 6.4.0-$(REL_NO_64)
 CV_GIJ		:= 6.4.0-$(REL_NO_64)
 CV_LIBGCJBC	:= 6.4.0-$(REL_NO_64)
-CV_GDC		:= 8-20180321-$(REL_NO_80)
+CV_GDC		:= 8-20180425-$(REL_NO_80)
 CV_LIBGCJCOMMON	:= 1:6.4-$(REL_NO_64)
-CV_BRIG		:= 8-20180321-$(REL_NO_80)
-CV_OFFL		:= 8-20180321-$(REL_NO_80)
+CV_BRIG		:= 8-20180425-$(REL_NO_80)
+CV_OFFL		:= 8-20180425-$(REL_NO_80)
 
 $(foreach a, $(all_archs), \
   $(foreach v, CV_CPP CV_GCC CV_GPP CV_GOBJC CV_GOBJCXX CV_GFORT CV_GGO CV_GNAT CV_GCJ CV_GDC CV_BRIG CV_OFFL, \
