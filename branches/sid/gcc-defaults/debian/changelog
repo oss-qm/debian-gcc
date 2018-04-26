@@ -1,10 +1,8 @@
-gcc-defaults (1.177) UNRELEASED; urgency=medium
+gcc-defaults (1.177) experimental; urgency=medium
 
-  * Default to GCC 8, except for gij/gcj (GCC 6).
-  * Fix build with recent debhelper. Closes: #878338.
-  * Build defaults packages for riscv64 cross compilers.
+  * Default to GCC 8.
 
- -- Matthias Klose <doko@debian.org>  Wed, 04 Apr 2018 12:59:48 +0200
+ -- Matthias Klose <doko@debian.org>  Thu, 26 Apr 2018 09:48:54 +0200
 
 gcc-defaults (1.176) unstable; urgency=medium
 
