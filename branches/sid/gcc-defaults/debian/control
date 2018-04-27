@@ -33,7 +33,7 @@ Description: GNU C preprocessor (cpp)
 Package: gcc
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
 Recommends: libc6-dev | libc-dev
 Suggests: gcc-multilib, make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb, gcc-doc
 Provides: c-compiler
@@ -46,7 +46,7 @@ Description: GNU C compiler
 Package: gcc-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x sparc sparc64 x32
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}, linux-libc-dev (>= 3.0.0-2) [linux-any]
+Depends: cpp (= ${version:cpp}), gcc (= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}, linux-libc-dev (>= 3.0.0-2) [linux-any]
 Conflicts: gcc-4.9-alpha-linux-gnu,
   gcc-4.9-aarch64-linux-gnu,
   gcc-4.9-arm-linux-gnueabi,
@@ -175,7 +175,7 @@ Description: GNU C compiler (multilib files)
 Package: g++
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), g++-${pv:gpp} ${reqv:gpp}, gcc-${pv:gpp} ${reqv:gpp}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc (= ${version:cpp}), g++-${pv:gpp} ${reqv:gpp}, gcc-${pv:gpp} ${reqv:gpp}, ${misc:Depends}
 Suggests: ${pkgmulti:gpp}
 Provides: c++-compiler
 Description: GNU C++ compiler
@@ -186,7 +186,7 @@ Description: GNU C++ compiler
 Package: g++-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x sparc sparc64 x32
-Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), g++ (>= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc-multilib (= ${version:cpp}), g++ (= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}, ${misc:Depends}
 Description: GNU C++ compiler (multilib files)
  This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
  .
@@ -245,7 +245,7 @@ Description: GNU Objective-C++ compiler (multilib files)
 Package: gfortran
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gfortran-${pv:gfort} ${reqv:gfort}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc (= ${version:gcc}), gfortran-${pv:gfort} ${reqv:gfort}, ${misc:Depends}
 Suggests: ${pkgmulti:gfort}, gfortran-doc
 Provides: fortran-compiler, ${fortran:mod-version}
 Description: GNU Fortran 95 compiler
@@ -258,7 +258,7 @@ Description: GNU Fortran 95 compiler
 Package: gfortran-multilib
 Priority: optional
 Architecture: amd64 i386 kfreebsd-amd64 mips mips64 mips64el mipsel powerpc ppc64 s390 s390x sparc sparc64 x32
-Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gfortran (>= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc-multilib (= ${version:cpp}), gfortran (= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}, ${misc:Depends}
 Description: GNU Fortran 95 compiler (multilib files)
  This is the GNU Fortran compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler.
@@ -424,7 +424,7 @@ Description: GCC offloading compiler to NVPTX
 Package: gcc-hppa64-linux-gnu
 Priority: optional
 Architecture: amd64 hppa i386 x32
-Depends: gcc (>= ${version:gcc}), gcc-${pv:gcc}-hppa64-linux-gnu ${reqv:gcc},
+Depends: gcc (= ${version:gcc}), gcc-${pv:gcc}-hppa64-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Conflicts: gcc-5-hppa64-linux-gnu (<< 5.2.1-26),
   gcc-5-hppa64 (<< 5.2.1-26),
@@ -457,7 +457,7 @@ Package: gcc-x86-64-linux-gnu
 Priority: optional
 Architecture: arm64 i386 ppc64el x32
 Multi-Arch: foreign
-Depends: cpp-x86-64-linux-gnu (>= ${version:cpp}),
+Depends: cpp-x86-64-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-x86-64-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-amd64-cross | libc-dev-amd64-cross
@@ -472,8 +472,8 @@ Package: g++-x86-64-linux-gnu
 Priority: optional
 Architecture: arm64 i386 ppc64el x32
 Multi-Arch: foreign
-Depends: cpp-x86-64-linux-gnu (>= ${version:cpp}),
-  gcc-x86-64-linux-gnu (>= ${version:cpp}),
+Depends: cpp-x86-64-linux-gnu (= ${version:cpp}),
+  gcc-x86-64-linux-gnu (= ${version:cpp}),
   g++-${pv:gpp}-x86-64-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the amd64 architecture
@@ -519,8 +519,8 @@ Package: gfortran-x86-64-linux-gnu
 Priority: optional
 Architecture: arm64 i386 ppc64el x32
 Multi-Arch: foreign
-Depends: cpp-x86-64-linux-gnu (>= ${version:cpp}),
-  gcc-x86-64-linux-gnu (>= ${version:gcc}),
+Depends: cpp-x86-64-linux-gnu (= ${version:cpp}),
+  gcc-x86-64-linux-gnu (= ${version:gcc}),
   gfortran-${pv:gfort}-x86-64-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -579,8 +579,8 @@ Description: GNU D compiler (based on GCC) for the amd64 architecture
 Package: gcc-multilib-x86-64-linux-gnu
 Priority: optional
 Architecture: arm64 i386 ppc64el x32
-Depends: cpp-x86-64-linux-gnu (>= ${version:cpp}),
-  gcc-x86-64-linux-gnu (>= ${version:gcc}),
+Depends: cpp-x86-64-linux-gnu (= ${version:cpp}),
+  gcc-x86-64-linux-gnu (= ${version:gcc}),
   gcc-${pv:gcc}-multilib-x86-64-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-amd64-cross | libc-dev-amd64-cross
@@ -594,9 +594,9 @@ Description: GNU C compiler for the amd64 architecture
 Package: g++-multilib-x86-64-linux-gnu
 Priority: optional
 Architecture: arm64 i386 ppc64el x32
-Depends: cpp-x86-64-linux-gnu (>= ${version:cpp}),
-  g++-x86-64-linux-gnu (>= ${version:gpp}),
-  gcc-multilib-x86-64-linux-gnu (>= ${version:gcc}),
+Depends: cpp-x86-64-linux-gnu (= ${version:cpp}),
+  g++-x86-64-linux-gnu (= ${version:gpp}),
+  gcc-multilib-x86-64-linux-gnu (= ${version:gcc}),
   g++-${pv:gpp}-multilib-x86-64-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the amd64 architecture
@@ -642,9 +642,9 @@ Description: GNU Objective-C++ compiler for the amd64 architecture
 Package: gfortran-multilib-x86-64-linux-gnu
 Priority: optional
 Architecture: arm64 i386 ppc64el x32
-Depends: cpp-x86-64-linux-gnu (>= ${version:cpp}),
-  gcc-multilib-x86-64-linux-gnu (>= ${version:gcc}),
-  gfortran-x86-64-linux-gnu (>= ${version:gfort}),
+Depends: cpp-x86-64-linux-gnu (= ${version:cpp}),
+  gcc-multilib-x86-64-linux-gnu (= ${version:gcc}),
+  gfortran-x86-64-linux-gnu (= ${version:gfort}),
   gfortran-${pv:gfort}-multilib-x86-64-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -707,7 +707,7 @@ Package: gcc-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
+Depends: cpp-s390x-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-s390x-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-s390x-cross | libc-dev-s390x-cross
@@ -722,8 +722,8 @@ Package: g++-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
-  gcc-s390x-linux-gnu (>= ${version:cpp}),
+Depends: cpp-s390x-linux-gnu (= ${version:cpp}),
+  gcc-s390x-linux-gnu (= ${version:cpp}),
   g++-${pv:gpp}-s390x-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the s390x architecture
@@ -769,8 +769,8 @@ Package: gfortran-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
-  gcc-s390x-linux-gnu (>= ${version:gcc}),
+Depends: cpp-s390x-linux-gnu (= ${version:cpp}),
+  gcc-s390x-linux-gnu (= ${version:gcc}),
   gfortran-${pv:gfort}-s390x-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -829,8 +829,8 @@ Description: GNU D compiler (based on GCC) for the s390x architecture
 Package: gcc-multilib-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
-  gcc-s390x-linux-gnu (>= ${version:gcc}),
+Depends: cpp-s390x-linux-gnu (= ${version:cpp}),
+  gcc-s390x-linux-gnu (= ${version:gcc}),
   gcc-${pv:gcc}-multilib-s390x-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-s390x-cross | libc-dev-s390x-cross
@@ -844,9 +844,9 @@ Description: GNU C compiler for the s390x architecture
 Package: g++-multilib-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
-  g++-s390x-linux-gnu (>= ${version:gpp}),
-  gcc-multilib-s390x-linux-gnu (>= ${version:gcc}),
+Depends: cpp-s390x-linux-gnu (= ${version:cpp}),
+  g++-s390x-linux-gnu (= ${version:gpp}),
+  gcc-multilib-s390x-linux-gnu (= ${version:gcc}),
   g++-${pv:gpp}-multilib-s390x-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the s390x architecture
@@ -892,9 +892,9 @@ Description: GNU Objective-C++ compiler for the s390x architecture
 Package: gfortran-multilib-s390x-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-s390x-linux-gnu (>= ${version:cpp}),
-  gcc-multilib-s390x-linux-gnu (>= ${version:gcc}),
-  gfortran-s390x-linux-gnu (>= ${version:gfort}),
+Depends: cpp-s390x-linux-gnu (= ${version:cpp}),
+  gcc-multilib-s390x-linux-gnu (= ${version:gcc}),
+  gfortran-s390x-linux-gnu (= ${version:gfort}),
   gfortran-${pv:gfort}-multilib-s390x-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -957,7 +957,7 @@ Package: gcc-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
 Multi-Arch: foreign
-Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
+Depends: cpp-powerpc64le-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-powerpc64le-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-ppc64el-cross | libc-dev-ppc64el-cross
@@ -972,8 +972,8 @@ Package: g++-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
 Multi-Arch: foreign
-Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
-  gcc-powerpc64le-linux-gnu (>= ${version:cpp}),
+Depends: cpp-powerpc64le-linux-gnu (= ${version:cpp}),
+  gcc-powerpc64le-linux-gnu (= ${version:cpp}),
   g++-${pv:gpp}-powerpc64le-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the ppc64el architecture
@@ -1019,8 +1019,8 @@ Package: gfortran-powerpc64le-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32 ppc64
 Multi-Arch: foreign
-Depends: cpp-powerpc64le-linux-gnu (>= ${version:cpp}),
-  gcc-powerpc64le-linux-gnu (>= ${version:gcc}),
+Depends: cpp-powerpc64le-linux-gnu (= ${version:cpp}),
+  gcc-powerpc64le-linux-gnu (= ${version:gcc}),
   gfortran-${pv:gfort}-powerpc64le-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -1097,7 +1097,7 @@ Package: gcc-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
+Depends: cpp-aarch64-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-aarch64-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-arm64-cross | libc-dev-arm64-cross
@@ -1112,8 +1112,8 @@ Package: g++-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
-  gcc-aarch64-linux-gnu (>= ${version:cpp}),
+Depends: cpp-aarch64-linux-gnu (= ${version:cpp}),
+  gcc-aarch64-linux-gnu (= ${version:cpp}),
   g++-${pv:gpp}-aarch64-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the arm64 architecture
@@ -1159,8 +1159,8 @@ Package: gfortran-aarch64-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-aarch64-linux-gnu (>= ${version:cpp}),
-  gcc-aarch64-linux-gnu (>= ${version:gcc}),
+Depends: cpp-aarch64-linux-gnu (= ${version:cpp}),
+  gcc-aarch64-linux-gnu (= ${version:gcc}),
   gfortran-${pv:gfort}-aarch64-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -1237,7 +1237,7 @@ Package: gcc-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
 Multi-Arch: foreign
-Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
+Depends: cpp-arm-linux-gnueabihf (= ${version:cpp}),
   gcc-${pv:gcc}-arm-linux-gnueabihf ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-armhf-cross | libc-dev-armhf-cross
@@ -1252,8 +1252,8 @@ Package: g++-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
 Multi-Arch: foreign
-Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
-  gcc-arm-linux-gnueabihf (>= ${version:cpp}),
+Depends: cpp-arm-linux-gnueabihf (= ${version:cpp}),
+  gcc-arm-linux-gnueabihf (= ${version:cpp}),
   g++-${pv:gpp}-arm-linux-gnueabihf ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the armhf architecture
@@ -1299,8 +1299,8 @@ Package: gfortran-arm-linux-gnueabihf
 Priority: optional
 Architecture: amd64 i386 x32 arm64
 Multi-Arch: foreign
-Depends: cpp-arm-linux-gnueabihf (>= ${version:cpp}),
-  gcc-arm-linux-gnueabihf (>= ${version:gcc}),
+Depends: cpp-arm-linux-gnueabihf (= ${version:cpp}),
+  gcc-arm-linux-gnueabihf (= ${version:gcc}),
   gfortran-${pv:gfort}-arm-linux-gnueabihf ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -1377,7 +1377,7 @@ Package: gcc-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
 Multi-Arch: foreign
-Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
+Depends: cpp-arm-linux-gnueabi (= ${version:cpp}),
   gcc-${pv:gcc}-arm-linux-gnueabi ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-armel-cross | libc-dev-armel-cross
@@ -1392,8 +1392,8 @@ Package: g++-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
 Multi-Arch: foreign
-Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
-  gcc-arm-linux-gnueabi (>= ${version:cpp}),
+Depends: cpp-arm-linux-gnueabi (= ${version:cpp}),
+  gcc-arm-linux-gnueabi (= ${version:cpp}),
   g++-${pv:gpp}-arm-linux-gnueabi ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the armel architecture
@@ -1439,8 +1439,8 @@ Package: gfortran-arm-linux-gnueabi
 Priority: optional
 Architecture: amd64 i386 x32 arm64
 Multi-Arch: foreign
-Depends: cpp-arm-linux-gnueabi (>= ${version:cpp}),
-  gcc-arm-linux-gnueabi (>= ${version:gcc}),
+Depends: cpp-arm-linux-gnueabi (= ${version:cpp}),
+  gcc-arm-linux-gnueabi (= ${version:gcc}),
   gfortran-${pv:gfort}-arm-linux-gnueabi ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -1517,7 +1517,7 @@ Package: gcc-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
+Depends: cpp-mips-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-mips-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-mips-cross | libc-dev-mips-cross
@@ -1532,8 +1532,8 @@ Package: g++-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
-  gcc-mips-linux-gnu (>= ${version:cpp}),
+Depends: cpp-mips-linux-gnu (= ${version:cpp}),
+  gcc-mips-linux-gnu (= ${version:cpp}),
   g++-${pv:gpp}-mips-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the mips architecture
@@ -1579,8 +1579,8 @@ Package: gfortran-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
-  gcc-mips-linux-gnu (>= ${version:gcc}),
+Depends: cpp-mips-linux-gnu (= ${version:cpp}),
+  gcc-mips-linux-gnu (= ${version:gcc}),
   gfortran-${pv:gfort}-mips-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -1639,8 +1639,8 @@ Description: GNU D compiler (based on GCC) for the mips architecture
 Package: gcc-multilib-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
-  gcc-mips-linux-gnu (>= ${version:gcc}),
+Depends: cpp-mips-linux-gnu (= ${version:cpp}),
+  gcc-mips-linux-gnu (= ${version:gcc}),
   gcc-${pv:gcc}-multilib-mips-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-mips-cross | libc-dev-mips-cross
@@ -1654,9 +1654,9 @@ Description: GNU C compiler for the mips architecture
 Package: g++-multilib-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
-  g++-mips-linux-gnu (>= ${version:gpp}),
-  gcc-multilib-mips-linux-gnu (>= ${version:gcc}),
+Depends: cpp-mips-linux-gnu (= ${version:cpp}),
+  g++-mips-linux-gnu (= ${version:gpp}),
+  gcc-multilib-mips-linux-gnu (= ${version:gcc}),
   g++-${pv:gpp}-multilib-mips-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the mips architecture
@@ -1702,9 +1702,9 @@ Description: GNU Objective-C++ compiler for the mips architecture
 Package: gfortran-multilib-mips-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mips-linux-gnu (>= ${version:cpp}),
-  gcc-multilib-mips-linux-gnu (>= ${version:gcc}),
-  gfortran-mips-linux-gnu (>= ${version:gfort}),
+Depends: cpp-mips-linux-gnu (= ${version:cpp}),
+  gcc-multilib-mips-linux-gnu (= ${version:gcc}),
+  gfortran-mips-linux-gnu (= ${version:gfort}),
   gfortran-${pv:gfort}-multilib-mips-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -1767,7 +1767,7 @@ Package: gcc-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
+Depends: cpp-mipsel-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-mipsel-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-mipsel-cross | libc-dev-mipsel-cross
@@ -1782,8 +1782,8 @@ Package: g++-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
-  gcc-mipsel-linux-gnu (>= ${version:cpp}),
+Depends: cpp-mipsel-linux-gnu (= ${version:cpp}),
+  gcc-mipsel-linux-gnu (= ${version:cpp}),
   g++-${pv:gpp}-mipsel-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the mipsel architecture
@@ -1829,8 +1829,8 @@ Package: gfortran-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
-  gcc-mipsel-linux-gnu (>= ${version:gcc}),
+Depends: cpp-mipsel-linux-gnu (= ${version:cpp}),
+  gcc-mipsel-linux-gnu (= ${version:gcc}),
   gfortran-${pv:gfort}-mipsel-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -1889,8 +1889,8 @@ Description: GNU D compiler (based on GCC) for the mipsel architecture
 Package: gcc-multilib-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
-  gcc-mipsel-linux-gnu (>= ${version:gcc}),
+Depends: cpp-mipsel-linux-gnu (= ${version:cpp}),
+  gcc-mipsel-linux-gnu (= ${version:gcc}),
   gcc-${pv:gcc}-multilib-mipsel-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-mipsel-cross | libc-dev-mipsel-cross
@@ -1904,9 +1904,9 @@ Description: GNU C compiler for the mipsel architecture
 Package: g++-multilib-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
-  g++-mipsel-linux-gnu (>= ${version:gpp}),
-  gcc-multilib-mipsel-linux-gnu (>= ${version:gcc}),
+Depends: cpp-mipsel-linux-gnu (= ${version:cpp}),
+  g++-mipsel-linux-gnu (= ${version:gpp}),
+  gcc-multilib-mipsel-linux-gnu (= ${version:gcc}),
   g++-${pv:gpp}-multilib-mipsel-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the mipsel architecture
@@ -1952,9 +1952,9 @@ Description: GNU Objective-C++ compiler for the mipsel architecture
 Package: gfortran-multilib-mipsel-linux-gnu
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mipsel-linux-gnu (>= ${version:cpp}),
-  gcc-multilib-mipsel-linux-gnu (>= ${version:gcc}),
-  gfortran-mipsel-linux-gnu (>= ${version:gfort}),
+Depends: cpp-mipsel-linux-gnu (= ${version:cpp}),
+  gcc-multilib-mipsel-linux-gnu (= ${version:gcc}),
+  gfortran-mipsel-linux-gnu (= ${version:gfort}),
   gfortran-${pv:gfort}-multilib-mipsel-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -2017,7 +2017,7 @@ Package: gcc-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+Depends: cpp-mips64el-linux-gnuabi64 (= ${version:cpp}),
   gcc-${pv:gcc}-mips64el-linux-gnuabi64 ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-mips64el-cross | libc-dev-mips64el-cross
@@ -2032,8 +2032,8 @@ Package: g++-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
-  gcc-mips64el-linux-gnuabi64 (>= ${version:cpp}),
+Depends: cpp-mips64el-linux-gnuabi64 (= ${version:cpp}),
+  gcc-mips64el-linux-gnuabi64 (= ${version:cpp}),
   g++-${pv:gpp}-mips64el-linux-gnuabi64 ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the mips64el architecture
@@ -2079,8 +2079,8 @@ Package: gfortran-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
 Multi-Arch: foreign
-Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
-  gcc-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+Depends: cpp-mips64el-linux-gnuabi64 (= ${version:cpp}),
+  gcc-mips64el-linux-gnuabi64 (= ${version:gcc}),
   gfortran-${pv:gfort}-mips64el-linux-gnuabi64 ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -2139,8 +2139,8 @@ Description: GNU D compiler (based on GCC) for the mips64el architecture
 Package: gcc-multilib-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
-  gcc-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+Depends: cpp-mips64el-linux-gnuabi64 (= ${version:cpp}),
+  gcc-mips64el-linux-gnuabi64 (= ${version:gcc}),
   gcc-${pv:gcc}-multilib-mips64el-linux-gnuabi64 ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-mips64el-cross | libc-dev-mips64el-cross
@@ -2154,9 +2154,9 @@ Description: GNU C compiler for the mips64el architecture
 Package: g++-multilib-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
-  g++-mips64el-linux-gnuabi64 (>= ${version:gpp}),
-  gcc-multilib-mips64el-linux-gnuabi64 (>= ${version:gcc}),
+Depends: cpp-mips64el-linux-gnuabi64 (= ${version:cpp}),
+  g++-mips64el-linux-gnuabi64 (= ${version:gpp}),
+  gcc-multilib-mips64el-linux-gnuabi64 (= ${version:gcc}),
   g++-${pv:gpp}-multilib-mips64el-linux-gnuabi64 ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the mips64el architecture
@@ -2202,9 +2202,9 @@ Description: GNU Objective-C++ compiler for the mips64el architecture
 Package: gfortran-multilib-mips64el-linux-gnuabi64
 Priority: optional
 Architecture: amd64 i386 x32
-Depends: cpp-mips64el-linux-gnuabi64 (>= ${version:cpp}),
-  gcc-multilib-mips64el-linux-gnuabi64 (>= ${version:gcc}),
-  gfortran-mips64el-linux-gnuabi64 (>= ${version:gfort}),
+Depends: cpp-mips64el-linux-gnuabi64 (= ${version:cpp}),
+  gcc-multilib-mips64el-linux-gnuabi64 (= ${version:gcc}),
+  gfortran-mips64el-linux-gnuabi64 (= ${version:gfort}),
   gfortran-${pv:gfort}-multilib-mips64el-linux-gnuabi64 ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -2267,7 +2267,7 @@ Package: gcc-i686-linux-gnu
 Priority: optional
 Architecture: amd64 arm64 ppc64el x32
 Multi-Arch: foreign
-Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
+Depends: cpp-i686-linux-gnu (= ${version:cpp}),
   gcc-${pv:gcc}-i686-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-i386-cross | libc-dev-i386-cross
@@ -2282,8 +2282,8 @@ Package: g++-i686-linux-gnu
 Priority: optional
 Architecture: amd64 arm64 ppc64el x32
 Multi-Arch: foreign
-Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
-  gcc-i686-linux-gnu (>= ${version:cpp}),
+Depends: cpp-i686-linux-gnu (= ${version:cpp}),
+  gcc-i686-linux-gnu (= ${version:cpp}),
   g++-${pv:gpp}-i686-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the i386 architecture
@@ -2329,8 +2329,8 @@ Package: gfortran-i686-linux-gnu
 Priority: optional
 Architecture: amd64 arm64 ppc64el x32
 Multi-Arch: foreign
-Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
-  gcc-i686-linux-gnu (>= ${version:gcc}),
+Depends: cpp-i686-linux-gnu (= ${version:cpp}),
+  gcc-i686-linux-gnu (= ${version:gcc}),
   gfortran-${pv:gfort}-i686-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
@@ -2389,8 +2389,8 @@ Description: GNU D compiler (based on GCC) for the i386 architecture
 Package: gcc-multilib-i686-linux-gnu
 Priority: optional
 Architecture: amd64 arm64 ppc64el x32
-Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
-  gcc-i686-linux-gnu (>= ${version:gcc}),
+Depends: cpp-i686-linux-gnu (= ${version:cpp}),
+  gcc-i686-linux-gnu (= ${version:gcc}),
   gcc-${pv:gcc}-multilib-i686-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-i386-cross | libc-dev-i386-cross
@@ -2404,9 +2404,9 @@ Description: GNU C compiler for the i386 architecture
 Package: g++-multilib-i686-linux-gnu
 Priority: optional
 Architecture: amd64 arm64 ppc64el x32
-Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
-  g++-i686-linux-gnu (>= ${version:gpp}),
-  gcc-multilib-i686-linux-gnu (>= ${version:gcc}),
+Depends: cpp-i686-linux-gnu (= ${version:cpp}),
+  g++-i686-linux-gnu (= ${version:gpp}),
+  gcc-multilib-i686-linux-gnu (= ${version:gcc}),
   g++-${pv:gpp}-multilib-i686-linux-gnu ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the i386 architecture
@@ -2452,9 +2452,9 @@ Description: GNU Objective-C++ compiler for the i386 architecture
 Package: gfortran-multilib-i686-linux-gnu
 Priority: optional
 Architecture: amd64 arm64 ppc64el x32
-Depends: cpp-i686-linux-gnu (>= ${version:cpp}),
-  gcc-multilib-i686-linux-gnu (>= ${version:gcc}),
-  gfortran-i686-linux-gnu (>= ${version:gfort}),
+Depends: cpp-i686-linux-gnu (= ${version:cpp}),
+  gcc-multilib-i686-linux-gnu (= ${version:gcc}),
+  gfortran-i686-linux-gnu (= ${version:gfort}),
   gfortran-${pv:gfort}-multilib-i686-linux-gnu ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc

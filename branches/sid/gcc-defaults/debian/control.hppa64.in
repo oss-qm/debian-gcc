@@ -2,7 +2,7 @@
 Package: gcc-hppa64-linux-gnu
 Priority: optional
 Architecture: @hppa64_archs@
-Depends: gcc (>= ${version:gcc}), gcc-${pv:gcc}-hppa64-linux-gnu ${reqv:gcc},
+Depends: gcc (= ${version:gcc}), gcc-${pv:gcc}-hppa64-linux-gnu ${reqv:gcc},
   ${misc:Depends}
 Conflicts: gcc-5-hppa64-linux-gnu (<< 5.2.1-26),
   gcc-5-hppa64 (<< 5.2.1-26),
