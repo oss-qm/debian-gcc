@@ -1,6 +1,8 @@
 gcc-defaults (1.177) experimental; urgency=medium
 
   * Default to GCC 8.
+  * Tighten dependencies on the cpp, gcc, g++ and gfortran packages.
+    Closes: #871630.
 
  -- Matthias Klose <doko@debian.org>  Thu, 26 Apr 2018 09:48:54 +0200
 

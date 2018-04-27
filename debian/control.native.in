@@ -19,7 +19,7 @@ Description: GNU C preprocessor (cpp)
 Package: gcc
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
 Recommends: libc6-dev | libc-dev
 Suggests: gcc-multilib, make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb, gcc-doc
 Provides: c-compiler
@@ -32,7 +32,7 @@ Description: GNU C compiler
 Package: gcc-multilib
 Priority: optional
 Architecture: @multilib_archs@
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}, linux-libc-dev (>= 3.0.0-2) [linux-any]
+Depends: cpp (= ${version:cpp}), gcc (= ${version:gcc}), gcc-${pv:gcc}-multilib ${reqv:gcc}, ${misc:Depends}, linux-libc-dev (>= 3.0.0-2) [linux-any]
 Conflicts: gcc-4.9-alpha-linux-gnu,
   gcc-4.9-aarch64-linux-gnu,
   gcc-4.9-arm-linux-gnueabi,
@@ -161,7 +161,7 @@ Description: GNU C compiler (multilib files)
 Package: g++
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:cpp}), g++-${pv:gpp} ${reqv:gpp}, gcc-${pv:gpp} ${reqv:gpp}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc (= ${version:cpp}), g++-${pv:gpp} ${reqv:gpp}, gcc-${pv:gpp} ${reqv:gpp}, ${misc:Depends}
 Suggests: ${pkgmulti:gpp}
 Provides: c++-compiler
 Description: GNU C++ compiler
@@ -172,7 +172,7 @@ Description: GNU C++ compiler
 Package: g++-multilib
 Priority: optional
 Architecture: @multilib_archs@
-Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), g++ (>= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc-multilib (= ${version:cpp}), g++ (= ${version:cpp}), g++-${pv:gpp}-multilib ${reqv:gpp}, ${misc:Depends}
 Description: GNU C++ compiler (multilib files)
  This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
  .
@@ -231,7 +231,7 @@ Description: GNU Objective-C++ compiler (multilib files)
 Package: gfortran
 Priority: optional
 Architecture: any
-Depends: cpp (>= ${version:cpp}), gcc (>= ${version:gcc}), gfortran-${pv:gfort} ${reqv:gfort}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc (= ${version:gcc}), gfortran-${pv:gfort} ${reqv:gfort}, ${misc:Depends}
 Suggests: ${pkgmulti:gfort}, gfortran-doc
 Provides: fortran-compiler, ${fortran:mod-version}
 Description: GNU Fortran 95 compiler
@@ -244,7 +244,7 @@ Description: GNU Fortran 95 compiler
 Package: gfortran-multilib
 Priority: optional
 Architecture: @multilib_archs@
-Depends: cpp (>= ${version:cpp}), gcc-multilib (>= ${version:cpp}), gfortran (>= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}, ${misc:Depends}
+Depends: cpp (= ${version:cpp}), gcc-multilib (= ${version:cpp}), gfortran (= ${version:gcc}), gfortran-${pv:gfort}-multilib ${reqv:gfort}, ${misc:Depends}
 Description: GNU Fortran 95 compiler (multilib files)
  This is the GNU Fortran compiler, which compiles Fortran 95 on platforms
  supported by the gcc compiler.

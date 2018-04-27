@@ -20,7 +20,7 @@ Package: gcc-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
 Multi-Arch: foreign
-Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
+Depends: cpp-CROSS_GNU_TYPE (= ${version:cpp}),
   gcc-${pv:gcc}-CROSS_GNU_TYPE ${reqv:gcc},
   ${misc:Depends}
 Recommends: libc6-dev-CROSS_ARCH-cross | libc-dev-CROSS_ARCH-cross
@@ -35,8 +35,8 @@ Package: g++-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
 Multi-Arch: foreign
-Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
-  gcc-CROSS_GNU_TYPE (>= ${version:cpp}),
+Depends: cpp-CROSS_GNU_TYPE (= ${version:cpp}),
+  gcc-CROSS_GNU_TYPE (= ${version:cpp}),
   g++-${pv:gpp}-CROSS_GNU_TYPE ${reqv:gpp},
   ${misc:Depends}
 Description: GNU C++ compiler for the CROSS_ARCH architecture
@@ -82,8 +82,8 @@ Package: gfortran-CROSS_GNU_TYPE
 Priority: optional
 Architecture: @host_archs@
 Multi-Arch: foreign
-Depends: cpp-CROSS_GNU_TYPE (>= ${version:cpp}),
-  gcc-CROSS_GNU_TYPE (>= ${version:gcc}),
+Depends: cpp-CROSS_GNU_TYPE (= ${version:cpp}),
+  gcc-CROSS_GNU_TYPE (= ${version:gcc}),
   gfortran-${pv:gfort}-CROSS_GNU_TYPE ${reqv:gfort},
   ${misc:Depends}
 Suggests: gfortran-doc
