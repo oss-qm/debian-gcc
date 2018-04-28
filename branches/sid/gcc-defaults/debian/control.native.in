@@ -22,7 +22,7 @@ Architecture: any
 Depends: cpp (= ${version:cpp}), gcc-${pv:gcc} ${reqv:gcc}, ${misc:Depends}
 Recommends: libc6-dev | libc-dev
 Suggests: gcc-multilib, make, manpages-dev, autoconf, automake, libtool, flex, bison, gdb, gcc-doc
-Provides: c-compiler
+Provides: c-compiler, ${gcc:triplet}
 Conflicts: gcc-doc (<< 1:2.95.3)
 Description: GNU C compiler
  This is the GNU C compiler, a fairly portable optimizing compiler for C.
@@ -163,7 +163,7 @@ Priority: optional
 Architecture: any
 Depends: cpp (= ${version:cpp}), gcc (= ${version:cpp}), g++-${pv:gpp} ${reqv:gpp}, gcc-${pv:gpp} ${reqv:gpp}, ${misc:Depends}
 Suggests: ${pkgmulti:gpp}
-Provides: c++-compiler
+Provides: c++-compiler, ${gpp:triplet}
 Description: GNU C++ compiler
  This is the GNU C++ compiler, a fairly portable optimizing compiler for C++.
  .
