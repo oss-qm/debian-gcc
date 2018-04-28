@@ -631,6 +631,8 @@ substvars-native:
 	  echo 'pkg:libgcj=$(LIBGCJ)'; \
 	  echo 'pkg:libgcjawt=$(LIBGCJ)-awt'; \
 	  echo 'version:libgcjbc=$(CV_LIBGCJBC)'; \
+	  echo 'gcc:triplet=gcc-$(subst _,-,$(DEB_HOST_GNU_TYPE)) (= $(EPOCH):$(CV_GCC))'; \
+	  echo 'gpp:triplet=g++-$(subst _,-,$(DEB_HOST_GNU_TYPE)) (= $(EPOCH):$(CV_GPP))'; \
 	) > debian/substvars.native
 ifeq ($(with_multilib),yes)
 	( \
